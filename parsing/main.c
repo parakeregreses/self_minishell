@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/05/23 10:23:35 by jlaineb          ###   ########.fr       */
+/*   Updated: 2025/06/06 14:26:49 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	char *str = "voici | un | argument 'argument pipe pipe' quel | bel | argument";
+	char *str = "str1|str1'arggggg1'str2|str2'arg2|arg2'str3";
 	char **tab;
 
 	tab = parsing(str);

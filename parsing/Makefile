@@ -1,6 +1,5 @@
 SRCS = \
 delete_line_in_tab.c\
-tab_size.c\
 main.c\
 extract_str_in_str.c\
 find_segment.c\

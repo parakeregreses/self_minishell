@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   which_separartor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/08 13:04:04 by jlaine-b         ###   ########.fr       */
+/*   Created: 2024/11/30 15:13:54 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/06/08 11:19:47 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+char	which_separator(char *s, char c1, char c2)
 {
-	char *str = "a|b\"quotec|dquote\"e|f'quoteg|hquote'j";
-	char **tab;
-	// char **tab1;
+	int		i;
 
-	// tab1 = ft_split(str, '|');
-	// tab = cut_tab_tail(tab1, 3);
-	// print_tab_char(tab);
-	// free_tab((void **)tab);
-	// free_tab((void **)tab1);
-
-	tab = parsing_minishell(str);
-	print_tab_char(tab);
-	free_tab((void *)tab);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c1)
+			return (c1);
+		if (s[i] == c2)
+			return (c2);
+		i++;
+	}
+	return (0);
 }

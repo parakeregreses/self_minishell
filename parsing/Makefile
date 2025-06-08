@@ -5,6 +5,7 @@ extract_str_in_str.c\
 find_segment.c\
 append_tabs_and_free.c\
 parsing.c\
+which_separator.c\
 
 OBJS = $(SRCS:.c=.o)
 

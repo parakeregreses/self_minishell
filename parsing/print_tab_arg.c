@@ -6,5 +6,8 @@ void	print_tab_arg(t_arg *text)
 
 	i = 0;
 	while ((text[i]).str != NULL)
-		ft_printf("%s\n", (text[i++]).str);
+	{
+		ft_printf("%d | %s\n", (text[i]).quote, (text[i]).str);
+		i++;
+	}
 }

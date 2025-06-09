@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 17:08:41 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:49:42 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_arg	*cut_tab_tail_arg(t_arg *tab, int n)
 	while (i < (n - 1))
 	{
 		(new_tab[i]).str = ft_strdup((tab[i]).str);
+		(new_tab[i]).quote = (tab[i]).quote;
 		i++;
 	}
 	(new_tab[i]).str = NULL;
@@ -73,10 +74,21 @@ t_arg	*cut_tab_head_arg(t_arg *tab, int n)
 	while (i < size)
 	{
 		(new_tab[i - n - 1]).str = ft_strdup((tab[i]).str);
+		(new_tab[i - n - 1]).quote = (tab[i]).quote;
 		i++;
 	}
 	(new_tab[i - n - 1]).str = NULL;
 	return (new_tab);
+}
+
+t_arg	*ft_quoteiszero(t_arg *tab)
+{
+	int	i;
+
+	i = 0;
+	while((tab[i]).str != NULL)
+		(tab[i++]).quote = 0;
+	return (tab);
 }
 
 t_arg	*separate_pipe(t_arg *arg)
@@ -89,20 +101,50 @@ t_arg	*separate_pipe(t_arg *arg)
 
 	n = tab_size_arg(arg);
 	tab1 = ft_split_arg((arg[0]).str, '|');
+	ft_quoteiszero(tab1);
 	arg = append_tabs_and_free_arg(tab1, delete_line_in_tab_arg(arg, 0));
 	i = 0;
 	print_tab_arg(arg);
-	i = i + 2;
+	ft_printf("i = %d\n\n", i);
+	i = 1;
 	while (i < n)
 	{
-		tab1 = cut_tab_tail_arg(arg, i);
-		tab2 = ft_split_arg((arg[i]).str, '|');
-		tab3 = cut_tab_head_arg(arg, i);
-		free_tab_arg(arg);
-		arg = append_tabs_and_free_arg(tab1, tab2);
-		arg = append_tabs_and_free_arg(arg, tab3);
-		// print_tab_char_arg(arg);
-		i = i + 2;
+		if ((arg[i]).quote == FALSE && ft_charinstr((arg[i]).str, '|') == TRUE)
+		{
+			if (i == 3)
+			{
+				ft_printf("boucle i = %d\n\n", i);
+				print_tab_arg(arg);
+			}
+			tab1 = cut_tab_tail_arg(arg, i + 1);
+			if (i == 3)
+			{
+				ft_printf("\n\ntab1 = \n");
+				print_tab_arg(tab1);
+				ft_printf("\n");
+			}
+			tab2 = ft_split_arg((arg[i]).str, '|');
+			tab2 = ft_quoteiszero(tab2);
+			if (i == 3)
+			{
+				ft_printf("tab2 = \n");
+				print_tab_arg(tab2);
+				ft_printf("\n");
+			}
+			tab3 = cut_tab_head_arg(arg, i);
+			if (i == 3)
+			{
+				ft_printf("tab3 = \n");
+				print_tab_arg(tab3);
+				ft_printf("\n");
+			}
+			free_tab_arg(arg);
+			arg = append_tabs_and_free_arg(tab1, tab2);
+			arg = append_tabs_and_free_arg(arg, tab3);
+		}
+		// if (i == 3)
+		// 	ft_printf("i = %d\n\n", i);
+		i++;
 	}
 	return (arg);
 }

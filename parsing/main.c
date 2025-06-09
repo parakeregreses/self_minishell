@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 16:43:57 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:51:12 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	char 	*str = "a|b\"quotec|dquote\"e|f'quoteg|hquote'j";
+	char 	*str = "\'cmd1|\'cmd2 \"bla|bla\"|cmd3|cmd4|cmd6\'blou|blouh\'";
 	t_arg	*tab;
 	// char **tab1;
 
@@ -25,5 +25,6 @@ int	main(void)
 	// free_tab((void **)tab1);
 
 	tab = parsing_minishell(str);
+	print_tab_arg(tab);
 	free_tab_arg(tab);
 }

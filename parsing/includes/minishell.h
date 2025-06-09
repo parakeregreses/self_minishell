@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 16:30:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:07:27 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ char		**delete_line_in_tab(char **tab, int i);
 t_arg		*extract_str_in_str(char *str, t_segment s);
 t_segment	find_segment(char *str, char c);
 char		**append_tabs_and_free(char **tab1, char **tab2);
-t_arg		**parsing_minishell(char *str);
+t_arg		*parsing_minishell(char *str);
 char		which_separator(char *s, char c1, char c2);
-char		**cut_tab_tail(char **tab, int n);
-char		**cut_tab_head(char **tab, int n);
+t_arg		*cut_tab_tail_arg(t_arg	*tab, int n);
+t_arg		*cut_tab_head_arg(t_arg *tab, int n);
 void		free_tab_arg(t_arg *tab);
 int			tab_size_arg(t_arg *tab);
 t_arg		*delete_line_in_tab_arg(t_arg *old_tab, int i);
 t_arg		*append_tabs_and_free_arg(t_arg *tab1, t_arg *tab2);
 void		print_tab_arg(t_arg *text);
+t_arg		*ft_split_arg(char const *s, char c);
 
 #endif

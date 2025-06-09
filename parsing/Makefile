@@ -6,6 +6,12 @@ find_segment.c\
 append_tabs_and_free.c\
 parsing.c\
 which_separator.c\
+free_tab_arg.c\
+tab_size_arg.c\
+delete_line_in_tab_arg.c\
+append_tabs_and_free_arg.c\
+print_tab_arg.c\
+ft_split_arg.c\
 
 OBJS = $(SRCS:.c=.o)
 

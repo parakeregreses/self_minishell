@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	print_arg(t_arg *text)
+void	print_tab_arg(t_arg *text)
 {
 	int	i;
 

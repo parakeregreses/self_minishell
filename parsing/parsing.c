@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 11:44:19 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:31:14 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ t_arg	*select_quoted_str(char *str)
 		separator = which_separator(str, '\'', '\"');
 		tab1 = extract_str_in_str(str, find_segment(str, separator));
 	}
-	n = tab_size(tab1);
+	n = tab_size_arg(tab1);
 	while (ft_charinstr((tab1[n - 1]).str, '\'') == TRUE || ft_charinstr((tab1[n - 1]).str, '\"') == TRUE)
 	{
 		tab2 = select_quoted_str((tab1[n - 1]).str);
-		tab1 = append_tabs_and_free(delete_line_in_tab(tab1, n - 1), tab2);
-		n = tab_size(tab1);
+		tab1 = append_tabs_and_free_arg(delete_line_in_tab_arg(tab1, n - 1), tab2);
+		n = tab_size_arg(tab1);
 	}
 	return (tab1);
 }
@@ -123,7 +123,7 @@ t_arg	**parsing_minishell(char *str)
 	t_arg **arg;
 
 	arg = select_quoted_str(str);
-	print_arg(arg);
+	print_tab_arg(arg);
 	// ft_printf("on a separe les quotes\n");
 	// arg = separate_pipe(arg);
 	return (arg);

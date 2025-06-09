@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:20:30 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 11:43:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:24:36 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,16 @@ t_arg	*alloc_tab_extract(int len, t_segment s)
 	if (tab == NULL)
 		return (NULL);
 	(tab[0]).str = malloc(sizeof(char) * (s.start + 1));
-	(tab[0]).quote = malloc(sizeof(int));
-	if ((tab[0]).str == NULL || (tab[0]).quote == NULL)
+	if ((tab[0]).str == NULL)
 		return (NULL);
 	(tab[1]).str = malloc(sizeof(char) * (s.end - s.start + 1));
-	(tab[1]).quote = malloc(sizeof(int));
-	if ((tab[1]).str == NULL || (tab[1]).quote == NULL)
+	if ((tab[1]).str == NULL)
 	{
 		free_tab_arg(tab);
 		return (NULL);
 	}
 	(tab[2]).str = malloc(sizeof(char) * (len - s.end + 1));
-	(tab[2]).quote = malloc(sizeof(int));
-	if ((tab[2]).str == NULL || (tab[1]).quote == NULL)
+	if ((tab[2]).str == NULL)
 	{
 		free_tab_arg(tab);
 		return (NULL);
@@ -43,7 +40,7 @@ t_arg	*alloc_tab_extract(int len, t_segment s)
 }
 
 //returns a tab of size 3, before str, str, after str
-char	**extract_str_in_str(char *str, t_segment s)
+t_arg	*extract_str_in_str(char *str, t_segment s)
 {
 	t_arg	*tab;
 	int		i;

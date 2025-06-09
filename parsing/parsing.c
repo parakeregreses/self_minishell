@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 17:49:42 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/09 23:12:27 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,17 @@ t_arg	*select_quoted_str(char *str)
 	if (ft_charinstr(str, '\'') == TRUE || ft_charinstr(str, '\"') == TRUE)
 	{
 		separator = which_separator(str, '\'', '\"');
-		tab1 = extract_str_in_str(str, find_segment(str, separator));
+		tab1 = extract_quote(str, find_segment(str, separator));
+	}
+	else
+	{
+		tab1 = malloc(sizeof(t_arg) * 2);
+		if (!tab1)
+			return (NULL);
+		(tab1[0]).str = ft_strdup(str);
+		(tab1[0]).quote = 0;
+		(tab1[1]).str = NULL;
+		return (tab1);
 	}
 	n = tab_size_arg(tab1);
 	while (ft_charinstr((tab1[n - 1]).str, '\'') == TRUE || ft_charinstr((tab1[n - 1]).str, '\"') == TRUE)
@@ -103,47 +113,20 @@ t_arg	*separate_pipe(t_arg *arg)
 	tab1 = ft_split_arg((arg[0]).str, '|');
 	ft_quoteiszero(tab1);
 	arg = append_tabs_and_free_arg(tab1, delete_line_in_tab_arg(arg, 0));
-	i = 0;
-	print_tab_arg(arg);
-	ft_printf("i = %d\n\n", i);
 	i = 1;
-	while (i < n)
+	while (ft_charinstr((arg[n - 1]).str, '|') == TRUE)
 	{
 		if ((arg[i]).quote == FALSE && ft_charinstr((arg[i]).str, '|') == TRUE)
 		{
-			if (i == 3)
-			{
-				ft_printf("boucle i = %d\n\n", i);
-				print_tab_arg(arg);
-			}
 			tab1 = cut_tab_tail_arg(arg, i + 1);
-			if (i == 3)
-			{
-				ft_printf("\n\ntab1 = \n");
-				print_tab_arg(tab1);
-				ft_printf("\n");
-			}
 			tab2 = ft_split_arg((arg[i]).str, '|');
 			tab2 = ft_quoteiszero(tab2);
-			if (i == 3)
-			{
-				ft_printf("tab2 = \n");
-				print_tab_arg(tab2);
-				ft_printf("\n");
-			}
 			tab3 = cut_tab_head_arg(arg, i);
-			if (i == 3)
-			{
-				ft_printf("tab3 = \n");
-				print_tab_arg(tab3);
-				ft_printf("\n");
-			}
 			free_tab_arg(arg);
 			arg = append_tabs_and_free_arg(tab1, tab2);
 			arg = append_tabs_and_free_arg(arg, tab3);
+			n = tab_size_arg(arg);
 		}
-		// if (i == 3)
-		// 	ft_printf("i = %d\n\n", i);
 		i++;
 	}
 	return (arg);
@@ -154,8 +137,8 @@ t_arg	*parsing_minishell(char *str)
 	t_arg *arg;
 
 	arg = select_quoted_str(str);
-	print_tab_arg(arg);
-	ft_printf("on a separe les quotes\n");
-	arg = separate_pipe(arg);
+	if (arg == NULL)
+		return (NULL);
+	// arg = separate_pipe(arg);
 	return (arg);
 }

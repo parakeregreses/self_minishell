@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 17:51:12 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/09 22:55:34 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	char 	*str = "\'cmd1|\'cmd2 \"bla|bla\"|cmd3|cmd4|cmd6\'blou|blouh\'";
+	char 	*str = "'bonjourlionel'";
 	t_arg	*tab;
 	// char **tab1;
 

@@ -1,7 +1,7 @@
 SRCS = \
 delete_line_in_tab.c\
 main.c\
-extract_str_in_str.c\
+extract_quote.c\
 find_segment.c\
 append_tabs_and_free.c\
 parsing.c\

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	free_tab_arg(t_arg *tab)
+t_arg	*free_tab_arg(t_arg *tab)
 {
 	int	i;
 
@@ -8,4 +8,5 @@ void	free_tab_arg(t_arg *tab)
 	while ((tab[i]).str != NULL)
 		free((tab[i++]).str);
 	free(tab);
+	return (NULL);
 }

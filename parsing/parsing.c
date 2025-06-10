@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/10 12:30:39 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:54:12 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_arg	*select_quoted_str(char *str)
 	{
 		separator = which_separator(str, '\'', '\"');
 		tab1 = extract_quote(str, find_segment(str, separator));
+		if (tab1 == NULL)
+			return (NULL);
 	}
 	else
 	{
@@ -138,9 +140,10 @@ t_arg	*parsing_minishell(char *str)
 
 	if (first_verifications(str) == FALSE)
 		return (NULL);
+	ft_printf("first verif is done\n");
 	arg = select_quoted_str(str);
 	if (arg == NULL)
 		return (NULL);
-	arg = separate_pipe(arg);
+	// arg = separate_pipe(arg);
 	return (arg);
 }

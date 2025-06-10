@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/10 16:00:53 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:27:35 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ t_arg		*append_tabs_and_free_arg(t_arg *tab1, t_arg *tab2);
 void		print_tab_arg(t_arg *text);
 t_arg		*ft_split_arg(char const *s, char c);
 int			first_verifications(char *str);
+t_arg		*alloc_tab(int len, t_segment s);
 
 #endif

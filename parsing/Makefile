@@ -13,6 +13,7 @@ append_tabs_and_free_arg.c\
 print_tab_arg.c\
 ft_split_arg.c\
 first_verifications.c\
+alloc_tab.c\
 
 OBJS = $(SRCS:.c=.o)
 

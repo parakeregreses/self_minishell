@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/10 16:05:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:13:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	char 	*str = "'guill'lionel";
+	char 	*str = "'hello'end";
 	t_arg	*tab;
 	// char **tab1;
 

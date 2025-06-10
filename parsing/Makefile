@@ -12,6 +12,7 @@ delete_line_in_tab_arg.c\
 append_tabs_and_free_arg.c\
 print_tab_arg.c\
 ft_split_arg.c\
+first_verifications.c\
 
 OBJS = $(SRCS:.c=.o)
 

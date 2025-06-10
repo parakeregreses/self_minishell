@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 23:12:59 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:24:01 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,11 @@
 
 # include "libft.h"
 
-typedef struct s_segment
-{
-	int		start;
-	int		end;
-}			t_segment;
-
 typedef struct s_arg
 {
 	char	*str;
 	int		quote;
 }			t_arg;
-
-enum e_booleen
-{
-        FALSE=0,
-        TRUE=1
-};
 
 int			tab_size(char **tab);
 char		**delete_line_in_tab(char **tab, int i);
@@ -48,5 +36,6 @@ t_arg		*delete_line_in_tab_arg(t_arg *old_tab, int i);
 t_arg		*append_tabs_and_free_arg(t_arg *tab1, t_arg *tab2);
 void		print_tab_arg(t_arg *text);
 t_arg		*ft_split_arg(char const *s, char c);
+int			first_verifications(char *str);
 
 #endif

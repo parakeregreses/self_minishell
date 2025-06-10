@@ -6,16 +6,17 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:20:30 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 23:26:00 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/10 11:34:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 t_arg	*alloc_tab_2_begin(int len, t_segment s);
+t_arg	*alloc_tab_2_end(int len, t_segment s);
 t_arg	*alloc_tab_3(int len, t_segment s);
 
-static t_arg	*alloc_tab(int len, t_segment s, char *str)
+static t_arg	*alloc_tab(int len, t_segment s)
 {
 	t_arg	*tab;
 	
@@ -25,8 +26,8 @@ static t_arg	*alloc_tab(int len, t_segment s, char *str)
 		tab = alloc_tab_2_begin(len, s);
 	if (s.start != 0 && s.end == len)
 		tab = alloc_tab_2_end(len, s);
-	if (s.start == 0 && s.end == len)
-		tab = alloc_tab_1(len, s);
+	// if (s.start == 0 && s.end == len)
+	// 	tab = alloc_tab_1(len, s);
 	else
 		tab = NULL; //temporaire
 	return (tab);
@@ -118,7 +119,7 @@ t_arg	*extract_quote(char *str, t_segment s)
 
 	i = 0;
 	len = ft_strlen(str);
-	tab = alloc_tab(len, s, str);
+	tab = alloc_tab(len, s);
 	while (i < s.start)
 	{
 		(tab[0]).str[i] = str[i];

@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   first_verifications.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/10 12:30:25 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/06/10 11:12:48 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/06/10 12:26:28 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	first_verifications(char *str)
 {
-	char 	*str = "bonjourlionel";
-	t_arg	*tab;
-	// char **tab1;
-
-	// tab1 = ft_split(str, '|');
-	// tab = cut_tab_tail(tab1, 3);
-	// print_tab_char(tab);
-	// free_tab((void **)tab);
-	// free_tab((void **)tab1);
-
-	tab = parsing_minishell(str);
-	print_tab_arg(tab);
-	free_tab_arg(tab);
+	if (str[0] == '|' || is_x_char_in_str(str, '|', 3) == TRUE || str[ft_strlen(str) - 1] == '|')
+	{
+		ft_printf("minishell: syntax error near unexpected token `|'");
+		return (FALSE);
+	}
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/12 14:15:00 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:32:01 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	char 	*str = "cm1|cm2\"arg|\"|cm3'arg|'";
+	char 	*str = "cm1|cm2\"arg|\"|cm3";
 	t_arg	*tab;
 
 	tab = parsing_minishell(str);

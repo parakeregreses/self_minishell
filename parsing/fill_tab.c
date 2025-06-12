@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:16:47 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/12 14:22:13 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:33:20 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,23 @@ t_arg	*fill_tab_3(t_arg *tab, char *str, t_segment s, int len)
 	int	i;
 
 	i = 0;
-	while (i < s.start)
+	while (i < s.start + 1)
 	{
 		(tab[0]).str[i] = str[i];
 		i++;
 	}
-	(tab[0]).str[i++] = 0;
+	(tab[0]).str[i] = 0;
 	(tab[0]).quote = 0;
 	while (i < s.end)
 	{
 		(tab[1]).str[i - s.start - 1] = str[i];
 		i++;
 	}
-	(tab[1]).str[i++ - s.start - 1] = 0;
+	(tab[1]).str[i - s.start - 1] = 0;
 	(tab[1]).quote = 1;
 	while (i < len)
 	{
-		(tab[2]).str[i - s.end - 1] = str[i];
+		(tab[2]).str[i - s.end] = str[i];
 		i++;
 	}
 	(tab[2]).str[i - s.end - 1] = 0;

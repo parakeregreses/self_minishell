@@ -1,0 +1,41 @@
+1.
+
+grep i no_exist                
+grep: no_exist: No such file or directory
+
+grep i exist                
+-> imprime resultat dans stdin
+
+grep i no_exist                
+grep: no_exist: No such file or directory
+
+grep a > outfile1 infile1
+-> affiche resultat de grep a sur infile1 dans outfile1
+
+grep a > outfile1 infile1 infile2
+-> affiche dans outfile les resultats de grep a sur infile1 et infile2
+
+=> les fichiers sont pris comme des arguments de grep (mais il faut qu'ils existent). Cependant c'est grep qui va gerer ca avec execve.
+
+--------------------------------------------------------------------------
+
+2. 
+grep a < infile1
+-> imprime resultat dans stdin
+
+grep a < infile1 > outfile1
+-> imprime resultat dans outfile1 (le cree ou l'ecrase)
+
+grep a < infile1 > outfile1 no_exist
+-> grep: no_exist: No such file or directory
+
+grep a < infile1 > outfile1 exist
+affiche resultat de grep sur exist dans outfile1
+
+grep a < infile1 no_exist > outfile1 
+-> grep: no_exist: No such file or directory
+
+grep < infile1 i > outfile1
+affiche resultat grep i sur infile1 dans outfile1
+
+DONC les elements qui ne sont pas juste derriere < ou > (separer du premier element par un espace) sont consideres comme des arguments de cmd !!!

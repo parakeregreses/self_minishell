@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:15:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/10 17:04:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:17:45 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_arg	*alloc_tab_1(t_segment s)
 	tab = malloc(sizeof(t_arg) * 2);
 	if (tab == NULL)
 		return (NULL);
-	(tab[0]).str = malloc(sizeof(char) * (s.end - s.start));
+	(tab[0]).str = malloc(sizeof(char) * (s.end - s.start + 2));
 	if ((tab[0]).str == NULL)
 		return (free_tab_arg(tab));
 	(tab[0]).quote = 1;
@@ -57,7 +57,7 @@ t_arg	*alloc_tab_2_begin(int len, t_segment s)
 	tab = malloc(sizeof(t_arg) * 3);
 	if (tab == NULL)
 		return (NULL);
-	(tab[0]).str = malloc(sizeof(char) * (s.end - s.start + 1));
+	(tab[0]).str = malloc(sizeof(char) * (s.end - s.start + 3));
 	if ((tab[0]).str == NULL)
 		return (free_tab_arg(tab));
 	(tab[0]).quote = 1;
@@ -81,7 +81,7 @@ t_arg	*alloc_tab_2_end(t_segment s)
 	if ((tab[0]).str == NULL)
 		return (free_tab_arg(tab));
 	(tab[0]).quote = 0;
-	(tab[1]).str = malloc(sizeof(char) * (s.end - s.start + 1));
+	(tab[1]).str = malloc(sizeof(char) * (s.end - s.start + 3));
 	if ((tab[1]).str == NULL)
 		return (free_tab_arg(tab));
 	(tab[1]).quote = 1;
@@ -101,7 +101,7 @@ t_arg	*alloc_tab_3(int len, t_segment s)
 	if ((tab[0]).str == NULL)
 		return (free_tab_arg(tab));
 	(tab[0]).quote = 0;
-	(tab[1]).str = malloc(sizeof(char) * (s.end - s.start + 1));
+	(tab[1]).str = malloc(sizeof(char) * (s.end - s.start + 3));
 	if ((tab[1]).str == NULL)
 		return (free_tab_arg(tab));
 	(tab[0]).quote = 1;

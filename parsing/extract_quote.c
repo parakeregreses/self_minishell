@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:20:30 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/10 17:16:38 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:16:22 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,5 @@ t_arg	*extract_quote(char *str, t_segment s)
 	if (tab == NULL)
 		return (NULL);
 	tab = fill_tab(tab, str, s, len);
-	// while (i < s.start)
-	// {
-	// 	(tab[0]).str[i] = str[i];
-	// 	i++;
-	// }
-	// (tab[0]).str[i++] = 0;
-	// (tab[0]).quote = 0;
-	// ft_printf("firstline\n");
-	// while (i < s.end)
-	// {
-	// 	(tab[1]).str[i - s.start - 1] = str[i];
-	// 	i++;
-	// }
-	// (tab[1]).str[i - s.start - 1] = 0;
-	// (tab[1]).quote = 1;
-	// i++;
-	// ft_printf("secondline\n");
-	// while (i < len)
-	// {
-	// 	(tab[2]).str[i - s.end - 1] = str[i];
-	// 	i++;
-	// }
-	// (tab[2]).str[i - s.end - 1] = 0;
-	// (tab[2]).quote = 0;
-	// ft_printf("quote extracted\n");
 	return (tab);
 }

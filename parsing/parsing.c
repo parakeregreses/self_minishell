@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/10 17:18:35 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:17:58 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,17 @@ t_arg	*ft_quoteiszero(t_arg *tab)
 	return (tab);
 }
 
+int	is_pipe_left(int i, t_arg *arg)
+{
+	while ((arg[i]).str != NULL)
+	{
+		if ((arg[i]).quote == FALSE && ft_charinstr((arg[i]).str, '|') == TRUE )
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}
+
 t_arg	*separate_pipe(t_arg *arg)
 {
 	int		n;
@@ -112,12 +123,16 @@ t_arg	*separate_pipe(t_arg *arg)
 	t_arg	*tab3;
 
 	n = tab_size_arg(arg);
-	tab1 = ft_split_arg((arg[0]).str, '|');
-	ft_quoteiszero(tab1);
-	arg = append_tabs_and_free_arg(tab1, delete_line_in_tab_arg(arg, 0));
-	i = 1;
-	while (ft_charinstr((arg[n - 1]).str, '|') == TRUE)
+	i = 0;
+	// tab1 = ft_split_arg((arg[0]).str, '|');
+	// ft_quoteiszero(tab1);
+	// arg = append_tabs_and_free_arg(tab1, delete_line_in_tab_arg(arg, 0));
+	// i = 1;
+	while (is_pipe_left(i, arg) == TRUE)
 	{
+		// ft_printf("%d\n", i);
+		// if (i == 9)
+		// 	print_tab_arg(arg);
 		if ((arg[i]).quote == FALSE && ft_charinstr((arg[i]).str, '|') == TRUE)
 		{
 			tab1 = cut_tab_tail_arg(arg, i + 1);

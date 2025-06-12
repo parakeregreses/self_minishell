@@ -1,2 +1,1 @@
 penser à faire les verifs a chaque strdup pour ne pas avoir de leak ou de segfault
-penser à modifier extract_str_in_str si besoin, pour éviter d'avoir des lignes vides dans le tableau

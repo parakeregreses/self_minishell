@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:16:47 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/12 14:33:20 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/13 11:37:41 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,66 @@ t_arg	*fill_tab(t_arg *tab, char *str, t_segment s, int len)
 	return (NULL);
 }
 
+t_arg	*fill_tab_1(t_arg *tab, char *str, t_segment s)
+{
+	ft_printf("filltab1\n");
+	int	i;
+
+	i = 0;
+	while (i <= s.end)
+	{
+		(tab[0]).str[i] = str[i];
+		i++;
+	}
+	(tab[0]).str[i - 1] = 0;
+	(tab[0]).quote = 1;
+	return (tab);
+}
+
+t_arg	*fill_tab_2_end(t_arg *tab, char *str, t_segment s)
+{
+	int	i;
+
+	i = 0;
+	while (i <= s.start)
+	{
+		(tab[0]).str[i] = str[i];
+		i++;
+	}
+	(tab[0]).str[i] = 0;
+	(tab[0]).quote = 0;
+	while (i < s.end)
+	{
+		(tab[1]).str[i - s.start - 1] = str[i];
+		i++;
+	}
+	(tab[1]).str[i++ - s.start - 1] = 0;
+	(tab[1]).quote = 1;
+	return (tab);
+}
+
+t_arg	*fill_tab_2_begin(t_arg *tab, char *str, t_segment s, int len)
+{
+	int	i;
+
+	i = s.start + 1;
+	while (i < s.end)
+	{
+		(tab[0]).str[i] = str[i];
+		i++;
+	}
+	(tab[0]).str[i] = 0;
+	(tab[0]).quote = 1;
+	while (i < len)
+	{
+		(tab[1]).str[i - s.end] = str[i];
+		i++;
+	}
+	(tab[1]).str[i++ - s.end] = 0;
+	(tab[1]).quote = 0;
+	return (tab);
+}
+
 t_arg	*fill_tab_3(t_arg *tab, char *str, t_segment s, int len)
 {
 	int	i;
@@ -60,66 +120,7 @@ t_arg	*fill_tab_3(t_arg *tab, char *str, t_segment s, int len)
 		(tab[2]).str[i - s.end] = str[i];
 		i++;
 	}
-	(tab[2]).str[i - s.end - 1] = 0;
+	(tab[2]).str[i - s.end] = 0;
 	(tab[2]).quote = 0;
-	return (tab);
-}
-
-t_arg	*fill_tab_1(t_arg *tab, char *str, t_segment s)
-{
-	int	i;
-
-	i = s.start;
-	while (i < s.end)
-	{
-		(tab[0]).str[i] = str[i + 1];
-		i++;
-	}
-	(tab[0]).str[i - 1] = 0;
-	(tab[0]).quote = 1;
-	return (tab);
-}
-
-t_arg	*fill_tab_2_end(t_arg *tab, char *str, t_segment s)
-{
-	int	i;
-
-	i = 0;
-	while (i < s.start)
-	{
-		(tab[0]).str[i] = str[i];
-		i++;
-	}
-	(tab[0]).str[i++] = 0;
-	(tab[0]).quote = 0;
-	while (i < s.end)
-	{
-		(tab[1]).str[i - s.start - 1] = str[i];
-		i++;
-	}
-	(tab[1]).str[i++ - s.start - 1] = 0;
-	(tab[1]).quote = 1;
-	return (tab);
-}
-
-t_arg	*fill_tab_2_begin(t_arg *tab, char *str, t_segment s, int len)
-{
-	int	i;
-
-	i = s.start;
-	while (i < s.end)
-	{
-		(tab[0]).str[i] = str[i + 1];
-		i++;
-	}
-	(tab[0]).str[i++ - 1] = 0;
-	(tab[0]).quote = 1;
-	while (i < len)
-	{
-		(tab[1]).str[i - s.end - 1] = str[i];
-		i++;
-	}
-	(tab[1]).str[i++ - s.end - 1] = 0;
-	(tab[1]).quote = 0;
 	return (tab);
 }

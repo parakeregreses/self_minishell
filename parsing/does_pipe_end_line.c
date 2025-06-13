@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tab_size.c                                         :+:      :+:    :+:   */
+/*   does_pipe_end_line.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 20:14:36 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 16:19:21 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/06/13 21:44:26 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/06/13 21:44:27 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	tab_size_arg(t_arg *tab)
+int	does_pipe_end_line(char *line)
 {
-	int	len;
+	char	*ptr;
+	int		i;
 
-	len = 0;
-	if (tab == NULL)
-		return (len);
-	while ((tab[len]).str != NULL)
-		len++;
-	return (len);
+	ptr = ft_strrchr(line, '|');
+	while (ptr[i] != 0)
+	{
+		if (is_whitespace(ptr[i++]) != TRUE)
+			return (TRUE);
+	}
+	return (FALSE);
 }

@@ -1,19 +1,15 @@
 SRCS = \
-delete_line_in_tab.c\
 main.c\
-extract_quote.c\
-append_tabs_and_free.c\
 parsing.c\
-which_separator.c\
-free_tab_arg.c\
-tab_size_arg.c\
-delete_line_in_tab_arg.c\
-append_tabs_and_free_arg.c\
 print_tab_arg.c\
 ft_split_arg.c\
 first_verifications.c\
 alloc_tab.c\
 fill_tab.c\
+parsing_utils.c\
+select_quoted_str.c\
+separate_pipe.c\
+
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:35:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 12:13:22 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:26:46 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_arg	*ft_quoteiszero(t_arg *tab)
 	int	i;
 
 	i = 0;
-	while((tab[i]).str != NULL)
+	while ((tab[i]).str != NULL)
 		(tab[i++]).quote = 0;
 	return (tab);
 }
@@ -70,7 +70,7 @@ int	is_pipe_left(int i, t_arg *arg)
 {
 	while ((arg[i]).str != NULL)
 	{
-		if ((arg[i]).quote == FALSE && ft_charinstr((arg[i]).str, '|') == TRUE )
+		if ((arg[i]).quote == FALSE && ft_charinstr((arg[i]).str, '|') == TRUE)
 			return (TRUE);
 		i++;
 	}

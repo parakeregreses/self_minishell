@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/13 22:04:50 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:23:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_arg	*parsing_minishell(char *str)
 {
-	t_arg *arg;
+	t_arg	*arg;
 
 	if (first_verifications(str) == FALSE)
 		return (NULL);

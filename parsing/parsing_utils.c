@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:23:55 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 12:00:41 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:24:53 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,34 +70,35 @@ t_arg	*delete_line_in_tab_arg(t_arg *old_tab, int i)
 
 // create one tab, which is the concatenation of tab1 and tab2
 // free tab1 and tab2
-t_arg	*append_tabs_and_free_arg(t_arg *tab1, t_arg *tab2)
+t_arg	*append_tabs_and_free_arg(t_arg *t1, t_arg *t2)
 {
 	t_arg	*new_tab;
 	int		i;
 	int		len1;
 
 	i = 0;
-	new_tab = malloc(sizeof(t_arg) * (tab_size_arg(tab1) + tab_size_arg(tab2) + 1));
+	new_tab = malloc(sizeof(t_arg) * (tab_size_arg(t1) + tab_size_arg(t2) + 1));
 	if (!new_tab)
 		return (NULL);
-	while ((tab1[i]).str != NULL)
+	while ((t1[i]).str != NULL)
 	{
-		(new_tab[i]).str = ft_strdup((tab1[i]).str);
-		(new_tab[i]).quote = (tab1[i]).quote;
+		(new_tab[i]).str = ft_strdup((t1[i]).str);
+		(new_tab[i]).quote = (t1[i]).quote;
 		i++;
 	}
 	len1 = i;
-	while ((tab2[i - len1]).str != NULL)
+	while ((t2[i - len1]).str != NULL)
 	{
-		(new_tab[i]).str = ft_strdup((tab2[i - len1]).str);
-		(new_tab[i]).quote = (tab2[i - len1]).quote;
+		(new_tab[i]).str = ft_strdup((t2[i - len1]).str);
+		(new_tab[i]).quote = (t2[i - len1]).quote;
 		i++;
 	}
 	(new_tab[i]).str = NULL;
-	free_tab_arg(tab1);
-	free_tab_arg(tab2);
+	free_tab_arg(t1);
+	free_tab_arg(t2);
 	return (new_tab);
 }
+
 t_arg	*free_tab_arg(t_arg *tab)
 {
 	int	i;

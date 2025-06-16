@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_infile.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/16 17:30:57 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/06/16 16:46:04 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/06/16 17:33:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	is_infile(char *file1)
 {
-	char 	*str = "cmd<infile|cmd|\'1|2|1|2\'bonjour|a|tous\"les|amiiis\"bienvenue|a|\'l|ecole|42\'arg|cmd|cmd";
-	// char *str = "cmd0|cmd1'bis|ous'arg2|cmd4";
-	t_arg	*tab;
-
-	tab = parsing_minishell(str);
-	if (tab == NULL)
-		return (0);
-	print_tab_arg(tab);
-	parse_bloc((tab[0]).str);
-	free_tab_arg(tab);
+	if (access(file1, F_OK | R_OK) != 0)
+	{
+		perror(file1);
+		return (FALSE);
+	}
+	return (TRUE);
 }

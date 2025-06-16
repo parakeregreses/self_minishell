@@ -38,4 +38,13 @@ grep a < infile1 no_exist > outfile1
 grep < infile1 i > outfile1
 affiche resultat grep i sur infile1 dans outfile1
 
+grep a < no_exist no_exist2
+zsh: no such file or directory: no_exist
+
+grep a < infile1 infile2
+affiche resultat de grep sur infile2 seulement
+
+grep a < infile1 < infile2
+affiche resultat de grep sur infile2 seulement
+
 DONC les elements qui ne sont pas juste derriere < ou > (separer du premier element par un espace) sont consideres comme des arguments de cmd !!!

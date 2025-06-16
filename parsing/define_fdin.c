@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   define_fdin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/16 17:30:57 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/06/16 15:50:26 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/06/16 17:34:06 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	define_fdin(char *str)
 {
-	char 	*str = "cmd<infile|cmd|\'1|2|1|2\'bonjour|a|tous\"les|amiiis\"bienvenue|a|\'l|ecole|42\'arg|cmd|cmd";
-	// char *str = "cmd0|cmd1'bis|ous'arg2|cmd4";
-	t_arg	*tab;
+	int	i;
+	char *filename;
 
-	tab = parsing_minishell(str);
-	if (tab == NULL)
-		return (0);
-	print_tab_arg(tab);
-	parse_bloc((tab[0]).str);
-	free_tab_arg(tab);
+	filename = NULL;
+	i = 0;
+	while (str[i] != 0)
+	{
+		if (str[i++] == '<')
+		{
+			if (str[i] == '<')
+				return (0);
+			filename = ft_firstword(str + i, ' ');
+		}
+	}
+	ft_printf("filename = %s\n", filename);
+	if (is_infile(filename) == FALSE)
+		return(-1);
+	i = open(filename, O_RDONLY);
+	return (i);
 }

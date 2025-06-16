@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 11:35:14 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:27:25 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int			is_x_char_in_str(char *str, char c, int x);
 int			ft_iswhitespace(char c);
 int			does_char_end_line(char *line, char c);
 int			does_char_start_line(char *line, char c);
+char		*ft_firstword(char *str, char c);
 
 
 

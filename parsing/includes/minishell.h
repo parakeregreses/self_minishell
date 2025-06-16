@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/16 12:12:20 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:34:11 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,27 @@
 # define MINISHELL_H
 
 # include "libft.h"
+# include <stdio.h>
+# include <stddef.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <string.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <stdbool.h>
 
 typedef struct s_arg
 {
 	char	*str;
 	int		quote;
 }			t_arg;
+
+typedef struct s_exec
+{
+	int		fdin;
+	int		fdout;
+	char	**cmd;
+}				t_exec;
 
 int			tab_size(char **tab);
 char		**delete_line_in_tab(char **tab, int i);
@@ -43,6 +58,9 @@ t_arg		*select_quoted_str(char *str);
 t_arg		*separate_pipe(t_arg *arg);
 t_arg		*join_quote_to_last_line(t_arg *tab, char *quote);
 t_arg		*join_quote_to_first_line(t_arg *tab, char *quote);
+int			is_infile(char *file1);
+t_exec		parse_bloc(char *str);
+int			define_fdin(char *str);
 
 
 

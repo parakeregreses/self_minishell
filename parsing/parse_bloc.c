@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_bloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/16 17:30:57 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/06/16 16:23:15 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/06/16 17:30:18 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+t_exec	parse_bloc(char *str)
 {
-	char 	*str = "cmd<infile|cmd|\'1|2|1|2\'bonjour|a|tous\"les|amiiis\"bienvenue|a|\'l|ecole|42\'arg|cmd|cmd";
-	// char *str = "cmd0|cmd1'bis|ous'arg2|cmd4";
-	t_arg	*tab;
+	int		error;
+	t_exec	info;
 
-	tab = parsing_minishell(str);
-	if (tab == NULL)
-		return (0);
-	print_tab_arg(tab);
-	parse_bloc((tab[0]).str);
-	free_tab_arg(tab);
+	error = FALSE;
+	if (is_x_char_in_str(str, '<', 3) == TRUE)
+	{
+		ft_printf("bash: syntax error near unexpected token `<'");
+		error = TRUE;
+	}
+	if (is_x_char_in_str(str, '<', 1) == FALSE)
+		info.fdin = 0;
+	else
+		info.fdin = define_fdin(str);
+	if (error == TRUE)
+	{
+		info.cmd = NULL;
+		return (info);
+	}
+	return (info);
 }

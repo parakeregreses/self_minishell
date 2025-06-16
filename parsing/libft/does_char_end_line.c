@@ -6,11 +6,11 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:44:26 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 11:23:50 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:24:26 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
 int	does_char_end_line(char *line, char c)
 {

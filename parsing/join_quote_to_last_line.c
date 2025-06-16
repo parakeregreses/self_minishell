@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   does_pipe_end_line.c                               :+:      :+:    :+:   */
+/*   join_quote_to_last_line.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 21:44:26 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 11:23:50 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/06/16 11:17:18 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/06/16 11:22:09 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	does_char_end_line(char *line, char c)
+t_arg	*join_quote_to_last_line(t_arg *tab, char *str1)
 {
-	char	*ptr;
-	int		i;
+	char	*str2;
+	int		n;
 
-	i = 1;
-	ptr = ft_strrchr(line, c);
-	if (ptr == NULL)
-		return (FALSE);
-	while (ptr[i] != 0)
-	{
-		if (ft_iswhitespace(ptr[i]) != TRUE && ptr[i] != 0)
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	n = tab_size_arg(tab);
+	str2 = ft_strjoin((tab[n]).str, str1);
+	free((tab[n]).str);
+	(tab[n]).str = str2;
 }

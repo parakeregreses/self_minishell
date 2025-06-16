@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/13 21:35:42 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:23:03 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ t_arg		*alloc_tab(int len, t_segment s);
 t_arg		*fill_tab(t_arg *tab, char *str, t_segment s, int len);
 t_arg		*select_quoted_str(char *str);
 t_arg		*separate_pipe(t_arg *arg);
+t_arg		*join_quote_to_last_line(t_arg *tab, char *str1);
+int			does_pipe_end_line(char *line);
+
 
 
 #endif

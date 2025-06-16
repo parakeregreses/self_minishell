@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:15:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/13 11:35:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/13 22:05:31 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_arg	*alloc_tab(int len, t_segment s)
 {
 	t_arg	*tab;
 
-	ft_printf("%i, %i, len = %i\n", s.start, s.end, len);
 	if (s.start + 1 != 0 && s.end != len)
 		tab = alloc_tab_3(len, s);
 	if (s.start + 1 == 0 && s.end != len)

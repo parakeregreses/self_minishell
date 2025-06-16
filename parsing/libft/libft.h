@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/13 21:48:37 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:24:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ char		**delete_line_in_tab(char **old_tab, int i);
 t_segment	find_segment(char *str, char c);
 int			is_x_char_in_str(char *str, char c, int x);
 int			ft_iswhitespace(char c);
+int			does_char_end_line(char *line, char c);
 
 
 

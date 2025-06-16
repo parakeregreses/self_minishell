@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   does_pipe_end_line.c                               :+:      :+:    :+:   */
+/*   does_char_start_line.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:44:26 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 11:23:50 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:31:33 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	does_char_end_line(char *line, char c)
+int	does_char_start_line(char *line, char c)
 {
 	char	*ptr;
 	int		i;
 
-	i = 1;
-	ptr = ft_strrchr(line, c);
+	i = 0;
+	ptr = ft_strchr(line, c);
 	if (ptr == NULL)
 		return (FALSE);
-	while (ptr[i] != 0)
+	while (&(line[i]) != ptr)
 	{
-		if (ft_iswhitespace(ptr[i]) != TRUE && ptr[i] != 0)
+		if (ft_iswhitespace(line[i]) != TRUE && line[i] != 0)
 			return (FALSE);
 		i++;
 	}

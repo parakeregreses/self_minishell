@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:16:47 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/13 11:37:41 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/13 22:05:18 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_arg	*fill_tab(t_arg *tab, char *str, t_segment s, int len)
 
 t_arg	*fill_tab_1(t_arg *tab, char *str, t_segment s)
 {
-	ft_printf("filltab1\n");
 	int	i;
 
 	i = 0;

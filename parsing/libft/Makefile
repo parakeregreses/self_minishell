@@ -71,6 +71,7 @@ find_segment.c\
 is_x_char_in_str.c\
 ft_iswhitespace.c\
 does_char_end_line.c\
+does_char_start_line.c\
 
 OBJS = $(SRCS:.c=.o)
 

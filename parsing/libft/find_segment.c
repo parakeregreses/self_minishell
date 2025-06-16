@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 08:23:54 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 22:28:18 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:40:50 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ t_segment	find_segment(char *str, char c)
 		s.end = 0;
 		return (s);
 	}
-	s.start = i++;
+	s.start = i++ - 1;
 	while (str[i] != 0 && str[i] != c)
 		i++;
-	s.end = i;
+	s.end = i + 1;
 	return (s);
 }

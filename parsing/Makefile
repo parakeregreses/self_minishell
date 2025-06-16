@@ -9,6 +9,7 @@ fill_tab.c\
 parsing_utils.c\
 select_quoted_str.c\
 separate_pipe.c\
+join_quote_to_last_line.c\
 
 
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/16 17:34:11 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/17 12:33:31 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_arg		*join_quote_to_first_line(t_arg *tab, char *quote);
 int			is_infile(char *file1);
 t_exec		parse_bloc(char *str);
 int			define_fdin(char *str);
+int			parse_fdin(char *str);
+char		*reglue_quoted(t_arg *tab);
 
 
 

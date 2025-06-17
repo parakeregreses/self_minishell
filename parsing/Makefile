@@ -13,6 +13,7 @@ join_quote_to_line.c\
 is_infile.c\
 parse_bloc.c\
 define_fdin.c\
+reglue_quoted.c\
 
 
 OBJS = $(SRCS:.c=.o)

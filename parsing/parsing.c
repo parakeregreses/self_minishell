@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/16 12:23:38 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/17 12:41:12 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ t_arg	*parsing_minishell(char *str)
 	arg = select_quoted_str(str);
 	if (arg == NULL)
 		return (NULL);
-	arg = separate_pipe(arg);
+	// arg = separate_pipe(arg);
 	return (arg);
 }

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:23:55 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 12:24:53 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/17 12:04:00 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_arg	*append_tabs_and_free_arg(t_arg *t1, t_arg *t2)
 	int		len1;
 
 	i = 0;
-	new_tab = malloc(sizeof(t_arg) * (tab_size_arg(t1) + tab_size_arg(t2) + 1));
+	new_tab = ft_calloc(sizeof(t_arg), tab_size_arg(t1) + tab_size_arg(t2) + 1);
 	if (!new_tab)
 		return (NULL);
 	while ((t1[i]).str != NULL)

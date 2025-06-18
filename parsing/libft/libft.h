@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 17:27:25 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/18 10:30:03 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_segment
 
 enum e_booleen
 {
-        FALSE=0,
-        TRUE=1
+	FALSE=0,
+	TRUE=1
 };
 
 int			ft_isalpha(int c);
@@ -112,9 +112,8 @@ t_segment	find_segment(char *str, char c);
 int			is_x_char_in_str(char *str, char c, int x);
 int			ft_iswhitespace(char c);
 int			does_char_end_line(char *line, char c);
-int			does_char_start_line(char *line, char c);
-char		*ft_firstword(char *str, char c);
-
-
+char		**replace_line(char **tab, char *line, int i);
+int			ft_strrchri(const char *s, int c);
+int			ft_strchri(const char *s, int c);
 
 #endif

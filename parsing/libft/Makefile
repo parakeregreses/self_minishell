@@ -72,6 +72,9 @@ is_x_char_in_str.c\
 ft_iswhitespace.c\
 does_char_end_line.c\
 does_char_start_line.c\
+replace_line.c\
+ft_strchri.c\
+ft_strrchri.c\
 
 OBJS = $(SRCS:.c=.o)
 

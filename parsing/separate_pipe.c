@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:35:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 12:26:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:48:53 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_arg	*separate_pipe(t_arg *arg)
 	i = 0;
 	while (is_pipe_left(i, arg) == TRUE)
 	{
-		if ((arg[i]).quote == FALSE && ft_charinstr((arg[i]).str, '|') == TRUE)
+		if ((arg[i]).quote == FALSE)
 		{
 			tab1 = cut_tab_tail_arg(arg, i + 1);
 			pipe_ends_line = does_char_end_line((arg[i]).str, '|');
@@ -106,15 +106,35 @@ t_arg	*separate_pipe(t_arg *arg)
 			}
 			if (pipe_starts_line == FALSE && (i != 0) && (arg[i - 1]).quote == 1)
 			{
-				tab2 = join_quote_to_first_line(tab2, (arg[i - 1]).str);
-				tab1 = delete_line_in_tab_arg(tab1, i - 1);
+				i--;
+				tab2 = join_quote_to_first_line(tab2, (arg[i]).str);
+				tab1 = delete_line_in_tab_arg(tab1, i);
 			}
 			free_tab_arg(arg);
 			arg = append_tabs_and_free_arg(tab1, tab2);
 			arg = append_tabs_and_free_arg(arg, tab3);
 			n = tab_size_arg(arg);
+			ft_printf("i = %d, arg[i] = %s\n", i, (arg[i]).str);
 		}
 		i++;
+		// if ((arg[i]).quote == FALSE && ft_charinstr((arg[i]).str, '|') == FALSE)
+		// 	i++;
+		// if ((arg[i]).quote == TRUE)
+		// 	i++;
+		// else if ((arg[i]).quote == FALSE && i != n)
+		// {
+		// 	if ((arg[i + 1]).quote == 1)
+		// 	{
+		// 		tab2 = join_quote_to_last_line(tab2, (arg[i + 1]).str);
+		// 		tab3 = delete_line_in_tab_arg(tab3, 0);
+		// 	}
+		// 	tab1 = arg;
+		// 	free_tab_arg(arg);
+		// 	arg = append_tabs_and_free_arg(tab1, tab2);
+		// 	arg = append_tabs_and_free_arg(arg, tab3);
+		// 	n = tab_size_arg(arg);
+		// }
+		// i++;
 	}
 	return (arg);
 }

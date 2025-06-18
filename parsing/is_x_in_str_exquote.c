@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_segment.c                                     :+:      :+:    :+:   */
+/*   is_x_in_str_exquote.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/23 08:23:54 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/18 10:41:34 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/06/17 14:42:16 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/06/17 14:42:26 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-// find the segment delimited by the two first occurence of char c in str,
-// and returns their pointers
-t_segment	find_segment(char *str, char c)
+int	is_x_char_in_str(char *str, char c, int x)
 {
-	t_segment	s;
-	int			i;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (str[i] != 0 && str[i] != c)
-		i++;
-	if (str[i] == 0)
+	if (ft_strlen(str) < (size_t) x)
+		return (FALSE);
+	i = x - 1;
+	while (str[i] != 0)
 	{
-		s.start = 0;
-		s.end = 0;
-		return (s);
+		j = 0;
+		while (j != x)
+		{
+			if (str[i - j] != c)
+			{
+				i++;
+				j = x;
+			}
+			else
+			{
+				j++;
+				if (j == x)
+					return (TRUE);
+			}
+		}
 	}
-	s.start = i++ - 1;
-	while (str[i] != 0 && str[i] != c)
-		i++;
-	s.end = i + 1;
-	return (s);
+	return (FALSE);
 }

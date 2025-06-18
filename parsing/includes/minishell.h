@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/17 12:33:31 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/18 10:31:51 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef struct s_exec
 	char	**cmd;
 }				t_exec;
 
+typedef struct s_coord2d
+{
+	int	x;
+	int	y;
+}				t_coord2d;
+
 int			tab_size(char **tab);
 char		**delete_line_in_tab(char **tab, int i);
 t_arg		*extract_quote(char *str, t_segment s);
@@ -60,10 +66,8 @@ t_arg		*join_quote_to_last_line(t_arg *tab, char *quote);
 t_arg		*join_quote_to_first_line(t_arg *tab, char *quote);
 int			is_infile(char *file1);
 t_exec		parse_bloc(char *str);
-int			define_fdin(char *str);
-int			parse_fdin(char *str);
+int			define_fdin(t_coord2d pos, t_arg *tab);
+int			parse_fdin(t_arg *str);
 char		*reglue_quoted(t_arg *tab);
-
-
 
 #endif

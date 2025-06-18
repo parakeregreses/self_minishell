@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 12:13:23 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/17 12:54:35 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:09:40 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char	*reglue_quoted(t_arg *tab)
 	int		len;
 
 	len = len_str(tab);
-	ft_printf("len = %d\n", len);
 	str = malloc(sizeof(char) * len + 1);
 	str = fill_str(str, tab, len);
 	return (str);

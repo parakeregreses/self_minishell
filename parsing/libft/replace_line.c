@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_segment.c                                     :+:      :+:    :+:   */
+/*   replace_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/23 08:23:54 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/18 10:41:34 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/06/16 12:28:25 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/06/18 10:29:35 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// find the segment delimited by the two first occurence of char c in str,
-// and returns their pointers
-t_segment	find_segment(char *str, char c)
+char	**replace_line(char **tab, char *line, int i)
 {
-	t_segment	s;
-	int			i;
-
-	i = 0;
-	while (str[i] != 0 && str[i] != c)
-		i++;
-	if (str[i] == 0)
-	{
-		s.start = 0;
-		s.end = 0;
-		return (s);
-	}
-	s.start = i++ - 1;
-	while (str[i] != 0 && str[i] != c)
-		i++;
-	s.end = i + 1;
-	return (s);
+	free(tab[i]);
+	tab[i] = line;
+	return (tab);
 }

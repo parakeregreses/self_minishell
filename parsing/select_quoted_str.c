@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:19:58 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 12:25:24 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/19 14:11:55 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_arg	*select_quoted_str(char *str)
 		return (tab1);
 	}
 	n = tab_size_arg(tab1);
+	printf("n = %d\n", n);
+	print_tab_arg(tab1);
 	while ((tab1[n - 1]).quote == 0 && (ft_charinstr((tab1[n - 1]).str, '\'') == TRUE || ft_charinstr((tab1[n - 1]).str, '\"') == TRUE))
 	{
 		tab2 = select_quoted_str((tab1[n - 1]).str);

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:35:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/18 12:48:53 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:02:00 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,30 @@ int	is_pipe_left(int i, t_arg *arg)
 	return (FALSE);
 }
 
+t_arg	*ft_recollage(t_arg *arg, int i, t_arg *tab1, t_arg *tab2, t_arg *tab3)
+{
+	int	pipe_ends_line;
+	int	pipe_starts_line;
+
+	pipe_ends_line = does_char_end_line((arg[i]).str, '|');
+	pipe_starts_line = does_char_start_line((arg[i]).str, '|');
+	if (pipe_ends_line == FALSE && (arg[i + 1]).quote == 1)
+	{
+		tab2 = join_quote_to_last_line(tab2, (arg[i + 1]).str);
+		tab3 = delete_line_in_tab_arg(tab3, 0);
+	}
+	if (pipe_starts_line == FALSE && (i != 0) && (arg[i - 1]).quote == 1)
+	{
+		// i--;
+		tab2 = join_quote_to_first_line(tab2, (arg[i]).str);
+		tab1 = delete_line_in_tab_arg(tab1, i);
+	}
+	free_tab_arg(arg);
+	arg = append_tabs_and_free_arg(tab1, tab2);
+	arg = append_tabs_and_free_arg(arg, tab3);
+	return (arg);
+}
+
 t_arg	*separate_pipe(t_arg *arg)
 {
 	int		n;
@@ -84,39 +108,72 @@ t_arg	*separate_pipe(t_arg *arg)
 	t_arg	*tab1;
 	t_arg	*tab2;
 	t_arg	*tab3;
-	int		pipe_ends_line;
-	int		pipe_starts_line;
 
 	n = tab_size_arg(arg);
 	i = 0;
-	while (is_pipe_left(i, arg) == TRUE)
+	while (i < n) //is_pipe_left(i, arg) == TRUE)
 	{
+		tab1 = cut_tab_tail_arg(arg, i + 1);
+		tab3 = cut_tab_head_arg(arg, i);
 		if ((arg[i]).quote == FALSE)
 		{
-			tab1 = cut_tab_tail_arg(arg, i + 1);
-			pipe_ends_line = does_char_end_line((arg[i]).str, '|');
-			pipe_starts_line = does_char_start_line((arg[i]).str, '|');
 			tab2 = ft_split_arg((arg[i]).str, '|');
 			tab2 = ft_quoteiszero(tab2);
-			tab3 = cut_tab_head_arg(arg, i);
-			if (pipe_ends_line == FALSE && (arg[i + 1]).quote == 1)
-			{
-				tab2 = join_quote_to_last_line(tab2, (arg[i + 1]).str);
-				tab3 = delete_line_in_tab_arg(tab3, 0);
-			}
-			if (pipe_starts_line == FALSE && (i != 0) && (arg[i - 1]).quote == 1)
-			{
-				i--;
-				tab2 = join_quote_to_first_line(tab2, (arg[i]).str);
-				tab1 = delete_line_in_tab_arg(tab1, i);
-			}
+			// arg = ft_recollage(arg, i, tab1, tab2, tab3);
+		}
+		else
+		{
+			tab2 = malloc(sizeof(t_arg) * 2);
+			tab2[0].str = ft_strdup((arg[i]).str);
+			tab2[0].quote = TRUE;
+			tab2[1].str = NULL;
 			free_tab_arg(arg);
 			arg = append_tabs_and_free_arg(tab1, tab2);
 			arg = append_tabs_and_free_arg(arg, tab3);
 			n = tab_size_arg(arg);
-			ft_printf("i = %d, arg[i] = %s\n", i, (arg[i]).str);
 		}
+		ft_printf("if : i = %d, arg[i] = %s\n", i, (arg[i]).str);
 		i++;
+	}
+		// arg = ft_recollage(arg, i, tab1, tab2, tab3);
+			// pipe_ends_line = does_char_end_line((arg[i]).str, '|');
+			// pipe_starts_line = does_char_start_line((arg[i]).str, '|');
+			// if (pipe_ends_line == FALSE && (arg[i + 1]).quote == 1)
+			// {
+			// 	tab2 = join_quote_to_last_line(tab2, (arg[i + 1]).str);
+			// 	tab3 = delete_line_in_tab_arg(tab3, 0);
+			// }
+			// if (pipe_starts_line == FALSE && (i != 0) && (arg[i - 1]).quote == 1)
+			// {
+			// 	// i--;
+			// 	tab2 = join_quote_to_first_line(tab2, (arg[i]).str);
+			// 	tab1 = delete_line_in_tab_arg(tab1, i);
+			// }// else if (i != 0)
+		// {
+		// 	tab1 = cut_tab_tail_arg(arg, i);
+		// 	tab2 = malloc(sizeof(t_arg) * 2);
+		// 	tab2[0].str = ft_strdup((arg[i]).str);
+		// 	tab2[1].str = NULL;
+		// 	// tab2 = ft_split_arg((arg[i]).str, '|');
+		// 	// tab2 = ft_quoteiszero(tab2);
+		// 	tab3 = cut_tab_head_arg(arg, i);
+		// 	arg = ft_recollage(arg, i - 1, tab1, tab2, tab3);
+			// ft_printf("else i = %d\n", i);
+			// pipe_ends_line = does_char_end_line((arg[i - 1]).str, '|');
+			// if (pipe_ends_line == FALSE)
+			// {
+			// 	tab1 = cut_tab_tail_arg(arg, i);
+			// 	tab2 = join_quote_to_last_line(tab2, (arg[i]).str);
+			// 	tab3 = delete_line_in_tab_arg(tab3, 0);
+			// 	// free_tab_arg(arg);
+			// 	ft_printf("appends\n");
+			// 	arg = append_tabs_and_free_arg(tab1, tab2);
+			// 	ft_printf("appends2\n");
+			// 	arg = append_tabs_and_free_arg(arg, tab3);
+			// 	n = tab_size_arg(arg);
+			// }
+			// ft_printf("else : i = %d, arg[i] = %s\n", i, (arg[i]).str);
+		// }
 		// if ((arg[i]).quote == FALSE && ft_charinstr((arg[i]).str, '|') == FALSE)
 		// 	i++;
 		// if ((arg[i]).quote == TRUE)
@@ -135,6 +192,5 @@ t_arg	*separate_pipe(t_arg *arg)
 		// 	n = tab_size_arg(arg);
 		// }
 		// i++;
-	}
 	return (arg);
 }

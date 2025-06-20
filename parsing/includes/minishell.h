@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/18 10:31:51 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/20 21:51:50 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ t_exec		parse_bloc(char *str);
 int			define_fdin(t_coord2d pos, t_arg *tab);
 int			parse_fdin(t_arg *str);
 char		*reglue_quoted(t_arg *tab);
+t_arg		*put_quoted_together(t_arg *arg);
 
 #endif

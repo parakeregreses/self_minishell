@@ -44,7 +44,7 @@ zsh: no such file or directory: no_exist
 grep a < infile1 infile2
 affiche resultat de grep sur infile2 seulement
 
-grep a < infile1 < infile2
+grep a < infile1 << infile2
 affiche resultat de grep sur infile2 seulement
 
 grep a << lim < infile2

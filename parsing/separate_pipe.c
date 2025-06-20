@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:35:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/19 15:02:00 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/06/20 22:13:54 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,21 +77,26 @@ int	is_pipe_left(int i, t_arg *arg)
 	return (FALSE);
 }
 
-t_arg	*ft_recollage(t_arg *arg, int i, t_arg *tab1, t_arg *tab2, t_arg *tab3)
+t_arg	*ft_recollage(t_arg *arg, int *iad, t_arg *tab1, t_arg *tab2, t_arg *tab3, int pipe_ends_line, int pipe_starts_line)
 {
-	int	pipe_ends_line;
-	int	pipe_starts_line;
+	// int	pipe_ends_line;
+	// int	pipe_starts_line;
+	int	n;
+	int i;
 
-	pipe_ends_line = does_char_end_line((arg[i]).str, '|');
-	pipe_starts_line = does_char_start_line((arg[i]).str, '|');
-	if (pipe_ends_line == FALSE && (arg[i + 1]).quote == 1)
+	i = *iad;
+	n = tab_size_arg(arg);
+	// pipe_ends_line = does_char_end_line((arg[i]).str, '|');
+	// pipe_starts_line = does_char_start_line((arg[i]).str, '|');
+	if (pipe_ends_line == FALSE && (i != n) && (arg[i + 1]).quote == 1)
 	{
 		tab2 = join_quote_to_last_line(tab2, (arg[i + 1]).str);
 		tab3 = delete_line_in_tab_arg(tab3, 0);
 	}
 	if (pipe_starts_line == FALSE && (i != 0) && (arg[i - 1]).quote == 1)
 	{
-		// i--;
+		i--;
+		ft_printf("recollage ligne precedente : %s\n", (arg[i]).str);
 		tab2 = join_quote_to_first_line(tab2, (arg[i]).str);
 		tab1 = delete_line_in_tab_arg(tab1, i);
 	}
@@ -108,6 +113,8 @@ t_arg	*separate_pipe(t_arg *arg)
 	t_arg	*tab1;
 	t_arg	*tab2;
 	t_arg	*tab3;
+	int	pipe_ends_line;
+	int	pipe_starts_line;
 
 	n = tab_size_arg(arg);
 	i = 0;
@@ -117,9 +124,11 @@ t_arg	*separate_pipe(t_arg *arg)
 		tab3 = cut_tab_head_arg(arg, i);
 		if ((arg[i]).quote == FALSE)
 		{
+			pipe_ends_line = does_char_end_line((arg[i]).str, '|');
+			pipe_starts_line = does_char_start_line((arg[i]).str, '|');
 			tab2 = ft_split_arg((arg[i]).str, '|');
 			tab2 = ft_quoteiszero(tab2);
-			// arg = ft_recollage(arg, i, tab1, tab2, tab3);
+			arg = ft_recollage(arg, &i, tab1, tab2, tab3, pipe_ends_line, pipe_starts_line);
 		}
 		else
 		{
@@ -127,13 +136,15 @@ t_arg	*separate_pipe(t_arg *arg)
 			tab2[0].str = ft_strdup((arg[i]).str);
 			tab2[0].quote = TRUE;
 			tab2[1].str = NULL;
-			free_tab_arg(arg);
-			arg = append_tabs_and_free_arg(tab1, tab2);
-			arg = append_tabs_and_free_arg(arg, tab3);
-			n = tab_size_arg(arg);
+			arg = ft_recollage(arg, &i, tab1, tab2, tab3, pipe_ends_line, TRUE);
+			// free_tab_arg(arg);
+			// arg = append_tabs_and_free_arg(tab1, tab2);
+			// arg = append_tabs_and_free_arg(arg, tab3);
 		}
-		ft_printf("if : i = %d, arg[i] = %s\n", i, (arg[i]).str);
+		n = tab_size_arg(arg);
 		i++;
+		ft_printf("i = %d\ntab =\n", i);
+		print_tab_arg(arg);
 	}
 		// arg = ft_recollage(arg, i, tab1, tab2, tab3);
 			// pipe_ends_line = does_char_end_line((arg[i]).str, '|');

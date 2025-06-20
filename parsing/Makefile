@@ -14,6 +14,7 @@ is_infile.c\
 parse_bloc.c\
 define_fdin.c\
 reglue_quoted.c\
+put_quoted_together.c\
 
 
 OBJS = $(SRCS:.c=.o)

@@ -15,6 +15,7 @@ parse_bloc.c\
 define_fdin.c\
 reglue_quoted.c\
 put_quoted_together.c\
+trim_arg.c\
 
 
 OBJS = $(SRCS:.c=.o)

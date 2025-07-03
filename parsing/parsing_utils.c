@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:23:55 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/17 12:04:00 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/03 13:35:21 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_arg	*delete_line_in_tab_arg(t_arg *old_tab, int i)
 		(new_tab[j++]).quote = (old_tab[i++]).quote;
 	}
 	(new_tab[j]).str = NULL;
+	(new_tab[j]).quote = 0;
 	free_tab_arg(old_tab);
 	return (new_tab);
 }
@@ -75,6 +76,7 @@ t_arg	*append_tabs_and_free_arg(t_arg *t1, t_arg *t2)
 	t_arg	*new_tab;
 	int		i;
 	int		len1;
+	char	*line;
 
 	i = 0;
 	new_tab = ft_calloc(sizeof(t_arg), tab_size_arg(t1) + tab_size_arg(t2) + 1);
@@ -82,18 +84,23 @@ t_arg	*append_tabs_and_free_arg(t_arg *t1, t_arg *t2)
 		return (NULL);
 	while ((t1[i]).str != NULL)
 	{
-		(new_tab[i]).str = ft_strdup((t1[i]).str);
+		line = ft_strdup((t1[i]).str);
+		(new_tab[i]).str = line;
 		(new_tab[i]).quote = (t1[i]).quote;
+		// free(line);
 		i++;
 	}
 	len1 = i;
 	while ((t2[i - len1]).str != NULL)
 	{
-		(new_tab[i]).str = ft_strdup((t2[i - len1]).str);
+		line = ft_strdup((t2[i - len1]).str);
+		(new_tab[i]).str = line;
 		(new_tab[i]).quote = (t2[i - len1]).quote;
+		// free(line);
 		i++;
 	}
 	(new_tab[i]).str = NULL;
+	(new_tab[i]).quote = 0;
 	free_tab_arg(t1);
 	free_tab_arg(t2);
 	return (new_tab);

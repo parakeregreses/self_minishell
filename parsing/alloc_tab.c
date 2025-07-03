@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:15:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/13 22:05:31 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/03 12:57:35 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_arg	*alloc_tab_1(t_segment s)
 		return (free_tab_arg(tab));
 	(tab[0]).quote = 1;
 	(tab[1]).str = NULL;
+	(tab[1]).quote = 0;
 	return (tab);
 }
 
@@ -66,6 +67,7 @@ t_arg	*alloc_tab_2_begin(int len, t_segment s)
 		return (free_tab_arg(tab));
 	(tab[1]).quote = 0;
 	(tab[2]).str = NULL;
+	(tab[2]).quote = 0;
 	return (tab);
 }
 
@@ -86,6 +88,7 @@ t_arg	*alloc_tab_2_end(t_segment s)
 		return (free_tab_arg(tab));
 	(tab[1]).quote = 1;
 	(tab[2]).str = NULL;
+	(tab[2]).quote = 0;
 	return (tab);
 }
 
@@ -110,5 +113,6 @@ t_arg	*alloc_tab_3(int len, t_segment s)
 		return (free_tab_arg(tab));
 	(tab[2]).quote = 0;
 	(tab[3]).str = NULL;
+	(tab[3]).quote = 0;
 	return (tab);
 }

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:35:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/20 22:13:54 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/03 13:36:54 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_arg	*cut_tab_tail_arg(t_arg *tab, int n)
 		i++;
 	}
 	(new_tab[i]).str = NULL;
+	(new_tab[i]).quote = 0;
 	return (new_tab);
 }
 
@@ -53,6 +54,7 @@ t_arg	*cut_tab_head_arg(t_arg *tab, int n)
 		i++;
 	}
 	(new_tab[i - n - 1]).str = NULL;
+	(new_tab[i - n - 1]).quote = 0;
 	return (new_tab);
 }
 
@@ -96,11 +98,10 @@ t_arg	*ft_recollage(t_arg *arg, int *iad, t_arg *tab1, t_arg *tab2, t_arg *tab3,
 	if (pipe_starts_line == FALSE && (i != 0) && (arg[i - 1]).quote == 1)
 	{
 		i--;
-		ft_printf("recollage ligne precedente : %s\n", (arg[i]).str);
 		tab2 = join_quote_to_first_line(tab2, (arg[i]).str);
 		tab1 = delete_line_in_tab_arg(tab1, i);
 	}
-	free_tab_arg(arg);
+	// free_tab_arg(arg);
 	arg = append_tabs_and_free_arg(tab1, tab2);
 	arg = append_tabs_and_free_arg(arg, tab3);
 	return (arg);
@@ -115,7 +116,11 @@ t_arg	*separate_pipe(t_arg *arg)
 	t_arg	*tab3;
 	int	pipe_ends_line;
 	int	pipe_starts_line;
+	char	*pipestr;
 
+	pipe_ends_line = 0;
+	pipe_starts_line = 0;
+	pipestr = ft_strdup("|");
 	n = tab_size_arg(arg);
 	i = 0;
 	while (i < n) //is_pipe_left(i, arg) == TRUE)
@@ -127,15 +132,21 @@ t_arg	*separate_pipe(t_arg *arg)
 			pipe_ends_line = does_char_end_line((arg[i]).str, '|');
 			pipe_starts_line = does_char_start_line((arg[i]).str, '|');
 			tab2 = ft_split_arg((arg[i]).str, '|');
+			// if (pipe_ends_line == 1)
+			// {
+			// 	n = tab_size_arg(tab2);
+			// 	tab2[n - 1].str = ft_strjoinfree(tab2[n - 1].str, pipestr);
+			// }
 			tab2 = ft_quoteiszero(tab2);
 			arg = ft_recollage(arg, &i, tab1, tab2, tab3, pipe_ends_line, pipe_starts_line);
 		}
 		else
 		{
 			tab2 = malloc(sizeof(t_arg) * 2);
-			tab2[0].str = ft_strdup((arg[i]).str);
+			tab2[0].str = (arg[i]).str;
 			tab2[0].quote = TRUE;
 			tab2[1].str = NULL;
+			tab2[1].quote = 0;
 			arg = ft_recollage(arg, &i, tab1, tab2, tab3, pipe_ends_line, TRUE);
 			// free_tab_arg(arg);
 			// arg = append_tabs_and_free_arg(tab1, tab2);
@@ -143,8 +154,8 @@ t_arg	*separate_pipe(t_arg *arg)
 		}
 		n = tab_size_arg(arg);
 		i++;
-		ft_printf("i = %d\ntab =\n", i);
-		print_tab_arg(arg);
+		// ft_printf("i = %d\ntab =\n", i);
+		// print_tab_arg(arg);
 	}
 		// arg = ft_recollage(arg, i, tab1, tab2, tab3);
 			// pipe_ends_line = does_char_end_line((arg[i]).str, '|');
@@ -203,5 +214,6 @@ t_arg	*separate_pipe(t_arg *arg)
 		// 	n = tab_size_arg(arg);
 		// }
 		// i++;
+	free(pipestr);
 	return (arg);
 }

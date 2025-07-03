@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/20 21:51:50 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/03 13:19:24 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,19 @@ typedef struct s_arg
 	int		quote;
 }			t_arg;
 
-typedef struct s_exec
-{
-	int		fdin;
-	int		fdout;
-	char	**cmd;
-}				t_exec;
-
 typedef struct s_coord2d
 {
 	int	x;
 	int	y;
 }				t_coord2d;
+
+typedef struct s_exec
+{
+	int		fdin;
+	int		fdout;
+	char	*cmd;
+	char	**cmdarg;
+}				t_exec;
 
 int			tab_size(char **tab);
 char		**delete_line_in_tab(char **tab, int i);
@@ -70,5 +71,6 @@ int			define_fdin(t_coord2d pos, t_arg *tab);
 int			parse_fdin(t_arg *str);
 char		*reglue_quoted(t_arg *tab);
 t_arg		*put_quoted_together(t_arg *arg);
+t_arg		*trim_arg(t_arg *arg);
 
 #endif

@@ -1,0 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execution.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/07/03 16:00:10 by jlaine-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cmd.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/14 19:52:25 by jlaineb           #+#    #+#             */
+/*   Updated: 2025/04/15 17:41:01 by jlaineb          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+// void	ft_cmd(t_fds fds, t_arg arg, char **cmd_paths, int i)
+// close le pipe[OUT] dans lequel on va ecrire au prealable !!!
+
+
+void	perror_free_and_exit_child(char *str, char **tab, int exit_status, char *message)
+{
+	free_tab((void *)tab);
+	free(str);
+	perror(message);
+	exit(exit_status);
+}
+
+void	execution(int fdin, int fdout, char *cmd, char **cmdarg, char **envp)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		if (cmd == NULL)
+			perror_free_and_exit_child(cmd, cmdarg, EXIT_SUCCESS, "cmdissue");
+		// if (dup2(fdin, 0) == -1 || dup2(fdout, 1) == -1
+		// 	|| close(fdout) == -1 || close(fdin) == -1)
+		// 	perror_free_and_exit_child(cmd, cmdarg, EXIT_FAILURE, "close1");
+		execve(cmd, cmdarg, envp);
+			perror_free_and_exit_child(cmd, cmdarg, EXIT_FAILURE, "exec");
+	}
+	if (close(fdout) == -1 || close(fdin) == -1)
+			perror_free_and_exit_child(cmd, cmdarg, EXIT_FAILURE, "close2");
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	char **cmdarg;
+	
+	cmdarg = malloc(sizeof(char *) * 2);
+	cmdarg[0] = ft_strdup("hello.sh");
+	cmdarg[1] = NULL;
+	if (argc == -1 || argv == NULL)
+		return (0);
+	execution(0, open("text.txt", O_RDWR), ft_strdup("hello.sh"), cmdarg, envp);
+}

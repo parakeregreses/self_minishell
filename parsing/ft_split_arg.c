@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 07:09:04 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/20 20:03:09 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/03 12:59:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ t_arg	*ft_split_arg(char const *s, char c)
 			j++;
 	}
 	(tab[i]).str = NULL;
+	(tab[i]).quote = 0;
 	return (tab);
 }

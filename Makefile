@@ -1,22 +1,21 @@
 SRCS = \
 main.c\
-parsing.c\
-print_tab_arg.c\
-ft_split_arg.c\
-first_verifications.c\
-alloc_tab.c\
-fill_tab.c\
-parsing_utils.c\
-select_quoted_str.c\
-separate_pipe.c\
-join_quote_to_line.c\
+parsing/parsing_minishell.c\
+parsing/ft_split_arg.c\
+parsing/first_verifications.c\
+parsing/alloc_tab.c\
+parsing/fill_tab.c\
+parsing/parsing_utils.c\
+parsing/select_quoted_str.c\
+parsing/separate_pipe.c\
+parsing/join_quote_to_line.c\
+parsing/put_quoted_together.c\
+parsing/trim_arg.c\
 is_infile.c\
+reglue_quoted.c\
 parse_bloc.c\
 define_fdin.c\
-reglue_quoted.c\
-put_quoted_together.c\
-trim_arg.c\
-
+print_tab_arg.c\
 
 OBJS = $(SRCS:.c=.o)
 

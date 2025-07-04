@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/03 16:00:10 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:32:54 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ void	execution(int fdin, int fdout, char *cmd, char **cmdarg, char **envp)
 	{
 		if (cmd == NULL)
 			perror_free_and_exit_child(cmd, cmdarg, EXIT_SUCCESS, "cmdissue");
-		// if (dup2(fdin, 0) == -1 || dup2(fdout, 1) == -1
-		// 	|| close(fdout) == -1 || close(fdin) == -1)
-		// 	perror_free_and_exit_child(cmd, cmdarg, EXIT_FAILURE, "close1");
+		if (dup2(fdin, 0) == -1 || dup2(fdout, 1) == -1)
+			perror_free_and_exit_child(cmd, cmdarg, EXIT_FAILURE, "close1");
 		execve(cmd, cmdarg, envp);
 			perror_free_and_exit_child(cmd, cmdarg, EXIT_FAILURE, "exec");
 	}
@@ -59,12 +58,20 @@ void	execution(int fdin, int fdout, char *cmd, char **cmdarg, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char **cmdarg;
+	char	**cmdarg;
+	int		fdin;
+	char	*chemin;
 	
-	cmdarg = malloc(sizeof(char *) * 2);
-	cmdarg[0] = ft_strdup("hello.sh");
-	cmdarg[1] = NULL;
+	cmdarg = malloc(sizeof(char *) * 3);
+	cmdarg[0] = ft_strdup("grep");
+	cmdarg[1] = ft_strdup("a");
+	cmdarg[2] = NULL;
+	fdin = open("text.txt", O_RDWR);
+	chemin = ft_strdup("/usr/bin/grep");
 	if (argc == -1 || argv == NULL)
 		return (0);
-	execution(0, open("text.txt", O_RDWR), ft_strdup("hello.sh"), cmdarg, envp);
+	execution(fdin, 1, chemin, cmdarg, envp);
+	close(fdin);
+	free(chemin);
+	free_tab((void *)cmdarg);
 }

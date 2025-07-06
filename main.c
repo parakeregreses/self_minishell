@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/04 18:03:02 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:23:08 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ int	main(void)
 	char **str;
 	t_arg	*tab;
 
-	str = malloc(sizeof(char *) * 28);
+	str = malloc(sizeof(char *) * 2);
 
-	str[0] = "";
+	// str[0] = "";
 	// str[1] = "\"\"";
-	// str[1] = "mot";
+	// str[2] = "mot";
 	// str[3] = "\"quote\"";
 	// str[4] = "\"quote\"mot";
-	// str[5] = "\"quote1\"\"quote2\"mot";
+	str[0] = "\"quote1\"\"quote2\"mot";
 	// str[6] = "mot\"quote\"";
 	// str[7] = "mot\"quote1\"\"quote2\"";
 	// str[8] = "mot1\"quote\"mot2";
 	// str[9] = "\"quote1\"mot\"quote2\"";
 	// str[10] = "hello";
 	// str[11] = "\"|\""; // issue
-	str[1] = "mot1|mot2";
+	// str[12] = "mot1|mot2";
 	// str[13] = "\"quote1|quote1\"";
 	// str[14] = "\"quote1|quote1\"|mot";
 	// str[15] = "\"quote1|quote1\"|mot1|mot2";
@@ -63,7 +63,7 @@ int	main(void)
 	// str[24] = "mot1|mot2|\"quote1\"\"quote2|quote2\"mot1|mot2"; // issue
 	// str[25] = "mot1|mot2\"quote1\"\"quote2|quote2\"mot1|mot2";
 	// str[26] = "'quote''quote''quote''quote''quote''quote'";
-	str[2] = NULL;
+	str[1] = NULL;
 	int i = 0;
 	while (str[i] != NULL)
 	{

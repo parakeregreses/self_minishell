@@ -3,20 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_charinstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:13:54 by jlaine-b          #+#    #+#             */
-/*   Updated: 2024/11/30 15:14:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:37:47 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+#include <stdio.h>
 
 int	ft_charinstr(char *s, char c)
 {
 	int		i;
 
-	i = 0;
+	if (s == NULL)
+		return (0);
 	if (c == '\0')
 		return (1);
+	i = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)

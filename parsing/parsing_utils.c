@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:23:55 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/04 18:06:02 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:45:12 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,14 @@ t_arg	*append_tabs_and_free_arg(t_arg *t1, t_arg *t2)
 		return (NULL);
 	while ((t1[i]).str != NULL)
 	{
-		ft_printf("t1 %d\n", i);
-		(new_tab[i]).str = (t1[i]).str;
+		(new_tab[i]).str = ft_strdup((t1[i]).str);
 		(new_tab[i]).quote = (t1[i]).quote;
 		i++;
 	}
 	len1 = i;
 	while ((t2[i - len1]).str != NULL)
 	{
-		ft_printf("t2 %d\n", i);
-		(new_tab[i]).str = (t2[i - len1]).str;
+		(new_tab[i]).str = ft_strdup((t2[i - len1]).str);
 		(new_tab[i]).quote = (t2[i - len1]).quote;
 		i++;
 	}

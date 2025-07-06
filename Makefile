@@ -12,6 +12,7 @@ parsing/join_quote_to_line.c\
 parsing/put_quoted_together.c\
 parsing/trim_arg.c\
 parsing/delete_empty_lines.c\
+parsing/append_tabs_and_free_arg.c\
 is_infile.c\
 reglue_quoted.c\
 parse_bloc.c\

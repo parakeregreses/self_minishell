@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/06 18:36:06 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/06 19:10:25 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	main(void)
 	// char 	*str = "cmd<infile|cmd|\'1|2\'\'|1|2\'bonjour|a|tous\"les|amiiis\"bienvenue|a|\'l|ecole|42\'arg|cmd|END";
 	// char 	*str = "c\"md\"<i\"nfi\"le\"2\"|cmd|\'1|2|1|2\'bonjour|a|tous\"les|amiiis\"bienvenue|a|\'l|ecole|42\'arg|cmd|\"c\"md\"<i\"nfi\"le\"2\"END";
 	t_exec	info;
-	char 	*str = "cmd1 << jul | 'argu ments''lol' | cmd2 'bip|bap' | cmd3 < is_infile.c arg3";
+	char 	*str = "cmd1 << jul | 'argu ments''lol' | cmd2 'bip|bap' | cmd3 < hello < les < is_infile.c arg3";
 	
 	t_arg	*tab;
 	tab = parsing_minishell(str);
-	// ft_printf("str = %s. tab = \n", str);
-	// print_tab_arg(tab);
+	ft_printf("str = %s\ntab = \n", str);
+	print_tab_arg(tab);
 	int i = 0;
 	while ((tab[i]).str != NULL)
 	{

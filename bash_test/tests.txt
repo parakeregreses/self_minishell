@@ -50,7 +50,25 @@ affiche resultat de grep sur infile2 seulement
 grep a << lim < infile2
 le heredoc s'affiche pour qu'on puisse taper, mais grep s'applique seulement a infile2
 
+grep a << lim < infile2
+grep s'applique au heredoc
+
 grep a < in"fi"le2
 affiche resultat de grep sur infile2
 
+sleep 3 < infile1 < infile2
+attends 3 secondes
+
+grep a < infile1 < infile2
+s'applique seulement a infile2
+
+grep a < no_exist < infile2
+bash: no_exist: No such file or directory
+
 DONC les elements qui ne sont pas juste derriere < ou > (separer du premier element par un espace) sont consideres comme des arguments de cmd !!!
+
+ls << | wc -l
+bash: syntax error near unexpected token `|'
+
+ls << | wc -l
+bash: syntax error near unexpected token `|'

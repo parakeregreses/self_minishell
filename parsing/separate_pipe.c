@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:35:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/04 17:56:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/06 16:26:25 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ t_arg	*ft_recollage(t_arg *arg, int *iad, t_arg *tab1, t_arg *tab2, t_arg *tab3,
 
 	i = *iad;
 	n = tab_size_arg(arg);
-	ft_printf("n = %d\n", n);
 	// pipe_ends_line = does_char_end_line((arg[i]).str, '|');
 	// pipe_starts_line = does_char_start_line((arg[i]).str, '|');
 	if (pipe_ends_line == FALSE && (i != (n - 1)) && (arg[i + 1]).quote == 1)
@@ -139,17 +138,15 @@ t_arg	*separate_pipe(t_arg *arg)
 			// 	tab2[n - 1].str = ft_strjoinfree(tab2[n - 1].str, pipestr);
 			// }
 			tab2 = ft_quoteiszero(tab2);
-			ft_printf("recollage quotef %d\n", i);
 			arg = ft_recollage(arg, &i, tab1, tab2, tab3, pipe_ends_line, pipe_starts_line);
 		}
 		else
 		{
 			tab2 = malloc(sizeof(t_arg) * 2);
-			tab2[0].str = (arg[i]).str;
+			tab2[0].str = ft_strdup((arg[i]).str);
 			tab2[0].quote = TRUE;
 			tab2[1].str = NULL;
 			tab2[1].quote = 0;
-			ft_printf("recollage quotev %d\n", i);
 			arg = ft_recollage(arg, &i, tab1, tab2, tab3, pipe_ends_line, TRUE);
 			// free_tab_arg(arg);
 			// arg = append_tabs_and_free_arg(tab1, tab2);

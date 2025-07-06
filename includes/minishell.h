@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/03 13:19:24 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/06 18:27:31 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,7 @@ int			parse_fdin(t_arg *str);
 char		*reglue_quoted(t_arg *tab);
 t_arg		*put_quoted_together(t_arg *arg);
 t_arg		*trim_arg(t_arg *arg);
+t_arg		*delete_empty_lines(t_arg *arg);
+int			is_x_char_in_str_spaces(char *str, char c, int x);
 
 #endif

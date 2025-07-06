@@ -11,11 +11,13 @@ parsing/separate_pipe.c\
 parsing/join_quote_to_line.c\
 parsing/put_quoted_together.c\
 parsing/trim_arg.c\
+parsing/delete_empty_lines.c\
 is_infile.c\
 reglue_quoted.c\
 parse_bloc.c\
 define_fdin.c\
 print_tab_arg.c\
+is_x_char_in_str_spaces.c\
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:50:26 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/18 10:40:10 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/06 18:35:52 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	define_fdin(t_coord2d pos, t_arg *tab)
 
 	str = reglue_quoted(&(tab[pos.x]));
 	filename = ft_firstword(&(str[pos.y + 1]), ' ');
-	ft_printf("\n\n%s\n", filename);
+	ft_printf("filename = %s\n", filename);
 	if (is_infile(filename) == FALSE)
 	{
 		free(filename);
@@ -46,6 +46,7 @@ int	define_fdin(t_coord2d pos, t_arg *tab)
 	i = open(filename, O_RDONLY);
 	close(i);
 	free(filename);
+	free(str);
 	return (i);
 }
 
@@ -80,6 +81,7 @@ static int	no_chevron(t_arg *tab, int n)
 	return (FALSE);
 }
 
+// return the position of the last chevron, with x as line number and y as char number in line x
 static t_coord2d	last_chevron(t_arg *tab, int n)
 {
 	int 		i;
@@ -113,7 +115,8 @@ int	parse_fdin(t_arg *tab)
 	if (no_chevron(tab, n) == TRUE)
 		return (0);
 	pos = last_chevron(tab, n);
-	ft_printf("%d, %d\n", pos.x, pos.y);
+	if (pos.x == -1 || pos.y == -1)
+		return (-1);
 	if (pos.y == 0 || (tab[pos.x]).str[pos.y - 1] == '<')
 		return (0);
 	fdin = define_fdin(pos, tab);

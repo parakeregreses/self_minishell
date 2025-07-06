@@ -6,11 +6,12 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:04:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/10 12:20:33 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/06 17:59:25 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 int	is_x_char_in_str(char *str, char c, int x)
 {

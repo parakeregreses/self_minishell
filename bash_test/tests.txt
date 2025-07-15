@@ -1,5 +1,10 @@
 1.
 
+jlaine-b@k2r2p5:~$ "|"
+|: command not found
+jlaine-b@k2r2p5:~$ |
+bash: syntax error near unexpected token `|'
+
 grep i no_exist                
 grep: no_exist: No such file or directory
 

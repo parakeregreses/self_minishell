@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:35:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/06 16:52:01 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/15 13:34:55 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ t_arg	*separate_pipe(t_arg *arg)
 	int		pipe_ends_line;
 	int		pipe_starts_line;
 	char	*pipestr;
+	char	*line;
 
 	pipe_ends_line = 0;
 	pipe_starts_line = 0;
@@ -128,6 +129,16 @@ t_arg	*separate_pipe(t_arg *arg)
 			pipe_ends_line = does_char_end_line((arg[i]).str, '|');
 			pipe_starts_line = does_char_start_line((arg[i]).str, '|');
 			tab2 = ft_split_arg((arg[i]).str, '|');
+			if (pipe_ends_line == 1)
+			{
+				n = tab_size_arg(tab2);
+				if (n > 0)
+				{
+					line = (tab2[n - 1]).str;
+					(tab2[n - 1]).str = ft_strjoin(line, pipestr);
+					free(line);
+				}
+			}
 			tab2 = ft_quoteiszero(tab2);
 			arg = ft_recollage(arg, &i, tab1, tab2, tab3, pipe_ends_line, pipe_starts_line);
 		}

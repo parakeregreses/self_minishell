@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:50:26 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/06 18:35:52 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/15 14:31:07 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,43 +82,61 @@ static int	no_chevron(t_arg *tab, int n)
 }
 
 // return the position of the last chevron, with x as line number and y as char number in line x
-static t_coord2d	last_chevron(t_arg *tab, int n)
+static int	last_chevron(t_arg *tab, int n)
 {
-	int 		i;
-	t_coord2d	pos;
+	int i;
+	int	pos;
+	int	fd;
+	char *filename;
+	char	*line;
 	
 	i = 0;
+	fd = 0;
 	while (i < n)
 	{
-		if ((tab[i]).quote == FALSE && ft_strrchri((tab[i]).str, '<') != -1)
+		pos = 0;
+		if ((tab[i]).quote == FALSE)
 		{
-			pos.x = i;
-			pos.y = ft_strrchri((tab[i]).str, '<');
-			return (pos);
+			line = (tab[i]).str;
+			// while (ft_strchri(line + pos, '<') != -1)
+			// {
+				pos = ft_strchri(line + pos, '<');
+				if (pos != -1)
+				{
+					filename = ft_firstword(line + pos + 1, ' ');
+					ft_printf("line = %s, pos = %d, filename = %s\n", line + pos, pos, filename);
+					if (access(filename, F_OK | R_OK) != 0)
+						perror(ft_strjoin("perror", filename));
+					else
+					{
+						fd = open(filename, O_RDONLY);
+						close(fd);
+					}
+				}
+				pos++;
 		}
 		i++;
 	}
-	pos.x = -1;
-	pos.y = -1;
-	return (pos);
+	return (fd);
 }
 
+// on avance dans le texte, en excluant les "". Si chevron simple : on verifie que le fichier existe/access, et fdin = fd fichier, puis on continue quitte a changer fdin ! Si chevron double, hd = 1 et fdin = 0.
 int	parse_fdin(t_arg *tab)
 {
 	int			fdin;
 	int			n;
-	t_coord2d	pos;
 
 	n = tab_size_arg(tab);
 	if (triple_chevron(tab, n) ==  TRUE)
 		return (-1);
 	if (no_chevron(tab, n) == TRUE)
 		return (0);
-	pos = last_chevron(tab, n);
-	if (pos.x == -1 || pos.y == -1)
-		return (-1);
-	if (pos.y == 0 || (tab[pos.x]).str[pos.y - 1] == '<')
-		return (0);
-	fdin = define_fdin(pos, tab);
+	
+	// pos = last_chevron(tab, n);
+	// if (pos.x == -1 || pos.y == -1)
+	// 	return (-1);
+	// if (pos.y == 0 || (tab[pos.x]).str[pos.y - 1] == '<')
+	// 	return (0);
+	fdin = last_chevron(tab, n);
 	return(fdin);
 }

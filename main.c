@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/15 14:19:51 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:10:26 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ int	main(void)
 	t_arg	*tab;
 	tab = parsing_minishell(str);
 	// ft_printf("str = %s\ntab = \n", str);
-	print_tab_arg(tab);
+	// print_tab_arg(tab);
 	int i = 0;
 	while ((tab[i]).str != NULL)
 	{
-		info = parse_bloc((tab[i++]).str);
-		ft_printf("info.fdin = %d\n", info.fdin);
+		info = parse_bloc((tab[i]).str);
+		ft_printf("str = %s, info.fdin = %d\n", (tab[i++]).str, info.fdin);
 	}
+	printf("fini\n");
 	free_tab_arg(tab);
 // }
 }

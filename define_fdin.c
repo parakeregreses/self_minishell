@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:50:26 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/15 14:31:07 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:20:05 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,42 +81,54 @@ static int	no_chevron(t_arg *tab, int n)
 	return (FALSE);
 }
 
+#include <stdio.h>
+
 // return the position of the last chevron, with x as line number and y as char number in line x
 static int	last_chevron(t_arg *tab, int n)
 {
 	int i;
-	int	pos;
+	int	j;
 	int	fd;
 	char *filename;
 	char	*line;
 	
 	i = 0;
 	fd = 0;
+	filename = NULL;
+	// ft_printf("n = %d\n", n);
 	while (i < n)
 	{
-		pos = 0;
+		j = 0;
 		if ((tab[i]).quote == FALSE)
 		{
 			line = (tab[i]).str;
-			// while (ft_strchri(line + pos, '<') != -1)
-			// {
-				pos = ft_strchri(line + pos, '<');
-				if (pos != -1)
+			// ft_printf("%d\n", ft_strchri(line, '<'));
+			while (ft_strchri(line, '<') != -1)
+			{
+				line = line + j;
+				j = ft_strchri(line, '<');
+				line = line + j;
+				// ft_printf("line = %s, j = %d, filename = %s\n", line, j, filename);
+				if (j != -1)
 				{
-					filename = ft_firstword(line + pos + 1, ' ');
-					ft_printf("line = %s, pos = %d, filename = %s\n", line + pos, pos, filename);
+					free(filename);
+					filename = ft_firstword(line + 1, ' ');
+					// ft_printf("line = %s, j = %d, filename = %s\n", line, j, filename);
 					if (access(filename, F_OK | R_OK) != 0)
-						perror(ft_strjoin("perror", filename));
+						perror(filename);
 					else
 					{
 						fd = open(filename, O_RDONLY);
 						close(fd);
 					}
 				}
-				pos++;
+				j++;
+			}
 		}
 		i++;
 	}
+	ft_printf("filename = %s\n", filename);
+	free(filename);
 	return (fd);
 }
 

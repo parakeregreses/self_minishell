@@ -44,7 +44,13 @@ grep < infile1 i > outfile1
 affiche resultat grep i sur infile1 dans outfile1
 
 grep a < no_exist no_exist2
-zsh: no such file or directory: no_exist
+bash: no such file or directory: no_exist
+
+grep a < no_exist < no_exist2
+bash: : no_exist no such file or directory
+
+grep a <infile1 < infile2
+grep s'applique seulement a infile2
 
 grep a < infile1 infile2
 affiche resultat de grep sur infile2 seulement

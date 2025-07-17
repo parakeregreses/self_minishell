@@ -20,6 +20,12 @@ grep a > outfile1 infile1
 grep a > outfile1 infile1 infile2
 -> affiche dans outfile les resultats de grep a sur infile1 et infile2
 
+grep a < note.txt <
+bash: syntax error near unexpected token `newline'
+
+grep a<note.txt<main.c
+affiche resultat de grep sur main.c
+
 => les fichiers sont pris comme des arguments de grep (mais il faut qu'ils existent). Cependant c'est grep qui va gerer ca avec execve.
 
 --------------------------------------------------------------------------
@@ -69,8 +75,8 @@ heredoc continue jusqu'a ce qu'on tape lim2, et grep s'applique seulement a ce q
 grep a << lim1 << lim2 | wrong_cmd
 heredoc s'ouvre et continue jusqu'a ce qu'on tape lim1 puis lim2, puis wrong_cmd s'affiche.
 
-grep a << lim < no_exist
-le heredoc s'affiche pour qu'on puisse taper, puis bash: infile2: No such file or directory
+grep a << lim < no_exist < infile1
+le heredoc s'affiche pour qu'on puisse taper, puis bash: no_exist: No such file or directory
 
 --------------------------------------------------------------------------
 3. Autres elements : arguments de grep

@@ -1,1 +1,2 @@
 penser à faire les verifs a chaque strdup pour ne pas avoir de leak ou de segfault
+ft_firstword doit prendre en compte TOUS les types de whitespaces, pas seulement le ' '. Il doit egalement prendre en compte les signes < et > !!!!!!!

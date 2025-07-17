@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:50:26 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/16 12:20:05 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:31:51 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,16 @@ static int	no_chevron(t_arg *tab, int n)
 #include <stdio.h>
 
 // return the position of the last chevron, with x as line number and y as char number in line x
-static int	last_chevron(t_arg *tab, int n)
+static int	last_chevron(char *str, t_arg *tab, int n)
 {
 	int i;
 	int	j;
 	int	fd;
 	char *filename;
 	char	*line;
+	
+	if (str == NULL)
+		return (-100);
 	
 	i = 0;
 	fd = 0;
@@ -133,7 +136,7 @@ static int	last_chevron(t_arg *tab, int n)
 }
 
 // on avance dans le texte, en excluant les "". Si chevron simple : on verifie que le fichier existe/access, et fdin = fd fichier, puis on continue quitte a changer fdin ! Si chevron double, hd = 1 et fdin = 0.
-int	parse_fdin(t_arg *tab)
+int	parse_fdin(char *str, t_arg *tab)
 {
 	int			fdin;
 	int			n;
@@ -143,12 +146,6 @@ int	parse_fdin(t_arg *tab)
 		return (-1);
 	if (no_chevron(tab, n) == TRUE)
 		return (0);
-	
-	// pos = last_chevron(tab, n);
-	// if (pos.x == -1 || pos.y == -1)
-	// 	return (-1);
-	// if (pos.y == 0 || (tab[pos.x]).str[pos.y - 1] == '<')
-	// 	return (0);
-	fdin = last_chevron(tab, n);
+	fdin = last_chevron(str, tab, n);
 	return(fdin);
 }

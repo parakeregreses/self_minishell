@@ -19,6 +19,7 @@ parse_bloc.c\
 define_fdin.c\
 print_tab_arg.c\
 is_x_char_in_str_spaces.c\
+is_here_doc.c\
 
 OBJS = $(SRCS:.c=.o)
 

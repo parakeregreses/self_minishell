@@ -62,6 +62,13 @@ mais message erreur : bash: infile1: No such file or directory (donc no_exist a 
 grep a << lim < infile2
 le heredoc s'affiche pour qu'on puisse taper, mais grep s'applique seulement a infile2
 
+grep a << lim1 << lim2
+heredoc s'ouvre et continue jusqu'a ce qu'on tape lim1
+heredoc continue jusqu'a ce qu'on tape lim2, et grep s'applique seulement a ce qui a ete ecrit entre lim1 et lim2.
+
+grep a << lim1 << lim2 | wrong_cmd
+heredoc s'ouvre et continue jusqu'a ce qu'on tape lim1 puis lim2, puis wrong_cmd s'affiche.
+
 grep a << lim < no_exist
 le heredoc s'affiche pour qu'on puisse taper, puis bash: infile2: No such file or directory
 

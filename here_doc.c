@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/17 22:41:27 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/18 12:44:27 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,17 @@ int	here_doc(char *lim)
 	if (fd_tempfile == -1)
 		return (-1);
 	lim_return = ft_strjoin(lim, "\n");
-	line = get_next_line(1);
+	line = get_next_line(0);
 	while (ft_strcmp(line, lim_return) != 0)
 	{
 		write(fd_tempfile, line, ft_strlen(line));
 		free(line);
-		line = get_next_line(1);
+		line = get_next_line(0);
 	}
 	free(lim_return);
 	free(line);
 	close(fd_tempfile);
+	fd_tempfile = open(filename, O_RDONLY);
+	free(filename);
 	return (fd_tempfile);
 }

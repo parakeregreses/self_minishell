@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 14:15:37 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/17 14:32:25 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/18 12:45:37 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 static int	double_chevron(t_arg *tab, int n)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i < n)
 	{
-		if ((tab[i]).quote == FALSE && is_x_char_in_str((tab[i]).str, '<', 2) == TRUE)
+		if ((tab[i]).quote == FALSE
+			&& is_x_char_in_str((tab[i]).str, '<', 2) == TRUE)
 			return (TRUE);
 		i++;
 	}

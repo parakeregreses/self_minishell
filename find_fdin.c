@@ -6,16 +6,27 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 20:56:24 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/17 22:39:40 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/18 12:43:58 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	define_fd(char *line)
+int	fd_here_doc(int fd, char *line)
+{
+	char	*lim;
+
+	if (fd != 0)
+		close(fd);
+	lim = ft_firstword(line + 1, ' '); // ! le firstword devra etre quoted cleaned
+	fd = here_doc(lim);
+	free(lim);
+	return (fd);
+}
+
+int	define_fd(char *line, int fd)
 {
 	char	*filename;
-	int		fd;
 
 	if (!line[0])
 	{
@@ -23,20 +34,17 @@ int	define_fd(char *line)
 		return (-1);
 	}
 	if (line[0] == '<')
-		fd = here_doc(ft_firstword(line + 1, ' ')); // ! le firstword devra etre quoted cleaned
-	else
+		return (fd_here_doc(fd, line));
+	filename = ft_firstword(line, ' ');
+	if (is_infile(filename) == FALSE)
 	{
-		filename = ft_firstword(line, ' ');
-		ft_printf("filename = %s\n", filename);
-		if (is_infile(filename) == FALSE)
-		{
-			free(filename);
-			return(-1);
-		}
-		fd = open(filename, O_RDONLY);
-		close(fd);
 		free(filename);
+		return (-1);
 	}
+	if (fd != 0)
+		close(fd);
+	fd = open(filename, O_RDONLY);
+	free(filename);
 	return (fd);
 }
 
@@ -48,16 +56,19 @@ int	is_fd_inline(int fd, char *line, int pos, char *full_line)
 	pos = pos + pos_inline;
 	while (pos_inline != -1 && pos_inline < (int) ft_strlen(line))
 	{
-		fd = define_fd(full_line + pos + 1);
+		fd = define_fd(full_line + pos + 1, fd);
 		if (fd == -1)
 			return (-1);
-		ft_printf("line = %s, pos_inline = %d, pos = %d\n", line, pos_inline, pos);
-		ft_printf("char = %c, pos = %d\n", full_line[pos], pos);
 		line = line + pos_inline + 1;
+		if (line[0] == '<')
+		{
+			line = line + 1;
+			pos = pos + 1;
+		}
 		pos_inline = ft_strchri(line, '<');
 		pos = pos + pos_inline + 1;
 	}
-	return (pos);
+	return (fd);
 }
 
 int	find_fdin(char *str, t_arg *tab, int n)
@@ -79,18 +90,26 @@ int	find_fdin(char *str, t_arg *tab, int n)
 		}
 		i++;
 	}
-	ft_printf("fd = %d\n");
 	return (fd);
 }
 
-int	main(void)
-{
-	char	*str;
-	t_arg	*tab;
+// int	main(void)
+// {
+// 	char	*str;
+// 	char	*str2;
+// 	t_arg	*tab;
+// 	int		fd;
 
-	str = ft_strdup("\"bullshit<bullshit\"hello<note.txt << lim < main.c ");
-	tab = select_quoted_str(str);
-	find_fdin(str, tab, tab_size_arg(tab));
-	free(str);
-	free_tab_arg(tab);
-}
+// 	str2 = calloc(sizeof(char), 47);
+// 	str = ft_strdup("\"bullshit<bullshit
+// 		\"hello<main.c < Makefile < note.txt << lin");
+// 	tab = select_quoted_str(str);
+// 	fd = find_fdin(str, tab, tab_size_arg(tab));
+// 	// fd = open("tempfile11111", O_RDONLY);
+// 	ft_printf("read : %d\n", read(fd, str2, 46));
+// 	write(1, str2, 46);
+// 	free(str);
+// 	free_tab_arg(tab);
+// 	free(str2);
+// 	close(fd);
+// }

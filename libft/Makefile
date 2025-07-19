@@ -75,6 +75,9 @@ does_char_start_line.c\
 replace_line.c\
 ft_strchri.c\
 ft_strrchri.c\
+ft_ischarinset.c\
+ft_strtrimfree.c\
+
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/18 10:34:39 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/19 22:17:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ enum e_booleen
 	FALSE=0,
 	TRUE=1
 };
+
+# define WHITESPACES "\t\n\v\f\r "
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -115,7 +117,7 @@ int			does_char_end_line(char *line, char c);
 char		**replace_line(char **tab, char *line, int i);
 int			ft_strrchri(const char *s, int c);
 int			ft_strchri(const char *s, int c);
-char		*ft_firstword(char *str, char c);
-int			does_char_start_line(char *line, char c);
+int			ft_ischarinset(char c, char const *set);
+char		*ft_strtrimfree(char const *s1, char const *set);
 
 #endif

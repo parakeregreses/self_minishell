@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strtrimfree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:47:34 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/19 22:07:01 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/19 22:10:52 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*ft_trim(char *str, char const *s1, char const *set, unsigned int n)
 	return (str);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrimfree(char const *s1, char const *set)
 {
 	unsigned int	i;
 	unsigned int	s1len;
@@ -51,6 +51,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!str)
 		return (NULL);
 	str = ft_trim(str, s1, set, i);
+	free((void *)s1);
 	return (str);
 }
 

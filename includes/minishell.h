@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/23 20:57:39 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:54:40 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		print_tab_arg(t_arg *text);
 t_arg		*ft_split_arg(char const *s, char c);
 int			first_verifications(char *str);
 t_arg		*alloc_tab(int len, t_segment s);
-t_arg		*fill_tab(t_arg *tab, char *str, t_segment s, int len);
+t_arg		*fill_tab_parsing(t_arg *tab, char *str, t_segment s, int len);
 t_arg		*select_quoted_str(char *str);
 t_arg		*separate_pipe(t_arg *arg);
 t_arg		*join_quote_to_last_line(t_arg *tab, char *quote);
@@ -87,5 +87,6 @@ t_arg		*delete_empty_lines(t_arg *arg);
 int			is_x_char_in_str_spaces(char *str, char c, int x);
 t_hd		is_here_doc(char *str, t_arg *tab, int n);
 int			here_doc(char *lim);
+char		*delete_useless_spaces(char	*str, char *set);
 
 #endif

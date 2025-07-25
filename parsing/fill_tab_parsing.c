@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:16:47 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/06/16 12:22:28 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:52:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_arg	*fill_tab_1(t_arg *tab, char *str, t_segment s);
 t_arg	*fill_tab_2_end(t_arg *tab, char *str, t_segment s);
 t_arg	*fill_tab_2_begin(t_arg *tab, char *str, t_segment s, int len);
 
-t_arg	*fill_tab(t_arg *tab, char *str, t_segment s, int len)
+t_arg	*fill_tab_parsing(t_arg *tab, char *str, t_segment s, int len)
 {
 	int	n;
 

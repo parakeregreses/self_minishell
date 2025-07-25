@@ -4,7 +4,7 @@ parsing/parsing_minishell.c\
 parsing/ft_split_arg.c\
 parsing/first_verifications.c\
 parsing/alloc_tab.c\
-parsing/fill_tab.c\
+parsing/fill_tab_parsing.c\
 parsing/parsing_utils.c\
 parsing/select_quoted_str.c\
 parsing/separate_pipe.c\

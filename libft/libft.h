@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/19 22:11:35 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:57:27 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int			ft_strcmp(const char *s1, const char *s2);
 char		*ft_filetostr(char *pathname);
 void		free_tab(void **tab);
 char		**ft_insert_last_line(char **text, char *line);
-void		ft_print_tab_char(char **text);
+void		print_tab_char(char **text);
 char		*ft_strjoinfree(char *s1, char *s2);
 int			ft_printf(const char *s, ...);
 int			ft_parsing_printf(const char *s);

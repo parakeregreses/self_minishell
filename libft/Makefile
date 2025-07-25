@@ -45,7 +45,7 @@ ft_strcmp.c\
 ft_filetostr.c\
 free_tab.c\
 ft_insert_last_line.c\
-ft_print_tab_char.c\
+print_tab_char.c\
 ft_strjoinfree.c\
 ft_charinstr.c\
 ft_parsing_printf.c\

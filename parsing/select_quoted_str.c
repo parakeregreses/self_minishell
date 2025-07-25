@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:19:58 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/06 19:09:50 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:56:39 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_arg	*extract_quote(char *str, t_segment s)
 	tab = alloc_tab(len, s);
 	if (tab == NULL)
 		return (NULL);
-	tab = fill_tab(tab, str, s, len);
+	tab = fill_tab_parsing(tab, str, s, len);
 	return (tab);
 }
 

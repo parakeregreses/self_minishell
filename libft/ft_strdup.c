@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:41:57 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/01/15 23:57:38 by jlaineb          ###   ########.fr       */
+/*   Updated: 2025/07/24 10:45:00 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*ft_strdup(const char *src)
 		i++;
 	}
 	dup[i] = '\0';
+	ft_bzero(dup, ft_strlen(src) + 1);
 	return (dup);
 }

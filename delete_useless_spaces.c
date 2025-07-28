@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 21:49:33 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/23 21:11:31 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:45:45 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,10 @@ char	*fill_new_str(char *str, char *new_str, char *set)
 			new_str[j++] = str[i++];
 		}
 		if (str[i] == 0)
+		{
+			new_str[j] = 0;
 			return (new_str);
+		}
 		while (ft_iswhitespace(str[i]) == TRUE
 			&& ((str[i + 1] != 0 && ft_ischarinset(str[i + 1], set) == TRUE)
 				|| ft_ischarinset(str[i - 1], set) == TRUE))

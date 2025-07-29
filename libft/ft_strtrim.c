@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:47:34 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/28 13:28:47 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:20:35 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static char	*ft_trim(char *str, char const *s1, char const *set, unsigned int n)
 		i++;
 	while (s1[i] != '\0' && j < (ft_strlen(s1) - n))
 		str[j++] = s1[i++];
-	// printf("j = %u, lenstr = %lu\n", j, ft_strlen(s1) - n);
 	str[j] = '\0';
 	return (str);
 }
@@ -54,4 +53,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str = ft_trim(str, s1, set, i);
 	return (str);
 }
-

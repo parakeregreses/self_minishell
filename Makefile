@@ -13,6 +13,9 @@ parsing/put_quoted_together.c\
 parsing/trim_arg.c\
 parsing/delete_empty_lines.c\
 parsing/append_tabs_and_free_arg.c\
+tokenisation/delete_useless_spaces.c\
+tokenisation/token_bloc.c\
+tokenisation/tokenisation.c\
 is_infile.c\
 reglue_quoted.c\
 parse_bloc.c\

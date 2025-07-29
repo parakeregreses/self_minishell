@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:47:34 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/19 22:10:52 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:20:41 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ char	*ft_strtrimfree(char const *s1, char const *set)
 	free((void *)s1);
 	return (str);
 }
-

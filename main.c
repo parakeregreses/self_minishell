@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/23 21:16:35 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:17:43 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,22 @@
 
 int	main(void)
 {
-	// char 	*str = "cmd<infile|cmd|\'1|2\'\'|1|2\'bonjour|a|tous\"les|amiiis\"bienvenue|a|\'l|ecole|42\'arg|cmd|END";
-	// char 	*str = "c\"md\"<i\"nfi\"le\"2\"|cmd|\'1|2|1|2\'bonjour|a|tous\"les|amiiis\"bienvenue|a|\'l|ecole|42\'arg|cmd|\"c\"md\"<i\"nfi\"le\"2\"END";
-	t_exec	info;
-	// char	***blocs;
 	char 	*str = "cmd1 < jul | 'argu ments''lol' | cmd2 'bip|bap' | cmd3 < hello < les < is_infile.c arg3";
-	
+	t_exec	*info;
+	int		n;
 	t_arg	*tab;
+
 	tab = parsing_minishell(str);
-	// Une fois qu'on a tous nos blocs, il faut verifier que chaque bloque n'a pas d'erreur basique (commence ou finit par < ou > )
-	// ft_printf("str = %s\ntab = \n", str);
-	// print_tab_arg(tab);
-	
 	int i = 0;
-	// blocs[0] = token_bloc((tab[0]).str);
+	n = tab_size_arg(tab);
+	info = malloc(sizeof(t_exec) * n);
 	while ((tab[i]).str != NULL)
 	{
-		info = parse_bloc((tab[i]).str);
-		ft_printf("str = %s, info.fdin = %d\n", (tab[i++]).str, info.fdin);
+		info[i] = parse_bloc((tab[i]).str);
+		i++;
+		// ft_printf("str = %s, info.fdin = %d\n", (tab[i++]).str, info.fdin);
 	}
-	printf("fini\n");
 	free_tab_arg(tab);
-// }
 }
 
 // int	main(void)

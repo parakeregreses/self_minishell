@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:40:28 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/29 16:26:45 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:08:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@ static char	*fill_line(char *str, int *i, char *set)
 	char	c;
 
 	j = *i;
-	*i = *i + 1;
-	if (str[*i] && ft_ischarinset(str[*i], set) == TRUE && str[*i] == str[*i - 1])
+	if (ft_ischarinset(str[*i], "\"'") == FALSE)
+	{
 		*i = *i + 1;
+		if (str[*i] && ft_ischarinset(str[*i], set) == TRUE && str[*i] == str[*i - 1])
+			*i = *i + 1;
+	}
 	while (str[*i] && ft_ischarinset(str[*i], set) == FALSE)
 	{
 		if (str[*i] && ft_ischarinset(str[*i], "\"'") == TRUE)
@@ -62,9 +65,9 @@ static char	*fill_line(char *str, int *i, char *set)
 			*i = *i + 1;
 			while (str[*i] != c)
 				*i = *i + 1;
-			*i = *i + 1;
+			// *i = *i + 1;
 		}
-		*i = *i + 1;
+			*i = *i + 1;
 	}
 	line = malloc(sizeof(char) * (*i - j) + 1);
 	if (!line)

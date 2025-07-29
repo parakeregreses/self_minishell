@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/29 16:15:13 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:48:30 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int			is_x_char_in_str_spaces(char *str, char c, int x);
 t_hd		is_here_doc(char *str, t_arg *tab, int n);
 int			here_doc(char *lim);
 char		*delete_useless_spaces(char	*str, char *set);
+char		*delete_useless_spaces_fill(char *str, char *new_str, char *set);
 char		**token_bloc(char *str);
 
 #endif

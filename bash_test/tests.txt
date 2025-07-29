@@ -26,6 +26,9 @@ bash: syntax error near unexpected token `newline'
 grep a<note.txt<main.c
 affiche resultat de grep sur main.c
 
+grep a <<<< lim2 | grep a main.c
+bash: syntax error near unexpected token `<'
+
 => les fichiers sont pris comme des arguments de grep (mais il faut qu'ils existent). Cependant c'est grep qui va gerer ca avec execve.
 
 --------------------------------------------------------------------------

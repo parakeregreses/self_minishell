@@ -6,12 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:12:48 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/06 18:27:14 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:37:09 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// ajouter verif <<< et >>> ici
 int	first_verifications(char *str)
 {
 	int	len;

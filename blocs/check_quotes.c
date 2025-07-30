@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:42:48 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/29 15:45:29 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:26:54 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,5 @@ int	check_quotes(char *arg)
 		}
 		i++;
 	}
-	// if (found == 1)
-	// 	return (FALSE);
 	return (TRUE);
-}
-
-int	main(void)
-{
-	printf("1, %d\n", check_quotes("hello"));
-	printf("0, %d\n", check_quotes("hel'lo"));
-	printf("1 %d\n", check_quotes("hel'l'o"));
-	printf("0 %d\n", check_quotes("hel'l''o"));
-	printf("1 %d\n", check_quotes("hel'l''o'"));
-	printf("1 %d\n", check_quotes("h\"el'l\"o"));
-	printf("0 %d\n", check_quotes("'mot\"1''mot2'\"mot3'\""));
 }

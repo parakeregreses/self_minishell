@@ -1,18 +1,18 @@
 SRCS = \
 main.c\
-parsing/blocs.c\
-parsing/ft_split_arg.c\
-parsing/first_verifications.c\
-parsing/alloc_tab.c\
-parsing/fill_tab_parsing.c\
-parsing/parsing_utils.c\
-parsing/select_quoted_str.c\
-parsing/separate_pipe.c\
-parsing/join_quote_to_line.c\
-parsing/put_quoted_together.c\
-parsing/trim_arg.c\
-parsing/delete_empty_lines.c\
-parsing/append_tabs_and_free_arg.c\
+blocs/blocs.c\
+blocs/ft_split_arg.c\
+blocs/first_verifications.c\
+blocs/alloc_tab.c\
+blocs/fill_tab_blocs.c\
+blocs/blocs_utils.c\
+blocs/select_quoted_str.c\
+blocs/separate_pipe.c\
+blocs/join_quote_to_line.c\
+blocs/put_quoted_together.c\
+blocs/trim_arg.c\
+blocs/delete_empty_lines.c\
+blocs/append_tabs_and_free_arg.c\
 tokenisation/delete_useless_spaces.c\
 tokenisation/delete_useless_spaces2.c\
 tokenisation/token_bloc.c\
@@ -25,10 +25,11 @@ is_x_char_in_str_spaces.c\
 is_here_doc.c\
 find_fdin.c\
 here_doc.c\
-remove_whitespaces.c\
-revamp_str.c\
-second_verifications.c\
+blocs/remove_whitespaces.c\
+blocs/revamp_str.c\
+blocs/second_verifications.c\
 triple_char.c\
+blocs/check_quotes.c\
 
 OBJS = $(SRCS:.c=.o)
 

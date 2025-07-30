@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/30 18:21:45 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:26:32 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ char		*remove_whitespaces(char *str);
 char		*revamp_str(char *str);
 int			second_verifications(t_arg *tab);
 int			triple_char(t_arg *tab, int n, char c);
+int			check_quotes(char *arg);
 
 #endif

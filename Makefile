@@ -1,6 +1,6 @@
 SRCS = \
 main.c\
-parsing/parsing_minishell.c\
+parsing/blocs.c\
 parsing/ft_split_arg.c\
 parsing/first_verifications.c\
 parsing/alloc_tab.c\
@@ -26,6 +26,9 @@ is_here_doc.c\
 find_fdin.c\
 here_doc.c\
 remove_whitespaces.c\
+revamp_str.c\
+second_verifications.c\
+triple_char.c\
 
 OBJS = $(SRCS:.c=.o)
 

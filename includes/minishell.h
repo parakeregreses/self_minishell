@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/29 16:48:30 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/30 17:22:37 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ int			here_doc(char *lim);
 char		*delete_useless_spaces(char	*str, char *set);
 char		*delete_useless_spaces_fill(char *str, char *new_str, char *set);
 char		**token_bloc(char *str);
+char		*remove_whitespaces(char *str);
 
 #endif

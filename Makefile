@@ -24,12 +24,11 @@ tokenisation/full_tokenisation.c\
 extraction/find_fdin.c\
 extraction/here_doc.c\
 extraction/is_infile.c\
-parse_bloc.c\
 print_tab_arg.c\
 triple_char.c\
-parsing_processes.c\
+extraction/parsing_processes.c\
 extraction/extract_infos.c\
-str_without_quotes.c\
+extraction/str_without_quotes.c\
 extraction/find_fdout.c\
 extraction/find_cmdarg.c\
 

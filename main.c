@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/31 17:14:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 18:06:59 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	char 	*str = "cmd1 < jul | 'argu ments''lol' | cmd2 'bip|bap' | cmd3 < hello << les < is_infile.c arg3";
+	char 	*str = "cmd1 << jul | 'argu ments''lol' | cmd2 'bip|bap' | cmd3 << hello << les < is_infile.c arg3";
 	t_exec	*infos;
 	int		n;
 	t_arg	*blocs;

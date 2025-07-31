@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 16:05:20 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 18:03:23 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,30 @@ char	*ft_tempfilename(void)
 	return (tempfilename);
 }
 
-int	here_doc(char *lim)
+t_file	here_doc(char *lim)
 {
 	char	*line;
-	int		fd_tempfile;
+	t_file	tempfile;
 	char	*lim_return;
-	char	*filename;
 
 	ft_printf("lim = %s\n", lim);
-	filename = ft_tempfilename(); // il faudra gerer la suppression de ces fichiers temporaires si plusieurs sont ouverts !!!
-	fd_tempfile = open(filename, O_RDWR | O_CREAT, 00777);
-	if (fd_tempfile == -1)
-		return (-1);
+	tempfile.filename = ft_tempfilename(); // il faudra gerer la suppression de ces fichiers temporaires si plusieurs sont ouverts !!!
+	tempfile.fd = open(tempfile.filename, O_RDWR | O_CREAT, 00777);
+	if (tempfile.fd == -1)
+		return (tempfile);
 	lim_return = ft_strjoin(lim, "\n");
 	line = get_next_line(0);
 	while (ft_strcmp(line, lim_return) != 0)
 	{
-		write(fd_tempfile, line, ft_strlen(line));
+		write(tempfile.fd, line, ft_strlen(line));
 		free(line);
 		line = get_next_line(0);
 	}
 	free(lim_return);
 	free(line);
-	close(fd_tempfile);
-	fd_tempfile = open(filename, O_RDONLY);
-	close(fd_tempfile);
-	free(filename);
-	return (fd_tempfile);
+	close(tempfile.fd);
+	tempfile.fd = open(tempfile.filename, O_RDONLY);
+	close(tempfile.fd);
+	free(tempfile.filename);
+	return (tempfile);
 }

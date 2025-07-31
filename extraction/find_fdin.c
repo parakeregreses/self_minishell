@@ -6,20 +6,25 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:38:31 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 17:42:45 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 18:05:34 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	fdin_fdin_lim(char *limline)
+t_fdin	find_fdin_lim(char *limline, t_fdin infile)
 {
 	char	*lim;
 
+	infile.fdin = 0;
+	if (infile.here_doc == 1)
+		unlink(infile.tempfile.filename);
+	infile.here_doc = 1;
 	lim = str_without_quotes(limline);
-	here_doc(lim);
+	infile.tempfile = here_doc(lim);
+	infile.fdin = infile.tempfile.fd;
 	free(lim);
-	return (0);
+	return (infile);
 }
 
 int	find_fdin_file(char *filenameline)
@@ -39,27 +44,28 @@ int	find_fdin_file(char *filenameline)
 	return (fdin);
 }
 
-int	find_fdin(char **tokens)
+t_fdin	find_fdin(char **tokens)
 {
-	int		fdin;
+	t_fdin	infile;
 	int		i;
 
-	fdin = 0;
+	infile.fdin = 0;
+	infile.here_doc = 0;
 	i = 0;
 	while (tokens[i] != NULL)
 	{
 		if (tokens[i][0] && tokens[i][0] == '<')
 		{
 			if (tokens[i][1] && tokens[i][1] == '<')
-				fdin = find_fdin_lim(tokens[i] + 2);
+				infile = find_fdin_lim(tokens[i] + 2, infile);
 			else
 			{
-				fdin = find_fdin_file(tokens[i] + 1);
-				if (fdin == -1)
-					return (-1);
+				infile.fdin = find_fdin_file(tokens[i] + 1);
+				if (infile.fdin == -1)
+					return (infile);
 			}
 		}
 		i++;
 	}
-	return (fdin);
+	return (infile);
 }

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/31 17:31:47 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 18:05:22 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,24 @@ typedef struct s_coord2d
 	int	y;
 }				t_coord2d;
 
-typedef struct s_hd
+typedef struct s_file
 {
-	int		hd;
-	char	*lim;
-	char	*limfile;
-}				t_hd;
+	char	*filename;
+	int		fd;
+}			t_file;
+
+typedef struct s_fdin
+{
+	int		fdin;
+	int		here_doc;
+	t_file	tempfile;
+}				t_fdin;
 
 typedef struct s_exec
 {
-	int		fdin;
+	t_fdin	infile;
 	int		fdout;
-	char	*cmd;
 	char	**cmdarg;
-	t_hd	hd;
 }				t_exec;
 
 int			tab_size(char **tab);
@@ -84,7 +88,7 @@ t_arg		*put_quoted_together(t_arg *arg);
 t_arg		*trim_arg(t_arg *arg);
 t_arg		*delete_empty_lines(t_arg *arg);
 int			is_x_char_in_str_spaces(char *str, char c, int x);
-int			here_doc(char *lim);
+t_file		here_doc(char *lim);
 char		*delete_useless_spaces(char	*str, char *set);
 char		*delete_useless_spaces_fill(char *str, char *new_str, char *set);
 char		**token_bloc(char *str);
@@ -96,7 +100,7 @@ int			check_quotes(char *arg);
 char		***full_tokenisation(t_arg *blocs, int n);
 t_exec		*parsing_processes(char ***processes, int n);
 t_exec		extract_infos(char **tokens);
-int			find_fdin(char **tokens);
+t_fdin		find_fdin(char **tokens);
 char		*str_without_quotes(char *str);
 int			find_fdout(char **tokens);
 char		**find_cmdarg(char **tokens);

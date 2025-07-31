@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   full_tokenisation.c                                :+:      :+:    :+:   */
+/*   find_fdout.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 18:41:51 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 16:02:43 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/07/31 16:07:55 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/07/31 17:08:56 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	***full_tokenisation(t_arg *blocs, int n)
+int	find_fdout(char **tokens)
 {
+	int		fdout;
 	int		i;
-	char	***processes;
-
+	char	*filename;
+	
+	fdout = 1;
 	i = 0;
-	processes = malloc(sizeof(char **) * (n + 1));
-	while ((blocs[i]).str != NULL)
+	while (tokens[i] != NULL)
 	{
-		processes[i] = token_bloc((blocs[i]).str);
+		if (tokens[i][0] && tokens[i][0] == '>')
+		{
+			filename = str_without_quotes(tokens[i] + 1);
+			fdout = open(filename, O_WRONLY | O_TRUNC | O_CREAT, 0666);
+			close(fdout);
+			free(filename);
+		}
 		i++;
 	}
-	processes[i] = NULL;
-	return (processes);
+	// ft_printf("fdout = %d\n", fdout);
+	return(fdout);
 }

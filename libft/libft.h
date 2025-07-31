@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/28 12:31:34 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:33:51 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ int			ft_strrchri(const char *s, int c);
 int			ft_strchri(const char *s, int c);
 int			ft_ischarinset(char c, char const *set);
 char		*ft_strtrimfree(char const *s1, char const *set);
+char		**add_line_in_tab(char **tab, char *line);
 
 #endif

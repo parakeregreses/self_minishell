@@ -31,6 +31,9 @@ print_tab_arg.c\
 triple_char.c\
 parsing_processes.c\
 extract_infos.c\
+str_without_quotes.c\
+find_fdout.c\
+find_cmdarg.c\
 
 OBJS = $(SRCS:.c=.o)
 

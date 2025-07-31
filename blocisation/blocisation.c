@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blocs.c                                            :+:      :+:    :+:   */
+/*   blocisation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/30 18:42:45 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 15:59:13 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ t_arg	*blocisation(char *str)
 	arg = separate_pipe(arg);
 	arg = trim_arg(arg);
 	arg = delete_empty_lines(arg);
+	free(str);
 	return (arg);
 }

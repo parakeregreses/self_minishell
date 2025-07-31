@@ -5,111 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 20:56:24 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/18 12:43:58 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/07/31 15:38:31 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/07/31 17:18:11 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	fd_here_doc(int fd, char *line)
+int	find_fdin(char **tokens)
 {
-	char	*lim;
-
-	if (fd != 0)
-		close(fd);
-	lim = ft_firstword(line + 1, ' '); // ! le firstword devra etre quoted cleaned
-	fd = here_doc(lim);
-	free(lim);
-	return (fd);
-}
-
-int	define_fd(char *line, int fd)
-{
-	char	*filename;
-
-	if (!line[0])
-	{
-		ft_printf("minishell: syntax error near unexpected token `newline'");
-		return (-1);
-	}
-	if (line[0] == '<')
-		return (fd_here_doc(fd, line));
-	filename = ft_firstword(line, ' ');
-	if (is_infile(filename) == FALSE)
-	{
-		free(filename);
-		return (-1);
-	}
-	if (fd != 0)
-		close(fd);
-	fd = open(filename, O_RDONLY);
-	free(filename);
-	return (fd);
-}
-
-int	is_fd_inline(int fd, char *line, int pos, char *full_line)
-{
-	int		pos_inline;
-
-	pos_inline = ft_strchri(line, '<');
-	pos = pos + pos_inline;
-	while (pos_inline != -1 && pos_inline < (int) ft_strlen(line))
-	{
-		fd = define_fd(full_line + pos + 1, fd);
-		if (fd == -1)
-			return (-1);
-		line = line + pos_inline + 1;
-		if (line[0] == '<')
-		{
-			line = line + 1;
-			pos = pos + 1;
-		}
-		pos_inline = ft_strchri(line, '<');
-		pos = pos + pos_inline + 1;
-	}
-	return (fd);
-}
-
-int	find_fdin(char *str, t_arg *tab, int n)
-{
-	int		pos;
+	int		fdin;
 	int		i;
-	int		fd;
-
-	pos = 0;
+	char	*lim;
+	char	*filename;
+	
+	fdin = 0;
 	i = 0;
-	fd = 0;
-	while ((tab[i]).str != NULL && i < n)
+	while (tokens[i] != NULL)
 	{
-		if ((tab[i]).quote == TRUE)
-			pos = pos + ft_strlen((tab[i]).str);
-		else
+		if (tokens[i][0] && tokens[i][0] == '<')
 		{
-			fd = is_fd_inline(fd, (tab[i]).str, pos, str);
+			if (tokens[i][1] && tokens[i][1] == '<')
+			{
+				fdin = 0;
+				lim = str_without_quotes(tokens[i] + 2);
+				here_doc(lim);
+				free(lim);
+			}
+			else
+			{
+				filename = str_without_quotes(tokens[i] + 1);
+				if (is_infile(filename) == FALSE)
+				{
+					free(filename);
+					return (-1);
+				}
+				fdin = open(filename, O_RDONLY);
+				if (fdin == -1)
+					
+				close(fdin);
+				free(filename);
+			}
 		}
 		i++;
 	}
-	return (fd);
+	// ft_printf("fdin = %d\n", fdin);
+	return(fdin);
 }
-
-// int	main(void)
-// {
-// 	char	*str;
-// 	char	*str2;
-// 	t_arg	*tab;
-// 	int		fd;
-
-// 	str2 = calloc(sizeof(char), 47);
-// 	str = ft_strdup("\"bullshit<bullshit
-// 		\"hello<main.c < Makefile < note.txt << lin");
-// 	tab = select_quoted_str(str);
-// 	fd = find_fdin(str, tab, tab_size_arg(tab));
-// 	// fd = open("tempfile11111", O_RDONLY);
-// 	ft_printf("read : %d\n", read(fd, str2, 46));
-// 	write(1, str2, 46);
-// 	free(str);
-// 	free_tab_arg(tab);
-// 	free(str2);
-// 	close(fd);
-// }

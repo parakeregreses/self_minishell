@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/30 19:10:02 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:28:41 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ t_arg		*join_quote_to_last_line(t_arg *tab, char *quote);
 t_arg		*join_quote_to_first_line(t_arg *tab, char *quote);
 int			is_infile(char *file1);
 t_exec		parse_bloc(char *str);
-int			find_fdin(char *str, t_arg *tab, int n);
 int			define_fdin(char *str, t_arg *tab);
 char		*reglue_quoted(t_arg *tab);
 t_arg		*put_quoted_together(t_arg *arg);
@@ -98,5 +97,9 @@ int			check_quotes(char *arg);
 char		***full_tokenisation(t_arg *blocs, int n);
 t_exec		*parsing_processes(char ***processes, int n);
 t_exec		extract_infos(char **tokens);
+int			find_fdin(char **tokens);
+char		*str_without_quotes(char *str);
+int			find_fdout(char **tokens);
+char		**find_cmdarg(char **tokens);
 
 #endif

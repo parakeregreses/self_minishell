@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 17:16:54 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/29 17:23:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 15:54:50 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static char    *remove_quotes(char *str, char *result, int i, int y)
         }
         i++;
     }
+	result[y] = 0;
     return (result);
 }
 char    *str_without_quotes(char *str)
@@ -87,12 +88,17 @@ char    *str_without_quotes(char *str)
 
 // 	str = str_without_quotes("\"te\"s\"t\"");
 //     printf("%s, %s\n", "\"te\"s\"t\"", str);
+// 	free(str);
 // 	str = str_without_quotes("\"te'st\"");
 //     printf("%s, %s\n", "\"te'st\"", str);
+// 	free(str);
 // 	str = str_without_quotes("\"te\'s\'t\"");
 //     printf("%s, %s\n", "\"te\'s\'t\"", str);
+// 	free(str);
 // 	str = str_without_quotes("\"te\"s\"t\"");
 //     printf("%s, %s\n", "\"te\"s\"t\"", str);
+// 	free(str);
 // 	str = str_without_quotes("\'\"\'\"t\"\'\"\'");
 //     printf("%s, %s\n", "\'\"\'\"t\"\'\"\'", str);
+// 	free(str);
 // }

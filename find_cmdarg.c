@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   full_tokenisation.c                                :+:      :+:    :+:   */
+/*   find_cmdarg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 18:41:51 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 16:02:43 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/07/31 16:16:49 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/07/31 17:12:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	***full_tokenisation(t_arg *blocs, int n)
+char	**find_cmdarg(char **tokens)
 {
 	int		i;
-	char	***processes;
+	char	**cmd;
 
 	i = 0;
-	processes = malloc(sizeof(char **) * (n + 1));
-	while ((blocs[i]).str != NULL)
+	cmd = malloc(sizeof(char *) * 1);
+	cmd[0] = NULL;
+	print_tab_char(tokens);
+	while (tokens[i] != NULL)
 	{
-		processes[i] = token_bloc((blocs[i]).str);
-		i++;
+		if (tokens[i][0] && (tokens[i][0] == '>' || tokens[i][0] == '<'))
+			i++;
+		else
+		{
+			cmd = add_line_in_tab(cmd, tokens[i]);
+			i++;
+		}
 	}
-	processes[i] = NULL;
-	return (processes);
+	print_tab_char(cmd);
+	return(cmd);
 }

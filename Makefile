@@ -21,19 +21,17 @@ tokenisation/delete_useless_spaces.c\
 tokenisation/delete_useless_spaces2.c\
 tokenisation/token_bloc.c\
 tokenisation/full_tokenisation.c\
-is_here_doc.c\
-find_fdin.c\
-here_doc.c\
-is_infile.c\
+extraction/find_fdin.c\
+extraction/here_doc.c\
+extraction/is_infile.c\
 parse_bloc.c\
-define_fdin.c\
 print_tab_arg.c\
 triple_char.c\
 parsing_processes.c\
-extract_infos.c\
+extraction/extract_infos.c\
 str_without_quotes.c\
-find_fdout.c\
-find_cmdarg.c\
+extraction/find_fdout.c\
+extraction/find_cmdarg.c\
 
 OBJS = $(SRCS:.c=.o)
 

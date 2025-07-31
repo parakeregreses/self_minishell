@@ -6,19 +6,44 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:38:31 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 17:18:11 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 17:42:45 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	fdin_fdin_lim(char *limline)
+{
+	char	*lim;
+
+	lim = str_without_quotes(limline);
+	here_doc(lim);
+	free(lim);
+	return (0);
+}
+
+int	find_fdin_file(char *filenameline)
+{
+	char	*filename;
+	int		fdin;
+
+	filename = str_without_quotes(filenameline);
+	if (is_infile(filename) == FALSE)
+	{
+		free(filename);
+		return (-1);
+	}
+	fdin = open(filename, O_RDONLY);
+	close(fdin);
+	free(filename);
+	return (fdin);
+}
+
 int	find_fdin(char **tokens)
 {
 	int		fdin;
 	int		i;
-	char	*lim;
-	char	*filename;
-	
+
 	fdin = 0;
 	i = 0;
 	while (tokens[i] != NULL)
@@ -26,29 +51,15 @@ int	find_fdin(char **tokens)
 		if (tokens[i][0] && tokens[i][0] == '<')
 		{
 			if (tokens[i][1] && tokens[i][1] == '<')
-			{
-				fdin = 0;
-				lim = str_without_quotes(tokens[i] + 2);
-				here_doc(lim);
-				free(lim);
-			}
+				fdin = find_fdin_lim(tokens[i] + 2);
 			else
 			{
-				filename = str_without_quotes(tokens[i] + 1);
-				if (is_infile(filename) == FALSE)
-				{
-					free(filename);
-					return (-1);
-				}
-				fdin = open(filename, O_RDONLY);
+				fdin = find_fdin_file(tokens[i] + 1);
 				if (fdin == -1)
-					
-				close(fdin);
-				free(filename);
+					return (-1);
 			}
 		}
 		i++;
 	}
-	// ft_printf("fdin = %d\n", fdin);
-	return(fdin);
+	return (fdin);
 }

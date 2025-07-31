@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_infos.c                                    :+:      :+:    :+:   */
+/*   parsing_processes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 19:06:15 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 16:24:53 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/07/30 19:00:40 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/07/31 17:36:46 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_exec	extract_infos(char **tokens)
+t_exec	*parsing_processes(char ***processes, int n)
 {
-	t_exec	info;
+	int		i;
+	t_exec	*infos;
 
-	info.fdin = find_fdin(tokens);
-	info.fdout = find_fdout(tokens);
-	info.cmdarg = find_cmdarg(tokens);
-	// info.hd = find_hd(tokens);
-	return (info);
+	i = 0;
+	infos = malloc(sizeof(t_exec) * (n + 1));
+	while (processes[i] != NULL)
+	{
+		infos[i] = extract_infos(processes[i]);
+		i++;
+	}
+	return (infos);
 }

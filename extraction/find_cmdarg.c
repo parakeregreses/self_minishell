@@ -1,46 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_here_doc.c                                      :+:      :+:    :+:   */
+/*   find_cmdarg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 14:15:37 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/18 12:45:37 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/07/31 16:16:49 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/07/31 17:35:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	double_chevron(t_arg *tab, int n)
+char	**find_cmdarg(char **tokens)
 {
-	int	i;
-
-	i = 0;
-	while (i < n)
-	{
-		if ((tab[i]).quote == FALSE
-			&& is_x_char_in_str((tab[i]).str, '<', 2) == TRUE)
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
-}
-
-t_hd	is_here_doc(char *str, t_arg *tab, int n)
-{
-	t_hd	here_doc;
 	int		i;
+	char	**cmd;
 
 	i = 0;
-	here_doc.hd = double_chevron(tab, n);
-	if (here_doc.hd == FALSE)
+	cmd = malloc(sizeof(char *) * 1);
+	cmd[0] = NULL;
+	print_tab_char(tokens);
+	while (tokens[i] != NULL)
 	{
-		here_doc.lim = NULL;
-		return (here_doc);
+		if (tokens[i][0] && (tokens[i][0] == '>' || tokens[i][0] == '<'))
+			i++;
+		else
+		{
+			cmd = add_line_in_tab(cmd, tokens[i]);
+			i++;
+		}
 	}
-
-	here_doc.lim = str;
-
-	return (here_doc);
+	print_tab_char(cmd);
+	return (cmd);
 }

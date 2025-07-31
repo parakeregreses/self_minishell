@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/31 16:28:41 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 17:31:47 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ t_arg		*put_quoted_together(t_arg *arg);
 t_arg		*trim_arg(t_arg *arg);
 t_arg		*delete_empty_lines(t_arg *arg);
 int			is_x_char_in_str_spaces(char *str, char c, int x);
-t_hd		is_here_doc(char *str, t_arg *tab, int n);
 int			here_doc(char *lim);
 char		*delete_useless_spaces(char	*str, char *set);
 char		*delete_useless_spaces_fill(char *str, char *new_str, char *set);

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:07:55 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 17:08:56 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/07/31 17:36:28 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	find_fdout(char **tokens)
 	int		fdout;
 	int		i;
 	char	*filename;
-	
+
 	fdout = 1;
 	i = 0;
 	while (tokens[i] != NULL)
@@ -31,6 +31,5 @@ int	find_fdout(char **tokens)
 		}
 		i++;
 	}
-	// ft_printf("fdout = %d\n", fdout);
-	return(fdout);
+	return (fdout);
 }

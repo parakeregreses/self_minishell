@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:07:55 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/04 15:58:58 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:00:49 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	find_fdout(char **tokens)
 		if (tokens[i][0] && tokens[i][0] == '>')
 		{
 			if (tokens[i][1] && tokens[i][1] == '>')
-				fdout = redirect_append_mode();
+				fdout = redirect_append_mode(tokens[i] + 1);
 			else
-				fdout = redirect();
+				fdout = redirect(tokens[i] + 1);
 		}
 		i++;
 	}

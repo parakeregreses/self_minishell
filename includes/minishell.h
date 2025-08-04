@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/31 18:05:22 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:40:28 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_exec
 	t_fdin	infile;
 	int		fdout;
 	char	**cmdarg;
+	char	*cmdpath;
 }				t_exec;
 
 int			tab_size(char **tab);
@@ -104,5 +105,9 @@ t_fdin		find_fdin(char **tokens);
 char		*str_without_quotes(char *str);
 int			find_fdout(char **tokens);
 char		**find_cmdarg(char **tokens);
+void		pipex(t_exec *infos, int n, char **envp);
+void		execution(int fdin, int fdout, char **cmdarg, char **envp);
+char		*ft_iscmd(char *cmd, char **envp);
+int			parse_commands(t_exec *infos, int n, char **envp);
 
 #endif

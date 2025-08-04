@@ -31,6 +31,10 @@ extraction/extract_infos.c\
 extraction/str_without_quotes.c\
 extraction/find_fdout.c\
 extraction/find_cmdarg.c\
+pipex.c\
+execution.c\
+ft_iscmd.c\
+parse_commands.c\
 
 OBJS = $(SRCS:.c=.o)
 

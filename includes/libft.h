@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 16:33:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:18:48 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ enum e_booleen
 {
 	FALSE=0,
 	TRUE=1
+};
+
+enum e_pipe
+{
+	READ=0,
+	WRITE=1
 };
 
 # define WHITESPACES "\t\n\v\f\r "

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_infos.c                                    :+:      :+:    :+:   */
+/*   parse_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 19:06:15 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/04 16:22:58 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/04 16:43:00 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_exec	extract_infos(char **tokens)
+int	parse_commands(t_exec *infos, int n, char **envp)
 {
-	t_exec	info;
+	int	i;
+	int	result;
 
-	info.infile = find_fdin(tokens);
-	info.fdout = find_fdout(tokens);
-	info.cmdarg = find_cmdarg(tokens);
-	return (info);
+	i = 0;
+	result = TRUE;
+	while (i < n)
+	{
+		(infos[i]).cmdpath = ft_iscmd((infos[i]).cmdarg[0], envp);
+		if ((infos[i]).cmdpath == NULL)
+			result = FALSE;
+		i++;
+	}
+	return (result);
 }

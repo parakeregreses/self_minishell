@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 18:03:23 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:19:55 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ t_file	here_doc(char *lim)
 	close(tempfile.fd);
 	tempfile.fd = open(tempfile.filename, O_RDONLY);
 	close(tempfile.fd);
-	free(tempfile.filename);
+	// free(tempfile.filename);
 	return (tempfile);
 }

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:16:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 17:35:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:37:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	**find_cmdarg(char **tokens)
 	i = 0;
 	cmd = malloc(sizeof(char *) * 1);
 	cmd[0] = NULL;
-	print_tab_char(tokens);
 	while (tokens[i] != NULL)
 	{
 		if (tokens[i][0] && (tokens[i][0] == '>' || tokens[i][0] == '<'))
@@ -31,6 +30,5 @@ char	**find_cmdarg(char **tokens)
 			i++;
 		}
 	}
-	print_tab_char(cmd);
 	return (cmd);
 }

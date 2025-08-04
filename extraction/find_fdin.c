@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:38:31 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 18:05:34 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:40:05 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ t_fdin	find_fdin_lim(char *limline, t_fdin infile)
 {
 	char	*lim;
 
-	infile.fdin = 0;
 	if (infile.here_doc == 1)
+	{
+		ft_printf("unlink : infile.tempfile.filename = %s\n", infile.tempfile.filename);
 		unlink(infile.tempfile.filename);
+	}
 	infile.here_doc = 1;
 	lim = str_without_quotes(limline);
 	infile.tempfile = here_doc(lim);
+	ft_printf("infile.tempfile.filename = %s\n", infile.tempfile.filename);
 	infile.fdin = infile.tempfile.fd;
 	free(lim);
 	return (infile);

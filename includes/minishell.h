@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/04 16:40:28 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:34:16 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ char		*remove_whitespaces(char *str);
 char		*revamp_str(char *str);
 int			second_verifications(t_arg *tab);
 int			triple_char(t_arg *tab, int n, char c);
-int			check_quotes(char *arg);
+int			check_closed_quotes(char *arg);
 char		***full_tokenisation(t_arg *blocs, int n);
-t_exec		*parsing_processes(char ***processes, int n);
-t_exec		extract_infos(char **tokens);
+t_exec		*extract_infos(char ***processes, int n);
+t_exec		extract_info(char **tokens);
 t_fdin		find_fdin(char **tokens);
 char		*str_without_quotes(char *str);
 int			find_fdout(char **tokens);
@@ -109,5 +109,7 @@ void		pipex(t_exec *infos, int n, char **envp);
 void		execution(int fdin, int fdout, char **cmdarg, char **envp);
 char		*ft_iscmd(char *cmd, char **envp);
 int			parse_commands(t_exec *infos, int n, char **envp);
+void		delete_tempfiles(t_exec *infos, int n);
+int			full_delete_minishell(t_arg *b, char ***p, t_exec *infos, int n);
 
 #endif

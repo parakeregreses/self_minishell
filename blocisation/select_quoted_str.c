@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:19:58 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/30 18:59:40 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:49:23 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,30 +28,38 @@ t_arg	*extract_quote(char *str, t_segment s)
 	return (tab);
 }
 
-t_arg	*t1_separator(char *str)
+t_arg	*tab1_separator(char *str)
 {
 	char	separator;
-	t_arg	*t1;
+	t_arg	*tab1;
 
 	separator = which_separator(str, '\'', '\"');
-	t1 = extract_quote(str, find_segment(str, separator));
-	return (t1);
+	tab1 = extract_quote(str, find_segment(str, separator));
+	return (tab1);
 }
 
-t_arg	*t1_no_separator(char *str)
+t_arg	*tab1_no_separator(char *str)
 {
-	t_arg	*t1;
+	t_arg	*tab1;
 
-	t1 = malloc(sizeof(t_arg) * 2);
-	if (!t1)
+	tab1 = malloc(sizeof(t_arg) * 2);
+	if (!tab1)
 		return (NULL);
-	(t1[0]).str = ft_strdup(str);
-	(t1[0]).quote = 0;
-	(t1[1]).str = NULL;
-	(t1[1]).quote = 0;
-	return (t1);
+	(tab1[0]).str = ft_strdup(str);
+	(tab1[0]).quote = 0;
+	(tab1[1]).str = NULL;
+	(tab1[1]).quote = 0;
+	return (tab1);
 }
 
+// Splits a string into segments based on quotes ' or ". 
+// Each segment is labeled 0 (unquoted segment) or 1 (quoted segment)
+// basically, the string "word "quoted" word 'quoted''quoted'" will turn into :
+// 0 word
+// 1 "quoted"
+// 0 word
+// 1 'quoted'
+// 1 'quoted' 
 t_arg	*select_quoted_str(char *str)
 {
 	t_arg	*t1;
@@ -60,9 +68,9 @@ t_arg	*select_quoted_str(char *str)
 
 	t1 = NULL;
 	if (ft_charinstr(str, '\'') == TRUE || ft_charinstr(str, '\"') == TRUE)
-		t1 = t1_separator(str);
+		t1 = tab1_separator(str);
 	else
-		t1 = t1_no_separator(str);
+		t1 = tab1_no_separator(str);
 	if (t1 == NULL)
 		return (NULL);
 	n = tab_size_arg(t1);

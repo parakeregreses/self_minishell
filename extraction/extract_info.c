@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_quotes.c                                     :+:      :+:    :+:   */
+/*   extract_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 15:42:48 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/30 18:26:54 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/07/30 19:06:15 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/04 16:22:58 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_quotes(char *arg)
+t_exec	extract_info(char **tokens)
 {
-	int		i;
-	int		found;
-	char	quote;
+	t_exec	info;
 
-	i = 0;
-	found = 0;
-	while (arg[i])
-	{
-		if (arg[i] == '"' || arg[i] == '\'')
-		{
-			found = 1;
-			quote = arg[i];
-			i++;
-			while (arg[i] != quote && arg[i])
-				i++;
-			if (arg[i] != quote)
-				return (FALSE);
-			found = 0;
-		}
-		i++;
-	}
-	return (TRUE);
+	info.infile = find_fdin(tokens);
+	info.fdout = find_fdout(tokens);
+	info.cmdarg = find_cmdarg(tokens);
+	return (info);
 }

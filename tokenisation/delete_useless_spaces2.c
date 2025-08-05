@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:24:16 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/29 16:25:48 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:33:26 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ void	fill_till_char(char **new_str, char *str, int *i, int *j)
 	}
 }
 
+void	ft_ifquote(char **new_str, char *str, int *i, int *j)
+{
+	if (str[*i] == '\'' || str[*i] == '"')
+		fill_till_char(new_str, str, i, j);
+	new_str[0][*j] = str[*i];
+	*j = *j + 1;
+	*i = *i + 1;
+}
+
 char	*delete_useless_spaces_fill(char *str, char *new_str, char *set)
 {
 	int	i;
@@ -38,11 +47,7 @@ char	*delete_useless_spaces_fill(char *str, char *new_str, char *set)
 	while (str[i] != 0)
 	{
 		while (str[i] && ft_iswhitespace(str[i]) == FALSE)
-		{
-			if (str[i] == '\'' || str[i] == '"')
-				fill_till_char(&new_str, str, &i, &j);
-			new_str[j++] = str[i++];
-		}
+			ft_ifquote(&new_str, str, &i, &j);
 		if (str[i] == 0)
 		{
 			new_str[j] = 0;

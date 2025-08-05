@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_verifications.c                              :+:      :+:    :+:   */
+/*   delete_tempfiles.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 11:12:48 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 12:11:40 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/05 11:47:48 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/05 13:34:59 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	first_verifications(char *str)
+void	delete_tempfiles(t_exec *infos, int n)
 {
-	int	len;
+	int	i;
 
-	len = ft_strlen(str);
-	if (check_closed_quotes(str) == FALSE)
-		return (FALSE);
-	if (does_char_end_line(str, '|') == TRUE
-		|| is_x_char_in_str(str, '|', 3) == TRUE
-		|| does_char_start_line(str, '|') == TRUE)
+	i = 0;
+	while (i < n)
 	{
-		ft_printf("minishell: syntax error near unexpected token `|'");
-		return (FALSE);
+		if ((infos[i]).infile.here_doc == 1)
+		{
+			unlink((infos[i]).infile.tempfile.filename);
+			free((infos[i]).infile.tempfile.filename);
+		}
+		i++;
 	}
-	return (TRUE);
 }

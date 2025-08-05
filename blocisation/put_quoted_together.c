@@ -6,12 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 21:46:31 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/06 16:53:00 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:26:13 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// if different quoted lines are next to each other, joins those lines
 t_arg	*put_quoted_together(t_arg *arg)
 {
 	int		i;

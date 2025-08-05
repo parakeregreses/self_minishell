@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_processes.c                                :+:      :+:    :+:   */
+/*   close_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 19:00:40 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/04 16:46:07 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/05 13:41:41 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/05 13:46:03 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-t_exec	*parsing_processes(char ***processes, int n)
+// if str[i] == c, find the next occurence of c in str and returns its position
+int	close_quote(char *str, int i, char c)
 {
-	int		i;
-	t_exec	*infos;
-
-	i = 0;
-	infos = malloc(sizeof(t_exec) * (n + 1));
-	while (processes[i] != NULL)
-	{
-		infos[i] = extract_infos(processes[i]);
+	i++;
+	while (str[i] && str[i] != c)
 		i++;
-	}
-	return (infos);
+	if (str[i] == 0)
+		return (-1);
+	i++;
+	return (i);
 }

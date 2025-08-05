@@ -6,12 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:30:40 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 16:02:07 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:04:55 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// simplifies the spaces in str. turns "word 	word < word" in "word word<word"
 char	*revamp_str(char *str)
 {
 	str = remove_whitespaces(str);

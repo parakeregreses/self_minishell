@@ -6,12 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 18:41:51 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 16:02:43 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:36:41 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// in each bloc, tokens the bloc (turns into a tab of the different elements)
 char	***full_tokenisation(t_arg *blocs, int n)
 {
 	int		i;

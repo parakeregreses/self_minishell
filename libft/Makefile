@@ -78,6 +78,7 @@ ft_strrchri.c\
 ft_ischarinset.c\
 ft_strtrimfree.c\
 add_line_in_tab.c\
+close_quote.c\
 
 
 OBJS = $(SRCS:.c=.o)

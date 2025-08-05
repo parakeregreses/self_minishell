@@ -16,7 +16,7 @@ blocisation/append_tabs_and_free_arg.c\
 blocisation/remove_whitespaces.c\
 blocisation/revamp_str.c\
 blocisation/second_verifications.c\
-blocisation/check_quotes.c\
+blocisation/check_closed_quotes.c\
 tokenisation/delete_useless_spaces.c\
 tokenisation/delete_useless_spaces2.c\
 tokenisation/token_bloc.c\
@@ -26,8 +26,8 @@ extraction/here_doc.c\
 extraction/is_infile.c\
 print_tab_arg.c\
 triple_char.c\
-extraction/parsing_processes.c\
 extraction/extract_infos.c\
+extraction/extract_info.c\
 extraction/str_without_quotes.c\
 extraction/find_fdout.c\
 extraction/find_cmdarg.c\
@@ -35,6 +35,8 @@ pipex.c\
 execution.c\
 ft_iscmd.c\
 parse_commands.c\
+delete_tempfiles.c\
+full_delete_minishell.c\
 
 OBJS = $(SRCS:.c=.o)
 

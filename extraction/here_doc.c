@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/04 15:19:55 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:06:17 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_file	here_doc(char *lim)
 	char	*lim_return;
 
 	ft_printf("lim = %s\n", lim);
-	tempfile.filename = ft_tempfilename(); // il faudra gerer la suppression de ces fichiers temporaires si plusieurs sont ouverts !!!
+	tempfile.filename = ft_tempfilename();
 	tempfile.fd = open(tempfile.filename, O_RDWR | O_CREAT, 00777);
 	if (tempfile.fd == -1)
 		return (tempfile);
@@ -64,6 +64,5 @@ t_file	here_doc(char *lim)
 	close(tempfile.fd);
 	tempfile.fd = open(tempfile.filename, O_RDONLY);
 	close(tempfile.fd);
-	// free(tempfile.filename);
 	return (tempfile);
 }

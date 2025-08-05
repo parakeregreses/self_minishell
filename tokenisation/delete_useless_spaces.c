@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 21:49:33 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/29 16:24:45 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:29:07 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	len_new_str(char *s, char *c)
 	return (len);
 }
 
+// deletes the spaces that are located next to a sign in the set
 char	*delete_useless_spaces(char	*str, char *set)
 {
 	char	*new_str;
@@ -76,3 +77,12 @@ char	*delete_useless_spaces(char	*str, char *set)
 	free(str);
 	return (new_str);
 }
+
+// int	main(void)
+// {
+// 	char	*str;
+
+// 	str = delete_useless_spaces(ft_strdup("hello < les < amis lionel"), "<>-");
+// 	ft_printf("%s\n", str);
+// 	free(str);
+// }

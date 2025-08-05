@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_verifications.c                              :+:      :+:    :+:   */
+/*   full_delete_minishell.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 11:12:48 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 12:11:40 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/05 12:44:56 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/05 13:34:54 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	first_verifications(char *str)
+int	full_delete_minishell(t_arg *blocs, char ***processes, t_exec *infos, int n)
 {
-	int	len;
+	int	i;
 
-	len = ft_strlen(str);
-	if (check_closed_quotes(str) == FALSE)
-		return (FALSE);
-	if (does_char_end_line(str, '|') == TRUE
-		|| is_x_char_in_str(str, '|', 3) == TRUE
-		|| does_char_start_line(str, '|') == TRUE)
+	i = 0;
+	free_tab_arg(blocs);
+	delete_tempfiles(infos, n);
+	while (i != n)
 	{
-		ft_printf("minishell: syntax error near unexpected token `|'");
-		return (FALSE);
+		free_tab((void **)processes[i]);
+		free_tab((void **)(infos[i]).cmdarg);
+		free((infos[i]).cmdpath);
+		i++;
 	}
-	return (TRUE);
+	free(processes);
+	free(infos);
+	return (0);
 }

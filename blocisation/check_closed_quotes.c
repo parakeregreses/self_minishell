@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_verifications.c                              :+:      :+:    :+:   */
+/*   check_closed_quotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 11:12:48 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 12:11:40 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/05 13:05:10 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/05 13:05:52 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	first_verifications(char *str)
+// returns FALSE if there is an unclosed quote (' or "),
+// returns TRUE if the quotes are closed correctly
+int	check_closed_quotes(char *arg)
 {
-	int	len;
+	int		i;
+	int		found;
+	char	quote;
 
-	len = ft_strlen(str);
-	if (check_closed_quotes(str) == FALSE)
-		return (FALSE);
-	if (does_char_end_line(str, '|') == TRUE
-		|| is_x_char_in_str(str, '|', 3) == TRUE
-		|| does_char_start_line(str, '|') == TRUE)
+	i = 0;
+	found = 0;
+	while (arg[i])
 	{
-		ft_printf("minishell: syntax error near unexpected token `|'");
-		return (FALSE);
+		if (arg[i] == '"' || arg[i] == '\'')
+		{
+			found = 1;
+			quote = arg[i];
+			i++;
+			while (arg[i] != quote && arg[i])
+				i++;
+			if (arg[i] != quote)
+				return (FALSE);
+			found = 0;
+		}
+		i++;
 	}
 	return (TRUE);
 }

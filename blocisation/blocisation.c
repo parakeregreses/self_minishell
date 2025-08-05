@@ -6,12 +6,14 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/07/31 15:59:13 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:06:02 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// separates the string in different blocs delimitated by the pipes
+// such as bloc1 | bloc2 | bloc3
 t_arg	*blocisation(char *str)
 {
 	t_arg	*arg;

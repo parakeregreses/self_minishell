@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:40:28 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/29 17:08:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:41:28 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int	allow_tab(char *str, char *set)
 {
 	int		i;
 	int		ntoken;
-	char	c;
 
 	i = 0;
 	ntoken = 1;
@@ -25,12 +24,7 @@ static int	allow_tab(char *str, char *set)
 	while (str[i] != 0)
 	{
 		if (str[i] && ft_ischarinset(str[i], "\"'") == TRUE)
-		{
-			c = str[i++];
-			while (str[i] != c)
-				i++;
-			i++;
-		}
+			i = close_quote(str, i, str[i]);
 		if (ft_ischarinset(str[i], set) == TRUE)
 		{
 			ntoken++;
@@ -43,40 +37,40 @@ static int	allow_tab(char *str, char *set)
 	return (ntoken);
 }
 
+static char	*fill_line2(int j, int i, char *line, char *str)
+{
+	int	k;
+
+	k = 0;
+	while (j != i)
+		line[k++] = str[j++];
+	line[k] = 0;
+	return (line);
+}
+
 static char	*fill_line(char *str, int *i, char *set)
 {
 	int		j;
-	int		k;
 	char	*line;
-	char	c;
 
 	j = *i;
 	if (ft_ischarinset(str[*i], "\"'") == FALSE)
 	{
 		*i = *i + 1;
-		if (str[*i] && ft_ischarinset(str[*i], set) == TRUE && str[*i] == str[*i - 1])
+		if (str[*i] && ft_ischarinset(str[*i], set) == TRUE
+			&& str[*i] == str[*i - 1])
 			*i = *i + 1;
 	}
 	while (str[*i] && ft_ischarinset(str[*i], set) == FALSE)
 	{
 		if (str[*i] && ft_ischarinset(str[*i], "\"'") == TRUE)
-		{
-			c = str[*i];
-			*i = *i + 1;
-			while (str[*i] != c)
-				*i = *i + 1;
-			// *i = *i + 1;
-		}
-			*i = *i + 1;
+			*i = close_quote(str, *i, str[*i]);
+		*i = *i + 1;
 	}
 	line = malloc(sizeof(char) * (*i - j) + 1);
 	if (!line)
 		return (NULL);
-	k = 0;
-	while (j != *i)
-		line[k++] = str[j++];
-	line[k] = 0;
-	return (line);
+	return (fill_line2(j, *i, line, str));
 }
 
 static char	**fill_tab(char **tab, char *str, char *set, int nlines)
@@ -95,6 +89,8 @@ static char	**fill_tab(char **tab, char *str, char *set, int nlines)
 	return (tab);
 }
 
+// returns a tab of the differents elements
+// (starting by <, <<, >, >>, - or SPACE)
 char	**token_bloc(char *str)
 {
 	char	**tab;

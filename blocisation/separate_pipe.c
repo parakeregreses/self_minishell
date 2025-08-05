@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:35:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/15 13:34:55 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:28:42 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ t_arg	*ft_recollage(t_arg *arg, int *iad, t_arg *tab1, t_arg *tab2, t_arg *tab3,
 	return (arg);
 }
 
+// in unquoted lines, split according to the pipe characters.
+// will then reput the quoted segment next to the correct blocs.
 t_arg	*separate_pipe(t_arg *arg)
 {
 	int		n;

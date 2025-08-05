@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_infos.c                                    :+:      :+:    :+:   */
+/*   extract_infos.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 19:06:15 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/04 16:22:58 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/07/30 19:00:40 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/05 12:42:51 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_exec	extract_infos(char **tokens)
+// for each blocs, info holds the fdin, fdout, commands and command's arguments
+t_exec	*extract_infos(char ***processes, int n)
 {
-	t_exec	info;
+	int		i;
+	t_exec	*infos;
 
-	info.infile = find_fdin(tokens);
-	info.fdout = find_fdout(tokens);
-	info.cmdarg = find_cmdarg(tokens);
-	return (info);
+	i = 0;
+	infos = malloc(sizeof(t_exec) * (n + 1));
+	while (processes[i] != NULL)
+	{
+		infos[i] = extract_info(processes[i]);
+		i++;
+	}
+	return (infos);
 }

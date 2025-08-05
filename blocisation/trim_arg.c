@@ -6,12 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 12:24:51 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/06 16:50:10 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:29:17 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// delete leftover pipe signs at the end of segments
 t_arg	*trim_arg(t_arg *arg)
 {
 	int		i;

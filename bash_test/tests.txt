@@ -66,7 +66,7 @@ grep a sur heredoc
 
 grep a < no_exist << lim
 here_doc apparait pour taper
-mais message erreur : bash: infile1: No such file or directory (donc no_exist a ete envoye comme argument de grep ?!)
+mais message erreur : bash: infile1: No such file or directory
 
 grep a << lim < infile2
 le heredoc s'affiche pour qu'on puisse taper, mais grep s'applique seulement a infile2
@@ -79,6 +79,9 @@ grep a << lim1 << lim2 | wrong_cmd
 heredoc s'ouvre et continue jusqu'a ce qu'on tape lim1 puis lim2, puis wrong_cmd s'affiche.
 
 grep a << lim < no_exist < infile1
+le heredoc s'affiche pour qu'on puisse taper, puis bash: no_exist: No such file or directory
+
+grep P < note.txt << lim < noexist
 le heredoc s'affiche pour qu'on puisse taper, puis bash: no_exist: No such file or directory
 
 --------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/04 16:49:25 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:24:12 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	char 	*str = "cmd1 < jul | bazar | 'argu ments''lol' | cmd2 'bip|bap' | cmd3 < triple_char.c arg3";
+	// char 	*str = "cmd1 < jul | bazar | 'argu ments''lol' | cmd2 'bip|bap' | cmd3 < triple_char.c arg3";
+	char	*str = "cmd1 < note.txt << lim1 < noexist1 | cmd2 < note.txt << lim2 | cmd3 < no_exist3 << lim3 | cmd4 << lim4 < note.txt | cmd5 << lim51 << lim52 | cmd6 << lim6 < no_exist6 < note.txt | cmd7 < note.txt << lim7 < noexist7";
 	t_exec	*infos;
 	int		n;
 	t_arg	*blocs;
 	char	***processes;
-	int		i;
 
 	(void) argc;
 	(void) argv;
@@ -29,45 +29,9 @@ int	main(int argc, char **argv, char **envp)
 		return (0);
 	n = tab_size_arg(blocs);
 	processes = full_tokenisation(blocs, n);
-	// 			i = 0;
-	// 			while (processes[i] != NULL)
-	// 			{
-	// 				print_tab_char(processes[i]);
-	// 				ft_printf("\n");
-	// 				i++;
-	// 			}
-	infos = parsing_processes(processes, n);
-	i = 0;
-	while (i < n)
-	{
-		ft_printf("i = %d, fdin = %d, fdout = %d, cmd = %s, cmdarg = \n", i, (infos[i]).infile.fdin, (infos[i]).fdout, (infos[i]).cmdarg[0]);
-		print_tab_char((infos[i]).cmdarg);
-		ft_printf("\n");
-		i++;
-	}
+	infos = extract_infos(processes, n);
 	if (parse_commands(infos, n, envp) == FALSE)
-		return (0);
-	// int i = 0;
-	// n = tab_size_arg(tab);
-	// info = malloc(sizeof(t_exec) * n);
-	// while ((tab[i]).str != NULL)
-	// {
-	// 	ft_printf("%s\n", (tab[i]).str);
-	// 	info[i] = parse_bloc((tab[i]).str);
-	// 	i++;
-	// 	// ft_printf("str = %s, info.fdin = %d\n", (tab[i++]).str, info.fdin);
-	// }
-	// free(info);
-	// free(str);
+		return (full_delete_minishell(blocs, processes, infos, n));
 	pipex(infos, n, envp);
-	free_tab_arg(blocs);
-				i = 0;
-				while (processes[i] != NULL)
-				{
-					free_tab((void **)processes[i]);
-					free_tab((void **)(infos[i]).cmdarg);
-					i++;
-				}
-	free(processes);
-	free(infos);
+	full_delete_minishell(blocs, processes, infos, n);
 }

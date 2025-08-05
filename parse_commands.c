@@ -6,12 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/04 16:43:00 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:34:43 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// check if the commands exists, if it does, fill its path in info.cmdpath
 int	parse_commands(t_exec *infos, int n, char **envp)
 {
 	int	i;

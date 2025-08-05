@@ -6,20 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 16:43:54 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/30 17:33:38 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:06:05 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_iswhitespace(char c)
-{
-	if (c == 32 || (9 <= c && c <= 13))
-		return (TRUE);
-	return (FALSE);
-}
-
-int	count(char *str)
+static int	count(char *str)
 {
 	int	i;
 	int	n;
@@ -43,6 +36,7 @@ int	count(char *str)
 	return (n);
 }
 
+// Turns any group of whitespace into one SPACE.
 char	*remove_whitespaces(char *str)
 {
 	int		i;
@@ -71,12 +65,3 @@ char	*remove_whitespaces(char *str)
 	result[y] = 0;
 	return (result);
 }
-
-// int    main(void)
-// {
-// 	char *str;
-
-// 	str = remove_whitespaces("   hello   les   amis   ");
-//     printf("%s\n", str);
-// 	free(str);
-// }

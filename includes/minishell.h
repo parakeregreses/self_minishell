@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/05 13:34:16 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 14:55:21 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_fdin
 {
 	int		fdin;
 	int		here_doc;
+	char	*filename;
 	t_file	tempfile;
 }				t_fdin;
 
@@ -106,7 +107,7 @@ char		*str_without_quotes(char *str);
 int			find_fdout(char **tokens);
 char		**find_cmdarg(char **tokens);
 void		pipex(t_exec *infos, int n, char **envp);
-void		execution(int fdin, int fdout, char **cmdarg, char **envp);
+void		execution(t_exec info, char **envp);
 char		*ft_iscmd(char *cmd, char **envp);
 int			parse_commands(t_exec *infos, int n, char **envp);
 void		delete_tempfiles(t_exec *infos, int n);

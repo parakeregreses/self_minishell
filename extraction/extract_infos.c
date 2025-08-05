@@ -23,6 +23,7 @@ t_exec	*extract_infos(char ***processes, int n)
 	while (processes[i] != NULL)
 	{
 		infos[i] = extract_info(processes[i]);
+
 		i++;
 	}
 	return (infos);

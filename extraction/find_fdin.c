@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:38:31 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 12:54:34 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 15:02:13 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,19 @@ t_fdin	find_fdin_lim2(char *limline, t_fdin infile)
 	return (infile);
 }
 
-int	find_fdin_file(char *filenameline)
+t_fdin	find_fdin_file(char *filenameline, t_fdin infile)
 {
-	char	*filename;
-	int		fdin;
-
-	filename = str_without_quotes(filenameline);
-	if (is_infile(filename) == FALSE)
+	infile.filename = str_without_quotes(filenameline);
+	if (is_infile(infile.filename) == FALSE)
 	{
-		free(filename);
-		return (-1);
+		free(infile.filename);
+		infile.filename = NULL;
+		infile.fdin = -1;
+		return (infile);
 	}
-	fdin = open(filename, O_RDONLY);
-	close(fdin);
-	free(filename);
-	return (fdin);
+	infile.fdin = open(infile.filename, O_RDONLY);
+	close(infile.fdin);
+	return (infile);
 }
 
 t_fdin	find_fdin2(char **tokens, int i, t_fdin infile)
@@ -93,7 +91,7 @@ t_fdin	find_fdin(char **tokens)
 				infile = find_fdin_lim(tokens[i] + 2, infile);
 			else
 			{
-				infile.fdin = find_fdin_file(tokens[i] + 1);
+				infile = find_fdin_file(tokens[i] + 1, infile);
 				if (infile.fdin == -1)
 					return (find_fdin2(tokens, i + 1, infile));
 			}

@@ -37,6 +37,7 @@ ft_iscmd.c\
 parse_commands.c\
 delete_tempfiles.c\
 full_delete_minishell.c\
+open_fdin.c\
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:40:28 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 15:15:10 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 15:52:27 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,19 +90,6 @@ static char	**fill_tab(char **tab, char *str, char *set, int nlines)
 	return (tab);
 }
 
-static char	**trim_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i] != NULL)
-	{
-		tab[i] = ft_strtrimfree(tab[i], " ");
-		i++;
-	}
-	return (tab);
-}
-
 // returns a tab of the differents elements
 // (starting by <, <<, >, >>, - or SPACE)
 char	**token_bloc(char *str)
@@ -119,7 +106,7 @@ char	**token_bloc(char *str)
 	if (tab == NULL)
 		return (NULL);
 	tab = fill_tab(tab, str, set, n);
-	tab = trim_tab(tab);
+	tab = trim_tab_free(tab, " ");
 	free(set);
 	free(str);
 	return (tab);

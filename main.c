@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/05 15:23:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 16:01:26 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	// char 	*str = "cmd1 < jul | bazar | 'argu ments''lol' | cmd2 'bip|bap' | cmd3 < triple_char.c arg3";
-	// char	*str = "cmd1 < note.txt << lim1 < noexist1 | cmd2 < note.txt << lim2 | cmd3 < no_exist3 << lim3 | cmd4 << lim4 < note.txt | cmd5 << lim51 << lim52 | cmd6 << lim6 < no_exist6 < note.txt | cmd7 < note.txt << lim7 < noexist7";
-	char	*str = "grep P < note.txt | cat";
 	t_exec	*infos;
 	int		n;
 	t_arg	*blocs;
 	char	***processes;
 
-	(void) argc;
-	(void) argv;
-
-	blocs = blocisation(str);
+	if (argc == 1)
+		return (0);
+	blocs = blocisation(argv[1]);
 	if (blocs == NULL)
 		return (0);
 	n = tab_size_arg(blocs);

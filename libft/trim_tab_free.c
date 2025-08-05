@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_infos.c                                :+:      :+:    :+:   */
+/*   trim_tab_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 19:00:40 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 12:42:51 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/05 15:50:21 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/05 15:53:55 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-// for each blocs, info holds the fdin, fdout, commands and command's arguments
-t_exec	*extract_infos(char ***processes, int n)
+char	**trim_tab_free(char **tab, char *set)
 {
-	int		i;
-	t_exec	*infos;
+	int	i;
 
 	i = 0;
-	infos = malloc(sizeof(t_exec) * (n + 1));
-	while (processes[i] != NULL)
+	while (tab[i] != NULL)
 	{
-		infos[i] = extract_info(processes[i]);
+		tab[i] = ft_strtrimfree(tab[i], set);
 		i++;
 	}
-	return (infos);
+	return (tab);
 }

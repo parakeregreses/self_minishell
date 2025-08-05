@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 15:25:33 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 15:45:07 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,36 +36,21 @@ void	perror_free_and_exit_child(char **tab, int exit_status, char *message)
 	exit(exit_status);
 }
 
-int	open_fdin(t_fdin info)
-{
-	int	fdin;
-	if (info.fdin == 0 && info.here_doc == 1)
-		fdin = open(info.tempfile.filename, O_RDONLY);
-	else if (info.fdin == 0)
-		return (0);
-	else
-		fdin = open(info.filename, O_RDONLY);
-	return (fdin);
-}
-
 void	execution(t_exec info, char **envp)
 {
 	pid_t	pid;
-	int		fdin;
 
-	fdin = open_fdin(info.infile);
-	ft_printf("fdin = %d, name = %s\n", fdin, info.infile.filename);
 	pid = fork();
 	if (pid == 0)
 	{
 		if (info.cmdpath == NULL)
 			perror_free_and_exit_child(info.cmdarg, EXIT_SUCCESS, "cmdissue");
-		if (dup2(fdin, 0) == -1 || dup2(info.fdout, 1) == -1)
+		if (dup2(info.infile.fdin, 0) == -1 || dup2(info.fdout, 1) == -1)
 			perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "close1");
 		execve(info.cmdpath, info.cmdarg, envp);
 		perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "exec");
 	}
-	if (close(info.fdout) == -1 || close(fdin) == -1)
+	if (close(info.fdout) == -1)
 		perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "close2");
 }
 

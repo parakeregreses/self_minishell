@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/05 14:55:21 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 15:44:19 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ char		*ft_iscmd(char *cmd, char **envp);
 int			parse_commands(t_exec *infos, int n, char **envp);
 void		delete_tempfiles(t_exec *infos, int n);
 int			full_delete_minishell(t_arg *b, char ***p, t_exec *infos, int n);
+int			open_fdin(t_fdin info);
 
 #endif

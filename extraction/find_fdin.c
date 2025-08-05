@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:38:31 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 15:02:13 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/05 15:40:28 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ t_fdin	find_fdin(char **tokens)
 
 	infile.fdin = 0;
 	infile.here_doc = 0;
+	infile.filename = NULL;
 	i = 0;
 	while (tokens[i] != NULL)
 	{

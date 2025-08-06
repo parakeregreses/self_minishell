@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/05 15:44:19 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/06 11:58:26 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,19 @@ typedef struct s_fdin
 	t_file	tempfile;
 }				t_fdin;
 
+typedef struct s_infile
+{
+	char	*filename;
+	char	*tempfilename;
+	int		here_doc;
+}				t_infile;
+
 typedef struct s_exec
 {
-	t_fdin	infile;
-	int		fdout;
-	char	**cmdarg;
-	char	*cmdpath;
+	t_infile	infile;
+	int			fdout;
+	char		**cmdarg;
+	char		*cmdpath;
 }				t_exec;
 
 int			tab_size(char **tab);
@@ -90,7 +97,7 @@ t_arg		*put_quoted_together(t_arg *arg);
 t_arg		*trim_arg(t_arg *arg);
 t_arg		*delete_empty_lines(t_arg *arg);
 int			is_x_char_in_str_spaces(char *str, char c, int x);
-t_file		here_doc(char *lim);
+char		*here_doc(char *lim);
 char		*delete_useless_spaces(char	*str, char *set);
 char		*delete_useless_spaces_fill(char *str, char *new_str, char *set);
 char		**token_bloc(char *str);
@@ -102,16 +109,16 @@ int			check_closed_quotes(char *arg);
 char		***full_tokenisation(t_arg *blocs, int n);
 t_exec		*extract_infos(char ***processes, int n);
 t_exec		extract_info(char **tokens);
-t_fdin		find_fdin(char **tokens);
+t_infile	find_infile(char **tokens);
 char		*str_without_quotes(char *str);
 int			find_fdout(char **tokens);
 char		**find_cmdarg(char **tokens);
 void		pipex(t_exec *infos, int n, char **envp);
-void		execution(t_exec info, char **envp);
+void		execution(t_exec info, int piperead[2], int pipewrite[2], char **envp, int i);
 char		*ft_iscmd(char *cmd, char **envp);
 int			parse_commands(t_exec *infos, int n, char **envp);
 void		delete_tempfiles(t_exec *infos, int n);
 int			full_delete_minishell(t_arg *b, char ***p, t_exec *infos, int n);
 int			open_fdin(t_fdin info);
-
+int			find_fdin(t_infile infile, int pipe1[2], int i);
 #endif

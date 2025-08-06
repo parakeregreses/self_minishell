@@ -21,7 +21,7 @@ tokenisation/delete_useless_spaces.c\
 tokenisation/delete_useless_spaces2.c\
 tokenisation/token_bloc.c\
 tokenisation/full_tokenisation.c\
-extraction/find_fdin.c\
+extraction/find_infile.c\
 extraction/here_doc.c\
 extraction/is_infile.c\
 print_tab_arg.c\
@@ -38,6 +38,7 @@ parse_commands.c\
 delete_tempfiles.c\
 full_delete_minishell.c\
 open_fdin.c\
+find_fdin.c\
 
 OBJS = $(SRCS:.c=.o)
 

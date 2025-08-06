@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 15:45:07 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/06 13:23:09 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,38 @@ void	perror_free_and_exit_child(char **tab, int exit_status, char *message)
 	exit(exit_status);
 }
 
-void	execution(t_exec info, char **envp)
+void	execution(t_exec info, int piperead[2], int pipewrite[2], char **envp, int i)
 {
 	pid_t	pid;
+	int		fdin;
 
+	fdin = find_fdin(info.infile, piperead, i);
+	// ft_printf("i = %d, fdin = %d, fdout = %d\n", i, fdin, info.fdout);
+	// ft_printf("pipe1[READ] = %d, pipe1[WRITE] = %d, pipe2[READ] = %d, pipe2[WRITE] = %d\n", piperead[READ], piperead[WRITE], pipewrite[READ], pipewrite[WRITE]);
 	pid = fork();
 	if (pid == 0)
 	{
 		if (info.cmdpath == NULL)
 			perror_free_and_exit_child(info.cmdarg, EXIT_SUCCESS, "cmdissue");
-		if (dup2(info.infile.fdin, 0) == -1 || dup2(info.fdout, 1) == -1)
+		if (dup2(fdin, 0) == -1 || dup2(info.fdout, 1) == -1)
 			perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "close1");
+		close(pipewrite[READ]);
 		execve(info.cmdpath, info.cmdarg, envp);
 		perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "exec");
 	}
-	if (close(info.fdout) == -1)
-		perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "close2");
+	wait(NULL);
+	// if (close(info.fdout) == -1 || close(fdin) == -1)
+	// 	perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "close2");
+	// int	n;
+	// char c;
+	// n = read(pipewrite[READ], &c, 1);
+	// while (n == 1)
+	// {
+	// 	// ft_printf("a_n = %d", n, c);
+	// 	write(1, &c, 1);
+	// 	n = read(pipewrite[READ], &c, 1);
+	// }
+	// ft_printf("\nn = %d\n", n);
 }
 
 // int	main(int argc, char **argv, char **envp)

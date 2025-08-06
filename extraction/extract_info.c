@@ -16,7 +16,7 @@ t_exec	extract_info(char **tokens)
 {
 	t_exec	info;
 
-	info.infile = find_fdin(tokens);
+	info.infile = find_infile(tokens);
 	info.fdout = find_fdout(tokens);
 	info.cmdarg = find_cmdarg(tokens);
 	return (info);

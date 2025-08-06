@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 13:06:17 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:30:25 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,28 @@ char	*ft_tempfilename(void)
 	return (tempfilename);
 }
 
-t_file	here_doc(char *lim)
+char	*here_doc(char *lim)
 {
 	char	*line;
-	t_file	tempfile;
+	char	*tempfilename;
 	char	*lim_return;
+	int		fd;
 
 	ft_printf("lim = %s\n", lim);
-	tempfile.filename = ft_tempfilename();
-	tempfile.fd = open(tempfile.filename, O_RDWR | O_CREAT, 00777);
-	if (tempfile.fd == -1)
-		return (tempfile);
+	tempfilename = ft_tempfilename();
+	fd = open(tempfilename, O_RDWR | O_CREAT, 00777);
+	if (fd == -1)
+		return (NULL);
 	lim_return = ft_strjoin(lim, "\n");
 	line = get_next_line(0);
 	while (ft_strcmp(line, lim_return) != 0)
 	{
-		write(tempfile.fd, line, ft_strlen(line));
+		write(fd, line, ft_strlen(line));
 		free(line);
 		line = get_next_line(0);
 	}
 	free(lim_return);
 	free(line);
-	close(tempfile.fd);
-	tempfile.fd = open(tempfile.filename, O_RDONLY);
-	close(tempfile.fd);
-	return (tempfile);
+	close(fd);
+	return (tempfilename);
 }

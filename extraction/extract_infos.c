@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 // for each blocs, info holds the fdin, fdout, commands and command's arguments
-t_exec	*extract_infos(char ***processes, int n)
+t_exec	*extract_infos(char ***processes, int n, char **envp)
 {
 	int		i;
 	t_exec	*infos;
@@ -23,6 +23,7 @@ t_exec	*extract_infos(char ***processes, int n)
 	while (processes[i] != NULL)
 	{
 		infos[i] = extract_info(processes[i]);
+		(infos[i]).envp = envp;
 		i++;
 	}
 	return (infos);

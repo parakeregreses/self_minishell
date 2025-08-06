@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/06 13:23:15 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:57:20 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	main(int argc, char **argv, char **envp)
 		return (0);
 	n = tab_size_arg(blocs);
 	processes = full_tokenisation(blocs, n);
-	infos = extract_infos(processes, n);
+	infos = extract_infos(processes, n, envp);
 	if (parse_commands(infos, n, envp) == FALSE)
 		return (full_delete_minishell(blocs, processes, infos, n));
-	pipex(infos, n, envp);
+	pipex(infos, n);
 	full_delete_minishell(blocs, processes, infos, n);
 }

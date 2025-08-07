@@ -1,8 +1,1 @@
 Penser à faire les verifs a chaque strdup pour ne pas avoir de leak ou de segfault
-bien fermer les fd lors du parsing... ma vie g la flemme
-Proust
-grep a < no_exist << lim
-here_doc apparait pour taper
-mais message erreur : bash: infile1: No such file or directory (donc no_exist a ete envoye comme argument de grep ?!)
-
-ft_split_arg : vraiment revoir cette fonction pour la rendre comprehensible la team

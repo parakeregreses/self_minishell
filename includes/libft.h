@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 15:53:38 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/07 12:06:55 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 # include <fcntl.h>
 # include <stdarg.h>
 # include "get_next_line.h"
+
+typedef struct s_2d
+{
+	int	x;
+	int	y;
+}		t_2d;
 
 typedef struct s_list
 {

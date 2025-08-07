@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/06 14:58:18 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/07 12:04:54 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,18 @@
 # include <sys/wait.h>
 # include <stdbool.h>
 
-# define ISWS ft_iswhitespace
-# define ISCS ft_ischarinset
-
 typedef struct s_arg
 {
 	char	*str;
 	int		quote;
 }			t_arg;
 
-typedef struct s_coord2d
+typedef struct s_triple_t_arg
 {
-	int	x;
-	int	y;
-}				t_coord2d;
-
-typedef struct s_file
-{
-	char	*filename;
-	int		fd;
-}			t_file;
-
-typedef struct s_fdin
-{
-	int		fdin;
-	int		here_doc;
-	char	*filename;
-	t_file	tempfile;
-}				t_fdin;
+	t_arg	*arg;
+	t_arg	*tab1;
+	t_arg	*tab3;
+}			t_tri_arg;
 
 typedef struct s_infile
 {
@@ -120,6 +104,10 @@ char		*ft_iscmd(char *cmd, char **envp);
 int			parse_commands(t_exec *infos, int n, char **envp);
 void		delete_tempfiles(t_exec *infos, int n);
 int			full_delete_minishell(t_arg *b, char ***p, t_exec *infos, int n);
-int			open_fdin(t_fdin info);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
+t_arg		*cut_tab_tail_arg(t_arg *tab, int n);
+t_arg		*cut_tab_head_arg(t_arg *tab, int n);
+t_arg		*ft_quoteiszero(t_arg *tab);
+int			is_pipe_left(int i, t_arg *arg);
+
 #endif

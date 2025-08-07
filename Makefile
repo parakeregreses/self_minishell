@@ -8,6 +8,7 @@ blocisation/fill_tab_blocs.c\
 blocisation/blocisation_utils.c\
 blocisation/select_quoted_str.c\
 blocisation/separate_pipe.c\
+blocisation/separate_pipe2.c\
 blocisation/join_quote_to_line.c\
 blocisation/put_quoted_together.c\
 blocisation/trim_arg.c\
@@ -37,7 +38,6 @@ ft_iscmd.c\
 parse_commands.c\
 delete_tempfiles.c\
 full_delete_minishell.c\
-open_fdin.c\
 find_fdin.c\
 
 OBJS = $(SRCS:.c=.o)

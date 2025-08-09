@@ -23,12 +23,13 @@ tokenisation/delete_useless_spaces.c\
 tokenisation/delete_useless_spaces2.c\
 tokenisation/token_bloc.c\
 tokenisation/full_tokenisation.c\
+tokenisation/str_without_quotes.c\
+tokenisation/tab_without_quotes.c\
 extraction/find_infile.c\
 extraction/here_doc.c\
 extraction/is_infile.c\
 extraction/extract_infos.c\
 extraction/extract_info.c\
-extraction/str_without_quotes.c\
 extraction/find_fdout.c\
 extraction/find_cmdarg.c\
 execution/pipex.c\

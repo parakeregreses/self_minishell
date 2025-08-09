@@ -6,33 +6,27 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:07:55 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/04 16:00:49 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/09 16:01:30 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	redirect(char *outfilename)
+int	redirect(char *filename)
 {
-	char	*filename;
 	int		fdout;
 
-	filename = str_without_quotes(outfilename);
 	fdout = open(filename, O_WRONLY | O_TRUNC | O_CREAT, 0666);
 	close(fdout);
-	free(filename);
 	return (fdout);
 }
 
-int	redirect_append_mode(char *outfilename)
+int	redirect_append_mode(char *filename)
 {
-	char	*filename;
 	int		fdout;
 
-	filename = str_without_quotes(outfilename);
 	fdout = open(filename, O_WRONLY | O_APPEND | O_CREAT, 0666);
 	close(fdout);
-	free(filename);
 	return (fdout);
 }
 

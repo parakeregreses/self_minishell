@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:40:28 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 15:52:27 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/09 16:43:15 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ static int	allow_tab(char *str, char *set)
 	while (str[i] != 0)
 	{
 		if (str[i] && ft_ischarinset(str[i], "\"'") == TRUE)
+		{
 			i = close_quote(str, i, str[i]);
-		if (ft_ischarinset(str[i], set) == TRUE)
+			i++;
+		}
+		if (str[i] && ft_ischarinset(str[i], set) == TRUE)
 		{
 			ntoken++;
 			if (str[i + 1] && str[i] == str[i + 1])
@@ -107,6 +110,8 @@ char	**token_bloc(char *str)
 		return (NULL);
 	tab = fill_tab(tab, str, set, n);
 	tab = trim_tab_free(tab, " ");
+	tab = tab_without_quotes(tab);
+	// print_tab_char(tab);
 	free(set);
 	free(str);
 	return (tab);

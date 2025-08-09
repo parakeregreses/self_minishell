@@ -6,16 +6,14 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:04 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/07 11:23:09 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/09 16:35:35 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_infile	find_infile_lim(char *limline, t_infile infile)
+t_infile	find_infile_lim(char *lim, t_infile infile)
 {
-	char	*lim;
-
 	infile.here_doc = 1;
 	free(infile.filename);
 	if (infile.tempfilename != NULL)
@@ -23,28 +21,22 @@ t_infile	find_infile_lim(char *limline, t_infile infile)
 		unlink(infile.tempfilename);
 		free(infile.tempfilename);
 	}
-	lim = str_without_quotes(limline);
 	infile.tempfilename = here_doc(lim);
-	free(lim);
 	return (infile);
 }
 
-t_infile	find_infile_lim2(char *limline, t_infile infile)
+t_infile	find_infile_lim2(char *lim, t_infile infile)
 {
-	char	*lim;
-
 	if (infile.tempfilename != NULL)
 	{
 		unlink(infile.tempfilename);
 		free(infile.tempfilename);
 	}
-	lim = str_without_quotes(limline);
 	infile.tempfilename = here_doc(lim);
-	free(lim);
 	return (infile);
 }
 
-t_infile	find_infile_file(char *filenameline, t_infile infile)
+t_infile	find_infile_file(char *filename, t_infile infile)
 {
 	infile.here_doc = 0;
 	free(infile.filename);
@@ -53,7 +45,7 @@ t_infile	find_infile_file(char *filenameline, t_infile infile)
 		unlink(infile.tempfilename);
 		free(infile.tempfilename);
 	}
-	infile.filename = str_without_quotes(filenameline);
+	infile.filename = ft_strdup(filename);
 	if (is_infile(infile.filename) == FALSE)
 	{
 		free(infile.filename);

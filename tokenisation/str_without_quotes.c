@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 17:16:54 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 17:37:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/09 16:16:49 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,11 @@ char	*str_without_quotes(char *str)
 	if (!result)
 		return (NULL);
 	result = remove_quotes(str, result, i, y);
+	free(str);
 	return (result);
 }
+
+// int	main(void)
+// {
+// 	ft_printf("%s\n", str_without_quotes(ft_strdup("'argu ments''lol'")));
+// }

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/09 16:05:34 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/09 17:46:39 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <stdbool.h>
+#include <sys/stat.h>
 
 typedef struct s_arg
 {
@@ -110,5 +111,7 @@ t_arg		*cut_tab_head_arg(t_arg *tab, int n);
 t_arg		*ft_quoteiszero(t_arg *tab);
 int			is_pipe_left(int i, t_arg *arg);
 char		**tab_without_quotes(char **tab);
+int			third_verifications(char *str);
+int			file_type(char *cmdi, char *simple_cmd);
 
 #endif

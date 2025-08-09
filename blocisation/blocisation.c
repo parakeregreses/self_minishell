@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/06 14:48:36 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/09 17:12:02 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@ t_arg	*blocisation(char *str)
 
 	str = revamp_str(str);
 	if (first_verifications(str) == FALSE)
+	{
+		free(str);
 		return (NULL);
+	}
 	arg = select_quoted_str(str);
 	if (arg == NULL)
 		return (NULL);
-	if (second_verifications(arg) == FALSE)
+	if (second_verifications(arg) == FALSE || third_verifications(str) == FALSE)
 	{
+		free(str);
 		free_tab_arg(arg);
 		return (NULL);
 	}

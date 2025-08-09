@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_verifications.c                              :+:      :+:    :+:   */
+/*   third_verifications.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 11:12:48 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/09 17:07:38 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/09 17:07:21 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/09 17:09:32 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	first_verifications(char *str)
+int	third_verifications(char *str)
 {
-	if (check_closed_quotes(str) == FALSE)
-		return (FALSE);
-	if (does_char_end_line(str, '|') == TRUE
-		|| is_x_char_in_str(str, '|', 3) == TRUE
-		|| does_char_start_line(str, '|') == TRUE)
+	if (does_char_end_line(str, '<') == TRUE 
+		|| does_char_end_line(str, '>') == TRUE)
 	{
-		ft_printf("minishell: syntax error near unexpected token `|'");
+		ft_printf("minishell: syntax error near unexpected token `newline'");
 		return (FALSE);
 	}
 	return (TRUE);

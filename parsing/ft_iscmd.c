@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/04 16:41:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/09 18:01:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,21 @@ char	*ft_findpathforeachcommand(char **paths, char *cmd)
 	{
 		pathwithslash = ft_strjoin(paths[i++], "/");
 		simple_cmd = ft_firstword(cmd, ' ');
-		cmdi = ft_strjoinfree(pathwithslash, simple_cmd);
+		cmdi = ft_strjoin(pathwithslash, simple_cmd);
+		free(pathwithslash);
 		if (access(cmdi, F_OK | X_OK) == 0)
 		{
 			free_tab((void **)paths);
-			return (cmdi);
+			if (file_type(cmdi, simple_cmd) == 1)
+			{
+				free(simple_cmd);
+				return (cmdi);
+			}
+			free(simple_cmd);
+			free(cmdi);
+			return (NULL);
 		}
+		free(simple_cmd);
 		free(cmdi);
 	}
 	free_tab((void **)paths);
@@ -71,7 +80,11 @@ char	*ft_iscmd(char *cmd, char **envp)
 	char	**paths;
 
 	if (access(cmd, F_OK | X_OK) == 0)
-		return (ft_strdup(cmd));
+	{
+		if (file_type(cmd, cmd) == 1)
+			return (ft_strdup(cmd));
+		return (NULL);
+	}
 	paths = ft_splitpaths(envp);
 	if (paths == NULL)
 	{

@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_verifications.c                              :+:      :+:    :+:   */
+/*   file_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 11:12:48 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/09 17:07:38 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/09 17:41:49 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/09 17:48:54 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	first_verifications(char *str)
+int	file_type(char *cmdi, char *simple_cmd)
 {
-	if (check_closed_quotes(str) == FALSE)
+	struct stat	buf;
+	int			status;
+
+	status = lstat(cmdi, &buf);
+	if (status != 0)
 		return (FALSE);
-	if (does_char_end_line(str, '|') == TRUE
-		|| is_x_char_in_str(str, '|', 3) == TRUE
-		|| does_char_start_line(str, '|') == TRUE)
+	if (S_ISDIR(buf.st_mode))
 	{
-		ft_printf("minishell: syntax error near unexpected token `|'");
+		ft_printf("minishell: %s: Is a directory\n", simple_cmd);
 		return (FALSE);
 	}
-	return (TRUE);
+	if (S_ISREG(buf.st_mode))
+	{
+		ft_printf("reg\n");
+		return (TRUE);
+	}
+	return (FALSE);
 }

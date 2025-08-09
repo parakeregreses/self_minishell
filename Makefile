@@ -19,6 +19,7 @@ blocisation/revamp_str.c\
 blocisation/second_verifications.c\
 blocisation/check_closed_quotes.c\
 blocisation/triple_char.c\
+blocisation/third_verifications.c\
 tokenisation/delete_useless_spaces.c\
 tokenisation/delete_useless_spaces2.c\
 tokenisation/token_bloc.c\
@@ -36,6 +37,7 @@ execution/pipex.c\
 execution/execution.c\
 execution/find_fdin.c\
 parsing/ft_iscmd.c\
+parsing/file_type.c\
 parsing/parse_commands.c\
 delete/delete_tempfiles.c\
 delete/full_delete_minishell.c\

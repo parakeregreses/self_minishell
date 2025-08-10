@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/10 15:03:43 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/10 16:13:04 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,39 @@ char	**ft_splitpaths(char **envp)
 	return (paths);
 }
 
+char	*ft_definecmdi(char **paths, int *i, char *cmd)
+{
+	char	*cmdi;
+	char	*pathwithslash;
+	char	*simple_cmd;
+
+	simple_cmd = ft_firstword(cmd, ' ');
+	pathwithslash = ft_strjoin(paths[*i], "/");
+	*i = *i + 1;
+	cmdi = ft_strjoin(pathwithslash, simple_cmd);
+	free(pathwithslash);
+	free(simple_cmd);
+	return (cmdi);
+}
+
 char	*ft_findpathforeachcommand(char **paths, char *cmd)
 {
 	int		i;
-	char	*pathwithslash;
 	char	*simple_cmd;
 	char	*cmdi;
 
 	i = 0;
 	while (paths[i] != NULL)
 	{
-		pathwithslash = ft_strjoin(paths[i++], "/");
-		simple_cmd = ft_firstword(cmd, ' ');
-		cmdi = ft_strjoin(pathwithslash, simple_cmd);
-		free(pathwithslash);
+		cmdi = ft_definecmdi(paths, &i, cmd);
 		if (access(cmdi, F_OK | X_OK) == 0)
 		{
 			free_tab((void **)paths);
-			if (file_type(cmdi, simple_cmd) == 1)
-			{
-				free(simple_cmd);
+			if (file_type(cmdi, cmd) == 1)
 				return (cmdi);
-			}
-			free(simple_cmd);
 			free(cmdi);
 			return (NULL);
 		}
-		free(simple_cmd);
 		free(cmdi);
 	}
 	free_tab((void **)paths);

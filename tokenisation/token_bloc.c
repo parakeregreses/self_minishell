@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:40:28 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/09 16:43:15 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/10 16:15:25 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ char	**token_bloc(char *str)
 	tab = fill_tab(tab, str, set, n);
 	tab = trim_tab_free(tab, " ");
 	tab = tab_without_quotes(tab);
-	// print_tab_char(tab);
 	free(set);
 	free(str);
 	return (tab);

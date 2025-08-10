@@ -6,18 +6,18 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/10 15:02:24 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/10 16:15:00 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+t_arg	*blocisation2(char *str);
+
 // separates the string in different blocs delimitated by the pipes
 // such as bloc1 | bloc2 | bloc3
 t_arg	*blocisation(char *str)
 {
-	t_arg	*arg;
-
 	if (check_closed_quotes(str) == FALSE)
 	{
 		ft_printf("minishell: syntax problem: unclosed quotes");
@@ -29,6 +29,13 @@ t_arg	*blocisation(char *str)
 		free(str);
 		return (NULL);
 	}
+	return (blocisation2(str));
+}
+
+t_arg	*blocisation2(char *str)
+{
+	t_arg	*arg;
+
 	arg = select_quoted_str(str);
 	if (arg == NULL)
 		return (NULL);

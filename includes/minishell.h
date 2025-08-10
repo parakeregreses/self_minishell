@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/09 17:46:39 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/10 16:15:46 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <stdbool.h>
-#include <sys/stat.h>
+# include <sys/stat.h>
 
 typedef struct s_arg
 {

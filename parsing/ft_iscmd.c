@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/09 18:01:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/10 15:03:43 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*ft_findpathforeachcommand(char **paths, char *cmd)
 	}
 	free_tab((void **)paths);
 	simple_cmd = ft_firstword(cmd, ' ');
-	ft_printf("%s: command not found\n", simple_cmd);
+	ft_printf("minishell: %s: command not found\n", simple_cmd);
 	free(simple_cmd);
 	return (NULL);
 }

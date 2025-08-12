@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/06 14:57:49 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:13:15 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (info.cmdpath == NULL)
+		if (info.cmdpath == NULL || fdin == -1)
 			perror_free_and_exit_child(info.cmdarg, EXIT_SUCCESS, "cmdissue");
 		if (dup2(fdin, 0) == -1 || dup2(info.fdout, 1) == -1)
 			perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "close1");
@@ -50,5 +50,5 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i)
 		execve(info.cmdpath, info.cmdarg, info.envp);
 		perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "exec");
 	}
-	close(fdin);
+	close (fdin);
 }

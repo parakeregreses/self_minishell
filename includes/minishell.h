@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/10 16:15:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:02:21 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/wait.h>
 # include <stdbool.h>
 # include <sys/stat.h>
+# include "minishell2.h"
 
 typedef struct s_arg
 {
@@ -113,5 +114,7 @@ int			is_pipe_left(int i, t_arg *arg);
 char		**tab_without_quotes(char **tab);
 int			third_verifications(char *str);
 int			file_type(char *cmdi, char *simple_cmd);
+int			judith(char *str, char **envp);
+int			is_builtin(char *cmd);
 
 #endif

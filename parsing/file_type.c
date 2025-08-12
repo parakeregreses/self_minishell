@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 17:41:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/10 16:12:55 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/12 14:48:13 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,11 @@ int	file_type(char *cmdi, char *cmd)
 		return (FALSE);
 	if (S_ISDIR(buf.st_mode))
 	{
-		ft_printf("minishell: %s: Is a directory\n", simple_cmd);
 		free(simple_cmd);
 		return (FALSE);
 	}
 	free(simple_cmd);
 	if (S_ISREG(buf.st_mode))
-	{
-		ft_printf("reg\n");
 		return (TRUE);
-	}
 	return (FALSE);
 }

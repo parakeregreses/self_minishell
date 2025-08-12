@@ -1,5 +1,5 @@
 SRCS = \
-main.c\
+judith.c\
 blocisation/blocisation.c\
 blocisation/ft_split_arg.c\
 blocisation/first_verifications.c\
@@ -39,9 +39,13 @@ execution/find_fdin.c\
 parsing/ft_iscmd.c\
 parsing/file_type.c\
 parsing/parse_commands.c\
+parsing/is_builtin.c\
 delete/delete_tempfiles.c\
 delete/full_delete_minishell.c\
 print_tab_arg.c\
+main.c\
+signals.c\
+cat_current_dir.c\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -59,6 +63,8 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror -I$(INCLUDE)
 
+LFLAGS = -lreadline
+
 all : $(NAME)
 
 bonus : $(NAME)
@@ -67,7 +73,7 @@ bonus : $(NAME)
 	$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME) : $(OBJS) $(LIBRARY)
-	$(CC) $(FLAGS) $(OBJS) $(LIBRARY) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(LFLAGS) $(LIBRARY) -o $(NAME)
 
 $(LIBRARY) :
 	$(MAKELIB)

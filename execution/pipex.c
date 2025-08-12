@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/07 11:22:39 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:19:13 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,45 @@ void	ft_close_pipes(int pipe1[2], int pipe2[2])
 	close(pipe2[1]);
 }
 
+void	pipex2(int n, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin)
+{
+	int	i;
+	int	status;
+
+	status = 0;
+	i = 0;
+	while(i < n)
+	{
+		wait(&status);
+		i++;
+	}
+	ft_close_pipes(pipe1, pipe2);
+	dup2(saved_stdout, 1);
+	dup2(saved_stdin, 0);
+	close(saved_stdin);
+	close(saved_stdout);
+	return ;
+}
+
+int	*initpipe2(int pipe[2])
+{
+	pipe[0] = -1;
+	pipe[1] = -1;
+	return (pipe);
+}
+
 void	pipex(t_exec *infos, int n)
 {
 	int		pipe1[2];
 	int		pipe2[2];
 	int		i;
+	int		saved_stdout;
+	int		saved_stdin;
 
+	pipe2[0] = -1;
+	pipe2[1] = -1;
+	saved_stdout = dup(1);
+	saved_stdin = dup(0);
 	i = 0;
 	while (i < n)
 	{
@@ -59,5 +92,5 @@ void	pipex(t_exec *infos, int n)
 		}
 		i++;
 	}
-	ft_close_pipes(pipe1, pipe2);
+	pipex2(n, pipe1, pipe2, saved_stdout, saved_stdin);
 }

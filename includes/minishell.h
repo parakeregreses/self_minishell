@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/12 16:02:21 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:29:36 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ int			third_verifications(char *str);
 int			file_type(char *cmdi, char *simple_cmd);
 int			judith(char *str, char **envp);
 int			is_builtin(char *cmd);
+void		exec_builtin(t_exec info);
 
 #endif

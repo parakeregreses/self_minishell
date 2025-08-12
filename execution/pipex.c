@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/12 16:19:13 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:22:56 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	pipex2(int n, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin
 
 	status = 0;
 	i = 0;
-	while(i < n)
+	while (i < n)
 	{
 		wait(&status);
 		i++;

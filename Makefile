@@ -36,6 +36,7 @@ extraction/find_cmdarg.c\
 execution/pipex.c\
 execution/execution.c\
 execution/find_fdin.c\
+execution/exec_builtin.c\
 parsing/ft_iscmd.c\
 parsing/file_type.c\
 parsing/parse_commands.c\

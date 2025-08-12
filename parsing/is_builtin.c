@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:38:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/12 14:43:38 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:22:47 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	is_builtin(char *cmd)
 	if (strcmp(cmd, "cd") == 0)
 		return (1);
 	if (strcmp(cmd, "export") == 0)
-		return (1);	
+		return (1);
 	if (strcmp(cmd, "unset") == 0)
-		return (1);	
+		return (1);
 	if (strcmp(cmd, "env") == 0)
 		return (1);
 	if (strcmp(cmd, "pwd") == 0)

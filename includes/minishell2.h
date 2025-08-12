@@ -32,6 +32,7 @@
 # define FALSE 0
 
 extern bool	g_finished;
+
 // typedef struct s_mini
 // {
 

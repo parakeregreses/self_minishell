@@ -36,17 +36,26 @@ extraction/find_cmdarg.c\
 execution/pipex.c\
 execution/execution.c\
 execution/find_fdin.c\
-execution/exec_builtin.c\
 parsing/ft_iscmd.c\
 parsing/file_type.c\
 parsing/parse_commands.c\
 parsing/is_builtin.c\
+built_in/cd.c\
+built_in/echo.c\
+built_in/env.c\
+built_in/export_utils.c\
+built_in/export.c\
+built_in/pwd.c\
+built_in/unset.c\
 delete/delete_tempfiles.c\
 delete/full_delete_minishell.c\
 print_tab_arg.c\
 main.c\
 signals.c\
 cat_current_dir.c\
+exec_builtin.c\
+env_variables.c\
+frees.c\
 
 OBJS = $(SRCS:.c=.o)
 

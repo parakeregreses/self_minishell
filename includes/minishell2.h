@@ -32,7 +32,6 @@
 # define FALSE 0
 
 extern bool	g_finished;
-
 // typedef struct s_mini
 // {
 
@@ -52,18 +51,21 @@ char	**ft_add_in_env(char **envp, char *new_env_variable);
 char	**ft_create_env(char **envp, char *new_env_variable);
 void	ft_print_export(char *env);
 void	ft_display_env(char **envp);
-void	ft_display_env(char **envp);
+char	**ft_export(char **envp, char *new_env_variable);
+char	**cmd_unset(char **envp, char *var_rm);
 void	swap_str(char **a, char **b);
 void	swap_variables(char **result, int count);
 int		env_var_checker(char **envp, char *env_variable);
+void	free_envp(char **envp);
 
 /* ============================ CD ============================ */
 
-int		cmd_cd(const char **arg, char **envp);
+int		cmd_cd(char **arg, char **envp);
 
 /* =========================== ECHO =========================== */
 
-int		cmd_echo(int argc, char**argv);
+char	*str_without_quotes(char *str);
+int		cmd_echo(char **args);
 
 /* =========================== PWD ============================ */
 

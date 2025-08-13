@@ -10,7 +10,7 @@
 /*																			*/
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
@@ -112,7 +112,6 @@ int	empty_argument(const char *str)
 int	launching(char **envp)
 {
 	char	*line;
-	int		found;
 	char	*prompt;
 	int		i;
 
@@ -122,11 +121,10 @@ int	launching(char **envp)
 		i = 0;
 		prompt = cat_current_dir();
 		line = readline(prompt);
-		free(prompt);
-		found = 1;
+		free(prompt); // a voir pour echo
 		if (!line)
 		{
-			ft_printf("exit\n");
+			printf("exit\n");
 			break ;
 		}
 		while (line[i] == ' ' || line[i] == '\t')
@@ -134,7 +132,7 @@ int	launching(char **envp)
 		if (ft_strncmp(line + i, "exit", 4) == 0)
 		{
 			free(line);
-			ft_printf("exit\n");
+			printf("exit\n");
 			break ;
 		}
 		else

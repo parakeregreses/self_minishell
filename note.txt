@@ -1,1 +1,3 @@
 Penser à faire les verifs a chaque strdup pour ne pas avoir de leak ou de segfault
+
+changer envp en adresse envp pour que les processus aient les bonnes variables d'environnement a tous moment

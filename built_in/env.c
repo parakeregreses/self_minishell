@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*																			*/
 /*														:::	  ::::::::   */
-/*   main.c											 :+:	  :+:	:+:   */
+/*   env.c											  :+:	  :+:	:+:   */
 /*													+:+ +:+		 +:+	 */
 /*   By: liulm <liulm@student.42.fr>				+#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2025/05/02 16:37:48 by liulm			 #+#	#+#			 */
-/*   Updated: 2025/05/13 15:38:39 by liulm			###   ########.fr	   */
+/*   Created: 2025/05/21 16:37:40 by liulm			 #+#	#+#			 */
+/*   Updated: 2025/05/21 18:09:00 by liulm			###   ########.fr	   */
 /*																			*/
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+void	ft_display_env(char **envp)
 {
-	(void)argv;
-	if (argc == 1)
+	int	i;
+
+	i = 0;
+	while (envp[i])
 	{
-		launching(envp);
+		if (ft_strchr(envp[i], '='))
+			printf("%s\n", envp[i]);
+		i++;
 	}
-	else
-	{
-		ft_printf("Usage: ./minishell");
-		return (1);
-	}
-	return (0);
 }

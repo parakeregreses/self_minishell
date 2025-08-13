@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/12 16:37:54 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:35:50 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*ft_iscmd(char *cmd, char **envp)
 	char	**paths;
 
 	if (is_builtin(cmd) == TRUE)
-		return (ft_strjoinfree(ft_strdup("builtin/"), cmd));
+		return (ft_strdup(cmd));
 	if (access(cmd, F_OK | X_OK) == 0)
 	{
 		if (file_type(cmd, cmd) == 1)

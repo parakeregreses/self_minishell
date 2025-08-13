@@ -56,6 +56,7 @@ cat_current_dir.c\
 exec_builtin.c\
 env_variables.c\
 frees.c\
+launching.c\
 
 OBJS = $(SRCS:.c=.o)
 

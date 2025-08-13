@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/13 15:06:01 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:59:50 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i)
 		execve(info.cmdpath, info.cmdarg, info.envp);
 		perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "exec");
 	}
-	close (fdin);
+	if (fdin != 0)
+		close (fdin);
 }

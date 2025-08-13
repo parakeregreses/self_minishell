@@ -14,10 +14,14 @@
 
 int	main(int argc, char **argv, char **envp)
 {
+	char	**our_envp;
+
 	(void)argv;
 	if (argc == 1)
 	{
-		launching(envp);
+		get_signal();
+		our_envp = ft_copy_env(envp);
+		launching(our_envp);
 	}
 	else
 	{

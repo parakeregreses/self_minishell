@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/13 15:35:50 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:35:49 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,25 @@ char	*ft_findpathforeachcommand(char **paths, char *cmd)
 	return (NULL);
 }
 
+int	is_absolute_path(char *cmd)
+{
+	if (access(cmd, F_OK | X_OK) == 0)
+	{
+		if (file_type(cmd, cmd) == 1)
+			return (TRUE);
+		return (FALSE);
+	}
+	return (FALSE);
+}
+
 char	*ft_iscmd(char *cmd, char **envp)
 {
 	char	**paths;
 
 	if (is_builtin(cmd) == TRUE)
 		return (ft_strdup(cmd));
-	if (access(cmd, F_OK | X_OK) == 0)
-	{
-		if (file_type(cmd, cmd) == 1)
-			return (ft_strdup(cmd));
-		return (NULL);
-	}
+	if (is_absolute_path(cmd) == TRUE)
+		return (ft_strdup(cmd));
 	paths = ft_splitpaths(envp);
 	if (paths == NULL)
 	{

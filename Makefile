@@ -1,62 +1,64 @@
-SRCS = \
-judith.c\
-blocisation/blocisation.c\
-blocisation/ft_split_arg.c\
-blocisation/first_verifications.c\
-blocisation/alloc_tab.c\
-blocisation/fill_tab_blocs.c\
-blocisation/blocisation_utils.c\
-blocisation/select_quoted_str.c\
-blocisation/separate_pipe.c\
-blocisation/separate_pipe2.c\
-blocisation/join_quote_to_line.c\
-blocisation/put_quoted_together.c\
-blocisation/trim_arg.c\
-blocisation/delete_empty_lines.c\
-blocisation/append_tabs_and_free_arg.c\
-blocisation/remove_whitespaces.c\
-blocisation/revamp_str.c\
-blocisation/second_verifications.c\
-blocisation/check_closed_quotes.c\
-blocisation/triple_char.c\
-blocisation/third_verifications.c\
-tokenisation/delete_useless_spaces.c\
-tokenisation/delete_useless_spaces2.c\
-tokenisation/token_bloc.c\
-tokenisation/full_tokenisation.c\
-tokenisation/str_without_quotes.c\
-tokenisation/tab_without_quotes.c\
-extraction/find_infile.c\
-extraction/here_doc.c\
-extraction/is_infile.c\
-extraction/extract_infos.c\
-extraction/extract_info.c\
-extraction/find_fdout.c\
-extraction/find_cmdarg.c\
-execution/pipex.c\
-execution/execution.c\
-execution/find_fdin.c\
-parsing/ft_iscmd.c\
-parsing/file_type.c\
-parsing/parse_commands.c\
-parsing/is_builtin.c\
-built_in/cd.c\
-built_in/echo.c\
-built_in/env.c\
-built_in/export_utils.c\
-built_in/export.c\
-built_in/pwd.c\
-built_in/unset.c\
-delete/delete_tempfiles.c\
-delete/full_delete_minishell.c\
-print_tab_arg.c\
-main.c\
-signals.c\
-cat_current_dir.c\
-exec_builtin.c\
-env_variables.c\
-frees.c\
-launching.c\
+SRCS = 												\
+			judith.c								\
+			blocisation/blocisation.c				\
+			blocisation/ft_split_arg.c				\
+			blocisation/first_verifications.c		\
+			blocisation/alloc_tab.c					\
+			blocisation/fill_tab_blocs.c			\
+			blocisation/blocisation_utils.c			\
+			blocisation/select_quoted_str.c			\
+			blocisation/separate_pipe.c				\
+			blocisation/separate_pipe2.c			\
+			blocisation/join_quote_to_line.c		\
+			blocisation/put_quoted_together.c		\
+			blocisation/trim_arg.c					\
+			blocisation/delete_empty_lines.c		\
+			blocisation/append_tabs_and_free_arg.c	\
+			blocisation/remove_whitespaces.c		\
+			blocisation/revamp_str.c				\
+			blocisation/second_verifications.c		\
+			blocisation/check_closed_quotes.c		\
+			blocisation/triple_char.c				\
+			blocisation/third_verifications.c		\
+			tokenisation/delete_useless_spaces.c	\
+			tokenisation/delete_useless_spaces2.c	\
+			tokenisation/token_bloc.c				\
+			tokenisation/full_tokenisation.c		\
+			tokenisation/str_without_quotes.c		\
+			tokenisation/tab_without_quotes.c		\
+			extraction/find_infile.c				\
+			extraction/here_doc.c					\
+			extraction/is_infile.c					\
+			extraction/extract_infos.c				\
+			extraction/extract_info.c				\
+			extraction/find_fdout.c					\
+			extraction/find_cmdarg.c				\
+			execution/pipex.c						\
+			execution/execution.c					\
+			execution/find_fdin.c					\
+			parsing/ft_iscmd.c						\
+			parsing/file_type.c						\
+			parsing/parse_commands.c				\
+			parsing/is_builtin.c					\
+			built_in/cd.c							\
+			built_in/echo.c							\
+			built_in/env.c							\
+			built_in/export_utils.c					\
+			built_in/export.c						\
+			built_in/pwd.c							\
+			built_in/unset.c						\
+			delete/delete_tempfiles.c				\
+			delete/full_delete_minishell.c			\
+			print_tab_arg.c							\
+			main.c									\
+			signals.c								\
+			cat_current_dir.c						\
+			exec_builtin.c							\
+			env_variables.c							\
+			frees.c									\
+			launching.c								\
+			handle_dollars.c						\
+			handle_dollars2.c						\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -89,7 +91,7 @@ $(NAME) : $(OBJS) $(LIBRARY)
 $(LIBRARY) :
 	$(MAKELIB)
 
-clean : 
+clean :
 	rm -rf $(OBJS)
 	make clean $(LIBDIR)
 

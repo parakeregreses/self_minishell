@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:21 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/13 15:12:55 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/13 17:57:17 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static bool	no_newline(char *str)
 		i++;
 	}
 	if (str[i] == '\'' || str[i] == '"')
-			i++;
+		i++;
 	if (str[i])
 		return (0);
 	return (1);

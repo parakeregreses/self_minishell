@@ -51,16 +51,21 @@ char	**ft_add_in_env(char **envp, char *new_env_variable);
 char	**ft_create_env(char **envp, char *new_env_variable);
 void	ft_print_export(char *env);
 void	ft_display_env(char **envp);
-char	**ft_export(char **envp, char *new_env_variable);
-char	**cmd_unset(char **envp, char *var_rm);
+void	ft_display_env(char **envp);
 void	swap_str(char **a, char **b);
 void	swap_variables(char **result, int count);
 int		env_var_checker(char **envp, char *env_variable);
 void	free_envp(char **envp);
+char	*replace_dollar_mark(char *str, int var);
+char	*replace_dollar_var(char *str, char **envp);
+char	*dollar_signs(char *str, int var, char **envp);
+int		get_final_length(char *str, char **envp);
+int		var_name_len(char *str);
+char	*check_env_value(char *str, char **envp);
 
 /* ============================ CD ============================ */
 
-int		cmd_cd(char **arg, char **envp);
+int		cmd_cd(const char **arg, char **envp);
 
 /* =========================== ECHO =========================== */
 

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/10 16:15:00 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/13 18:43:36 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_arg	*blocisation(char *str)
 {
 	if (check_closed_quotes(str) == FALSE)
 	{
-		ft_printf("minishell: syntax problem: unclosed quotes");
+		ft_printf("minishell: syntax problem: unclosed quotes\n");
 		return (NULL);
 	}
 	str = revamp_str(str);
@@ -32,11 +32,26 @@ t_arg	*blocisation(char *str)
 	return (blocisation2(str));
 }
 
+t_arg	*remove_whitespace_tab(t_arg *arg)
+{
+	int	i;
+
+	i = 0;
+	while ((arg[i]).str != NULL)
+	{
+		if ((arg[i]).quote == FALSE)
+			(arg[i]).str = remove_whitespaces((arg[i]).str);
+		i++;
+	}
+	return (arg);
+}
+
 t_arg	*blocisation2(char *str)
 {
 	t_arg	*arg;
 
 	arg = select_quoted_str(str);
+	arg = remove_whitespace_tab(arg);
 	if (arg == NULL)
 		return (NULL);
 	if (second_verifications(arg) == FALSE || third_verifications(str) == FALSE)

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 16:43:54 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 12:06:05 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/13 18:43:07 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ char	*remove_whitespaces(char *str)
 			result[y++] = str[i++];
 	}
 	result[y] = 0;
+	free(str);
 	return (result);
 }

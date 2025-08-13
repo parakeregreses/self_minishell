@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/13 17:46:30 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/13 18:48:42 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,5 @@ int	launching(char **envp)
 			add_history(line);
 		free (line);
 	}
-	free_tab((void **) envp);
 	return (0);
 }

@@ -120,7 +120,6 @@ char	**ft_add_in_env(char **envp, char *new_env_variable)
 	if (new_envp == NULL)
 		return (NULL);
 	final = ft_replace_env_if_found(new_envp, new_env_variable);
-	//free_envp(new_envp);
 	if (final == NULL)
 	{
 		free_envp(new_envp);

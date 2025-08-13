@@ -108,27 +108,14 @@ char	**ft_export(char **envp, char *new_env_variable)
 	if (ft_strchr(new_env_variable, '='))
 	{
 		new_env = ft_add_in_env(envp, new_env_variable);
-		//new_export = ft_add_in_export(envp, new_env_variable);
-		/*TEST A ENLEVER*/
-		//ft_display_env(new_env);
-		//printf("\n\n\n");
-		//int j = 0;
-		//while (new_export[j])
-		//{
-		//	ft_print_export(new_export[j]);
-		//	j++;
-		//}
-//		/*TEST A ENLEVER*/
 		free_envp(new_export);
 		return (new_env);
 	}
 	else
 	{
 		new_export = ft_add_in_export(envp, new_env_variable);
-		//free_envp(new_export);
 		return (new_export);
 	}
-	//free_envp(new_export);
 	return (envp);
 }
 
@@ -222,4 +209,3 @@ char	**ft_export(char **envp, char *new_env_variable)
 //	}
 //	return (envp);
 //}
-

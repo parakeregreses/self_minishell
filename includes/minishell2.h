@@ -44,6 +44,8 @@ char	*cat_current_dir(void);
 
 /* =================== ENVIRONMENT VARIABLES =================== */
 
+char	**cmd_unset(char **envp, char *var_rm);
+char	**ft_export(char **envp, char *new_env_variable);
 char	**ft_copy_env(char **envp);
 char	**ft_free_envp(int i, char **envp);
 char	**export_alphabetical_order(char **envp);
@@ -65,7 +67,7 @@ char	*check_env_value(char *str, char **envp);
 
 /* ============================ CD ============================ */
 
-int		cmd_cd(const char **arg, char **envp);
+int		cmd_cd(char **arg, char **envp);
 
 /* =========================== ECHO =========================== */
 

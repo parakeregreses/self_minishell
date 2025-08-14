@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:21 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/13 18:32:57 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/14 16:34:43 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,15 @@ static bool	no_newline(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '\'' || str[i] == '"')
-		i++;
 	if (str[i] != '-' || str[i + 1] != 'n')
 		return (0);
 	i += 2;
-	while (str[i] && str[i] != '\'' && str[i] != '"')
+	while (str[i])
 	{
 		if (str[i] != 'n')
 			return (0);
 		i++;
 	}
-	if (str[i] == '\'' || str[i] == '"')
-		i++;
 	if (str[i])
 		return (0);
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launching.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/13 18:48:42 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/14 16:05:27 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	launching(char **envp)
 			printf("exit\n");
 			break ;
 		}
-		else
+		else if (!empty_argument(line))
 			judith(line, envp);
 		if (line[0] != '\0' && !empty_argument(line))
 			add_history(line);

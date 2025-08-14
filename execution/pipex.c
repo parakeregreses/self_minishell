@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/13 16:58:37 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/14 20:28:41 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	*initpipe2(int pipe[2])
 	return (pipe);
 }
 
-void	pipex(t_exec *infos, int n)
+void	pipex(t_exec *infos, int n, char **envp)
 {
 	int		pipe1[2];
 	int		pipe2[2];
@@ -81,14 +81,14 @@ void	pipex(t_exec *infos, int n)
 			if (pipe(pipe1) == -1)
 				ft_perror_and_exit("", infos);
 			(infos[i]).fdout = find_fdout_pipe((infos[i]).fdout, pipe1, i, n);
-			execution(infos[i], pipe2, pipe1, i);
+			execution(infos[i], pipe2, pipe1, i, envp);
 		}
 		if (i % 2 != 0)
 		{
 			if (pipe(pipe2) == -1)
 				ft_perror_and_exit("", infos);
 			(infos[i]).fdout = find_fdout_pipe((infos[i]).fdout, pipe2, i, n);
-			execution(infos[i], pipe1, pipe2, i);
+			execution(infos[i], pipe1, pipe2, i, envp);
 		}
 		i++;
 	}

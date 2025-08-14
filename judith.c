@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/13 16:58:01 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/14 20:25:53 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	judith(char *str, char **envp)
 	infos = extract_infos(processes, n, envp);
 	if (parse_commands(infos, n, envp) == FALSE)
 		return (full_delete_minishell(blocs, processes, infos, n));
-	pipex(infos, n);
+	pipex(infos, n, envp);
 	full_delete_minishell(blocs, processes, infos, n);
 	return (0);
 }

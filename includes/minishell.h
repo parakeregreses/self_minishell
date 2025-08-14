@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/13 16:40:59 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/14 20:33:20 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_exec
 	int			fdout;
 	char		**cmdarg;
 	char		*cmdpath;
-	char		**envp;
+	char		***envp;
 }				t_exec;
 
 int			tab_size(char **tab);
@@ -100,8 +100,8 @@ t_infile	find_infile(char **tokens);
 char		*str_without_quotes(char *str);
 int			find_fdout(char **tokens);
 char		**find_cmdarg(char **tokens);
-void		pipex(t_exec *infos, int n);
-void		execution(t_exec info, int piperead[2], int pipewrite[2], int i);
+void		pipex(t_exec *infos, int n, char **envp);
+void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char **envp);
 char		*ft_iscmd(char *cmd, char **envp);
 int			parse_commands(t_exec *infos, int n, char **envp);
 void		delete_tempfiles(t_exec *infos, int n);
@@ -116,7 +116,7 @@ int			third_verifications(char *str);
 int			file_type(char *cmdi, char *simple_cmd);
 int			judith(char *str, char **envp);
 int			is_builtin(char *cmd);
-void		exec_builtin(t_exec info);
+void		exec_builtin(t_exec info, char **envp);
 
 int			launching(char **envp);
 void		get_signal(void);

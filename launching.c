@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launching.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/14 16:05:27 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/14 20:11:12 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ char	*find_line(void)
 	return (line);
 }
 
+void	free_and_print_exit(char **envp, char *line)
+{
+	free(line);
+	free_tab((void **) envp);
+	printf("exit\n");
+}
+
 int	launching(char **envp)
 {
 	char	*line;
@@ -48,17 +55,14 @@ int	launching(char **envp)
 		line = find_line();
 		if (!line)
 		{
-			free_tab((void **) envp);
-			printf("exit\n");
+			free_and_print_exit(envp, NULL);
 			break ;
 		}
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
 		if (ft_strncmp(line + i, "exit", 4) == 0)
 		{
-			free(line);
-			free_tab((void **) envp);
-			printf("exit\n");
+			free_and_print_exit(envp, NULL);
 			break ;
 		}
 		else if (!empty_argument(line))

@@ -23,7 +23,7 @@ t_exec	*extract_infos(char ***processes, int n, char **envp)
 	while (processes[i] != NULL)
 	{
 		infos[i] = extract_info(processes[i]);
-		(infos[i]).envp = envp;
+		(infos[i]).envp = &envp;
 		i++;
 	}
 	return (infos);

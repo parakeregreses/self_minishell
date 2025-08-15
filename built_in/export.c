@@ -71,7 +71,7 @@ char	**ft_add_in_export(char **envp, char *new_env_variable)
 	int		i;
 	int		j;
 	char	**new_export;
-	char	**sorted;
+	//char	**sorted;
 
 	i = 0;
 	if (!new_env_variable || !new_env_variable[0])
@@ -91,36 +91,48 @@ char	**ft_add_in_export(char **envp, char *new_env_variable)
 	}
 	new_export[j] = ft_strdup(new_env_variable);
 	new_export[j + 1] = NULL;
-	sorted = export_alphabetical_order(new_export);
-	free_envp(new_export);
-	return (sorted);
+	//sorted = export_alphabetical_order(new_export);
+	//free_envp(new_export);
+	return (new_export);
 }
+
+//char	**ft_export2(char ***envp, char *new_env_variable)
+//{
+//	char	**new_env;
+//	//char	**new_export;
+
+//	new_env = NULL;
+//	if (env_var_checker(*envp, new_env_variable) == 1)
+//		return (NULL);
+//	//new_export = *envp;
+//	if (ft_strchr(new_env_variable, '='))
+//	{
+//		new_env = ft_add_in_env(*envp, new_env_variable);
+//		//free_envp(new_export);
+//		//free(*envp);
+//		*envp = new_env;
+//		return (new_env);
+//	}
+//	else
+//	{
+//		*envp = ft_add_in_export(*envp, new_env_variable);
+//		//free(*envp);
+//		//*envp = new_export;
+//		return (*envp);
+//	}
+//	return (*envp);
+//}
 
 char	**ft_export(char ***envp, char *new_env_variable)
 {
 	char	**new_env;
-	char	**new_export;
 
-	new_env = NULL;
 	if (env_var_checker(*envp, new_env_variable) == 1)
 		return (NULL);
-	new_export = ft_copy_env(*envp);
-	if (ft_strchr(new_env_variable, '='))
-	{
-		new_env = ft_add_in_env(*envp, new_env_variable);
-		free_envp(new_export);
-		free(*envp);
-		*envp = new_env;
-		return (new_env);
-	}
-	else
-	{
-		new_export = ft_add_in_export(*envp, new_env_variable);
-		free(*envp);
-		*envp = new_export;
-		return (new_export);
-	}
-	return (*envp);
+	new_env = ft_add_in_export(*envp, new_env_variable);
+	free_tab((void **)*envp);
+	*envp = new_env;
+	return (new_env);
 }
 
 //int main(int argc, char **argv, char **envp)

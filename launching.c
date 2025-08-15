@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launching.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 14:48:01 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 15:44:27 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	launching(char **envp)
 			i++;
 		if (ft_strncmp(line + i, "exit", 4) == 0)
 		{
-			free_and_print_exit(envp, NULL);
+			free_and_print_exit(envp, line);
 			break ;
 		}
 		else if (!empty_argument(line))

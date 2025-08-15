@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   judith.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/15 14:51:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 15:41:42 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	judith(char *str, char **envp)
 	if (parse_commands(infos, n, envp) == FALSE)
 		return (full_delete_minishell(blocs, processes, infos, n));
 	pipex(infos, n, envp);
-	ft_printf("\n\n\n\n\n\n\n\n\n");
-	print_tab_char(envp);
+	//ft_printf("\n\n\n\n\n\n\n\n\n");
+	//print_tab_char(envp);
 	full_delete_minishell(blocs, processes, infos, n);
 	return (0);
 }

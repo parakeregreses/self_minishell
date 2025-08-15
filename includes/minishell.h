@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/15 17:55:31 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:07:04 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char		**delete_line_in_tab(char **tab, int i);
 t_arg		*extract_quote(char *str, t_segment s);
 t_segment	find_segment(char *str, char c);
 char		**append_tabs_and_free(char **tab1, char **tab2);
-t_arg		*blocisation(char *str);
+char		**blocisation(char *str);
 char		which_separator(char *s, char c1, char c2);
 t_arg		*cut_tab_tail_arg(t_arg	*tab, int n);
 t_arg		*cut_tab_head_arg(t_arg *tab, int n);
@@ -77,49 +77,39 @@ t_arg		*separate_pipe(t_arg *arg);
 t_arg		*join_quote_to_last_line(t_arg *tab, char *quote);
 t_arg		*join_quote_to_first_line(t_arg *tab, char *quote);
 int			is_infile(char *file1);
-t_exec		parse_bloc(char *str);
-int			define_fdin(char *str, t_arg *tab);
-char		*reglue_quoted(t_arg *tab);
-t_arg		*put_quoted_together(t_arg *arg);
-t_arg		*trim_arg(t_arg *arg);
 t_arg		*delete_empty_lines(t_arg *arg);
-int			is_x_char_in_str_spaces(char *str, char c, int x);
 char		*here_doc(char *lim);
 char		*delete_useless_spaces(char	*str, char *set);
 char		*delete_useless_spaces_fill(char *str, char *new_str, char *set);
-char		**token_bloc(char *str);
+char		**token_bloc(char *str, char *set);
 char		*remove_whitespaces(char *str);
 char		*revamp_str(char *str);
 int			second_verifications(t_arg *tab);
 int			triple_char(t_arg *tab, int n, char c);
 int			check_closed_quotes(char *arg);
-char		***full_tokenisation(t_arg *blocs, int n);
+char		***full_tokenisation(char **blocs, int n, int *status, char ***envp);
 t_exec		*extract_infos(char ***processes, int n);
 t_exec		extract_info(char **tokens);
 t_infile	find_infile(char **tokens);
 char		*str_without_quotes(char *str);
 int			find_fdout(char **tokens);
 char		**find_cmdarg(char **tokens);
-void		pipex(t_exec *infos, int n, char ***envp);
+void		pipex(t_exec *infos, int n, char ***envp, int *status);
 void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout);
 char		*ft_iscmd(char *cmd, char **envp);
 int			parse_commands(t_exec *infos, int n, char ***envp);
 void		delete_tempfiles(t_exec *infos, int n);
-int			full_delete_minishell(t_arg *b, char ***p, t_exec *infos, int n);
+int			full_delete_minishell(char **b, char ***p, t_exec *infos, int n);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
-t_arg		*cut_tab_tail_arg(t_arg *tab, int n);
-t_arg		*cut_tab_head_arg(t_arg *tab, int n);
-t_arg		*ft_quoteiszero(t_arg *tab);
-int			is_pipe_left(int i, t_arg *arg);
 char		**tab_without_quotes(char **tab);
 int			third_verifications(char *str);
 int			file_type(char *cmdi, char *simple_cmd);
-int			judith(char *str, char ***envp);
+int			judith(char *str, char ***envp, int *status);
 int			is_builtin(char *cmd);
 void		exec_builtin(t_exec info, char ***envp);
 void		exec_builtin_exit(t_exec info, char ***envp);
+char		**expand_dollar(char **tab, int *status, char **envp);
 
-int			launching(char ***envp);
 void		get_signal(void);
 
 #endif

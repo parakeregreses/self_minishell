@@ -6,17 +6,17 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/13 18:43:36 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:12:20 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_arg	*blocisation2(char *str);
+char	**blocisation2(char *str);
 
 // separates the string in different blocs delimitated by the pipes
 // such as bloc1 | bloc2 | bloc3
-t_arg	*blocisation(char *str)
+char	**blocisation(char *str)
 {
 	if (check_closed_quotes(str) == FALSE)
 	{
@@ -46,9 +46,41 @@ t_arg	*remove_whitespace_tab(t_arg *arg)
 	return (arg);
 }
 
-t_arg	*blocisation2(char *str)
+char	*arg_to_str(t_arg *arg)
+{
+	int		i;
+	char	*str;
+	char	*new_str;
+
+	i = 0;
+	str = ft_strdup("");
+	while ((arg[i]).str != NULL)
+	{
+		new_str = ft_strjoin(str, (arg[i++]).str);
+		free(str);
+		str = new_str;
+	}
+	return (str);
+}
+
+char	**separate_pipe2(t_arg *arg)
+{
+	char	*str;
+	char	**tab;
+	char	*set;
+
+	str = arg_to_str(arg);
+	set = ft_strdup("|");
+	tab = token_bloc(str, set);
+	free(str);
+	free(set);
+	return (tab);
+}
+
+char	**blocisation2(char *str)
 {
 	t_arg	*arg;
+	char	**tab;
 
 	arg = select_quoted_str(str);
 	arg = remove_whitespace_tab(arg);
@@ -60,10 +92,8 @@ t_arg	*blocisation2(char *str)
 		free_tab_arg(arg);
 		return (NULL);
 	}
-	arg = put_quoted_together(arg);
-	arg = separate_pipe(arg);
-	arg = trim_arg(arg);
-	arg = delete_empty_lines(arg);
+	tab = separate_pipe2(arg);
 	free(str);
-	return (arg);
+	free_tab_arg(arg);
+	return (tab);
 }

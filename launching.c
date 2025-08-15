@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 16:20:24 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 20:40:36 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	free_and_print_exit(char ***envp, char *line)
 	printf("exit\n");
 }
 
-int	launching(char ***envp)
+int	launching(char ***envp, int *status)
 {
 	char	*line;
 	int		i;
@@ -67,7 +67,7 @@ int	launching(char ***envp)
 			break ;
 		}
 		else if (!empty_argument(line))
-			judith(line, envp);
+			judith(line, envp, status);
 		if (line[0] != '\0' && !empty_argument(line))
 			add_history(line);
 		free (line);

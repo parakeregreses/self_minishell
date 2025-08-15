@@ -3,3 +3,5 @@ problemes lecture depuis entree standart sans limitateur
 checker les mallocs
 
 gestion des .o
+
+la valeur de retour statut $

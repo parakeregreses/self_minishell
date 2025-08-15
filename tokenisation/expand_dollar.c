@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_quoted_together.c                              :+:      :+:    :+:   */
+/*   expand_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 21:46:31 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 12:26:13 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/15 20:49:39 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/15 21:13:56 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// if different quoted lines are next to each other, joins those lines
-t_arg	*put_quoted_together(t_arg *arg)
+char	**expand_dollar(char **tab, int *status, char **envp)
 {
-	int		i;
-	int		n;
-	char	*str2;
+	int	i;
 
 	i = 0;
-	n = tab_size_arg(arg);
-	while (i < n - 1)
+	while (tab[i] != NULL)
 	{
-		if ((arg[i]).quote == TRUE && (arg[i + 1]).quote == TRUE)
-		{
-			str2 = ft_strdup((arg[i + 1]).str);
-			(arg[i]).str = ft_strjoinfree((arg[i]).str, str2);
-			arg = delete_line_in_tab_arg(arg, i + 1);
-			n = tab_size_arg(arg);
-		}
-		else
-			i++;
+		tab[i] = dollar_signs(tab[i], *status, envp);
+		printf("tab[i] = %s\n", tab[i]);
+		i++;
 	}
-	return (arg);
+	return (tab);
 }

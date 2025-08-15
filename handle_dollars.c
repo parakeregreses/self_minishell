@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:38:49 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/13 18:06:40 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/15 21:01:42 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 int	get_final_length(char *str, char **envp)
 {
@@ -24,6 +24,11 @@ int	get_final_length(char *str, char **envp)
 	len = 0;
 	while (str[i])
 	{
+		if (str[i] == '\'')
+		{
+			i = close_quote(str, i, str[i]);
+			i++;
+		}
 		if (str[i] == '$' && str[i + 1]
 			&& (ft_isalpha(str[i + 1]) || str[i + 1] == '_'))
 		{
@@ -58,6 +63,11 @@ static int	count_new_length(char *str, char *var_str)
 	var_len = ft_strlen(var_str);
 	while (str[i])
 	{
+		if (str[i] == '\'')
+		{
+			i = close_quote(str, i, str[i]);
+			i++;
+		}
 		if (str[i] == '$' && str[i + 1] == '?')
 		{
 			len += var_len;
@@ -82,6 +92,12 @@ void	dollar_helper(char *result, char *str, char *var_str)
 	j = 0;
 	while (str[i])
 	{
+		if (str[i++] == '\'')
+		{
+			while (str[i] && str[i] != '\'')
+				result[j++] = str[i++];
+			i++;
+		}
 		if (str[i] == '$' && str[i + 1] == '?')
 		{
 			k = 0;

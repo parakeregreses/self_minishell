@@ -7,12 +7,6 @@ SRCS = 												\
 			blocisation/fill_tab_blocs.c			\
 			blocisation/blocisation_utils.c			\
 			blocisation/select_quoted_str.c			\
-			blocisation/separate_pipe.c				\
-			blocisation/separate_pipe2.c			\
-			blocisation/join_quote_to_line.c		\
-			blocisation/put_quoted_together.c		\
-			blocisation/trim_arg.c					\
-			blocisation/delete_empty_lines.c		\
 			blocisation/append_tabs_and_free_arg.c	\
 			blocisation/remove_whitespaces.c		\
 			blocisation/revamp_str.c				\
@@ -26,6 +20,7 @@ SRCS = 												\
 			tokenisation/full_tokenisation.c		\
 			tokenisation/str_without_quotes.c		\
 			tokenisation/tab_without_quotes.c		\
+			tokenisation/expand_dollar.c			\
 			extraction/find_infile.c				\
 			extraction/here_doc.c					\
 			extraction/is_infile.c					\

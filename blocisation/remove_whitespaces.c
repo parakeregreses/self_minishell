@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 16:43:54 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/13 18:43:07 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 20:34:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,26 @@ static int	count(char *str)
 	return (n);
 }
 
+char	*alloc_remove_whitespaces(char *str)
+{
+	int		whitespaces;
+	char	*result;
+
+	whitespaces = count(str);
+	result = malloc(sizeof(char) * (ft_strlen(str) - whitespaces + 1));
+	return (result);
+}
+
 // Turns any group of whitespace into one SPACE.
 char	*remove_whitespaces(char *str)
 {
 	int		i;
 	int		y;
-	int		whitespaces;
 	char	*result;
 
 	i = 0;
 	y = 0;
-	whitespaces = count(str);
-	result = malloc(sizeof(char) * (ft_strlen(str) - whitespaces + 1));
+	result = alloc_remove_whitespaces(str);
 	if (!result)
 		return (NULL);
 	while (str[i])

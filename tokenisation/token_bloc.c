@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:40:28 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/10 16:15:25 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 18:50:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	**token_bloc(char *str)
 	char	*set;
 	int		n;
 
-	set = ft_strdup("<>- ");
+	set = ft_strdup("<> ");
 	str = ft_strtrim(str, WHITESPACES);
 	str = delete_useless_spaces(str, set);
 	n = allow_tab(str, set);

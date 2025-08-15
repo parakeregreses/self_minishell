@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:30:40 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/13 18:43:27 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 18:49:36 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 char	*revamp_str(char *str)
 {
 	str = ft_strtrim(str, " ");
-	str = delete_useless_spaces(str, "<>-|");
+	str = delete_useless_spaces(str, "<>|");
 	return (str);
 }

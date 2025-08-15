@@ -2,6 +2,4 @@ problemes lecture depuis entree standart sans limitateur
 
 checker les mallocs
 
-changer envp en adresse envp pour que les processus aient les bonnes variables d'environnement a tous moment
-
 gestion des .o

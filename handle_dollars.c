@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:38:49 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/15 21:01:42 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:33:05 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	get_final_length(char *str, char **envp)
 		{
 			i = close_quote(str, i, str[i]);
 			i++;
+			len += i;
 		}
 		if (str[i] == '$' && str[i + 1]
 			&& (ft_isalpha(str[i + 1]) || str[i + 1] == '_'))
@@ -66,6 +67,7 @@ static int	count_new_length(char *str, char *var_str)
 		if (str[i] == '\'')
 		{
 			i = close_quote(str, i, str[i]);
+			len += i;
 			i++;
 		}
 		if (str[i] == '$' && str[i + 1] == '?')
@@ -92,11 +94,12 @@ void	dollar_helper(char *result, char *str, char *var_str)
 	j = 0;
 	while (str[i])
 	{
-		if (str[i++] == '\'')
+		if (str[i] == '\'')
 		{
+			result[j++] = str[i++];
 			while (str[i] && str[i] != '\'')
 				result[j++] = str[i++];
-			i++;
+			result[j++] = str[i++];
 		}
 		if (str[i] == '$' && str[i + 1] == '?')
 		{

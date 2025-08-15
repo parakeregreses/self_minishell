@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:42:05 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/15 21:18:15 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:30:49 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,12 @@ int	fill_str(char *dst, char *src, char **envp, int i)
 	j = 0;
 	while (src[i])
 	{
-		if (src[i++] == '\'')
+		if (src[i] == '\'')
 		{
+			dst[j++] = src[i++];
 			while (src[i] && src[i] != '\'')
 				dst[j++] = src[i++];
-			i++;
+			dst[j++] = src[i++];
 		}
 		if (src[i] == '$' && src[i + 1]
 			&& (ft_isalpha(src[i + 1]) || src[i + 1] == '_'))
@@ -106,19 +107,19 @@ char	*replace_dollar_var(char *str, char **envp)
 	return (result);
 }
 
-int	main(int ac, char **av, char **envp)
-{
-	// char	*input = "$? Coucou $USER blah $JEXISTEPAS blah $HOME! $?";
-	char	*expanded;
+// int	main(int ac, char **av, char **envp)
+// {
+// 	// char	*input = "$? Coucou $USER blah $JEXISTEPAS blah $HOME! $?";
+// 	char	*expanded;
 
-	(void)ac;
-	(void)av;
-	// expanded = dollar_signs(input, 2, envp);
-	expanded = dollar_signs("signes", 2, envp);
-	if (expanded)
-	{
-		printf("%s\n", expanded);
-		free(expanded);
-	}
-	return (0);
-}
+// 	(void)ac;
+// 	(void)av;
+// 	// expanded = dollar_signs(input, 2, envp);
+// 	expanded = dollar_signs("si\'gn\'es", 2, envp);
+// 	if (expanded)
+// 	{
+// 		printf("%s\n", expanded);
+// 		free(expanded);
+// 	}
+// 	return (0);
+// }

@@ -4,4 +4,4 @@ checker les mallocs
 
 gestion des .o
 
-la valeur de retour statut $
+infile issues

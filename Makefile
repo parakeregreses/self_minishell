@@ -26,7 +26,7 @@ SRCS = 												\
 			extraction/is_infile.c					\
 			extraction/extract_infos.c				\
 			extraction/extract_info.c				\
-			extraction/find_fdout.c					\
+			extraction/find_outfile.c					\
 			extraction/find_cmdarg.c				\
 			execution/pipex.c						\
 			execution/execution.c					\
@@ -35,6 +35,7 @@ SRCS = 												\
 			parsing/file_type.c						\
 			parsing/parse_commands.c				\
 			parsing/is_builtin.c					\
+			parsing/ft_findpathforeachcommand.c		\
 			built_in/cd.c							\
 			built_in/echo.c							\
 			built_in/env.c							\

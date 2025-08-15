@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 18:41:51 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 21:13:20 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:57:31 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ char	***full_tokenisation(char **blocs, int n, int *status, char ***envp)
 	int		i;
 	char	*set;
 	char	***processes;
-
-	// (void)status;
-	// (void)envp;
 
 	set = ft_strdup("<> ");
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 20:49:39 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 21:20:59 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:57:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	**expand_dollar(char **tab, int *status, char **envp)
 	while (tab[i] != NULL)
 	{
 		tab[i] = dollar_signs(tab[i], *status, envp);
-		// printf("tab[i] = %s\n", tab[i]);
 		i++;
 	}
 	return (tab);

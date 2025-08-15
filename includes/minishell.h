@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/15 21:46:49 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 22:04:40 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,17 @@ typedef struct s_infile
 	int		here_doc;
 }				t_infile;
 
+typedef struct s_outfile
+{
+	char	*filename;
+	int		append;
+	int		fdout;
+}				t_outfile;
+
 typedef struct s_exec
 {
 	t_infile	infile;
-	int			fdout;
+	t_outfile	outfile;
 	char		**cmdarg;
 	char		*cmdpath;
 	char		***envp;
@@ -92,7 +99,7 @@ t_exec		*extract_infos(char ***processes, int n);
 t_exec		extract_info(char **tokens);
 t_infile	find_infile(char **tokens);
 char		*str_without_quotes(char *str);
-int			find_fdout(char **tokens);
+t_outfile	find_outfile(char **tokens);
 char		**find_cmdarg(char **tokens);
 void		pipex(t_exec *infos, int n, char ***envp, int *status);
 void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout);
@@ -109,6 +116,7 @@ int			is_builtin(char *cmd);
 void		exec_builtin(t_exec info, char ***envp);
 void		exec_builtin_exit(t_exec info, char ***envp);
 char		**expand_dollar(char **tab, int *status, char **envp);
+char		*ft_findpathforeachcommand(char **paths, char *cmd);
 
 void		get_signal(void);
 

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 18:06:30 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 22:08:55 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 
 	if (is_builtin(info.cmdpath))
 	{
-		if (dup2(fdin, 0) == -1 || dup2(info.fdout, 1) == -1)
+		if (dup2(fdin, 0) == -1 || dup2(info.outfile.fdout, 1) == -1)
 			exit(1);
 		exec_builtin(info, envp);
-		close(info.fdout);
+		close(info.outfile.fdout);
 		dup2(saved_stdout, 1);
 		dup2(saved_stdin, 0);
 		close(saved_stdin);
@@ -49,7 +49,7 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 		}
 		if (info.cmdpath == NULL || fdin == -1)
 			perror_free_and_exit_child(info.cmdarg, EXIT_SUCCESS, "cmdissue");
-		if (dup2(fdin, 0) == -1 || dup2(info.fdout, 1) == -1)
+		if (dup2(fdin, 0) == -1 || dup2(info.outfile.fdout, 1) == -1)
 			perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "close1");
 		close(saved_stdin);
 		close(saved_stdout);

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/15 21:45:47 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 22:11:22 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ char	**blocisation2(char *str, int *status)
 		return (NULL);
 	}
 	tab = separate_pipe2(arg);
+	tab = trim_tab_free(tab, "|");
 	free(str);
 	free_tab_arg(arg);
 	return (tab);

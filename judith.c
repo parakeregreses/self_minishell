@@ -6,13 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/15 14:51:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 16:12:06 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	judith(char *str, char **envp)
+int	judith(char *str, char ***envp)
 {
 	t_exec	*infos;
 	int		n;
@@ -29,7 +29,7 @@ int	judith(char *str, char **envp)
 		return (full_delete_minishell(blocs, processes, infos, n));
 	pipex(infos, n, envp);
 	ft_printf("\n\n\n\n\n\n\n\n\n");
-	print_tab_char(envp);
+	print_tab_char(*envp);
 	full_delete_minishell(blocs, processes, infos, n);
 	return (0);
 }

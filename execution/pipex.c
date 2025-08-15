@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 14:51:00 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 16:11:27 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	*initpipe2(int pipe[2])
 	return (pipe);
 }
 
-void	pipex(t_exec *infos, int n, char **envp)
+void	pipex(t_exec *infos, int n, char ***envp)
 {
 	int		pipe1[2];
 	int		pipe2[2];

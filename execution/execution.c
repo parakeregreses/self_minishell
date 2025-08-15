@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/14 20:32:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 16:11:39 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	perror_free_and_exit_child(char **tab, int exit_status, char *message)
 	exit(exit_status);
 }
 
-void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char **envp)
+void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp)
 {
 	pid_t	pid;
 	int		fdin;
@@ -49,7 +49,7 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char **env
 		close(pipewrite[READ]);
 		if (is_builtin(info.cmdpath))
 			exec_builtin(info, envp);
-		execve(info.cmdpath, info.cmdarg, envp);
+		execve(info.cmdpath, info.cmdarg, *envp);
 		perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "exec");
 	}
 	if (fdin != 0)

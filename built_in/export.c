@@ -96,27 +96,31 @@ char	**ft_add_in_export(char **envp, char *new_env_variable)
 	return (sorted);
 }
 
-char	**ft_export(char **envp, char *new_env_variable)
+char	**ft_export(char ***envp, char *new_env_variable)
 {
 	char	**new_env;
 	char	**new_export;
 
 	new_env = NULL;
-	if (env_var_checker(envp, new_env_variable) == 1)
+	if (env_var_checker(*envp, new_env_variable) == 1)
 		return (NULL);
-	new_export = ft_copy_env(envp);
+	new_export = ft_copy_env(*envp);
 	if (ft_strchr(new_env_variable, '='))
 	{
-		new_env = ft_add_in_env(envp, new_env_variable);
+		new_env = ft_add_in_env(*envp, new_env_variable);
 		free_envp(new_export);
+		free(*envp);
+		*envp = new_env;
 		return (new_env);
 	}
 	else
 	{
-		new_export = ft_add_in_export(envp, new_env_variable);
+		new_export = ft_add_in_export(*envp, new_env_variable);
+		free(*envp);
+		*envp = new_export;
 		return (new_export);
 	}
-	return (envp);
+	return (*envp);
 }
 
 //int main(int argc, char **argv, char **envp)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/14 20:12:16 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 12:54:50 by jlaineb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	parse_commands(t_exec *infos, int n, char **envp)
 	while (i < n)
 	{
 		(infos[i]).cmdpath = ft_iscmd((infos[i]).cmdarg[0], envp);
+		(infos[i]).envp = &envp;
 		if ((infos[i]).cmdpath == NULL)
 			result = FALSE;
 		i++;

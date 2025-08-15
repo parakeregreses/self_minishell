@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   judith.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/14 20:25:53 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 12:59:59 by jlaineb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ int	judith(char *str, char **envp)
 	n = tab_size_arg(blocs);
 	processes = full_tokenisation(blocs, n);
 	infos = extract_infos(processes, n, envp);
+	print_tab_char(*((infos[0]).envp));
+	ft_printf("ok\n\n\n\n\n");
+	print_tab_char(*((infos[0]).envp));
 	if (parse_commands(infos, n, envp) == FALSE)
 		return (full_delete_minishell(blocs, processes, infos, n));
 	pipex(infos, n, envp);
@@ -32,12 +35,12 @@ int	judith(char *str, char **envp)
 	return (0);
 }
 
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	(void) argc;
+int	main(int argc, char **argv, char **envp)
+{
+	(void) argc;
 
-// 	judith(argv[1], envp);
-// }
+	judith(argv[1], envp);
+}
 
 //blocisation test
 // int    main(void)

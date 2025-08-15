@@ -76,7 +76,7 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror -I$(INCLUDE)
 
-LFLAGS = -lreadline
+# LFLAGS = -lreadline
 
 all : $(NAME)
 

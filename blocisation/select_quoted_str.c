@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   select_quoted_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:19:58 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/06 14:48:42 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 12:56:18 by jlaineb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 t_arg	*extract_quote(char *str, t_segment s)
 {
 	t_arg	*tab;
-	int		i;
+	// int		i;
 	int		len;
 
-	i = 0;
+	// i = 0;
 	len = ft_strlen(str);
 	tab = alloc_tab(len, s);
 	if (tab == NULL)

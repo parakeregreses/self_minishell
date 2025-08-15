@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/15 21:07:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:46:49 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char		**delete_line_in_tab(char **tab, int i);
 t_arg		*extract_quote(char *str, t_segment s);
 t_segment	find_segment(char *str, char c);
 char		**append_tabs_and_free(char **tab1, char **tab2);
-char		**blocisation(char *str);
+char		**blocisation(char *str, int *status);
 char		which_separator(char *s, char c1, char c2);
 t_arg		*cut_tab_tail_arg(t_arg	*tab, int n);
 t_arg		*cut_tab_head_arg(t_arg *tab, int n);
@@ -97,7 +97,7 @@ char		**find_cmdarg(char **tokens);
 void		pipex(t_exec *infos, int n, char ***envp, int *status);
 void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout);
 char		*ft_iscmd(char *cmd, char **envp);
-int			parse_commands(t_exec *infos, int n, char ***envp);
+int			parse_commands(t_exec *infos, int n, char ***envp, int *status);
 void		delete_tempfiles(t_exec *infos, int n);
 int			full_delete_minishell(char **b, char ***p, t_exec *infos, int n);
 int			find_fdin(t_infile infile, int pipe1[2], int i);

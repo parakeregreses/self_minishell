@@ -6,14 +6,14 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 16:11:12 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:48:19 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // check if the commands exists, if it does, fill its path in info.cmdpath
-int	parse_commands(t_exec *infos, int n, char ***envp)
+int	parse_commands(t_exec *infos, int n, char ***envp, int *status)
 {
 	int	i;
 	int	result;
@@ -23,9 +23,11 @@ int	parse_commands(t_exec *infos, int n, char ***envp)
 	while (i < n)
 	{
 		(infos[i]).cmdpath = ft_iscmd((infos[i]).cmdarg[0], *envp);
-		// (infos[i]).envp = envp;
 		if ((infos[i]).cmdpath == NULL)
+		{
+			*status = 127;
 			result = FALSE;
+		}
 		i++;
 	}
 	return (result);

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 20:40:36 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:51:32 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ char	*find_line(void)
 	return (line);
 }
 
-void	free_and_print_exit(char ***envp, char *line)
+void	free_and_print_exit(char ***envp, char *line, int *status)
 {
 	free(line);
 	free_tab((void **) *envp);
 	free(envp);
+	free(status);
 	printf("exit\n");
 }
 
@@ -56,14 +57,14 @@ int	launching(char ***envp, int *status)
 		line = find_line();
 		if (!line)
 		{
-			free_and_print_exit(envp, NULL);
+			free_and_print_exit(envp, NULL, status);
 			break ;
 		}
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
 		if (ft_strncmp(line + i, "exit", 4) == 0)
 		{
-			free_and_print_exit(envp, line);
+			free_and_print_exit(envp, line, status);
 			break ;
 		}
 		else if (!empty_argument(line))

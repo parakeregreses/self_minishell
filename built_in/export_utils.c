@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:43:00 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/13 15:11:25 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 15:43:20 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	env_var_checker(char **envp, char *envvar)
 		temp_envp = export_alphabetical_order(temp_envp);
 		while (temp_envp[i])
 			ft_print_export(temp_envp[i++]);
+		free_tab((void **)temp_envp);
 		return (1);
 	}
 	if (ft_isdigit(envvar[0]) || (!ft_isalpha(envvar[0]) && envvar[0] != '_'))

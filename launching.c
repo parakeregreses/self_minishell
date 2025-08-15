@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 16:09:48 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 16:20:24 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	launching(char ***envp)
 			i++;
 		if (ft_strncmp(line + i, "exit", 4) == 0)
 		{
-			free_and_print_exit(envp, NULL);
+			free_and_print_exit(envp, line);
 			break ;
 		}
 		else if (!empty_argument(line))

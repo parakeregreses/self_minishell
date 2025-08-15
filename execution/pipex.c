@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 16:11:27 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 16:21:20 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void	ft_close_pipes(int pipe1[2], int pipe2[2])
 {
 	close(pipe1[0]);
 	close(pipe1[1]);
-	close(pipe2[0]);
-	close(pipe2[1]);
+	if (pipe2[0] != -1)
+		close(pipe2[0]);
+	if (pipe2[1] != -1)
+		close(pipe2[1]);
 }
 
 void	pipex2(int n, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin)

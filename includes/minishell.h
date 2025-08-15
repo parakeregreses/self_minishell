@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/15 16:42:29 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 17:55:31 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char		*str_without_quotes(char *str);
 int			find_fdout(char **tokens);
 char		**find_cmdarg(char **tokens);
 void		pipex(t_exec *infos, int n, char ***envp);
-void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp);
+void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout);
 char		*ft_iscmd(char *cmd, char **envp);
 int			parse_commands(t_exec *infos, int n, char ***envp);
 void		delete_tempfiles(t_exec *infos, int n);

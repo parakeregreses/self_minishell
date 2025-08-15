@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 16:28:56 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 18:01:06 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ void	pipex(t_exec *infos, int n, char ***envp)
 			if (pipe(pipe1) == -1)
 				ft_perror_and_exit("", infos);
 			(infos[i]).fdout = find_fdout_pipe((infos[i]).fdout, pipe1, i, n);
-			execution(infos[i], pipe2, pipe1, i, envp);
+			execution(infos[i], pipe2, pipe1, i, envp, saved_stdin, saved_stdout);
 		}
 		if (i % 2 != 0)
 		{
 			if (pipe(pipe2) == -1)
 				ft_perror_and_exit("", infos);
 			(infos[i]).fdout = find_fdout_pipe((infos[i]).fdout, pipe2, i, n);
-			execution(infos[i], pipe1, pipe2, i, envp);
+			execution(infos[i], pipe1, pipe2, i, envp, saved_stdin, saved_stdout);
 		}
 		i++;
 	}

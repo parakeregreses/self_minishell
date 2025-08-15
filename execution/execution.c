@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 17:25:22 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 18:05:01 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 #include "minishell.h"
 
+void	ft_close_pipes(int pipe1[2], int pipe2[2]);
+
 void	perror_free_and_exit_child(char **tab, int exit_status, char *message)
 {
 	free_tab((void *)tab);
@@ -33,7 +35,7 @@ void	perror_free_and_exit_child(char **tab, int exit_status, char *message)
 	exit(exit_status);
 }
 
-void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp)
+void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout)
 {
 	pid_t	pid;
 	int		fdin;
@@ -41,31 +43,31 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 	fdin = find_fdin(info.infile, piperead, i);
 	
 	if (is_builtin(info.cmdpath))
-	{	
-		int		saved_stdout;
-		int		saved_stdin;
-
-		saved_stdout = dup(1);
-		saved_stdin = dup(0);
+	{
 		if (dup2(fdin, 0) == -1 || dup2(info.fdout, 1) == -1)
 			exit(1);
-		// close(pipewrite[READ]);
 		exec_builtin(info, envp);
+		close(info.fdout);
 		dup2(saved_stdout, 1);
 		dup2(saved_stdin, 0);
-		close(info.fdout);
+		close(saved_stdin);
+		close(saved_stdout);
 	}
 	pid = fork();
 	if (pid == 0)
 	{
 		if (is_builtin(info.cmdpath))
+		{
+			ft_close_pipes(piperead, pipewrite);
 			exit(EXIT_SUCCESS);
+		}
 		if (info.cmdpath == NULL || fdin == -1)
 			perror_free_and_exit_child(info.cmdarg, EXIT_SUCCESS, "cmdissue");
 		if (dup2(fdin, 0) == -1 || dup2(info.fdout, 1) == -1)
 			perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "close1");
+		close(saved_stdin);
+		close(saved_stdout);
 		close(pipewrite[READ]);
-			// exec_builtin_exit(info, envp);
 		execve(info.cmdpath, info.cmdarg, *envp);
 		perror_free_and_exit_child(info.cmdarg, EXIT_FAILURE, "exec");
 	}

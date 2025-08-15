@@ -3,24 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 17:25:22 by jlaine-b         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "minishell.h"
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_cmd.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 19:52:25 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/04/15 17:41:01 by jlaineb          ###   ########.fr       */
+/*   Updated: 2025/08/15 17:45:22 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +25,9 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 	int		fdin;
 
 	fdin = find_fdin(info.infile, piperead, i);
-	
+
 	if (is_builtin(info.cmdpath))
-	{	
+	{
 		int		saved_stdout;
 		int		saved_stdin;
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_outfile.c                                       :+:      :+:    :+:   */
+/*   find_outfile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 16:07:55 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 21:59:08 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/15 22:14:44 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/15 22:15:04 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_outfile	find_outfile(char **tokens)
 				outfile.append = 1;
 			}
 			else
-				outfile.filename = tokens[i] + 1;;
+				outfile.filename = tokens[i] + 1;
 		}
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:43:00 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/15 15:43:20 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/15 22:14:19 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,18 @@ void	swap_variables(char **result, int count)
 	}
 }
 
+int	no_envar(char **temp_envp)
+{
+	int	i;
+
+	i = 0;
+	temp_envp = export_alphabetical_order(temp_envp);
+	while (temp_envp[i])
+		ft_print_export(temp_envp[i++]);
+	free_tab((void **)temp_envp);
+	return (1);
+}
+
 int	env_var_checker(char **envp, char *envvar)
 {
 	int		i;
@@ -63,14 +75,7 @@ int	env_var_checker(char **envp, char *envvar)
 
 	temp_envp = envp;
 	if (!envvar)
-	{
-		i = 0;
-		temp_envp = export_alphabetical_order(temp_envp);
-		while (temp_envp[i])
-			ft_print_export(temp_envp[i++]);
-		free_tab((void **)temp_envp);
-		return (1);
-	}
+		return (no_envar(temp_envp));
 	if (ft_isdigit(envvar[0]) || (!ft_isalpha(envvar[0]) && envvar[0] != '_'))
 	{
 		printf("export: '%s': not a valid identifier\n", envvar);

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/15 16:14:29 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/15 16:42:29 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int			file_type(char *cmdi, char *simple_cmd);
 int			judith(char *str, char ***envp);
 int			is_builtin(char *cmd);
 void		exec_builtin(t_exec info, char ***envp);
+void		exec_builtin_exit(t_exec info, char ***envp);
 
 int			launching(char ***envp);
 void		get_signal(void);

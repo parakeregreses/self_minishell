@@ -20,7 +20,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc == 1)
 	{
 		get_signal();
-		our_envp = malloc(sizeof(char ***));
+		our_envp = malloc(sizeof(char ***) * 1);
 		*our_envp = ft_copy_env(envp);
 		launching(our_envp);
 	}

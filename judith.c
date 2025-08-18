@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/18 17:39:54 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 19:25:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	judith(char *str, char ***envp, int *status)
 	blocs = blocisation(str, status);
 	if (blocs == NULL)
 		return (0);
+	// ft_printf("blocs\n");
+	// print_tab_char(blocs);
 	n = tab_size(blocs);
 	processes = full_tokenisation(blocs, n, status, envp);
 	free_tab((void **) blocs);

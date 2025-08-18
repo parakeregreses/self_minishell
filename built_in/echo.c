@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:21 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/18 19:04:59 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 19:25:07 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,18 @@ int	cmd_echo(char **args)
 	newline = 1;
 	while (args[i] && no_newline(args[i]))
 	{
-		printf("%s\n", args[i]);
 		newline = 0;
 		i++;
 	}
-	// while (args[i])
-	// {
-	// 	write(1, no_backslash(args[i]), ft_strlen(args[i]));
-	// 	if (args[i + 1])
-	// 		write(1, " ", 1);
-	// 	i++;
-	// }
-	// if (newline)
-	// 	write(1, "\n", 1);
+	while (args[i])
+	{
+		write(1, no_backslash(args[i]), ft_strlen(args[i]));
+		if (args[i + 1])
+			write(1, " ", 1);
+		i++;
+	}
+	if (newline)
+		write(1, "\n", 1);
 	return (0);
 }
 

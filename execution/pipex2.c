@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 13:50:56 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:07:00 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	pipex2(int n, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin
 	i = 0;
 	while (i < n)
 	{
+		if (g_finished == 1)
+		{
+			ft_close_pipes(pipe1, pipe2);
+			return ;
+		}
 		wait(status);
 		i++;
 	}

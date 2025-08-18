@@ -17,12 +17,16 @@
 #include <signal.h>
 #include <sys/wait.h>
 
+bool	g_finished = 0;
+
 /* print une nouvelle ligne puis dit a readline quon a change de ligne et vider
 les inputs pour ensuite remontrer la ligne de texte vide avec minishell$ */
 static void	signal_handler(int signal)
 {
 	if (signal == SIGINT)
 	{
+		g_finished = 1;
+		wait(NULL);
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);

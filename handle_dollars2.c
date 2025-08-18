@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:42:05 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/18 16:29:24 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/18 18:18:18 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	var_name_len(char *str)
 	int	i;
 
 	i = 0;
+	if (!str || !(ft_isalpha(str[0]) || str[0] == '_'))
+		return (0);
 	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
 		i++;
 	return (i);
@@ -119,6 +121,8 @@ int	fill_str(char *dst, char *src, char **envp, int i)
 			free(var);
 			i += len;
 		}
+		else if (src[i] == '$' && ft_isdigit(src[i + 1]))
+			i += 2;
 		else
 			dst[j++] = src[i++];
 	}

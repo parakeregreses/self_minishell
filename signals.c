@@ -21,23 +21,39 @@ bool	g_finished = 0;
 
 /* print une nouvelle ligne puis dit a readline quon a change de ligne et vider
 les inputs pour ensuite remontrer la ligne de texte vide avec minishell$ */
+//static void	signal_handler(int signal)
+//{
+//	if (signal == SIGINT)
+//	{
+//		write(1, "\n", 1);
+//		//wait(NULL);
+//		rl_on_new_line();
+//		rl_replace_line("", 0);
+//		rl_redisplay();
+//		g_finished = 1;
+//	}
+//	//else if (signal == SIGQUIT)
+//	//{
+//	//	rl_on_new_line();
+//	//	rl_redisplay();
+//	//}
+//}
+
 static void	signal_handler(int signal)
 {
-	if (signal == SIGINT)
-	{
-		g_finished = 1;
-		wait(NULL);
-		printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-	else if (signal == SIGQUIT)
-	{
-		rl_on_new_line();
-		rl_redisplay();
-	}
+	(void)signal;
+	//wait(NULL);
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+	g_finished = 1;
 }
+	//else if (signal == SIGQUIT)
+	//{
+	//	rl_on_new_line();
+	//	rl_redisplay();
+	//}
 
 /*POUR MAC*/
 //static void	signal_handler(int signal)
@@ -68,7 +84,7 @@ void	get_signal(void)
 
 	handler.sa_handler = signal_handler;
 	sigemptyset(&handler.sa_mask);
-	handler.sa_flags = 0;
+	handler.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &handler, NULL);
 	signal(SIGQUIT, SIG_IGN);
 }

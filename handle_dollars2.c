@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollars2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:42:05 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/15 21:30:49 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 16:29:24 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,41 @@ int	copy_var_value(char *dst, char *var_name, char **envp)
 	return (len);
 }
 
+//int	fill_str(char *dst, char *src, char **envp, int i)
+//{
+//	int		j;
+//	int		len;
+//	char	*var;
+
+//	j = 0;
+//	while (src[i])
+//	{
+//		if (src[i] == '\'')
+//		{
+//			dst[j++] = src[i++];
+//			while (src[i] && src[i] != '\'')
+//				dst[j++] = src[i++];
+//			dst[j++] = src[i++];
+//		}
+//		if (src[i] == '$' && src[i + 1]
+//			&& (ft_isalpha(src[i + 1]) || src[i + 1] == '_'))
+//		{
+//			i++;
+//			len = var_name_len(&src[i]);
+//			var = ft_substr(src, i, len);
+//			if (!var)
+//				return (-1);
+//			j += copy_var_value(&dst[j], var, envp);
+//			free(var);
+//			i += len;
+//		}
+//		else
+//			dst[j++] = src[i++];
+//	}
+//	dst[j] = '\0';
+//	return (0);
+//}
+
 int	fill_str(char *dst, char *src, char **envp, int i)
 {
 	int		j;
@@ -67,7 +102,12 @@ int	fill_str(char *dst, char *src, char **envp, int i)
 				dst[j++] = src[i++];
 			dst[j++] = src[i++];
 		}
-		if (src[i] == '$' && src[i + 1]
+		else if (src[i] == '\\' && src[i + 1] == '$')
+		{
+			dst[j++] = '$';
+			i += 2;
+		}
+		else if (src[i] == '$' && src[i + 1]
 			&& (ft_isalpha(src[i + 1]) || src[i + 1] == '_'))
 		{
 			i++;

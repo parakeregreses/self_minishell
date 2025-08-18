@@ -10,6 +10,7 @@
 /*																			*/
 /* ************************************************************************** */
 
+#define _GNU_SOURCE
 #include "minishell.h"
 #include <readline/readline.h>
 #include <readline/history.h>

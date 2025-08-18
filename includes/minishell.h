@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/18 17:38:06 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:12:23 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char		*revamp_str(char *str);
 int			second_verifications(t_arg *tab);
 int			triple_char(t_arg *tab, int n, char c);
 int			check_closed_quotes(char *arg);
-char		***full_tokenisation(char **blocs, int n, int *status, char ***envp);
+char		***full_tokenisation(char **b, int n, int *s, char ***envp);
 t_exec		*extract_infos(char ***processes, int n);
 t_exec		extract_info(char **tokens);
 t_infile	find_infile(char **tokens);
@@ -118,7 +118,6 @@ int			parse_commands(t_exec *infos, int n, char ***envp, int *status);
 void		delete_tempfiles(t_exec *infos, int n);
 int			full_delete_minishell(t_exec *infos, int n);
 void		free_tab_3d(char ***tab3);
-
 
 char		**tab_without_quotes(char **tab);
 int			third_verifications(char *str);

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 21:51:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:11:50 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ void	free_and_print_exit(char ***envp, char *line, int *status)
 	printf("exit\n");
 }
 
+void	launching2(char *line, char ***envp, int *status)
+{
+	if (!empty_argument(line))
+		judith(line, envp, status);
+	if (line[0] != '\0' && !empty_argument(line))
+		add_history(line);
+	free (line);
+}
+
 int	launching(char ***envp, int *status)
 {
 	char	*line;
@@ -67,11 +76,7 @@ int	launching(char ***envp, int *status)
 			free_and_print_exit(envp, line, status);
 			break ;
 		}
-		else if (!empty_argument(line))
-			judith(line, envp, status);
-		if (line[0] != '\0' && !empty_argument(line))
-			add_history(line);
-		free (line);
+		launching2(line, envp, status);
 	}
 	return (0);
 }

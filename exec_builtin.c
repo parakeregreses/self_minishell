@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 15:01:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 17:43:17 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/18 18:08:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	exec_builtin(t_exec info, char ***envp)
 		cmd_pwd(*envp);
 	if (strcmp(info.cmdpath, "unset") == 0)
 		*envp = cmd_unset(envp, info.cmdarg[1]);
-	// exit(EXIT_SUCCESS);
 }
 
 void	exec_builtin_exit(t_exec info, char ***envp)

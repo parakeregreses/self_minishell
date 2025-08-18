@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/13 15:24:29 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:15:13 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,7 @@ static char	*find_target(char **arg)
 
 	home = getenv("HOME");
 	old_pwd = getenv("OLDPWD");
-	if (!arg[1])
-	{
-		if (!home)
-			ft_putstr_fd("cd: HOME not set\n", 2);
-		return (home);
-	}
-	if (ft_strcmp((char *)arg[1], "~") == 0)
+	if (!arg[1] || ft_strcmp((char *)arg[1], "~") == 0)
 	{
 		if (!home)
 			ft_putstr_fd("cd: HOME not set\n", 2);
@@ -106,34 +100,3 @@ int	cmd_cd(char **arg, char **envp)
 		return (1);
 	return (0);
 }
-
-//int	main(int argc, char **argv, char **envp)
-//{
-//	(void)argc;
-//	cmd_pwd(envp);
-//	cmd_cd((const char **)argv, envp);
-//	cmd_pwd(envp);
-//	return (0);
-//}
-
-/* ----------------- */
-
-/* la fonction cmd_cd change le dossier du PROCESS et non du SHELL PARENT /!\ */
-
-// faire "cd .."
-// faire un tableau pour le path pour les (exemple : "Desktop/minishell/srcs");
-// chemin absolu commence par "/", le root du système
-
-// potentiels tests à faire :
-
-// - un path qui se termine par "/"
-
-// tous les cas a gerer :
-// .			FAIT
-// ..			FAIT
-// ../			FAIT
-// ./			FAIT
-// ~			FAIT
-// -			FAIT
-
-// a tester quand ca sera connecte a minishell

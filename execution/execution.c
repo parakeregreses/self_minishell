@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 13:32:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 13:57:07 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 		if (dup2(fdin, 0) == -1 || dup2(info.outfile.fdout, 1) == -1)
 			exit(1);
 		exec_builtin(info, envp);
-		if (close(info.outfile.fdout) == -1)
-			dprintf(2, "info.outfile.fdout\n");
 		dup2(saved_stdout, 1);
 		dup2(saved_stdin, 0);
 		if (close(saved_stdin) == -1 || close(saved_stdout) == -1)
@@ -45,10 +43,12 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 	pid = fork();
 	if (pid == 0)
 	{
-		if (close(saved_stdin) == -1 || close(saved_stdout) == -1)
-			dprintf(2, "stdinoutexec\n");
+		close(saved_stdin);
+		close(saved_stdout);
 		if (is_builtin(info.cmdpath))
 		{
+			if (info.outfile.fdout != 1)
+				close(info.outfile.fdout);
 			ft_close_pipes(piperead, pipewrite);
 			exit(EXIT_SUCCESS);
 		}
@@ -63,5 +63,8 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 	if (fdin != 0)
 		close (fdin);
 	if (info.outfile.fdout != -1 && info.outfile.fdout != pipewrite[WRITE])
-		close(info.outfile.fdout);
+	{
+		if (close(info.outfile.fdout) == -1)
+			dprintf(2, "hello\n");
+	}
 }

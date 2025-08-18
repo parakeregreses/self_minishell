@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   full_delete_minishell.c                            :+:      :+:    :+:   */
+/*   free_tab_3d.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 12:44:56 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 17:36:40 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/18 17:32:35 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/18 17:35:39 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	full_delete_minishell(t_exec *infos, int n)
+void	free_tab_3d(char ***tab3)
 {
 	int	i;
 
 	i = 0;
-	delete_tempfiles(infos, n);
-	while (i != n)
-	{
-		free_tab((void **)(infos[i]).cmdarg);
-		free((infos[i]).cmdpath);
-		free((infos[i]).infile.filename);
-		i++;
-	}
-	free(infos);
-	return (0);
+	while (tab3[i] != NULL)
+		free_tab((void **) tab3[i++]);
+	free(tab3);
 }

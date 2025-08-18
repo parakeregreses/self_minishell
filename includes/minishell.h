@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/18 13:02:41 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:38:06 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char		**find_cmdarg(char **tokens);
 /*EXECUTION*/
 
 void		pipex(t_exec *infos, int n, char ***envp, int *status);
-void		pipex2(int n, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status);
+void		pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status);
 void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout);
 int			find_outfile_pipe(t_outfile outfile, int pipe[2], int i, int n);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
@@ -116,7 +116,8 @@ int			parse_commands(t_exec *infos, int n, char ***envp, int *status);
 
 /*DELETE*/
 void		delete_tempfiles(t_exec *infos, int n);
-int			full_delete_minishell(char **b, char ***p, t_exec *infos, int n);
+int			full_delete_minishell(t_exec *infos, int n);
+void		free_tab_3d(char ***tab3);
 
 
 char		**tab_without_quotes(char **tab);

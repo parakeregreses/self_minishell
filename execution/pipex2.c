@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 17:07:00 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:48:32 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,25 @@ void	ft_close_pipes(int pipe1[2], int pipe2[2])
 		close(pipe2[1]);
 }
 
-void	pipex2(int n, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status)
+void	pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status)
 {
 	int	i;
 
+	(void) infos;
 	i = 0;
 	while (i < n)
 	{
+		wait(status);
 		if (g_finished == 1)
 		{
+			dup2(saved_stdout, 1);
+			dup2(saved_stdin, 0);
+			close(saved_stdin);
+			close(saved_stdout);
 			ft_close_pipes(pipe1, pipe2);
+			// full_delete_minishell(infos, n);
 			return ;
-		}
-		wait(status);
+	}
 		i++;
 	}
 	ft_close_pipes(pipe1, pipe2);
@@ -44,5 +50,6 @@ void	pipex2(int n, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin
 	dup2(saved_stdin, 0);
 	if (close(saved_stdin) == -1 || close(saved_stdout) == -1)
 		dprintf(2, "stdinout2\n");
+	// full_delete_minishell(infos, n);
 	return ;
 }

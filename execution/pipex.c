@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 17:07:38 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:37:18 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void	pipex(t_exec *infos, int n, char ***envp, int *status)
 		}
 		i++;
 	}
-	pipex2(n, pipe1, pipe2, saved_stdout, saved_stdin, status);
+	pipex2(n, infos, pipe1, pipe2, saved_stdout, saved_stdin, status);
 }

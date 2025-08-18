@@ -46,6 +46,7 @@ SRCS = 												\
 			built_in/unset.c						\
 			delete/delete_tempfiles.c				\
 			delete/full_delete_minishell.c			\
+			delete/free_tab_3d.c					\
 			print_tab_arg.c							\
 			main.c									\
 			signals.c								\

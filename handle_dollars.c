@@ -6,11 +6,18 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:38:49 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/15 21:50:40 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:07:24 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	next_quote(char *str, int *i, int *len)
+{
+	*i = close_quote(str, *i, str[*i]);
+	*i = *i + 1;
+	*len = *len + *i;
+}
 
 int	get_final_length(char *str, char **envp)
 {
@@ -25,11 +32,7 @@ int	get_final_length(char *str, char **envp)
 	while (str[i])
 	{
 		if (str[i] == '\'')
-		{
-			i = close_quote(str, i, str[i]);
-			i++;
-			len += i;
-		}
+			next_quote(str, &i, &len);
 		if (str[i] == '$' && str[i + 1]
 			&& (ft_isalpha(str[i + 1]) || str[i + 1] == '_'))
 		{

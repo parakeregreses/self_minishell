@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 12:44:56 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 13:22:54 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 13:59:18 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	full_delete_minishell(char **blocs, char ***processes, t_exec *infos, int n)
 	delete_tempfiles(infos, n);
 	while (i != n)
 	{
-		// close((infos[i]).outfile.fdout);
 		free_tab((void **)processes[i]);
 		free_tab((void **)(infos[i]).cmdarg);
 		free((infos[i]).cmdpath);

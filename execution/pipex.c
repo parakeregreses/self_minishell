@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 22:08:07 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 12:59:53 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,54 +17,6 @@ void	ft_perror_and_exit(char *error, t_exec *infos)
 	free(infos);
 	perror(error);
 	exit(EXIT_FAILURE);
-}
-
-static int	find_outfile_pipe(t_outfile outfile, int pipe[2], int i, int n)
-{
-	if (outfile.filename != NULL)
-	{
-		if (outfile.append == 0)
-			return (open(outfile.filename, O_WRONLY | O_TRUNC | O_CREAT, 0666));
-		return(open(outfile.filename, O_WRONLY | O_APPEND | O_CREAT, 0666));
-	}
-	if (i != (n - 1) && (outfile.filename == NULL))
-		return(pipe[WRITE]);
-	return (1);
-}
-
-void	ft_close_pipes(int pipe1[2], int pipe2[2])
-{
-	close(pipe1[0]);
-	close(pipe1[1]);
-	if (pipe2[0] != -1)
-		close(pipe2[0]);
-	if (pipe2[1] != -1)
-		close(pipe2[1]);
-}
-
-void	pipex2(int n, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status)
-{
-	int	i;
-
-	i = 0;
-	while (i < n)
-	{
-		wait(status);
-		i++;
-	}
-	ft_close_pipes(pipe1, pipe2);
-	dup2(saved_stdout, 1);
-	dup2(saved_stdin, 0);
-	close(saved_stdin);
-	close(saved_stdout);
-	return ;
-}
-
-int	*initpipe2(int pipe[2])
-{
-	pipe[0] = -1;
-	pipe[1] = -1;
-	return (pipe);
 }
 
 void	pipex(t_exec *infos, int n, char ***envp, int *status)

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/15 22:04:40 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/18 13:02:41 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,24 @@ t_infile	find_infile(char **tokens);
 char		*str_without_quotes(char *str);
 t_outfile	find_outfile(char **tokens);
 char		**find_cmdarg(char **tokens);
+
+/*EXECUTION*/
+
 void		pipex(t_exec *infos, int n, char ***envp, int *status);
+void		pipex2(int n, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status);
 void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout);
+int			find_outfile_pipe(t_outfile outfile, int pipe[2], int i, int n);
+int			find_fdin(t_infile infile, int pipe1[2], int i);
+
+/*PARSING*/
 char		*ft_iscmd(char *cmd, char **envp);
 int			parse_commands(t_exec *infos, int n, char ***envp, int *status);
+
+/*DELETE*/
 void		delete_tempfiles(t_exec *infos, int n);
 int			full_delete_minishell(char **b, char ***p, t_exec *infos, int n);
-int			find_fdin(t_infile infile, int pipe1[2], int i);
+
+
 char		**tab_without_quotes(char **tab);
 int			third_verifications(char *str);
 int			file_type(char *cmdi, char *simple_cmd);

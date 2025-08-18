@@ -26,11 +26,12 @@ SRCS = 												\
 			extraction/is_infile.c					\
 			extraction/extract_infos.c				\
 			extraction/extract_info.c				\
-			extraction/find_outfile.c					\
+			extraction/find_outfile.c				\
 			extraction/find_cmdarg.c				\
 			execution/pipex.c						\
 			execution/execution.c					\
-			execution/find_fdin.c					\
+			execution/find_fd.c						\
+			execution/pipex2.c						\
 			parsing/ft_iscmd.c						\
 			parsing/file_type.c						\
 			parsing/parse_commands.c				\

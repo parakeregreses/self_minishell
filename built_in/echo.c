@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:21 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/18 19:25:07 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/19 22:47:21 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ static char	*no_backslash(char *str)
 
 int	cmd_echo(char **args)
 {
+	// ft_printf("\nargs = \n");
+	// print_tab_char(args);
+	// ft_printf("\n");
 	int		i;
 	bool	newline;
 

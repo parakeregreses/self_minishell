@@ -57,6 +57,7 @@ SRCS = 												\
 			launching.c								\
 			handle_dollars.c						\
 			handle_dollars2.c						\
+			dollar.c								\
 
 OBJS = $(SRCS:.c=.o)
 

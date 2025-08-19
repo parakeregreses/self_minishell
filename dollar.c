@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/19 21:56:18 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/19 22:44:42 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,16 @@ int	size_line(char *str)
 		return (close_dollar(str, 0));
 	while (str[i])
 	{
-		if (str[i] == '\'')
+		if (str[i] && str[i] == '\'')
 		{
-			i = close_quote(str + i, i, str[i]);
-			i++;
+			i = close_quote(str, i, str[i]);
+			// i++;
 			if (str[i] == 0)
 				return (i);
 		}
-		if (str[i] == '$')
+		if (str[i] && str[i] == '$')
+			return (i);
+		if (!str[i])
 			return (i);
 		i++;
 	}
@@ -61,7 +63,7 @@ t_arg	fill_line(t_arg tab, char *str, int *i)
 	n = size_line(str + *i);
 	*i = *i + n;
 	tab.str = malloc(sizeof(char) * (n + 1));
-	if (str[j] == '$')
+	if (str[j] && str[j] == '$')
 	{
 		tab.quote = 1;
 		tab.str[k++] = str[j++];
@@ -88,14 +90,16 @@ t_arg	fill_line(t_arg tab, char *str, int *i)
 			tab.str[k++] = str[j++];
 			while (str[j] && str[j] != '\'')
 				tab.str[k++] = str[j++];
-			tab.str[k++] = str[j++];
+			if (str[j])
+				tab.str[k++] = str[j++];
 		}
-		if (str[j] == '$')
+		if (str[j] && str[j] == '$')
 		{
 			tab.str[k] = 0;
 			return (tab);
 		}
-		tab.str[k++] = str[j++];
+		if (str[j])
+			tab.str[k++] = str[j++];
 	}
 	tab.str[k] = 0;
 	return (tab);
@@ -128,14 +132,14 @@ static int	n_lines(char *str)
 	i = 0;
 	while (str[i] != 0)
 	{
-		if (str[i] == '\'')
+		if (str[i] && str[i] == '\'')
 		{
-			i = close_quote(str + i, i, str[i]);
-			i++;
+			i = close_quote(str, i, str[i]);
+			// i++;
 			if (str[i] == 0)
 				return (n);
 		}
-		if (str[i] == '$')
+		if (str[i] && str[i] == '$')
 		{
 			n++;
 			i++;
@@ -144,12 +148,14 @@ static int	n_lines(char *str)
 				return (n);
 			n++;
 		}
+		if (!str[i])
+			return (n);
 		i++;
 	}
 	return (n);
 }
 
-t_arg *expand_tab(t_arg *tab, char **envp)
+t_arg *expand_tab(t_arg *tab, int status, char **envp)
 {
 	int	i;
 
@@ -157,7 +163,7 @@ t_arg *expand_tab(t_arg *tab, char **envp)
 	while((tab[i]).str!= NULL)
 	{
 		if (tab[i].quote == 1)
-			tab[i].str = dollar_signs(tab[i].str, 0, envp);
+			tab[i].str = dollar_signs(tab[i].str, status, envp);
 		i++;
 	}
 	return (tab);
@@ -186,7 +192,7 @@ int	str_without_quotes_len(char *str, char *c)
 		}
 		while (str[j] && *c == 0)
 		{
-			if (str[j] && !ft_ischarinset(str[j], "'\""))
+			while (str[j] && !ft_ischarinset(str[j], "'\""))
 			{
 				len++;
 				j++;
@@ -243,7 +249,7 @@ int	fill_str_without_quotes(char **str, int i, char *str2, char *c)
 		}
 		while (str2[j] && *c == 0)
 		{
-			if (str2[j] && !ft_ischarinset(str2[j], "'\""))
+			while (str2[j] && !ft_ischarinset(str2[j], "'\""))
 				str[0][i++] = str2[j++];
 			if (!str2[j])
 			{
@@ -268,11 +274,12 @@ static char	*fill_str(t_arg *tab, char *str)
 	int		i;
 	int		j;
 	int		k;
-	char	c;
+	char	*c;
 	
 	i = 0;
 	j = 0;
-	c = 0;
+	c = malloc(sizeof(char));
+	*c = 0;
 	while ((tab[i]).str != NULL)
 	{
 		if ((tab[i]).quote == 1)
@@ -282,10 +289,11 @@ static char	*fill_str(t_arg *tab, char *str)
 				str[j++] = (tab[i]).str[k++];
 		}
 		else
-			j = fill_str_without_quotes(&str, j, (tab[i]).str, &c);
+			j = fill_str_without_quotes(&str, j, (tab[i]).str, c);
 		str[j] = 0;
 		i++;
 	}
+	free(c);
 	return (str);
 }
 
@@ -302,7 +310,7 @@ char	*delete_quote(t_arg *tab)
 	return (str);
 }
 
-char	*expand_and_unquote(char *str, char **envp)
+char	*expand_and_unquote(char *str, int status, char **envp)
 {
 	int		n;
 	t_arg	*tab;
@@ -310,18 +318,20 @@ char	*expand_and_unquote(char *str, char **envp)
 	n = n_lines(str);
 	tab = malloc(sizeof(t_arg) * (n + 1));
 	tab = fill_tab(tab, str, n);
-	tab = expand_tab(tab, envp);
-	print_tab_arg(tab);
+	free(str);
+	tab = expand_tab(tab, status, envp);
 	return (delete_quote(tab));
 }
 
-int	main(int argc, char **argv, char **envp)
-{
-	(void) argc;
-	(void) argv;
-	char *str;
-	
-	str = expand_and_unquote("$VAR1 $les\"a\"'$b'", envp);
-	printf("%s\n", str);
-	free(str);
-}
+// int	main(int argc, char **argv, char **envp)
+// {
+// 	(void) argc;
+// 	(void) argv;
+// 	char *str;
+
+// 	str = ft_strdup("\"aspas '\"");
+// 	ft_printf("before : str = %s\n", str);
+// 	str = expand_and_unquote(str, 0, envp);
+// 	printf("%s\n", str);
+// 	free(str);
+// }

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/18 18:12:23 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/19 22:02:04 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void		exec_builtin(t_exec info, char ***envp);
 void		exec_builtin_exit(t_exec info, char ***envp);
 char		**expand_dollar(char **tab, int *status, char **envp);
 char		*ft_findpathforeachcommand(char **paths, char *cmd);
+char		*expand_and_unquote(char *str, int status, char **envp);
 
 void		get_signal(void);
 

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/19 19:57:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/19 21:56:18 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_arg	fill_line(t_arg tab, char *str, int *i)
 		}
 		else
 		{
-			while (str[j] && !ft_ischarinset(str[j], "\'\" "))
+			while (str[j] && !ft_ischarinset(str[j], "\'\" $"))
 				tab.str[k++] = str[j++];
 			tab.str[k] = 0;
 			return (tab);
@@ -111,7 +111,6 @@ static t_arg	*fill_tab(t_arg *tab, char *str, int n)
 	while (i != n)
 	{
 		tab[i] = fill_line(tab[i], str, &j);
-		ft_printf("str[i] = %c\n", str[j]);
 		i++;
 	}
 	tab[i].str = NULL;
@@ -150,21 +149,179 @@ static int	n_lines(char *str)
 	return (n);
 }
 
-t_arg	*expand_and_unquote(char *str)
+t_arg *expand_tab(t_arg *tab, char **envp)
+{
+	int	i;
+
+	i = 0;
+	while((tab[i]).str!= NULL)
+	{
+		if (tab[i].quote == 1)
+			tab[i].str = dollar_signs(tab[i].str, 0, envp);
+		i++;
+	}
+	return (tab);
+}
+
+int	str_without_quotes_len(char *str, char *c)
+{
+	int j;
+	int	len;
+	
+	j = 0;
+	len = 0;
+	while (str[j])
+	{
+		if (*c != 0)
+		{
+			while (str[j] && str[j] != *c)
+			{
+				len ++;
+				j++;
+			}
+			if (str[j] == 0)
+				return (len);
+			j++;
+			*c = 0;
+		}
+		while (str[j] && *c == 0)
+		{
+			if (str[j] && !ft_ischarinset(str[j], "'\""))
+			{
+				len++;
+				j++;
+			}
+			if (!str[j])
+				return (len);
+			*c = str[j];
+		}
+		if (!str[j])
+			return (len);
+		j++;
+	}
+	return (len);
+}
+
+static int	ft_len(t_arg *tab)
+{
+	int		len;
+	int		i;
+	char	c;
+
+	len = 0;
+	i = 0;
+	c = 0;
+	while ((tab[i]).str != NULL)
+	{
+		if ((tab[i]).quote == 1)
+			len = len + ft_strlen((tab[i]).str);
+		else
+			len = len + str_without_quotes_len((tab[i]).str, &c);
+		i++;
+	}
+	return (len);
+}
+
+int	fill_str_without_quotes(char **str, int i, char *str2, char *c)
+{
+	int j;
+
+	j = 0;
+	while (str2[j])
+	{
+		if (*c != 0)
+		{
+			while (str2[j] && str2[j] != *c)
+				str[0][i++] = str2[j++];
+			if (!str2[j])
+			{
+				str[0][i] = 0;
+				return (i);
+			}
+			j++;
+			*c = 0;
+		}
+		while (str2[j] && *c == 0)
+		{
+			if (str2[j] && !ft_ischarinset(str2[j], "'\""))
+				str[0][i++] = str2[j++];
+			if (!str2[j])
+			{
+				str[0][i] = 0;
+				return (i);
+			}
+			*c = str2[j];
+		}
+		if (!str2[j])
+			{
+				str[0][i] = 0;
+				return (i);
+			}
+		j++;
+	}
+	str[0][i] = 0;
+	return (i);
+}
+
+static char	*fill_str(t_arg *tab, char *str)
+{
+	int		i;
+	int		j;
+	int		k;
+	char	c;
+	
+	i = 0;
+	j = 0;
+	c = 0;
+	while ((tab[i]).str != NULL)
+	{
+		if ((tab[i]).quote == 1)
+		{
+			k = 0;
+			while ((tab[i]).str[k])
+				str[j++] = (tab[i]).str[k++];
+		}
+		else
+			j = fill_str_without_quotes(&str, j, (tab[i]).str, &c);
+		str[j] = 0;
+		i++;
+	}
+	return (str);
+}
+
+
+char	*delete_quote(t_arg *tab)
+{
+	int	len;
+	char *str;
+
+	len = ft_len(tab);
+	str = malloc(sizeof(char) * (len + 1));
+	str = fill_str(tab, str);
+	free_tab_arg(tab);
+	return (str);
+}
+
+char	*expand_and_unquote(char *str, char **envp)
 {
 	int		n;
 	t_arg	*tab;
 
 	n = n_lines(str);
-	ft_printf("n = %d\n", n);
 	tab = malloc(sizeof(t_arg) * (n + 1));
 	tab = fill_tab(tab, str, n);
-	return (tab);
+	tab = expand_tab(tab, envp);
+	print_tab_arg(tab);
+	return (delete_quote(tab));
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
-	t_arg *tab = expand_and_unquote("$hello $les\"amis\"'$lol'");
-	print_tab_arg(tab);
-	free_tab_arg(tab);
+	(void) argc;
+	(void) argv;
+	char *str;
+	
+	str = expand_and_unquote("$VAR1 $les\"a\"'$b'", envp);
+	printf("%s\n", str);
+	free(str);
 }

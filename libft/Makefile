@@ -1,4 +1,5 @@
 SRCS = ft_isascii.c\
+ft_isnum.c\
 ft_memmove.c\
 ft_memcmp.c\
 ft_split.c\

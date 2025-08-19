@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/05 15:53:49 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:50:14 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ enum e_booleen
 	TRUE=1
 };
 
+int			ft_isnum(int c);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);

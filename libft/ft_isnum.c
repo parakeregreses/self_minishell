@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_quote.c                                      :+:      :+:    :+:   */
+/*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 13:41:41 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/19 18:59:32 by jlaine-b         ###   ########.fr       */
+/*   Created: 2024/10/14 17:11:19 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/19 18:55:54 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// if str[i] == c, find the next occurence of c in str and returns its position
-int	close_quote(char *str, int i, char c)
+int	ft_isnum(int c)
 {
-	i++;
-	while (str[i] && str[i] != c)
-		i++;
-	if (str[i - 1] == 0)
-		return (-1);
-	return (i);
+	if (48 <= c && c <= 57)
+		return (1);
+	return (0);
 }

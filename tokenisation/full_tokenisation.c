@@ -6,21 +6,18 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 18:41:51 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/19 22:46:57 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:26:13 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // in each bloc, tokens the bloc (turns into a tab of the different elements)
-char	***full_tokenisation(char **blocs, int n, int *status, char ***envp)
+char	***full_tokenisation(char **blocs, int n)
 {
 	int		i;
 	char	*set;
 	char	***processes;
-
-	(void) status;
-	(void) envp;
 
 	set = ft_strdup("<> ");
 	i = 0;
@@ -30,7 +27,6 @@ char	***full_tokenisation(char **blocs, int n, int *status, char ***envp)
 		processes[i] = token_bloc(blocs[i], set);
 		// ft_printf("processesi\n");
 		// print_tab_char(processes[i]);
-		processes[i] = expand_dollar(processes[i], status, *envp);
 		// ft_printf("processesi\n");
 		// print_tab_char(processes[i]);
 		// processes[i] = tab_without_quotes(processes[i]);

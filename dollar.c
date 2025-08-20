@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/19 22:44:42 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:32:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	size_line(char *str)
 
 	i = 0;
 	if (str[0] == '$')
-		return (close_dollar(str, 0));
+		return (close_dollar(str, 1));
 	while (str[i])
 	{
 		if (str[i] && str[i] == '\'')
@@ -135,7 +135,6 @@ static int	n_lines(char *str)
 		if (str[i] && str[i] == '\'')
 		{
 			i = close_quote(str, i, str[i]);
-			// i++;
 			if (str[i] == 0)
 				return (n);
 		}
@@ -318,7 +317,7 @@ char	*expand_and_unquote(char *str, int status, char **envp)
 	n = n_lines(str);
 	tab = malloc(sizeof(t_arg) * (n + 1));
 	tab = fill_tab(tab, str, n);
-	free(str);
+	// free(str);
 	tab = expand_tab(tab, status, envp);
 	return (delete_quote(tab));
 }
@@ -329,7 +328,7 @@ char	*expand_and_unquote(char *str, int status, char **envp)
 // 	(void) argv;
 // 	char *str;
 
-// 	str = ft_strdup("\"aspas '\"");
+// 	str = ft_strdup("$9HOME");
 // 	ft_printf("before : str = %s\n", str);
 // 	str = expand_and_unquote(str, 0, envp);
 // 	printf("%s\n", str);

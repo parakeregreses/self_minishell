@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:38:49 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/19 18:44:58 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 10:43:25 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,11 @@ char	*dollar_signs(char *str, int var, char **envp)
 	char	*tmp;
 	char	*final;
 
+	if (str[0] == '$' && str[1] == 0)
+	{
+		free(str);
+		return (ft_strdup(""));
+	}
 	tmp = replace_dollar_mark(str, var);
 	if (!tmp)
 		return (NULL);

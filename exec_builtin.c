@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 15:01:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 18:08:57 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:26:09 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	exec_builtin(t_exec info, char ***envp)
 {
+	// ft_printf("info.cmdarg = \n");
+	// print_tab_char(info.cmdarg);
 	if (strcmp(info.cmdpath, "cd") == 0)
 		cmd_cd(info.cmdarg, *envp);
 	if (strcmp(info.cmdpath, "echo") == 0)

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/19 22:02:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:25:35 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ char		*revamp_str(char *str);
 int			second_verifications(t_arg *tab);
 int			triple_char(t_arg *tab, int n, char c);
 int			check_closed_quotes(char *arg);
-char		***full_tokenisation(char **b, int n, int *s, char ***envp);
-t_exec		*extract_infos(char ***processes, int n);
-t_exec		extract_info(char **tokens);
-t_infile	find_infile(char **tokens);
+char		***full_tokenisation(char **b, int n);
+t_exec		*extract_infos(char ***processes, int n, int *status, char ***envp);
+t_exec		extract_info(char **tokens, int *status, char ***envp);
+t_infile	find_infile(char **tokens, int *status, char ***envp);
 char		*str_without_quotes(char *str);
-t_outfile	find_outfile(char **tokens);
-char		**find_cmdarg(char **tokens);
+t_outfile	find_outfile(char **tokens, int *status, char ***envp);
+char		**find_cmdarg(char **tokens, int *status, char ***envp);
 
 /*EXECUTION*/
 

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/18 19:25:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:04:04 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	judith(char *str, char ***envp, int *status)
 	// ft_printf("blocs\n");
 	// print_tab_char(blocs);
 	n = tab_size(blocs);
-	processes = full_tokenisation(blocs, n, status, envp);
+	processes = full_tokenisation(blocs, n);
 	free_tab((void **) blocs);
-	infos = extract_infos(processes, n);
+	infos = extract_infos(processes, n, status, envp);
 	free_tab_3d(processes);
 	if (parse_commands(infos, n, envp, status) == FALSE)
 		return (full_delete_minishell(infos, n));

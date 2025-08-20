@@ -24,3 +24,20 @@ void	ft_display_env(char **envp)
 		i++;
 	}
 }
+
+void	ft_print_export(char *env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i] && env[i] != '=')
+		i++;
+	if (env[i] == '=')
+	{
+		printf("declare -x %.*s=\"%s\"\n", i, env, env + i + 1);
+	}
+	else
+	{
+		printf("declare -x %s\n", env);
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:16:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/20 11:25:07 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:04:46 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ char	**find_cmdarg(char **tokens, int *status, char ***envp)
 			i++;
 		}
 	}
+	cmd = add_line_in_tab(cmd, NULL);
 	return (cmd);
 }

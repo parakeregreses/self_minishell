@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/20 11:32:38 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:35:19 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ int	close_dollar(char *str, int i)
 int	size_line(char *str)
 {
 	int	i;
+	int q;
 
 	i = 0;
+	q = 0;
 	if (str[0] == '$')
 		return (close_dollar(str, 1));
 	while (str[i])
@@ -43,8 +45,17 @@ int	size_line(char *str)
 			if (str[i] == 0)
 				return (i);
 		}
+		if (str[i] && str[i] == '"')
+			q = ft_bool(q);
 		if (str[i] && str[i] == '$')
-			return (i);
+		{
+			if (!str[i + 1])
+				return (i + 1);
+			if (!(q == 1 && str[i + 1] && ft_ischarinset(str[i + 1], "\" $")))
+				return (i);
+			else
+				i++;
+		}
 		if (!str[i])
 			return (i);
 		i++;
@@ -57,13 +68,15 @@ t_arg	fill_line(t_arg tab, char *str, int *i)
 	int	n;
 	int	j;
 	int	k;
+	int	q;
 
 	k = 0;
 	j = *i;
+	q = 0;
 	n = size_line(str + *i);
 	*i = *i + n;
 	tab.str = malloc(sizeof(char) * (n + 1));
-	if (str[j] && str[j] == '$')
+	if (str[j] && str[j] == '$' && str[j + 1])
 	{
 		tab.quote = 1;
 		tab.str[k++] = str[j++];
@@ -93,10 +106,23 @@ t_arg	fill_line(t_arg tab, char *str, int *i)
 			if (str[j])
 				tab.str[k++] = str[j++];
 		}
+		if (str[j] && str[j] == '"')
+			q = ft_bool(q);
 		if (str[j] && str[j] == '$')
 		{
-			tab.str[k] = 0;
-			return (tab);
+			if (!str[j + 1])
+			{
+				tab.str[k++] = str[j];
+				tab.str[k] = 0;
+				return (tab);
+			}
+			if (!(q == 1 && str[j + 1] && ft_ischarinset(str[j + 1], "\" $")))
+			{
+				tab.str[k] = 0;
+				return (tab);
+			}
+			else
+				tab.str[k++] = str[j++];
 		}
 		if (str[j])
 			tab.str[k++] = str[j++];
@@ -123,10 +149,12 @@ static t_arg	*fill_tab(t_arg *tab, char *str, int n)
 
 static int	n_lines(char *str)
 {
-	int	n;
-	int	i;
+	int		n;
+	int		i;
+	bool	q;
 
 	n = 0;
+	q = 0;
 	if (str[0] != '$')
 		n = 1;
 	i = 0;
@@ -138,14 +166,23 @@ static int	n_lines(char *str)
 			if (str[i] == 0)
 				return (n);
 		}
+		if (str[i] && str[i] == '"')
+			q = ft_bool(q);
 		if (str[i] && str[i] == '$')
 		{
-			n++;
-			i++;
-			i = close_dollar(str, i);
-			if (str[i] == 0)
+			if (!str[i + 1])
 				return (n);
-			n++;
+			if (!(q == 1 && str[i + 1] && ft_ischarinset(str[i + 1], "\" $")))
+			{
+				n++;
+				i++;
+				i = close_dollar(str, i);
+				if (str[i] == 0)
+					return (n);
+				n++;
+			}
+			else
+				i++;
 		}
 		if (!str[i])
 			return (n);
@@ -315,8 +352,10 @@ char	*expand_and_unquote(char *str, int status, char **envp)
 	t_arg	*tab;
 
 	n = n_lines(str);
+	// ft_printf("n = %d\n", n);
 	tab = malloc(sizeof(t_arg) * (n + 1));
 	tab = fill_tab(tab, str, n);
+	// print_tab_arg(tab);
 	// free(str);
 	tab = expand_tab(tab, status, envp);
 	return (delete_quote(tab));
@@ -328,7 +367,7 @@ char	*expand_and_unquote(char *str, int status, char **envp)
 // 	(void) argv;
 // 	char *str;
 
-// 	str = ft_strdup("$9HOME");
+// 	str = ft_strdup(" echo hello $");
 // 	ft_printf("before : str = %s\n", str);
 // 	str = expand_and_unquote(str, 0, envp);
 // 	printf("%s\n", str);

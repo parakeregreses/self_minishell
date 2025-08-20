@@ -81,6 +81,7 @@ ft_strtrimfree.c\
 add_line_in_tab.c\
 close_quote.c\
 trim_tab_free.c\
+ft_bool.c\
 
 
 OBJS = $(SRCS:.c=.o)

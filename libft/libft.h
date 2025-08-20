@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/19 18:50:14 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:48:47 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,6 @@ char		*ft_strtrimfree(char const *s1, char const *set);
 char		**add_line_in_tab(char **tab, char *line);
 int			close_quote(char *str, int i, char c);
 char		**trim_tab_free(char **tab, char *set);
+int			ft_bool(int bool);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:29:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/31 17:09:57 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:05:55 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**add_line_in_tab(char **tab, char *line)
 		new_tab[i] = ft_strdup(tab[i]);
 		i++;
 	}
-	new_tab[i++] = ft_strdup(line);
+	new_tab[i++] = line;
 	new_tab[i] = NULL;
 	free_tab((void **)tab);
 	return (new_tab);

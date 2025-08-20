@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:55:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 21:56:02 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:54:05 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,23 @@ char	*ft_definecmdi(char **paths, int *i, char *cmd)
 	return (cmdi);
 }
 
+char *cmd_not_found(char **paths, char *cmd)
+{
+	char	*simple_cmd;
+	char	*line;
+
+	free_tab((void **)paths);
+	simple_cmd = ft_firstword(cmd, ' ');
+	line = ft_strjoinfree(simple_cmd, ft_strdup(": command not found\n"));
+	// write(1, "minishell:", ft_strlen("minishell:"));
+	write(2, line, ft_strlen(line));
+	free(line);
+	return (NULL);
+}
+
 char	*ft_findpathforeachcommand(char **paths, char *cmd)
 {
 	int		i;
-	char	*simple_cmd;
 	char	*cmdi;
 
 	i = 0;
@@ -47,9 +60,5 @@ char	*ft_findpathforeachcommand(char **paths, char *cmd)
 		}
 		free(cmdi);
 	}
-	free_tab((void **)paths);
-	simple_cmd = ft_firstword(cmd, ' ');
-	ft_printf("minishell: %s: command not found\n", simple_cmd);
-	free(simple_cmd);
-	return (NULL);
+	return (cmd_not_found(paths, cmd));
 }

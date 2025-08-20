@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/20 11:25:35 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:18:39 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int			find_outfile_pipe(t_outfile outfile, int pipe[2], int i, int n);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
 
 /*PARSING*/
-char		*ft_iscmd(char *cmd, char **envp);
+char		*ft_iscmd(char *cmd, int *status, char **envp);
 int			parse_commands(t_exec *infos, int n, char ***envp, int *status);
 
 /*DELETE*/

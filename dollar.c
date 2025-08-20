@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/20 17:35:19 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:14:06 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,6 +351,8 @@ char	*expand_and_unquote(char *str, int status, char **envp)
 	int		n;
 	t_arg	*tab;
 
+	if (ft_strcmp(str, "$") == 0)
+		return (ft_strdup(str));
 	n = n_lines(str);
 	// ft_printf("n = %d\n", n);
 	tab = malloc(sizeof(t_arg) * (n + 1));
@@ -367,8 +369,8 @@ char	*expand_and_unquote(char *str, int status, char **envp)
 // 	(void) argv;
 // 	char *str;
 
-// 	str = ft_strdup(" echo hello $");
-// 	ft_printf("before : str = %s\n", str);
+// 	str = ft_strdup("$");
+// 	ft_printf("%s\n", str);
 // 	str = expand_and_unquote(str, 0, envp);
 // 	printf("%s\n", str);
 // 	free(str);

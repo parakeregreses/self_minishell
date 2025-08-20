@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 17:41:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/12 14:48:13 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:18:20 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	file_type(char *cmdi, char *cmd)
 		return (FALSE);
 	if (S_ISDIR(buf.st_mode))
 	{
+		write(2, "Is a directory\n", 15);
 		free(simple_cmd);
 		return (FALSE);
 	}

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 21:48:19 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:18:58 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	parse_commands(t_exec *infos, int n, char ***envp, int *status)
 	result = TRUE;
 	while (i < n)
 	{
-		(infos[i]).cmdpath = ft_iscmd((infos[i]).cmdarg[0], *envp);
+		(infos[i]).cmdpath = ft_iscmd((infos[i]).cmdarg[0], status, *envp);
 		if ((infos[i]).cmdpath == NULL)
 		{
 			*status = 127;

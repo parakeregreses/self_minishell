@@ -146,27 +146,27 @@ si on peut juste ajouter a la fin sans tout vider */
 // 	(void)argv;
 
 // 	new_envp = ft_copy_env(envp);
-	// new_envp = NULL;
-	// new_var = "bonjour=0";
-	// new_var2 = "bon";
-	// new_var3 = "bonjour=bon";
+//	// new_envp = NULL;
+//	 new_var = "bonjour=0";
+//	 new_var2 = "bon";
+//	 new_var3 = "bonjour=bon";
 
-	// if (new_envp == NULL)
-	// 	printf("boo boo\n");
+//	 if (new_envp == NULL)
+//	 	printf("boo boo\n");
 
-	// while (new_envp[i])
-	// {
-	// 	printf("%s\n", new_envp[i]);
-	// 	i++;
-	// }
-	// printf("\n --------------- \n\n");
+//	 while (new_envp[i])
+//	 {
+//	 	printf("%s\n", new_envp[i]);
+//	 	i++;
+//	 }
+//	 printf("\n --------------- \n\n");
 
-	// i = 0;
-	// while (envp[i])
-	// {
-	// 	printf("%d\n", ft_strcmp(new_envp[i], envp[i]));
-	// 	i++;
-	// }
+//	 i = 0;
+//	 while (envp[i])
+//	 {
+//	 	printf("%d\n", ft_strcmp(new_envp[i], envp[i]));
+//	 	i++;
+//	 }
 // 	new_envp = ft_add_in_env(new_envp, new_var);
 // 	printf("\n --------------- \n\n");
 // 	i = 0;

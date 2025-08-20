@@ -12,35 +12,55 @@
 
 #include "minishell.h"
 
-void	ft_print_export(char *env)
+int	need_to_replace_var(char **envp, char *env_variable)
 {
-	int	i;
+	int		i;
+	size_t	len;
+	size_t	j;
 
-	i = 0;
-	while (env[i] && env[i] != '=')
-		i++;
-	if (env[i] == '=')
-	{
-		printf("declare -x %.*s=\"%s\"\n", i, env, env + i + 1);
-	}
-	else
-	{
-		printf("declare -x %s\n", env);
-	}
-}
-
-int	ft_replace_export_if_found(char **envp, char *env_variable)
-{
-	int	i;
-
+	len = 0;
+	while (env_variable[len] && env_variable[len] != '=')
+		len++;
 	i = 0;
 	while (envp && envp[i])
 	{
-		if (ft_strcmp(envp[i], env_variable) == 0)
+		j = 0;
+		while (envp[i][j] && envp[i][j] != '=')
+			j++;
+		if (ft_strncmp(envp[i], env_variable, len) == 0 && j == len)
 			return (1);
 		i++;
 	}
 	return (0);
+}
+
+char	**ft_replace_export_if_found(char **export_list, char *env_variable)
+{
+	int		i;
+	size_t	len;
+	size_t	j;
+
+	len = 0;
+	while (env_variable[len] && env_variable[len] != '=')
+		len++;
+	i = 0;
+	while (export_list && export_list[i])
+	{
+		j = 0;
+		while (export_list[i][j] && export_list[i][j] != '=')
+			j++;
+		if (ft_strncmp(export_list[i], env_variable, len) == 0 && j == len)
+		{
+			if (ft_strchr(env_variable, '='))
+			{
+				free(export_list[i]);
+				export_list[i] = ft_strdup(env_variable);
+			}
+			return (export_list);
+		}
+		i++;
+	}
+	return (ft_create_env(export_list, env_variable));
 }
 
 char	**export_alphabetical_order(char **envp)
@@ -66,30 +86,43 @@ char	**export_alphabetical_order(char **envp)
 	return (result);
 }
 
+//char	**ft_add_in_export(char **envp, char *new_env_variable)
+//{
+//	int		i;
+//	int		j;
+//	char	**new_export;
+
+//	i = 0;
+//	if (!new_env_variable || !new_env_variable[0])
+//		return (envp);
+//	if (need_to_replace_var(envp, new_env_variable))
+//	{
+//		new_export = ft_replace_export_if_found(envp, new_env_variable);
+//		return (new_export);
+//	}
+//	while (envp && envp[i])
+//		i++;
+//	new_export = malloc(sizeof(char *) * (i + 2));
+//	if (!new_export)
+//		return (envp);
+//	j = 0;
+//	while (j < i)
+//	{
+//		new_export[j] = ft_strdup(envp[j]);
+//		j++;
+//	}
+//	new_export[j] = ft_strdup(new_env_variable);
+//	new_export[j + 1] = NULL;
+//	return (new_export);
+//}
+
 char	**ft_add_in_export(char **envp, char *new_env_variable)
 {
-	int		i;
-	int		j;
 	char	**new_export;
 
-	i = 0;
 	if (!new_env_variable || !new_env_variable[0])
 		return (envp);
-	if (ft_replace_export_if_found(envp, new_env_variable))
-		return (envp);
-	while (envp && envp[i])
-		i++;
-	new_export = malloc(sizeof(char *) * (i + 2));
-	if (!new_export)
-		return (envp);
-	j = 0;
-	while (j < i)
-	{
-		new_export[j] = ft_strdup(envp[j]);
-		j++;
-	}
-	new_export[j] = ft_strdup(new_env_variable);
-	new_export[j + 1] = NULL;
+	new_export = ft_replace_export_if_found(envp, new_env_variable);
 	return (new_export);
 }
 
@@ -100,7 +133,10 @@ char	**ft_export(char ***envp, char *new_env_variable)
 	if (env_var_checker(*envp, new_env_variable) == 1)
 		return (NULL);
 	new_env = ft_add_in_export(*envp, new_env_variable);
-	free_tab((void **)*envp);
-	*envp = new_env;
-	return (new_env);
+	if (new_env != *envp)
+	{
+		free_tab((void **)*envp);
+		*envp = new_env;
+	}
+	return (*envp);
 }

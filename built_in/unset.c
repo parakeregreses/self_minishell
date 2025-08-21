@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:04 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/15 17:08:02 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/21 15:26:27 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,27 @@ char	**cmd_unset(char ***envp, char *var_rm)
 	int		env_number;
 	char	**temp_envp;
 
-	print_tab_char(*envp);
-	printf("\n\n\n\n");
+	//print_tab_char(*envp);
+	//printf("\n\n\n\n");
 	varlen = 0;
 	env_number = 0;
 	varlen = 0;
 	if (!var_rm)
-		return (NULL);
+		return (*envp);
 	varlen = 0;
 	while (var_rm[varlen])
 		varlen++;
 	while ((*envp)[env_number])
 		env_number++;
-	temp_envp = (char **)malloc(sizeof(char *) * env_number);
+	temp_envp = (char **)malloc(sizeof(char *) * (env_number + 1));
 	if (!temp_envp)
-		return (NULL);
+		return (*envp);
 	temp_envp = remove_var_from_envp(*envp, temp_envp, var_rm, varlen);
-	print_tab_char(temp_envp);
+	//print_tab_char(temp_envp);
+	if (!temp_envp)
+		return (*envp);
+	free_envp(*envp);
+	*envp = temp_envp;
 	return (temp_envp);
 }
 

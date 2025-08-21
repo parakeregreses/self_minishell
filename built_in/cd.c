@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/18 18:15:13 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:59:19 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	*find_target(char **arg)
 			ft_putendl_fd(old_pwd, 1);
 		return (old_pwd);
 	}
-	return ((char *)arg[1]);
+	return (arg[1]);
 }
 
 /* pour find_target, check qu'il ny ait pas de variable unused, + si ca cause
@@ -84,19 +84,28 @@ static int	update_env(char ***envp, char *old_pwd)
 	return (0);
 }
 
-int	cmd_cd(char **arg, char **envp)
+int	cmd_cd(char **arg, char ***envp)
 {
 	char	old_pwd[PATH_MAX];
 	char	*dir;
+	int		i;
 
-	if (copy_old_pwd(old_pwd))
+	i = 0;
+	while (arg[i])
+	i++;
+	if (i > 2)
+	{
+		ft_putstr_fd("cd: too many arguments\n", 2);
 		return (1);
+	}
 	dir = find_target(arg);
 	if (!dir)
+	return (1);
+	if (copy_old_pwd(old_pwd))
 		return (1);
 	if (change_directory(dir))
 		return (1);
-	if (update_env(&envp, old_pwd))
+	if (update_env(envp, old_pwd))
 		return (1);
 	return (0);
 }

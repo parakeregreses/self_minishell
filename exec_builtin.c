@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 15:01:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/20 11:26:09 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:53:25 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	exec_builtin(t_exec info, char ***envp)
 	// ft_printf("info.cmdarg = \n");
 	// print_tab_char(info.cmdarg);
 	if (strcmp(info.cmdpath, "cd") == 0)
-		cmd_cd(info.cmdarg, *envp);
+		cmd_cd(info.cmdarg, envp);
 	if (strcmp(info.cmdpath, "echo") == 0)
 		cmd_echo(info.cmdarg);
 	if (strcmp(info.cmdpath, "env") == 0)
@@ -33,7 +33,7 @@ void	exec_builtin(t_exec info, char ***envp)
 void	exec_builtin_exit(t_exec info, char ***envp)
 {
 	if (strcmp(info.cmdpath, "cd") == 0)
-		cmd_cd(info.cmdarg, *envp);
+		cmd_cd(info.cmdarg, envp);
 	if (strcmp(info.cmdpath, "echo") == 0)
 		cmd_echo(info.cmdarg);
 	if (strcmp(info.cmdpath, "env") == 0)

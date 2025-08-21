@@ -67,7 +67,7 @@ char	*check_env_value(char *str, char **envp);
 
 /* ============================ CD ============================ */
 
-int		cmd_cd(char **arg, char **envp);
+int		cmd_cd(char **arg, char ***envp);
 
 /* =========================== ECHO =========================== */
 

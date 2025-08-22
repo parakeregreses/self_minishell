@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/22 18:33:35 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/22 21:53:21 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void cmd_exit(char **args, char ***envp, int *status)
+void cmd_exit(char *line, char **envp, int *status)
+{
+	
+}
+
+void cmd_exit2(char **args, char ***envp, int *status)
 {
 	int	res;
 	int	count_args;

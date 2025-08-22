@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   find_cmdarg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:16:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:51:36 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**find_cmdarg(char **tokens, int *ex_code, char ***envp)
+char	**find_cmdarg(char **tokens, int *status, char ***envp)
 {
 	int		i;
 	char	**cmd;
@@ -26,7 +26,7 @@ char	**find_cmdarg(char **tokens, int *ex_code, char ***envp)
 			i++;
 		else
 		{
-			cmd = add_line_in_tab(cmd, expand_and_unquote(tokens[i], *ex_code, *envp));
+			cmd = add_line_in_tab(cmd, expand_and_unquote(tokens[i], *status, *envp));
 			i++;
 		}
 	}

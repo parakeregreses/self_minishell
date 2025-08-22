@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_dollar.c                                    :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/15 20:49:39 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 17:51:36 by liulm            ###   ########.fr       */
+/*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
+/*   Updated: 2025/08/22 18:02:23 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**expand_dollar(char **tab, int *status, char **envp)
+void cmd_exit(char **args, char ***envp, int *status)
 {
-	int	i;
+	int	res;
+	int	count_args;
 
-	i = 0;
-	while (tab[i] != NULL)
+	res = 0;
+	count_args = 0;
+	(void)status;
+	(void)envp;
+	while (args[count_args])
+		count_args++;
+	//printf("%d", count_args);
+	if (count_args > 2)
 	{
-		// ft_printf("before : tab[i] = %s\n", tab[i]);
-		tab[i] = expand_and_unquote(tab[i], *status, envp);
-		// ft_printf("after : tab[i] = %s\n", tab[i]);
-		i++;
+		printf("exit\n");
+		printf("minishell: exit: too many arguments\n");
+		*status = 1;
+		return ;
 	}
-	return (tab);
+	else
+	{
+		res = ft_atoi(args[1]);
+		res %= 256;
+		printf("%d", res);
+	}
+	free_and_print_exit(envp, args, status);
+
 }

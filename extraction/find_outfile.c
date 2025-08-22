@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_outfile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 22:14:44 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 17:01:11 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:51:36 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_outfile(char *file, char *mode)
 	return (TRUE);
 }
 
-t_outfile	find_outfile(char **tokens, int *ex_code, char ***envp)
+t_outfile	find_outfile(char **tokens, int *status, char ***envp)
 {
 	t_outfile	outfile;
 	int			i;
@@ -45,7 +45,7 @@ t_outfile	find_outfile(char **tokens, int *ex_code, char ***envp)
 			if (tokens[i][1] && tokens[i][1] == '>')
 			{
 				free(outfile.filename);
-				outfile.filename = expand_and_unquote(tokens[i] + 2, *ex_code, *envp);
+				outfile.filename = expand_and_unquote(tokens[i] + 2, *status, *envp);
 				if (is_outfile(outfile.filename, "O_APPEND") == FALSE)
 				{
 					outfile.append = -1;
@@ -56,7 +56,7 @@ t_outfile	find_outfile(char **tokens, int *ex_code, char ***envp)
 			else
 			{
 				free(outfile.filename);
-				outfile.filename = expand_and_unquote(tokens[i] + 1, *ex_code, *envp);
+				outfile.filename = expand_and_unquote(tokens[i] + 1, *status, *envp);
 				if (is_outfile(outfile.filename, "O_TRUNC") == FALSE)
 				{
 					outfile.append = -1;
@@ -64,7 +64,7 @@ t_outfile	find_outfile(char **tokens, int *ex_code, char ***envp)
 				}
 				// close(open(outfile.filename, O_WRONLY | O_TRUNC | O_CREAT, 0666));
 			}
-				
+
 		}
 		i++;
 	}

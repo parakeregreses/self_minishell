@@ -44,6 +44,7 @@ SRCS = 												\
 			built_in/export.c						\
 			built_in/pwd.c							\
 			built_in/unset.c						\
+			built_in/exit.c							\
 			delete/delete_tempfiles.c				\
 			delete/full_delete_minishell.c			\
 			delete/free_tab_3d.c					\

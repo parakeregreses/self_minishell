@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 16:24:16 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:51:36 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ static int	n_lines(char *str)
 	return (n);
 }
 
-t_arg *expand_tab(t_arg *tab, int ex_code, char **envp)
+t_arg *expand_tab(t_arg *tab, int status, char **envp)
 {
 	int	i;
 
@@ -199,7 +199,7 @@ t_arg *expand_tab(t_arg *tab, int ex_code, char **envp)
 	while((tab[i]).str!= NULL)
 	{
 		if (tab[i].quote == 1)
-			tab[i].str = dollar_signs(tab[i].str, ex_code, envp);
+			tab[i].str = dollar_signs(tab[i].str, status, envp);
 		i++;
 	}
 	return (tab);
@@ -209,7 +209,7 @@ int	str_without_quotes_len(char *str, char *c)
 {
 	int j;
 	int	len;
-	
+
 	j = 0;
 	len = 0;
 	while (str[j])
@@ -311,7 +311,7 @@ static char	*fill_str(t_arg *tab, char *str)
 	int		j;
 	int		k;
 	char	*c;
-	
+
 	i = 0;
 	j = 0;
 	c = malloc(sizeof(char));
@@ -346,7 +346,7 @@ char	*delete_quote(t_arg *tab)
 	return (str);
 }
 
-char	*expand_and_unquote(char *str, int ex_code, char **envp)
+char	*expand_and_unquote(char *str, int status, char **envp)
 {
 	int		n;
 	t_arg	*tab;
@@ -356,7 +356,7 @@ char	*expand_and_unquote(char *str, int ex_code, char **envp)
 	n = n_lines(str);
 	tab = malloc(sizeof(t_arg) * (n + 1));
 	tab = fill_tab(tab, str, n);
-	tab = expand_tab(tab, ex_code, envp);
+	tab = expand_tab(tab, status, envp);
 	return (delete_quote(tab));
 }
 

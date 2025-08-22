@@ -39,7 +39,7 @@ extern bool	g_finished;
 
 /* ======================== MINISHELL ========================== */
 
-int		launching(char ***envp, int *ex_code);
+int		launching(char ***envp, int *status);
 char	*cat_current_dir(void);
 
 /* =================== ENVIRONMENT VARIABLES =================== */
@@ -77,6 +77,10 @@ int		cmd_echo(char **args, int *status);
 /* =========================== PWD ============================ */
 
 void	cmd_pwd(char **envp, int *status);
+
+/* =========================== EXIT ============================ */
+
+void	cmd_exit(char **args, char ***envp, int *status);
 
 /* ============================================================ */
 

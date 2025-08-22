@@ -12,18 +12,18 @@
 
 #include "minishell.h"
 
-t_exec	extract_info(char **tokens, int *ex_code, char ***envp)
+t_exec	extract_info(char **tokens, int *status, char ***envp)
 {
 	t_exec	info;
 
-	info.infile = find_infile(tokens, ex_code, envp);
+	info.infile = find_infile(tokens, status, envp);
 	if (info.infile.here_doc == -1)
 	{
 		info.outfile.append = -1;
 		info.outfile.filename = NULL;
 	}
 	else
-		info.outfile = find_outfile(tokens, ex_code, envp);
-	info.cmdarg = find_cmdarg(tokens, ex_code, envp);
+		info.outfile = find_outfile(tokens, status, envp);
+	info.cmdarg = find_cmdarg(tokens, status, envp);
 	return (info);
 }

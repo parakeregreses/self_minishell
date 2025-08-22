@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 21:42:45 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 21:44:37 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ void	free_and_print_exit(char ***envp, char *line, int *status)
 	printf("exit\n");
 }
 
-// void cmd_exit(char **args, char ***envp, int *status)
-// {
-
-// }
-
 void	launching2(char *line, char ***envp, int *status)
 {
 	if (!empty_argument(line))
@@ -76,12 +71,16 @@ int	launching(char ***envp, int *status)
 		}
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		if (ft_strncmp(line + i, "exit", 4) == 0)
+		if (ft_strncmp(line + i, "exit", 4) == 0) // remplacer par info.cmd_path parsing
 		{
-			// built_in_exit(envp, line, status);
+			//cmd_exit(line, envp, status); // remplacer line par args du parsing
+			free_and_print_exit(envp, line, status);
 			break ;
 		}
 		launching2(line, envp, status);
 	}
 	return (0);
 }
+
+
+// il faut exit QUE s'il y a 1 ou 0 argument.

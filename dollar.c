@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 17:37:58 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 21:43:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ int	str_without_quotes_len(char *str, char *c)
 {
 	int j;
 	int	len;
-	
+
 	j = 0;
 	len = 0;
 	while (str[j])
@@ -311,7 +311,7 @@ static char	*fill_str(t_arg *tab, char *str)
 	int		j;
 	int		k;
 	char	*c;
-	
+
 	i = 0;
 	j = 0;
 	c = malloc(sizeof(char));

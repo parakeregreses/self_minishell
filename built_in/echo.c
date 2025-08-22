@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:21 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/19 22:47:21 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:14:36 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*no_backslash(char *str)
 	return (str);
 }
 
-int	cmd_echo(char **args)
+int	cmd_echo(char **args, int *status)
 {
 	// ft_printf("\nargs = \n");
 	// print_tab_char(args);
@@ -78,7 +78,7 @@ int	cmd_echo(char **args)
 	}
 	if (newline)
 		write(1, "\n", 1);
-	return (0);
+	return (*status = 0);
 }
 
 // int main()

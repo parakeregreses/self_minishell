@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/20 18:18:39 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:51:06 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char		**find_cmdarg(char **tokens, int *status, char ***envp);
 
 void		pipex(t_exec *infos, int n, char ***envp, int *status);
 void		pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status);
-void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout);
+void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout, int *status);
 int			find_outfile_pipe(t_outfile outfile, int pipe[2], int i, int n);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
 
@@ -124,8 +124,8 @@ int			third_verifications(char *str);
 int			file_type(char *cmdi, char *simple_cmd);
 int			judith(char *str, char ***envp, int *status);
 int			is_builtin(char *cmd);
-void		exec_builtin(t_exec info, char ***envp);
-void		exec_builtin_exit(t_exec info, char ***envp);
+void		exec_builtin(t_exec info, char ***envp, int *status);
+//void		exec_builtin_exit(t_exec info, char ***envp, int *status);
 char		**expand_dollar(char **tab, int *status, char **envp);
 char		*ft_findpathforeachcommand(char **paths, char *cmd);
 char		*expand_and_unquote(char *str, int status, char **envp);

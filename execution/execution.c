@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 19:03:53 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:59:30 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	perror_free_and_exit_child(char **tab, int exit_status, char *message)
 	exit(exit_status);
 }
 
-void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout)
+void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout, int *status)
 {
 	pid_t	pid;
 	int		fdin;
@@ -32,7 +32,7 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 	{
 		if (dup2(fdin, 0) == -1 || dup2(info.outfile.fdout, 1) == -1)
 			exit(1);
-		exec_builtin(info, envp);
+		exec_builtin(info, envp, status);
 		dup2(saved_stdout, 1);
 		dup2(saved_stdin, 0);
 		if (close(saved_stdin) == -1 || close(saved_stdout) == -1)
@@ -50,7 +50,7 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 			if (info.outfile.fdout != 1)
 				close(info.outfile.fdout);
 			ft_close_pipes(piperead, pipewrite);
-			exit(EXIT_SUCCESS);
+			exit(*status);
 		}
 		if (info.cmdpath == NULL || fdin == -1)
 			perror_free_and_exit_child(info.cmdarg, EXIT_SUCCESS, "cmdissue");

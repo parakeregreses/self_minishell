@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:04 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/21 15:26:27 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/22 17:14:49 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**remove_var_from_envp(char **envp, char **temp, char *var, int varlen)
 	return (temp);
 }
 
-char	**cmd_unset(char ***envp, char *var_rm)
+char	**cmd_unset(char ***envp, char *var_rm, int *status)
 {
 	int		varlen;
 	int		env_number;
@@ -78,7 +78,10 @@ char	**cmd_unset(char ***envp, char *var_rm)
 	env_number = 0;
 	varlen = 0;
 	if (!var_rm)
+	{
+		*status = 0;
 		return (*envp);
+	}
 	varlen = 0;
 	while (var_rm[varlen])
 		varlen++;
@@ -86,13 +89,20 @@ char	**cmd_unset(char ***envp, char *var_rm)
 		env_number++;
 	temp_envp = (char **)malloc(sizeof(char *) * (env_number + 1));
 	if (!temp_envp)
+	{
+		*status = 1;
 		return (*envp);
+	}
 	temp_envp = remove_var_from_envp(*envp, temp_envp, var_rm, varlen);
 	//print_tab_char(temp_envp);
 	if (!temp_envp)
+	{
+		*status = 1;
 		return (*envp);
+	}
 	free_envp(*envp);
 	*envp = temp_envp;
+	*status = 0;
 	return (temp_envp);
 }
 

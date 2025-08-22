@@ -126,17 +126,22 @@ char	**ft_add_in_export(char **envp, char *new_env_variable)
 	return (new_export);
 }
 
-char	**ft_export(char ***envp, char *new_env_variable)
+char	**cmd_export(char ***envp, char *new_env_variable, int *status)
 {
 	char	**new_env;
 
 	if (env_var_checker(*envp, new_env_variable) == 1)
+	{
+		*status = 1;
 		return (NULL);
+	}
 	new_env = ft_add_in_export(*envp, new_env_variable);
 	if (new_env != *envp)
 	{
+		//*status = 1;
 		free_tab((void **)*envp);
 		*envp = new_env;
 	}
+	*status = 0;
 	return (*envp);
 }

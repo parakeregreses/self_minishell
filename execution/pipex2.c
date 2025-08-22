@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 17:48:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:13:44 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,18 @@ void	ft_close_pipes(int pipe1[2], int pipe2[2])
 void	pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status)
 {
 	int	i;
+	int	wait_status;
 
 	(void) infos;
 	i = 0;
+	wait_status = 0;
 	while (i < n)
 	{
-		wait(status);
+		wait(&wait_status);
+		if ((wait_status & 0x7F) == 0)
+			*status = (wait_status >> 8) & 0xFF;
+		else
+			*status = 1;
 		if (g_finished == 1)
 		{
 			dup2(saved_stdout, 1);

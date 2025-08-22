@@ -44,8 +44,8 @@ char	*cat_current_dir(void);
 
 /* =================== ENVIRONMENT VARIABLES =================== */
 
-char	**cmd_unset(char ***envp, char *var_rm);
-char	**ft_export(char ***envp, char *new_env_variable);
+char	**cmd_unset(char ***envp, char *var_rm, int *status);
+char	**cmd_export(char ***envp, char *new_env_variable, int *status);
 char	**ft_copy_env(char **envp);
 char	**ft_free_envp(int i, char **envp);
 char	**export_alphabetical_order(char **envp);
@@ -53,7 +53,7 @@ char	**ft_add_in_env(char **envp, char *new_env_variable);
 char	**ft_create_env(char **envp, char *new_env_variable);
 char	**ft_replace_env_if_found(char **envp, char *env_variable);
 void	ft_print_export(char *env);
-void	ft_display_env(char **envp);
+void	cmd_env(char **envp, int *status);
 void	swap_str(char **a, char **b);
 void	swap_variables(char **result, int count);
 int		env_var_checker(char **envp, char *env_variable);
@@ -67,16 +67,16 @@ char	*check_env_value(char *str, char **envp);
 
 /* ============================ CD ============================ */
 
-int		cmd_cd(char **arg, char ***envp);
+int		cmd_cd(char **arg, char ***envp, int *status);
 
 /* =========================== ECHO =========================== */
 
 char	*str_without_quotes(char *str);
-int		cmd_echo(char **args);
+int		cmd_echo(char **args, int *status);
 
 /* =========================== PWD ============================ */
 
-void	cmd_pwd(char **envp);
+void	cmd_pwd(char **envp, int *status);
 
 /* ============================================================ */
 

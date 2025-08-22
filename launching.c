@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 18:09:34 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/22 18:29:47 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	launching(char ***envp, int *status)
 			i++;
 		if (ft_strncmp(line + i, "exit", 4) == 0) // remplacer par info.cmd_path parsing
 		{
-			cmd_exit(line, envp, status); // remplacer line par args du parsing
+			//cmd_exit(line, envp, status); // remplacer line par args du parsing
 			free_and_print_exit(envp, line, status);
 			break ;
 		}
@@ -81,3 +81,6 @@ int	launching(char ***envp, int *status)
 	}
 	return (0);
 }
+
+
+// il faut exit QUE s'il y a 1 ou 0 argument.

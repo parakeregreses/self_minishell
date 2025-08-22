@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/22 18:02:23 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/22 18:33:35 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void cmd_exit(char **args, char ***envp, int *status)
 	{
 		res = ft_atoi(args[1]);
 		res %= 256;
-		printf("%d", res);
+		//printf("%d", res);
 	}
-	free_and_print_exit(envp, args, status);
-
+	*status = res;
+	//free_and_print_exit(envp, args, status);
 }

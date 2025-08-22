@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	ft_display_env(char **envp)
+void	cmd_env(char **envp, int *status)
 {
 	int	i;
 
@@ -23,6 +23,7 @@ void	ft_display_env(char **envp)
 			printf("%s\n", envp[i]);
 		i++;
 	}
+	*status = 0;
 }
 
 void	ft_print_export(char *env)

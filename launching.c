@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:35:10 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,12 @@ void	free_and_print_exit(char ***envp, char *line, int *ex_code)
 	printf("exit\n");
 }
 
-void	launching2(char *line, char ***envp, int *ex_code)
+void cmd_exit(char **args, char ***envp, int *status)
+{
+
+}
+
+void	launching2(char *line, char ***envp, int *status)
 {
 	if (!empty_argument(line))
 		judith(line, envp, ex_code);
@@ -71,12 +76,12 @@ int	launching(char ***envp, int *ex_code)
 		}
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		if (ft_strncmp(line + i, "exit", 4) == 0)
-		{
-			free_and_print_exit(envp, line, ex_code);
-			break ;
-		}
-		launching2(line, envp, ex_code);
+		//if (ft_strncmp(line + i, "exit", 4) == 0)
+		//{
+		//	free_and_print_exit(envp, line, status);
+		//	break ;
+		//}
+		launching2(line, envp, status);
 	}
 	return (0);
 }

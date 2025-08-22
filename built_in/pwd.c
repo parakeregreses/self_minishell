@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 20:25:19 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/13 15:11:25 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:16:45 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	pwd_putstr(char *str)
 	write(1, "\n", 1);
 }
 
-void	cmd_pwd(char **envp)
+void	cmd_pwd(char **envp, int *status)
 {
 	int	i;
 
@@ -36,6 +36,7 @@ void	cmd_pwd(char **envp)
 			pwd_putstr(envp[i]);
 		i++;
 	}
+	*status = 0;
 }
 
 //int	main(int argc, char **argv, char **envp)

@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/21 15:59:19 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/22 16:14:19 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	update_env(char ***envp, char *old_pwd)
 	return (0);
 }
 
-int	cmd_cd(char **arg, char ***envp)
+int	cmd_cd(char **arg, char ***envp, int *status)
 {
 	char	old_pwd[PATH_MAX];
 	char	*dir;
@@ -96,16 +96,16 @@ int	cmd_cd(char **arg, char ***envp)
 	if (i > 2)
 	{
 		ft_putstr_fd("cd: too many arguments\n", 2);
-		return (1);
+		return (*status = 1);
 	}
 	dir = find_target(arg);
 	if (!dir)
-	return (1);
+		return(*status = 1);
 	if (copy_old_pwd(old_pwd))
-		return (1);
+		return (*status = 1);
 	if (change_directory(dir))
-		return (1);
+		return (*status = 1);
 	if (update_env(envp, old_pwd))
-		return (1);
-	return (0);
+		return (*status = 1);
+	return (*status = 0);
 }

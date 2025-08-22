@@ -6,20 +6,20 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 20:47:12 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	judith(char *str, char ***envp, int *ex_code)
+int	judith(char *str, char ***envp, int *status)
 {
 	t_exec	*infos;
 	int		n;
 	char	**blocs;
 	char	***processes;
 
-	blocs = blocisation(str, ex_code);
+	blocs = blocisation(str, status);
 	if (blocs == NULL)
 		return (0);
 	// ft_printf("blocs\n");
@@ -27,11 +27,11 @@ int	judith(char *str, char ***envp, int *ex_code)
 	n = tab_size(blocs);
 	processes = full_tokenisation(blocs, n);
 	free_tab((void **) blocs);
-	infos = extract_infos(processes, n, ex_code, envp);
+	infos = extract_infos(processes, n, status, envp);
 	free_tab_3d(processes);
-	if (parse_commands(infos, n, envp, ex_code) == FALSE)
+	if (parse_commands(infos, n, envp, status) == FALSE)
 		return (full_delete_minishell(infos, n));
-	pipex(infos, n, envp, ex_code);
+	pipex(infos, n, envp, status);
 	full_delete_minishell(infos, n);
 	return (0);
 }

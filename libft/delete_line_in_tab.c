@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:22 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/06/09 22:27:37 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 20:58:17 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	**delete_line_in_tab(char **old_tab, int i)
 
 	j = 0;
 	len = tab_size(old_tab);
+	ft_printf("len = %d\n", len);
 	new_tab = malloc(sizeof(char *) * len);
 	if (new_tab == NULL)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 21:37:28 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,48 +39,72 @@ char	**ft_splitpaths(char **envp)
 	return (paths);
 }
 
-int	is_absolute_path(char *cmd, int *ex_code)
-{
-	if (access(cmd, F_OK | X_OK) == 0)
-	{
-		if (file_type(cmd, cmd) == 1)
-			return (TRUE);
-		*ex_code = 126;
-		return (FALSE);
-	}
-	*ex_code = 126;
-	return (FALSE);
-}
-
-char *no_such_file_or_directory(char *cmd)
+char *no_such_file_or_directory(char *cmd, int *status)
 {
 	char	*simple_cmd;
 	char	*line;
 
 	simple_cmd = ft_firstword(cmd, ' ');
-	line = ft_strjoinfree(simple_cmd, ft_strdup(":  No such file or directory\n"));
-	write(1, "minishell:", ft_strlen("minishell:"));
+	line = ft_strjoinfree(simple_cmd, ft_strdup(": No such file or directory\n"));
+	write(2, "minishell: ", ft_strlen("minishell: "));
 	write(2, line, ft_strlen(line));
 	free(line);
+	*status = 127;
 	return (NULL);
 }
 
-char	*ft_iscmd(char *cmd, int *ex_code, char **envp)
+char	*is_absolute_path(char *cmd, int *status)
+{
+	char *message;
+
+	if (access(cmd, R_OK) != 0)
+	{
+		*status = 126;
+		message = ft_strjoin("minishell: ", cmd);
+		perror(message);
+		free(message);
+		return (NULL);
+	}
+	return (ft_strdup(cmd));
+}
+
+int	directory(char *cmd, int *status)
+{
+	if (access(cmd, F_OK) != 0)
+	{
+		no_such_file_or_directory(cmd, status);
+		return (FALSE);
+	}
+	if (file_type(cmd, cmd) != 1)
+	{
+		*status = 126;
+		return (FALSE);
+	}
+	return (TRUE);
+}
+
+char	*ft_iscmd(char *cmd, int *status, char **envp)
 {
 	char	**paths;
 
-	if (ft_charinstr(cmd, '/') == TRUE && access(cmd, F_OK) != 0)
-		return (no_such_file_or_directory(cmd));
+	if (cmd == NULL)
+		return (NULL);
 	if (is_builtin(cmd) == TRUE)
 		return (ft_strdup(cmd));
-	if (is_absolute_path(cmd, ex_code) == TRUE)
-		return (ft_strdup(cmd));
+	if (ft_charinstr(cmd, '/') == TRUE)
+	{
+		if (directory(cmd, status) == FALSE)
+			return (NULL);
+	}
+	if (access(cmd, F_OK) == 0)
+		return (is_absolute_path(cmd, status));
 	paths = ft_splitpaths(envp);
 	if (paths == NULL)
 	{
 		ft_printf("no environnement variable PATH\n");
+		*status = 125;
 		return (NULL);
 	}
 	else
-		return (ft_findpathforeachcommand(paths, cmd));
+		return (ft_findpathforeachcommand(paths, cmd, status));
 }

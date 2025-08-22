@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:21 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/22 16:14:36 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/22 19:38:24 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static char	*no_backslash(char *str)
 
 int	cmd_echo(char **args, int *status)
 {
+
 	// ft_printf("\nargs = \n");
 	// print_tab_char(args);
 	// ft_printf("\n");

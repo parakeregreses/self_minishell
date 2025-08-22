@@ -58,6 +58,7 @@ SRCS = 												\
 			handle_dollars.c						\
 			handle_dollars2.c						\
 			dollar.c								\
+			blocisation/delete_empty_lines.c		\
 
 OBJS = $(SRCS:.c=.o)
 

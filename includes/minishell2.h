@@ -39,7 +39,7 @@ extern bool	g_finished;
 
 /* ======================== MINISHELL ========================== */
 
-int		launching(char ***envp, int *ex_code);
+int		launching(char ***envp, int *status);
 char	*cat_current_dir(void);
 
 /* =================== ENVIRONMENT VARIABLES =================== */

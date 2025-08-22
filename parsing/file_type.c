@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 17:41:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 20:25:52 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,20 @@
 int	file_type(char *cmdi, char *cmd)
 {
 	struct stat	buf;
-	int			ex_code;
+	int			status;
 	char		*simple_cmd;
+	char		*message;
 
 	simple_cmd = ft_firstword(cmd, ' ');
-	ex_code = lstat(cmdi, &buf);
-	if (ex_code != 0)
+	status = lstat(cmdi, &buf);
+	if (status != 0)
 		return (FALSE);
 	if (S_ISDIR(buf.st_mode))
 	{
-		write(2, "Is a directory\n", 15);
+		message = ft_strjoin("minishell: ", simple_cmd);
+		write(2, message, ft_strlen(message));
+		free(message);
+		write(2, ": Is a directory\n", 17);
 		free(simple_cmd);
 		return (FALSE);
 	}

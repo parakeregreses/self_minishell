@@ -6,32 +6,32 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 17:37:58 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**blocisation2(char *str, int *ex_code);
+char	**blocisation2(char *str, int *status);
 
 // separates the string in different blocs delimitated by the pipes
 // such as bloc1 | bloc2 | bloc3
-char	**blocisation(char *str, int *ex_code)
+char	**blocisation(char *str, int *status)
 {
 	if (check_closed_quotes(str) == FALSE)
 	{
 		ft_printf("minishell: syntax problem: unclosed quotes\n");
-		*ex_code = 127;
+		*status = 127;
 		return (NULL);
 	}
 	str = revamp_str(str);
 	if (first_verifications(str) == FALSE)
 	{
-		*ex_code = 2;
+		*status = 2;
 		free(str);
 		return (NULL);
 	}
-	return (blocisation2(str, ex_code));
+	return (blocisation2(str, status));
 }
 
 t_arg	*remove_whitespace_tab(t_arg *arg)
@@ -79,7 +79,7 @@ char	**separate_pipe2(t_arg *arg)
 	return (tab);
 }
 
-char	**blocisation2(char *str, int *ex_code)
+char	**blocisation2(char *str, int *status)
 {
 	t_arg	*arg;
 	char	**tab;
@@ -88,12 +88,12 @@ char	**blocisation2(char *str, int *ex_code)
 	arg = remove_whitespace_tab(arg);
 	if (arg == NULL)
 	{
-		*ex_code = EXIT_FAILURE;
+		*status = EXIT_FAILURE;
 		return (NULL);
 	}
 	if (second_verifications(arg) == FALSE || third_verifications(str) == FALSE)
 	{
-		*ex_code = 2;
+		*status = 2;
 		free(str);
 		free_tab_arg(arg);
 		return (NULL);

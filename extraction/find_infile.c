@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:04 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 19:46:16 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,47 +55,55 @@ t_infile	find_infile_file(char *filename, t_infile infile)
 	return (infile);
 }
 
-t_infile	find_infile2(char **tokens, t_infile infile, int *ex_code, char ***envp)
+t_exec	find_infile2(char **tokens, t_exec info, int *ex_code, char ***envp)
 {
 	int	i;
 
 	i = 0;
-	infile.here_doc = -1;
+	info.infile.here_doc = -1;
 	while (tokens[i] != NULL)
 	{
 		if (tokens[i][0] && tokens[i][0] == '<')
 		{
 			if (tokens[i][1] && tokens[i][1] == '<')
-				infile = find_infile_lim2(expand_and_unquote(tokens[i] + 2, *ex_code, *envp), infile);
+				info.infile = find_infile_lim2(expand_and_unquote(tokens[i] + 2, *ex_code, *envp), info.infile);
 		}
 		i++;
 	}
-	return (infile);
+	return (info);
 }
 
-t_infile	find_infile(char **tokens, int *ex_code, char ***envp)
+t_exec	find_in_out_file(char **tokens, int *ex_code, char ***envp)
 {
-	t_infile	infile;
+	t_exec	info;
 	int			i;
 
-	infile.filename = NULL;
-	infile.tempfilename = NULL;
-	infile.here_doc = 0;
+	info.outfile.filename = NULL;
+	info.outfile.append = 0;
+	info.infile.filename = NULL;
+	info.infile.tempfilename = NULL;
+	info.infile.here_doc = 0;
 	i = 0;
 	while (tokens[i] != NULL)
 	{
 		if (tokens[i][0] && tokens[i][0] == '<')
 		{
 			if (tokens[i][1] && tokens[i][1] == '<')
-				infile = find_infile_lim(expand_and_unquote(tokens[i] + 2, *ex_code, *envp), infile);
+				info.infile = find_infile_lim(expand_and_unquote(tokens[i] + 2, *ex_code, *envp), info.infile);
 			else
 			{
-				infile = find_infile_file(expand_and_unquote(tokens[i] + 1, *ex_code, *envp), infile);
-				if (infile.filename == NULL)
-					return (find_infile2(&(tokens[i + 1]), infile, ex_code, envp));
+				info.infile = find_infile_file(expand_and_unquote(tokens[i] + 1, *ex_code, *envp), info.infile);
+				if (info.infile.filename == NULL)
+					return (find_infile2(&(tokens[i + 1]), info, ex_code, envp));
 			}
+		}
+		if (tokens[i][0] && tokens[i][0] == '>')
+		{
+			info.outfile = find_outfile(tokens[i], ex_code, envp, info.outfile);
+			if (info.outfile.append == -1)
+				return (find_infile2(&(tokens[i + 1]), info, ex_code, envp));
 		}
 		i++;
 	}
-	return (infile);
+	return (info);
 }

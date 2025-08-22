@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:18:10 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/06 17:32:30 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 21:02:42 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ int	is_only_whitespaces(char *str)
 	return (TRUE);
 }
 
-t_arg	*delete_empty_lines(t_arg *arg)
+char	**delete_empty_lines(char **tab)
 {
 	int	i;
 
-	if (arg == NULL)
+	if (tab == NULL)
 		return (NULL);
 	i = 0;
-	while ((arg[i]).str != NULL)
+	while (tab[i] != NULL)
 	{
-		if (is_only_whitespaces((arg[i]).str) == TRUE)
-			arg = delete_line_in_tab_arg(arg, i);
+		if (is_only_whitespaces(tab[i]) == TRUE)
+			tab = delete_line_in_tab(tab, i);
 		else
 			i++;
 	}
-	return (arg);
+	return (tab);
 }

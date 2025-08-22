@@ -118,3 +118,8 @@ bash: syntax error near unexpected token `|'
 
 ls << | wc -l
 bash: syntax error near unexpected token `|'
+
+-----------------------------
+
+ls > outfile1 > outfile2
+cree les deux fichiers et mets le resultat de ls dans outfile2

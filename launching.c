@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 18:11:50 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,25 @@ char	*find_line(void)
 	return (line);
 }
 
-void	free_and_print_exit(char ***envp, char *line, int *status)
+void	free_and_print_exit(char ***envp, char *line, int *ex_code)
 {
 	free(line);
 	free_tab((void **) *envp);
 	free(envp);
-	free(status);
+	free(ex_code);
 	printf("exit\n");
 }
 
-void	launching2(char *line, char ***envp, int *status)
+void	launching2(char *line, char ***envp, int *ex_code)
 {
 	if (!empty_argument(line))
-		judith(line, envp, status);
+		judith(line, envp, ex_code);
 	if (line[0] != '\0' && !empty_argument(line))
 		add_history(line);
 	free (line);
 }
 
-int	launching(char ***envp, int *status)
+int	launching(char ***envp, int *ex_code)
 {
 	char	*line;
 	int		i;
@@ -66,17 +66,17 @@ int	launching(char ***envp, int *status)
 		line = find_line();
 		if (!line)
 		{
-			free_and_print_exit(envp, NULL, status);
+			free_and_print_exit(envp, NULL, ex_code);
 			break ;
 		}
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
 		if (ft_strncmp(line + i, "exit", 4) == 0)
 		{
-			free_and_print_exit(envp, line, status);
+			free_and_print_exit(envp, line, ex_code);
 			break ;
 		}
-		launching2(line, envp, status);
+		launching2(line, envp, ex_code);
 	}
 	return (0);
 }

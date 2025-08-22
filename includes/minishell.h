@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/20 18:18:39 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char		**delete_line_in_tab(char **tab, int i);
 t_arg		*extract_quote(char *str, t_segment s);
 t_segment	find_segment(char *str, char c);
 char		**append_tabs_and_free(char **tab1, char **tab2);
-char		**blocisation(char *str, int *status);
+char		**blocisation(char *str, int *ex_code);
 char		which_separator(char *s, char c1, char c2);
 t_arg		*cut_tab_tail_arg(t_arg	*tab, int n);
 t_arg		*cut_tab_head_arg(t_arg *tab, int n);
@@ -95,24 +95,24 @@ int			second_verifications(t_arg *tab);
 int			triple_char(t_arg *tab, int n, char c);
 int			check_closed_quotes(char *arg);
 char		***full_tokenisation(char **b, int n);
-t_exec		*extract_infos(char ***processes, int n, int *status, char ***envp);
-t_exec		extract_info(char **tokens, int *status, char ***envp);
-t_infile	find_infile(char **tokens, int *status, char ***envp);
+t_exec		*extract_infos(char ***processes, int n, int *ex_code, char ***envp);
+t_exec		extract_info(char **tokens, int *ex_code, char ***envp);
+t_infile	find_infile(char **tokens, int *ex_code, char ***envp);
 char		*str_without_quotes(char *str);
-t_outfile	find_outfile(char **tokens, int *status, char ***envp);
-char		**find_cmdarg(char **tokens, int *status, char ***envp);
+t_outfile	find_outfile(char **tokens, int *ex_code, char ***envp);
+char		**find_cmdarg(char **tokens, int *ex_code, char ***envp);
 
 /*EXECUTION*/
 
-void		pipex(t_exec *infos, int n, char ***envp, int *status);
-void		pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status);
+void		pipex(t_exec *infos, int n, char ***envp, int *ex_code);
+void		pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *ex_code);
 void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout);
 int			find_outfile_pipe(t_outfile outfile, int pipe[2], int i, int n);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
 
 /*PARSING*/
-char		*ft_iscmd(char *cmd, int *status, char **envp);
-int			parse_commands(t_exec *infos, int n, char ***envp, int *status);
+char		*ft_iscmd(char *cmd, int *ex_code, char **envp);
+int			parse_commands(t_exec *infos, int n, char ***envp, int *ex_code);
 
 /*DELETE*/
 void		delete_tempfiles(t_exec *infos, int n);
@@ -122,13 +122,13 @@ void		free_tab_3d(char ***tab3);
 char		**tab_without_quotes(char **tab);
 int			third_verifications(char *str);
 int			file_type(char *cmdi, char *simple_cmd);
-int			judith(char *str, char ***envp, int *status);
+int			judith(char *str, char ***envp, int *ex_code);
 int			is_builtin(char *cmd);
 void		exec_builtin(t_exec info, char ***envp);
 void		exec_builtin_exit(t_exec info, char ***envp);
-char		**expand_dollar(char **tab, int *status, char **envp);
+char		**expand_dollar(char **tab, int *ex_code, char **envp);
 char		*ft_findpathforeachcommand(char **paths, char *cmd);
-char		*expand_and_unquote(char *str, int status, char **envp);
+char		*expand_and_unquote(char *str, int ex_code, char **envp);
 
 void		get_signal(void);
 

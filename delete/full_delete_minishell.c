@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 12:44:56 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 17:36:40 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:29:28 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	full_delete_minishell(t_exec *infos, int n)
 		free_tab((void **)(infos[i]).cmdarg);
 		free((infos[i]).cmdpath);
 		free((infos[i]).infile.filename);
+		free((infos[i]).outfile.filename);
 		i++;
 	}
 	free(infos);

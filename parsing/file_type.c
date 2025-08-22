@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 17:41:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/20 18:18:20 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int	file_type(char *cmdi, char *cmd)
 {
 	struct stat	buf;
-	int			status;
+	int			ex_code;
 	char		*simple_cmd;
 
 	simple_cmd = ft_firstword(cmd, ' ');
-	status = lstat(cmdi, &buf);
-	if (status != 0)
+	ex_code = lstat(cmdi, &buf);
+	if (ex_code != 0)
 		return (FALSE);
 	if (S_ISDIR(buf.st_mode))
 	{

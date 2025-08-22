@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/18 17:48:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:38:53 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,18 @@ void	ft_close_pipes(int pipe1[2], int pipe2[2])
 		close(pipe2[1]);
 }
 
-void	pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status)
+void	pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *ex_code)
 {
 	int	i;
+	int	status;
 
 	(void) infos;
 	i = 0;
 	while (i < n)
 	{
-		wait(status);
+		wait(&status);
+		if (WIFEXITED(status))
+			*ex_code = WEXITSTATUS(status);
 		if (g_finished == 1)
 		{
 			dup2(saved_stdout, 1);

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/20 18:14:06 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:24:16 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ static int	n_lines(char *str)
 	return (n);
 }
 
-t_arg *expand_tab(t_arg *tab, int status, char **envp)
+t_arg *expand_tab(t_arg *tab, int ex_code, char **envp)
 {
 	int	i;
 
@@ -199,7 +199,7 @@ t_arg *expand_tab(t_arg *tab, int status, char **envp)
 	while((tab[i]).str!= NULL)
 	{
 		if (tab[i].quote == 1)
-			tab[i].str = dollar_signs(tab[i].str, status, envp);
+			tab[i].str = dollar_signs(tab[i].str, ex_code, envp);
 		i++;
 	}
 	return (tab);
@@ -346,7 +346,7 @@ char	*delete_quote(t_arg *tab)
 	return (str);
 }
 
-char	*expand_and_unquote(char *str, int status, char **envp)
+char	*expand_and_unquote(char *str, int ex_code, char **envp)
 {
 	int		n;
 	t_arg	*tab;
@@ -354,12 +354,9 @@ char	*expand_and_unquote(char *str, int status, char **envp)
 	if (ft_strcmp(str, "$") == 0)
 		return (ft_strdup(str));
 	n = n_lines(str);
-	// ft_printf("n = %d\n", n);
 	tab = malloc(sizeof(t_arg) * (n + 1));
 	tab = fill_tab(tab, str, n);
-	// print_tab_arg(tab);
-	// free(str);
-	tab = expand_tab(tab, status, envp);
+	tab = expand_tab(tab, ex_code, envp);
 	return (delete_quote(tab));
 }
 

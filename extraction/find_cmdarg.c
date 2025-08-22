@@ -6,13 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:16:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/20 18:11:48 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**find_cmdarg(char **tokens, int *status, char ***envp)
+char	**find_cmdarg(char **tokens, int *ex_code, char ***envp)
 {
 	int		i;
 	char	**cmd;
@@ -26,7 +26,7 @@ char	**find_cmdarg(char **tokens, int *status, char ***envp)
 			i++;
 		else
 		{
-			cmd = add_line_in_tab(cmd, expand_and_unquote(tokens[i], *status, *envp));
+			cmd = add_line_in_tab(cmd, expand_and_unquote(tokens[i], *ex_code, *envp));
 			i++;
 		}
 	}

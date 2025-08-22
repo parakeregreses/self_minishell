@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/20 11:00:01 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:34:17 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_perror_and_exit(char *error, t_exec *infos)
 	exit(EXIT_FAILURE);
 }
 
-void	pipex(t_exec *infos, int n, char ***envp, int *status)
+void	pipex(t_exec *infos, int n, char ***envp, int *ex_code)
 {
 	int		pipe1[2];
 	int		pipe2[2];
@@ -51,5 +51,5 @@ void	pipex(t_exec *infos, int n, char ***envp, int *status)
 		}
 		i++;
 	}
-	pipex2(n, infos, pipe1, pipe2, saved_stdout, saved_stdin, status);
+	pipex2(n, infos, pipe1, pipe2, saved_stdout, saved_stdin, ex_code);
 }

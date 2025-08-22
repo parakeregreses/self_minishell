@@ -15,7 +15,7 @@
 int	main(int argc, char **argv, char **envp)
 {
 	char	***our_envp;
-	int		*status;
+	int		*ex_code;
 
 	(void)argv;
 	if (argc == 1)
@@ -23,9 +23,9 @@ int	main(int argc, char **argv, char **envp)
 		get_signal();
 		our_envp = malloc(sizeof(char ***) * 1);
 		*our_envp = ft_copy_env(envp);
-		status = malloc(sizeof(int));
-		*status = 0;
-		launching(our_envp, status);
+		ex_code = malloc(sizeof(int));
+		*ex_code = 0;
+		launching(our_envp, ex_code);
 	}
 	else
 	{

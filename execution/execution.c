@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 21:50:59 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 16:16:11 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_and_exit_child(char **tab, int exit_status)
 	exit(exit_status);
 }
 
-void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout, int *status)
+void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout, int *status, int n)
 {
 	pid_t	pid;
 	int		fdin;
@@ -29,10 +29,15 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 
 	if (is_builtin(info.cmdpath))
 	{
+		int ok;
+
+		ok = 0;
+		if (i == (n - 1))
+			ok = 1;
 		dup2(fdin, 0);
 		dup2(info.outfile.fdout, 1);
 		if (!(fdin == -1 || info.outfile.fdout == -1))
-			exec_builtin(info, envp, status);
+			exec_builtin(info, envp, status, ok);
 		dup2(saved_stdout, 1);
 		dup2(saved_stdin, 0);
 		if (close(saved_stdin) == -1 || close(saved_stdout) == -1)

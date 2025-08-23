@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_findpathforeachcommand.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:55:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 21:25:08 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:09:14 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_definecmdi(char **paths, int *i, char *cmd)
 	return (cmdi);
 }
 
-char *cmd_not_found(char **paths, char *cmd)
+char	*cmd_not_found(char **paths, char *cmd)
 {
 	char	*simple_cmd;
 	char	*line;

@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:21 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/22 19:38:24 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:19:32 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//static bool	no_newline(char *str)
-//{
-//	int	i;
-
-//	i = 2;
-//	if (!str || str[0] != '-' || str[1] != 'n')
-//		return (0);
-//	while (str[i])
-//	{
-//		if (str[i] != 'n')
-//			return (0);
-//		i++;
-//	}
-//	return (1);
-//}
 
 static bool	no_newline(char *str)
 {
@@ -56,10 +40,6 @@ static char	*no_backslash(char *str)
 
 int	cmd_echo(char **args, int *status)
 {
-
-	// ft_printf("\nargs = \n");
-	// print_tab_char(args);
-	// ft_printf("\n");
 	int		i;
 	bool	newline;
 
@@ -81,21 +61,3 @@ int	cmd_echo(char **args, int *status)
 		write(1, "\n", 1);
 	return (*status = 0);
 }
-
-// int main()
-// {
-// 	char **args;
-
-// 	args = malloc(sizeof(char *) * 3);
-// 	args[0] = "echo";
-// 	args[1] = "\"aspas\'\"";
-// 	args[2] = NULL;
-// 	cmd_echo(args);
-// 	return (0);
-// }
-
-/* PRIS EN CHARGE:
-• -n -nnnnn marchent (intended)
-• -n-n --n sont considérés comme string (intended)
-• -n après un premier string écrit sera considéré comme string
--nnnn aussi (intended)*/

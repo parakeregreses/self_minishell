@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 21:47:02 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:10:53 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	is_executable(char *cmd)
 	char		*line;
 
 	status = stat(cmd, &buf);
-	// if (status != 0)
-	// 	return (FALSE);
 	if (S_ISREG(buf.st_mode) && buf.st_mode & S_IXUSR)
 		return (TRUE);
 	line = ft_strjoin(cmd, (": command not found\n"));
@@ -30,7 +28,6 @@ int	is_executable(char *cmd)
 	return (FALSE);
 }
 
-// check if the commands exists, if it does, fill its path in info.cmdpath
 int	parse_commands(t_exec *infos, int n, char ***envp, int *status)
 {
 	int	i;

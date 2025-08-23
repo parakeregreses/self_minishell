@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/22 16:14:19 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 17:20:51 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ static char	*find_target(char **arg)
 	}
 	return (arg[1]);
 }
-
-/* pour find_target, check qu'il ny ait pas de variable unused, + si ca cause
-pas de prob de getenv avant */
 
 static int	change_directory(const char *dir)
 {
@@ -92,7 +89,7 @@ int	cmd_cd(char **arg, char ***envp, int *status)
 
 	i = 0;
 	while (arg[i])
-	i++;
+		i++;
 	if (i > 2)
 	{
 		ft_putstr_fd("cd: too many arguments\n", 2);
@@ -100,7 +97,7 @@ int	cmd_cd(char **arg, char ***envp, int *status)
 	}
 	dir = find_target(arg);
 	if (!dir)
-		return(*status = 1);
+		return (*status = 1);
 	if (copy_old_pwd(old_pwd))
 		return (*status = 1);
 	if (change_directory(dir))

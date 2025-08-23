@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cat_current_dir.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:14:43 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/18 14:02:40 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:28:35 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,3 @@ char	*cat_current_dir(void)
 	ft_strlcat(prompt, "$ ", ft_strlen(prompt) + 3);
 	return (ft_strdup(prompt));
 }
-
-// compter le nombre de caracteres dans la string SANS quotes. | quotes
-// a enlever
-
-// pour check les quotes :
-//int    main(void)
-//{
-//	printf("1, %d\n", check_quotes("hello"));
-//	printf("0, %d\n", check_quotes("hel'lo"));
-//	printf("1, %d\n", check_quotes("hel'l'o"));
-//	printf("0, %d\n", check_quotes("hel'l''o"));
-//	printf("1, %d\n", check_quotes("hel'l''o'"));
-//	printf("1, %d\n", check_quotes("h\"el'l\"o"));
-//	printf("1, %d\n", check_quotes("\'mot\"1\'\'mot2\'\"mot3\'\""));
-//	printf("0, %d\n", check_quotes("\"te\"s\"t\""));
-//}
-
-// pour check les strings sans quotes :
-
-// int	main(void)
-// {
-// 	printf("%s\n", str_without_quotes("\"te\"s\"t\""));
-// 	printf("%s\n", str_without_quotes("\"te'st\""));
-// 	printf("%s\n", str_without_quotes("\"te\'s\'t\""));
-// 	printf("%s\n", str_without_quotes("\"te\"s\"t\""));
-// 	printf("%s\n", str_without_quotes("\'\"\'\"t\"\'\"\'"));
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_without_quotes.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 17:16:54 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/09 16:16:49 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:28:50 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,3 @@ char	*str_without_quotes(char *str)
 	free(str);
 	return (result);
 }
-
-// int	main(void)
-// {
-// 	ft_printf("%s\n", str_without_quotes(ft_strdup("'argu ments''lol'")));
-// }

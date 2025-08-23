@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 21:45:28 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:15:03 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ void	pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, 
 			close(saved_stdin);
 			close(saved_stdout);
 			ft_close_pipes(pipe1, pipe2);
-			// full_delete_minishell(infos, n);
 			return ;
-	}
+		}
 		i++;
 	}
 	ft_close_pipes(pipe1, pipe2);
@@ -54,6 +53,5 @@ void	pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, 
 	dup2(saved_stdin, 0);
 	if (close(saved_stdin) == -1 || close(saved_stdout) == -1)
 		dprintf(2, "stdinout2\n");
-	// full_delete_minishell(infos, n);
 	return ;
 }

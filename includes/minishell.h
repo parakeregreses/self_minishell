@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/23 17:03:15 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:12:18 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ int			file_type(char *cmdi, char *simple_cmd);
 int			judith(char *str, char ***envp, int *status);
 int			is_builtin(char *cmd);
 void		exec_builtin(t_exec info, char ***envp, int *status, int ok, t_exec *infos, int n);
-//void		exec_builtin_exit(t_exec info, char ***envp, int *status);
 char		**expand_dollar(char **tab, int *status, char **envp);
 char		*ft_findpathforeachcommand(char **paths, char *cmd, int *status);
 char		*expand_and_unquote(char *str, int status, char **envp);

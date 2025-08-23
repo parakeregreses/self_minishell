@@ -25,17 +25,13 @@
 # include <errno.h>
 
 # ifndef PATH_MAX
-#  define PATH_MAX 4096 /* max length of a path */
+#  define PATH_MAX 4096
 # endif
 
 # define TRUE 1
 # define FALSE 0
 
 extern bool	g_finished;
-// typedef struct s_mini
-// {
-
-// }		t_mini;
 
 /* ======================== MINISHELL ========================== */
 
@@ -77,10 +73,6 @@ int		cmd_echo(char **args, int *status);
 /* =========================== PWD ============================ */
 
 void	cmd_pwd(char **envp, int *status);
-
-/* =========================== EXIT ============================ */
-
-//void	cmd_exit(char **args, char ***envp, int *status)
 
 /* ============================================================ */
 

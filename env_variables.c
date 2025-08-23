@@ -34,7 +34,6 @@ int	ft_find_env(char **envp, char *env_variable)
 	return (-1);
 }
 
-/* rajoute une variable d'environnement*/
 char	**ft_create_env(char **envp, char *new_env_variable)
 {
 	int		i;
@@ -77,7 +76,6 @@ char	**ft_replace_env_if_found(char **envp, char *env_variable)
 		return (ft_create_env(envp, env_variable));
 }
 
-/* copie les variables d'environnement deja presentes dans env grace a envp */
 char	**ft_copy_env(char **envp)
 {
 	int		i;
@@ -107,8 +105,6 @@ char	**ft_copy_env(char **envp)
 	return (env_cpy);
 }
 
-/* rajoute la variable dans envp directement */
-/* new env variable est argv de la var envi */
 char	**ft_add_in_env(char **envp, char *new_env_variable)
 {
 	char	**new_envp;
@@ -127,81 +123,3 @@ char	**ft_add_in_env(char **envp, char *new_env_variable)
 	}
 	return (final);
 }
-
-/*------------------------------------------------------------------*/
-
-/* MEMO:
-
-check si c'est mieux de free l'ancien envp ou
-si on peut juste ajouter a la fin sans tout vider */
-
-// int main(int argc, char **argv, char **envp)
-// {
-// 	int i = 0;
-// 	char *new_var;
-// 	char *new_var2;
-// 	char *new_var3;
-// 	char **new_envp;
-// 	(void)argc;
-// 	(void)argv;
-
-// 	new_envp = ft_copy_env(envp);
-//	// new_envp = NULL;
-//	 new_var = "bonjour=0";
-//	 new_var2 = "bon";
-//	 new_var3 = "bonjour=bon";
-
-//	 if (new_envp == NULL)
-//	 	printf("boo boo\n");
-
-//	 while (new_envp[i])
-//	 {
-//	 	printf("%s\n", new_envp[i]);
-//	 	i++;
-//	 }
-//	 printf("\n --------------- \n\n");
-
-//	 i = 0;
-//	 while (envp[i])
-//	 {
-//	 	printf("%d\n", ft_strcmp(new_envp[i], envp[i]));
-//	 	i++;
-//	 }
-// 	new_envp = ft_add_in_env(new_envp, new_var);
-// 	printf("\n --------------- \n\n");
-// 	i = 0;
-// 	while (new_envp[i])
-// 	{
-// 		printf("%s\n", new_envp[i]);
-// 		i++;
-// 	}
-// 	new_envp = ft_add_in_env(new_envp, new_var2);
-// 	printf("\n --------------- \n\n");
-// 	i = 0;
-// 	while (new_envp[i])
-// 	{
-// 		printf("%s\n", new_envp[i]);
-// 		i++;
-// 	}
-// 	new_envp = ft_add_in_env(new_envp, new_var3);
-// 	printf("\n --------------- \n\n");
-// 	i = 0;
-// 	while (new_envp[i])
-// 	{
-// 		printf("%s\n", new_envp[i]);
-// 		i++;
-// 	}
-// }
-
-/* copie fonctionne */
-/* add fonctionne */
-/* check si la variable existe deja et
- la remplacer si oui, dans add in */
-
-/* A FAIRE : supprimer une variable ()*/
-
-/* unset NEW_VAR marche */
-/* unset NEW_VAR=0 ou NEW_VAR="0" marche pas */
-
-/* ft_strchr "=" pour rajouter que les variables
-ayant un = dans le env, dans export ya tout */

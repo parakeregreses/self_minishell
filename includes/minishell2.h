@@ -80,7 +80,7 @@ void	cmd_pwd(char **envp, int *status);
 
 /* =========================== EXIT ============================ */
 
-void	cmd_exit(char **args, char ***envp, int *status);
+// void	cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int n);
 
 /* ============================================================ */
 

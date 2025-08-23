@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/23 16:23:09 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 16:26:33 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ int	is_numeric(const char *str)
 		if (!isdigit(str[i]))
 			return (0);
 		i++;
+void	cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int n)
+{
+	(void) args;
+	if (ok)
+	{
+		full_delete_minishell(infos, n);
+		free_tab((void **)*envp);
+		free(status);
+		printf("exit\n");
+		exit(EXIT_SUCCESS);
 	}
 	return (1);
 }
@@ -43,7 +53,15 @@ int count_args(char **args)
 //int	check_if_exit(char **args)
 //{
 //	int	i;
-//	int	count;
+//	int	coxt pull:
+hint:
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint:
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the confunt;
 
 //	i = 0;
 //	count = 0;

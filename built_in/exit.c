@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/23 16:26:33 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 16:58:19 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,6 @@ int	is_numeric(const char *str)
 		if (!isdigit(str[i]))
 			return (0);
 		i++;
-void	cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int n)
-{
-	(void) args;
-	if (ok)
-	{
-		full_delete_minishell(infos, n);
-		free_tab((void **)*envp);
-		free(status);
-		printf("exit\n");
-		exit(EXIT_SUCCESS);
 	}
 	return (1);
 }
@@ -50,100 +40,66 @@ int count_args(char **args)
 	return count;
 }
 
-//int	check_if_exit(char **args)
-//{
-//	int	i;
-//	int	coxt pull:
-hint:
-hint:   git config pull.rebase false  # merge (the default strategy)
-hint:   git config pull.rebase true   # rebase
-hint:   git config pull.ff only       # fast-forward only
-hint:
-hint: You can replace "git config" with "git config --global" to set a default
-hint: preference for all repositories. You can also pass --rebase, --no-rebase,
-hint: or --ff-only on the command line to override the confunt;
-
-//	i = 0;
-//	count = 0;
-//	while (args[count])
-//		count++;
-//	while (args[i])
-//	{
-//		if (is_str_num(args[i]))
-//			return (1);
-//		else if (count > 2)
-//			return (0);
-//		i++;
-//	}
-//}
-
-//void	cmd_exit(char **args, char ***envp, int *status, int ok)
-//{
-//	printf("exit\n");
-//	if (check_if_exit)
-//	{
-//		free_tab((void **)*envp);
-//		free(status);
-//		//printf("exit\n");
-//	}
-//}
-
-//void cmd_exit2(char **args, char ***envp, int *status)
-//{
-//	int	res;
-//	int	count_args;
-
-//	res = 0;
-//	count_args = 0;
-//	(void)status;
-//	(void)envp;
-//	while (args[count_args])
-//		count_args++;
-//	//printf("%d", count_args);
-//	if (count_args > 2)
-//	{
-//		printf("exit\n");
-//		printf("minishell: exit: too many arguments\n");
-//		*status = 1;
-//		return ;
-//	}
-//	else
-//	{
-//		res = ft_atoi(args[1]);
-//		res %= 256;
-//		//printf("%d", res);
-//	}
-//	*status = res;
-//	//free_and_print_exit(envp, args, status);
-//}
-
-void	cmd_exit(char **args, char ***envp, int *status)
+long	ft_atol(const char *nptr)
 {
-	int	argc = count_args(args);
+	long int	result;
+	int			sign;
+	int			i;
+
+	result = 0;
+	sign = 1;
+	i = 0;
+	while ((nptr[i] == 32) || (nptr[i] >= 9 && (nptr[i] <= 13)))
+		i++;
+	if ((nptr[i] == '-') || (nptr[i] == '+'))
+	{
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result *= 10;
+		result += nptr[i] - '0';
+		i++;
+	}
+	return (result * sign);
+}
+
+void	cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int n)
+{
+	int	count = count_args(args);
 	long	exit_val;
 
+	(void)ok;
+	(void)*infos;
+	(void)n;
 	printf("exit\n");
-	if (argc == 1)
+	if (count == 1)
 	{
 		free_tab((void **)*envp);
-		*status %= 256;
-		return ;
+		*status = 0;
+		if (ok)
+			exit(*status);
 	}
 	if (!is_numeric(args[1]))
 	{
-		fprintf(stderr, "minishell: exit: %s: numeric argument required\n", args[1]);
+		printf("minishell: exit: %s: numeric argument required\n", args[1]);
 		free_tab((void **)*envp);
 		*status = 2;
+		if (ok)
+			exit(*status);
 	}
-	if (argc > 2)
+	if (count > 2)
 	{
 		printf("minishell: exit: too many arguments\n");
 		*status = 1;
 		return ;
 	}
-	exit_val = atol(args[1]);
-	*status = (unsigned char)exit_val;
+	exit_val = ft_atol(args[1]);
+	*status = exit_val % 256;
 	free_tab((void **)*envp);
-	free(status);
-	exit(*status);
+	//free(status);
+	if (ok)
+		exit(*status);
 }

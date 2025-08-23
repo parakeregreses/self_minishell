@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-// for each blocs, info holds the fdin, fdout, commands and command's arguments
 t_exec	*extract_infos(char ***processes, int n, int *status, char ***envp)
 {
 	int		i;
@@ -22,8 +21,6 @@ t_exec	*extract_infos(char ***processes, int n, int *status, char ***envp)
 	infos = malloc(sizeof(t_exec) * (n + 1));
 	while (processes[i] != NULL)
 	{
-		// print_tab_char(processes[i]);
-		// ft_printf("i = %d\n\n", i);
 		infos[i] = extract_info(processes[i], status, envp);
 		i++;
 	}

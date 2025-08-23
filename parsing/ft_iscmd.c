@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_iscmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/22 21:46:57 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:10:19 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**ft_splitpaths(char **envp)
 	return (paths);
 }
 
-char *no_such_file_or_directory(char *cmd, int *status)
+char	*no_such_file_or_directory(char *cmd, int *status)
 {
 	char	*simple_cmd;
 	char	*line;
@@ -55,7 +55,7 @@ char *no_such_file_or_directory(char *cmd, int *status)
 
 char	*is_absolute_path(char *cmd, int *status)
 {
-	char *message;
+	char	*message;
 
 	if (access(cmd, R_OK) != 0)
 	{

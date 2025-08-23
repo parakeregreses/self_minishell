@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:42:05 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/18 18:18:18 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 17:11:38 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,41 +52,6 @@ int	copy_var_value(char *dst, char *var_name, char **envp)
 	ft_strlcpy(dst, value, len + 1);
 	return (len);
 }
-
-//int	fill_str(char *dst, char *src, char **envp, int i)
-//{
-//	int		j;
-//	int		len;
-//	char	*var;
-
-//	j = 0;
-//	while (src[i])
-//	{
-//		if (src[i] == '\'')
-//		{
-//			dst[j++] = src[i++];
-//			while (src[i] && src[i] != '\'')
-//				dst[j++] = src[i++];
-//			dst[j++] = src[i++];
-//		}
-//		if (src[i] == '$' && src[i + 1]
-//			&& (ft_isalpha(src[i + 1]) || src[i + 1] == '_'))
-//		{
-//			i++;
-//			len = var_name_len(&src[i]);
-//			var = ft_substr(src, i, len);
-//			if (!var)
-//				return (-1);
-//			j += copy_var_value(&dst[j], var, envp);
-//			free(var);
-//			i += len;
-//		}
-//		else
-//			dst[j++] = src[i++];
-//	}
-//	dst[j] = '\0';
-//	return (0);
-//}
 
 int	fill_str(char *dst, char *src, char **envp, int i)
 {
@@ -150,20 +115,3 @@ char	*replace_dollar_var(char *str, char **envp)
 	}
 	return (result);
 }
-
-// int	main(int ac, char **av, char **envp)
-// {
-// 	// char	*input = "$? Coucou $USER blah $JEXISTEPAS blah $HOME! $?";
-// 	char	*expanded;
-
-// 	(void)ac;
-// 	(void)av;
-// 	// expanded = dollar_signs(input, 2, envp);
-// 	expanded = dollar_signs("si\'gn\'es", 2, envp);
-// 	if (expanded)
-// 	{
-// 		printf("%s\n", expanded);
-// 		free(expanded);
-// 	}
-// 	return (0);
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 21:43:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:24:50 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	close_dollar(char *str, int i)
 int	size_line(char *str)
 {
 	int	i;
-	int q;
+	int	q;
 
 	i = 0;
 	q = 0;
@@ -41,7 +41,6 @@ int	size_line(char *str)
 		if (str[i] && str[i] == '\'')
 		{
 			i = close_quote(str, i, str[i]);
-			// i++;
 			if (str[i] == 0)
 				return (i);
 		}
@@ -191,12 +190,12 @@ static int	n_lines(char *str)
 	return (n);
 }
 
-t_arg *expand_tab(t_arg *tab, int status, char **envp)
+t_arg	*expand_tab(t_arg *tab, int status, char **envp)
 {
 	int	i;
 
 	i = 0;
-	while((tab[i]).str!= NULL)
+	while ((tab[i]).str != NULL)
 	{
 		if (tab[i].quote == 1)
 			tab[i].str = dollar_signs(tab[i].str, status, envp);
@@ -207,7 +206,7 @@ t_arg *expand_tab(t_arg *tab, int status, char **envp)
 
 int	str_without_quotes_len(char *str, char *c)
 {
-	int j;
+	int	j;
 	int	len;
 
 	j = 0;
@@ -266,7 +265,7 @@ static int	ft_len(t_arg *tab)
 
 int	fill_str_without_quotes(char **str, int i, char *str2, char *c)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (str2[j])
@@ -295,10 +294,10 @@ int	fill_str_without_quotes(char **str, int i, char *str2, char *c)
 			*c = str2[j];
 		}
 		if (!str2[j])
-			{
-				str[0][i] = 0;
-				return (i);
-			}
+		{
+			str[0][i] = 0;
+			return (i);
+		}
 		j++;
 	}
 	str[0][i] = 0;
@@ -333,11 +332,10 @@ static char	*fill_str(t_arg *tab, char *str)
 	return (str);
 }
 
-
 char	*delete_quote(t_arg *tab)
 {
-	int	len;
-	char *str;
+	int		len;
+	char	*str;
 
 	len = ft_len(tab);
 	str = malloc(sizeof(char) * (len + 1));
@@ -359,16 +357,3 @@ char	*expand_and_unquote(char *str, int status, char **envp)
 	tab = expand_tab(tab, status, envp);
 	return (delete_quote(tab));
 }
-
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	(void) argc;
-// 	(void) argv;
-// 	char *str;
-
-// 	str = ft_strdup("$");
-// 	ft_printf("%s\n", str);
-// 	str = expand_and_unquote(str, 0, envp);
-// 	printf("%s\n", str);
-// 	free(str);
-// }

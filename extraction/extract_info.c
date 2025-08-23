@@ -17,13 +17,6 @@ t_exec	extract_info(char **tokens, int *status, char ***envp)
 	t_exec	info;
 
 	info = find_in_out_file(tokens, status, envp);
-	// if (info.infile.here_doc == -1)
-	// {
-	// 	info.outfile.append = -1;
-	// 	info.outfile.filename = NULL;
-	// }
-	// else
-	// 	info.outfile = find_outfile(tokens, status, envp);
 	info.cmdarg = find_cmdarg(tokens, status, envp);
 	return (info);
 }

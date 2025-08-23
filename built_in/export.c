@@ -86,36 +86,6 @@ char	**export_alphabetical_order(char **envp)
 	return (result);
 }
 
-//char	**ft_add_in_export(char **envp, char *new_env_variable)
-//{
-//	int		i;
-//	int		j;
-//	char	**new_export;
-
-//	i = 0;
-//	if (!new_env_variable || !new_env_variable[0])
-//		return (envp);
-//	if (need_to_replace_var(envp, new_env_variable))
-//	{
-//		new_export = ft_replace_export_if_found(envp, new_env_variable);
-//		return (new_export);
-//	}
-//	while (envp && envp[i])
-//		i++;
-//	new_export = malloc(sizeof(char *) * (i + 2));
-//	if (!new_export)
-//		return (envp);
-//	j = 0;
-//	while (j < i)
-//	{
-//		new_export[j] = ft_strdup(envp[j]);
-//		j++;
-//	}
-//	new_export[j] = ft_strdup(new_env_variable);
-//	new_export[j + 1] = NULL;
-//	return (new_export);
-//}
-
 char	**ft_add_in_export(char **envp, char *new_env_variable)
 {
 	char	**new_export;
@@ -140,7 +110,6 @@ char	**cmd_export(char ***envp, char *new_env_variable, int *status, int ok)
 	new_env = ft_add_in_export(*envp, new_env_variable);
 	if (new_env != *envp)
 	{
-		//*status = 1;
 		free_tab((void **)*envp);
 		*envp = new_env;
 	}

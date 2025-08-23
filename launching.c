@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 16:27:16 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 17:11:22 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,7 @@ int	launching(char ***envp, int *status)
 		}
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		//if (ft_strncmp(line + i, "exit", 4) == 0) // remplacer par info.cmd_path parsing
-		//{
-		//	//cmd_exit(line, envp, status); // remplacer line par args du parsing
-		//	free_and_print_exit(envp, line, status);
-		//	break ;
-		//}
 		launching2(line, envp, status);
 	}
 	return (0);
 }
-
-
-// il faut exit QUE s'il y a 1 ou 0 argument.

@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   full_tokenisation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 18:41:51 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/20 11:26:13 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:10:50 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// in each bloc, tokens the bloc (turns into a tab of the different elements)
 char	***full_tokenisation(char **blocs, int n)
 {
 	int		i;
@@ -25,13 +24,6 @@ char	***full_tokenisation(char **blocs, int n)
 	while (blocs[i] != NULL)
 	{
 		processes[i] = token_bloc(blocs[i], set);
-		// ft_printf("processesi\n");
-		// print_tab_char(processes[i]);
-		// ft_printf("processesi\n");
-		// print_tab_char(processes[i]);
-		// processes[i] = tab_without_quotes(processes[i]);
-		// ft_printf("processesi\n");
-		// print_tab_char(processes[i]);
 		i++;
 	}
 	free(set);

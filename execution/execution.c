@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 17:03:07 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:16:19 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,14 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 {
 	pid_t	pid;
 	int		fdin;
+	int		ok;
 
 	fdin = find_fdin(info.infile, piperead, i);
-
 	if (is_builtin(info.cmdpath))
 	{
-		int ok;
-
 		ok = 0;
 		if (i == (n - 1))
 			ok = 1;
-		// printf("i = %d, n = %d, ok = %d\n", i, n, ok);
 		dup2(fdin, 0);
 		dup2(info.outfile.fdout, 1);
 		if (!(fdin == -1 || info.outfile.fdout == -1))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 13:00:17 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 19:32:35 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:15:24 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	find_outfile_pipe(t_outfile outfile, int pipe[2], int i, int n)
 {
 	if (outfile.filename != NULL)
 	{
-		// if (outfile.append == -1)
-		// 	return (-1);
 		if (outfile.append == 1)
 			return (open(outfile.filename, O_WRONLY | O_TRUNC | O_CREAT, 0666));
 		return (open(outfile.filename, O_WRONLY | O_APPEND | O_CREAT, 0666));

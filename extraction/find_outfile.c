@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_outfile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 22:14:44 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 21:46:13 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:13:03 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ t_outfile	find_outfile(char *token, int *status, char ***envp, t_outfile outfile
 {
 	if (token[1] && token[1] == '>')
 	{
-			free(outfile.filename);
-			outfile.filename = expand_and_unquote(token + 2, *status, *envp);
-			if (is_outfile(outfile.filename) == FALSE)
-			{
-				outfile.append = -1;
-				return (outfile);
-			}
-			close(open(outfile.filename, O_WRONLY | O_APPEND | O_CREAT, 0666));
-			outfile.append = 1;
+		free(outfile.filename);
+		outfile.filename = expand_and_unquote(token + 2, *status, *envp);
+		if (is_outfile(outfile.filename) == FALSE)
+		{
+			outfile.append = -1;
+			return (outfile);
+		}
+		close(open(outfile.filename, O_WRONLY | O_APPEND | O_CREAT, 0666));
+		outfile.append = 1;
 	}
 	else
 	{

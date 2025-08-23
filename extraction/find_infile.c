@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_infile.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:04 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 21:46:01 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:13:33 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_exec	find_infile2(char **tokens, t_exec info, int *ex_code, char ***envp)
 t_exec	find_in_out_file(char **tokens, int *ex_code, char ***envp)
 {
 	t_exec	info;
-	int			i;
+	int		i;
 
 	info.outfile.filename = NULL;
 	info.outfile.append = 0;

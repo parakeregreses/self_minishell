@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/23 16:58:19 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 17:19:04 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	is_numeric(const char *str)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	if (!str || !*str)
 		return (0);
 	if (str[i] == '+' || str[i] == '-')
@@ -31,13 +32,14 @@ int	is_numeric(const char *str)
 	return (1);
 }
 
-int count_args(char **args)
+int	count_args(char **args)
 {
-	int	count = 0;
+	int	count;
 
+	count = 0;
 	while (args && args[count])
 		count++;
-	return count;
+	return (count);
 }
 
 long	ft_atol(const char *nptr)
@@ -68,9 +70,10 @@ long	ft_atol(const char *nptr)
 
 void	cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int n)
 {
-	int	count = count_args(args);
+	int		count;
 	long	exit_val;
 
+	count = count_args(args);
 	(void)ok;
 	(void)*infos;
 	(void)n;
@@ -99,7 +102,6 @@ void	cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int
 	exit_val = ft_atol(args[1]);
 	*status = exit_val % 256;
 	free_tab((void **)*envp);
-	//free(status);
 	if (ok)
 		exit(*status);
 }

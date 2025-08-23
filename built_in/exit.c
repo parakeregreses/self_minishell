@@ -6,15 +6,14 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/23 15:54:05 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 15:56:18 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void cmd_exit(char *line, char **envp, int *status)
+void	cmd_exit(char **args, char ***envp, int *status, int ok)
 {
-
 }
 
 void cmd_exit2(char **args, char ***envp, int *status)

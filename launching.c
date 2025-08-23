@@ -6,7 +6,11 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/08/23 15:53:35 by liulm            ###   ########.fr       */
+=======
+/*   Updated: 2025/08/23 15:47:39 by jlaine-b         ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +75,21 @@ int	launching(char ***envp, int *status)
 		}
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
+<<<<<<< HEAD
 		//if (ft_strncmp(line + i, "exit", 4) == 0) // remplacer par info.cmd_path parsing
 		//{
 		//	//cmd_exit(line, envp, status); // remplacer line par args du parsing
 		//	free_and_print_exit(envp, line, status);
 		//	break ;
 		//}
+=======
+		// if (ft_strncmp(line + i, "exit", 4) == 0) // remplacer par info.cmd_path parsing
+		// {
+		// 	//cmd_exit(line, envp, status); // remplacer line par args du parsing
+		// 	free_and_print_exit(envp, line, status);
+		// 	break ;
+		// }
+>>>>>>> refs/remotes/origin/main
 		launching2(line, envp, status);
 	}
 	return (0);

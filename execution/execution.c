@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 17:03:07 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:28:01 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,14 @@ void	execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***en
 		close(saved_stdin);
 		close(saved_stdout);
 		if (info.cmdpath == NULL || fdin == -1 || info.outfile.fdout == -1)
+		{
+			if (info.outfile.fdout != 1)
+				close(info.outfile.fdout);
+			ft_close_pipes(piperead, pipewrite);
+			free(info.infile.filename);
+			free(info.outfile.filename);
 			free_and_exit_child(info.cmdarg, EXIT_FAILURE);
+		}
 		if (is_builtin(info.cmdpath))
 		{
 			if (info.outfile.fdout != 1)

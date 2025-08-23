@@ -126,7 +126,7 @@ char	**ft_add_in_export(char **envp, char *new_env_variable)
 	return (new_export);
 }
 
-char	**cmd_export(char ***envp, char *new_env_variable, int *status)
+char	**cmd_export(char ***envp, char *new_env_variable, int *status, int ok)
 {
 	char	**new_env;
 
@@ -135,6 +135,8 @@ char	**cmd_export(char ***envp, char *new_env_variable, int *status)
 		*status = 1;
 		return (NULL);
 	}
+	if (!ok)
+		return (*envp);
 	new_env = ft_add_in_export(*envp, new_env_variable);
 	if (new_env != *envp)
 	{

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 15:01:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 16:19:27 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 16:45:53 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	exec_builtin(t_exec info, char ***envp, int *status, int ok, t_exec *infos,
 	if (strcmp(info.cmdpath, "env") == 0)
 		cmd_env(*envp, status);
 	if (strcmp(info.cmdpath, "export") == 0)
-		cmd_export(envp, info.cmdarg[1], status);
+		cmd_export(envp, info.cmdarg[1], status, ok);
 	if (strcmp(info.cmdpath, "pwd") == 0)
 		cmd_pwd(*envp, status);
 	if (strcmp(info.cmdpath, "unset") == 0)

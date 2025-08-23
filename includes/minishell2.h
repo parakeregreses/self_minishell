@@ -45,7 +45,7 @@ char	*cat_current_dir(void);
 /* =================== ENVIRONMENT VARIABLES =================== */
 
 char	**cmd_unset(char ***envp, char *var_rm, int *status);
-char	**cmd_export(char ***envp, char *new_env_variable, int *status);
+char	**cmd_export(char ***envp, char *new_env_variable, int *status, int ok);
 char	**ft_copy_env(char **envp);
 char	**ft_free_envp(int i, char **envp);
 char	**export_alphabetical_order(char **envp);

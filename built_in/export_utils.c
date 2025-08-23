@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:43:00 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/22 17:27:12 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 16:53:39 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,17 @@ int	env_var_checker(char **envp, char *envvar)
 {
 	int		i;
 	char	**temp_envp;
+	char	*line;
 
 	temp_envp = envp;
 	if (!envvar)
 		return (no_envar(temp_envp));
 	if (ft_isdigit(envvar[0]) || (!ft_isalpha(envvar[0]) && envvar[0] != '_'))
 	{
-		printf("export: '%s': not a valid identifier\n", envvar);
+		line = ft_strjoin(envvar, ": not a valid identifier\n");
+		write(2, "export: ", 8);
+		write(2, line, ft_strlen(line));
+		free(line);
 		return (1);
 	}
 	i = 0;
@@ -86,7 +90,10 @@ int	env_var_checker(char **envp, char *envvar)
 	{
 		if (!ft_isalnum(envvar[i]) && envvar[i] != '_')
 		{
-			printf("export: '%s': not a valid identifier\n", envvar);
+			line = ft_strjoin(envvar, ": not a valid identifier\n");
+			write(2, "export: ", 8);
+			write(2, line, ft_strlen(line));
+			free(line);
 			return (1);
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/23 16:20:48 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 16:38:01 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ char		**find_cmdarg(char **tokens, int *status, char ***envp);
 
 void		pipex(t_exec *infos, int n, char ***envp, int *status);
 void		pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status);
-void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout, int *status, int n);
+void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout, int *status, t_exec *infos, int n);
 int			find_outfile_pipe(t_outfile outfile, int pipe[2], int i, int n);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
 void		cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int n);

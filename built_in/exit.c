@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/23 15:56:18 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 15:59:27 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 void	cmd_exit(char **args, char ***envp, int *status, int ok)
 {
+	if (ok)
+	{
+		free_tab((void **)*envp);
+		free(status);
+		printf("exit\n");
+	}
 }
 
 void cmd_exit2(char **args, char ***envp, int *status)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/23 17:19:04 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 17:32:24 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int
 {
 	int		count;
 	long	exit_val;
+	char	*line;
 
 	count = count_args(args);
 	(void)ok;
@@ -87,7 +88,10 @@ void	cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int
 	}
 	if (!is_numeric(args[1]))
 	{
-		printf("minishell: exit: %s: numeric argument required\n", args[1]);
+		line = ft_strjoin(args[1], ": numeric argument required\n");
+		write(2, "minishell: exit: ", 17);
+		write(2, line, ft_strlen(line));
+		free(line);
 		free_tab((void **)*envp);
 		*status = 2;
 		if (ok)
@@ -95,7 +99,7 @@ void	cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int
 	}
 	if (count > 2)
 	{
-		printf("minishell: exit: too many arguments\n");
+		write(2, "minishell: exit: too many arguments\n", 36);
 		*status = 1;
 		return ;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_infile.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:04 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 17:13:33 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 17:32:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_infile	find_infile_lim(char *lim, t_infile infile)
 		free(infile.tempfilename);
 	}
 	infile.tempfilename = here_doc(lim);
+	free(lim);
 	return (infile);
 }
 
@@ -45,7 +46,7 @@ t_infile	find_infile_file(char *filename, t_infile infile)
 		unlink(infile.tempfilename);
 		free(infile.tempfilename);
 	}
-	infile.filename = ft_strdup(filename);
+	infile.filename = filename;
 	if (is_infile(infile.filename) == FALSE)
 	{
 		free(infile.filename);

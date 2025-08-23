@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 20:25:19 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/22 16:16:45 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/23 17:31:04 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,3 @@ void	cmd_pwd(char **envp, int *status)
 	}
 	*status = 0;
 }
-
-//int	main(int argc, char **argv, char **envp)
-//{
-//	(void)argc;
-//	(void)argv;
-//	cmd_pwd(envp);
-//}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blocisation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/22 21:44:47 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:31:37 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 char	**blocisation2(char *str, int *status);
 
-// separates the string in different blocs delimitated by the pipes
-// such as bloc1 | bloc2 | bloc3
 char	**blocisation(char *str, int *status)
 {
 	if (check_closed_quotes(str) == FALSE)

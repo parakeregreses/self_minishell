@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   select_quoted_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 21:19:58 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 20:31:34 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:32:05 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//returns a tab with line 0 = before str, line 1 = str, line2 = after str
 t_arg	*extract_quote(char *str, t_segment s)
 {
 	t_arg	*tab;
@@ -50,14 +49,6 @@ t_arg	*tab1_no_separator(char *str)
 	return (tab1);
 }
 
-// Splits a string into segments based on quotes ' or ". 
-// Each segment is labeled 0 (unquoted segment) or 1 (quoted segment)
-// basically, the string "word "quoted" word 'quoted''quoted'" will turn into :
-// 0 word
-// 1 "quoted"
-// 0 word
-// 1 'quoted'
-// 1 'quoted' 
 t_arg	*select_quoted_str(char *str)
 {
 	t_arg	*t1;

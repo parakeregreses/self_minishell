@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_whitespaces.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 16:43:54 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 20:34:38 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:31:54 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*alloc_remove_whitespaces(char *str)
 	return (result);
 }
 
-// Turns any group of whitespace into one SPACE.
 char	*remove_whitespaces(char *str)
 {
 	int		i;

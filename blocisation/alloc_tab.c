@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_tab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:15:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/03 12:57:35 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:31:28 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_arg	*alloc_tab_2_end(t_segment s);
 t_arg	*alloc_tab_3(int len, t_segment s);
 t_arg	*alloc_tab_1(t_segment s);
 
-// allow us to choose the correct configuration for the quoted string
 t_arg	*alloc_tab(int len, t_segment s)
 {
 	t_arg	*tab;
@@ -33,7 +32,6 @@ t_arg	*alloc_tab(int len, t_segment s)
 	return (tab);
 }
 
-// the full string is quoted
 t_arg	*alloc_tab_1(t_segment s)
 {
 	t_arg	*tab;
@@ -50,7 +48,6 @@ t_arg	*alloc_tab_1(t_segment s)
 	return (tab);
 }
 
-// string is quoted from the beginning but not till the end
 t_arg	*alloc_tab_2_begin(int len, t_segment s)
 {
 	t_arg	*tab;
@@ -71,7 +68,6 @@ t_arg	*alloc_tab_2_begin(int len, t_segment s)
 	return (tab);
 }
 
-// string is not quoted from the beginning but the quote reaches the end
 t_arg	*alloc_tab_2_end(t_segment s)
 {
 	t_arg	*tab;
@@ -92,7 +88,6 @@ t_arg	*alloc_tab_2_end(t_segment s)
 	return (tab);
 }
 
-// string is quoted but has unquote parts at beginning and end
 t_arg	*alloc_tab_3(int len, t_segment s)
 {
 	t_arg	*tab;

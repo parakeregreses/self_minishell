@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   append_tabs_and_free_arg.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:56:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/07/06 19:11:01 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/23 17:31:31 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 t_arg	*fill_new_tab(t_arg *t1, t_arg *t2, t_arg *new_tab);
 
-// create one tab, which is the concatenation of tab1 and tab2
-// free tab1 and tab2
 t_arg	*append_tabs_and_free_arg(t_arg *t1, t_arg *t2)
 {
 	t_arg	*new_tab;

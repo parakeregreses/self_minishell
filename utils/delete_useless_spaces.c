@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delete_useless_spaces.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 21:49:33 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 17:28:41 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/24 22:43:29 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ int	next_char_pos(char *str, char c)
 	if (str[i] == 0)
 		return (-1);
 	return (i);
-}
-
-void	ft_increase(int *i, int *len)
-{
-	*i = *i + 1;
-	*len = *len + 1;
 }
 
 int	define_quoted_value(char *s, int i)

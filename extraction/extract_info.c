@@ -12,11 +12,24 @@
 
 #include "minishell.h"
 
+t_exec	init_info(void)
+{
+	t_exec	info;
+
+	info.outfile.filename = NULL;
+	info.outfile.append = 0;
+	info.infile.filename = NULL;
+	info.infile.tempfilename = NULL;
+	info.infile.here_doc = 0;
+	return (info);
+}
+
 t_exec	extract_info(char **tokens, int *status, char ***envp)
 {
 	t_exec	info;
 
-	info = find_in_out_file(tokens, status, envp);
+	info = init_info();
+	info = find_in_out_file(tokens, status, envp, info);
 	info.cmdarg = find_cmdarg(tokens, status, envp);
 	return (info);
 }

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_dollar.c                                    :+:      :+:    :+:   */
+/*   close_dollar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/15 20:49:39 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 21:07:43 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/24 22:39:03 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/24 22:42:47 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**expand_dollar(char **tab, int *status, char **envp)
+int	close_dollar(char *str, int i)
 {
-	int	i;
-
-	i = 0;
-	while (tab[i] != NULL)
+	if (str[i] && ft_isnum(str[i]))
 	{
-		tab[i] = expand(tab[i], *status, envp);
-		i++;
+		while (str[i] && ft_isnum(str[i]))
+			i++;
 	}
-	return (tab);
+	else
+	{
+		while (str[i] && !ft_ischarinset(str[i], "\'\" $"))
+			i++;
+	}
+	return (i);
 }

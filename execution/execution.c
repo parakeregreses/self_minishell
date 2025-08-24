@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 20:33:40 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/24 23:13:52 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	builtin(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 	dup2(info.outfile.fdout, 1);
 	if (!(fdin == -1 || info.outfile.fdout == -1))
 		exec_builtin(u, piperead, pipewrite, std);
+	retrieve_std(std.in, std.out);
 	std.in = dup(0);
 	std.out = dup(1);
 }
@@ -62,7 +63,7 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 		close(std.in);
 		close(std.out);
 		if (info.cmdpath == NULL || fdin == -1 || info.outfile.fdout == -1)
-			free_close_exit(info, piperead, pipewrite, EXIT_FAILURE);
+			free_close_exit(info, piperead, pipewrite, *(u.status));
 		if (is_builtin(info.cmdpath))
 			free_close_exit(info, piperead, pipewrite, *(u.status));
 		if (dup2(fdin, 0) == -1 || dup2(info.outfile.fdout, 1) == -1)

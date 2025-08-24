@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 22:14:44 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 16:28:41 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/24 21:07:43 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,42 @@ int	is_outfile(char *file)
 	return (TRUE);
 }
 
-t_outfile	find_outfile(char *token, int *status, char ***envp, t_outfile outfile)
+t_outfile	double_chevron(char *str, int *status, char ***envp, t_outfile out)
 {
 	int	fd;
 
-	if (token[1] && token[1] == '>')
+	free(out.filename);
+	out.filename = expand(str + 2, *status, *envp);
+	if (is_outfile(out.filename) == FALSE)
 	{
-		free(outfile.filename);
-		outfile.filename = expand_and_unquote(token + 2, *status, *envp);
-		if (is_outfile(outfile.filename) == FALSE)
-		{
-			outfile.append = -1;
-			return (outfile);
-		}
-		fd = open(outfile.filename, O_WRONLY | O_APPEND | O_CREAT, 0666);
-		if (fd != -1)
-			close(fd);
-		outfile.append = 1;
+		out.append = -1;
+		return (out);
 	}
+	fd = open(out.filename, O_WRONLY | O_APPEND | O_CREAT, 0666);
+	if (fd != -1)
+		close(fd);
+	out.append = 1;
+	return (out);
+}
+
+t_outfile	find_outfile(char *str, int *status, char ***envp, t_outfile out)
+{
+	int	fd;
+
+	if (str[1] && str[1] == '>')
+		out = double_chevron(str, status, envp, out);
 	else
 	{
-		free(outfile.filename);
-		outfile.filename = expand_and_unquote(token + 1, *status, *envp);
-		if (is_outfile(outfile.filename) == FALSE)
+		free(out.filename);
+		out.filename = expand(str + 1, *status, *envp);
+		if (is_outfile(out.filename) == FALSE)
 		{
-			outfile.append = -1;
-			return (outfile);
+			out.append = -1;
+			return (out);
 		}
-		fd = open(outfile.filename, O_WRONLY | O_TRUNC | O_CREAT, 0666);
+		fd = open(out.filename, O_WRONLY | O_TRUNC | O_CREAT, 0666);
 		if (fd != -1)
 			close(fd);
 	}
-	return (outfile);
+	return (out);
 }

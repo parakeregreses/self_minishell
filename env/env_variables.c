@@ -118,7 +118,7 @@ char	**ft_add_in_env(char **envp, char *new_env_variable)
 	final = ft_replace_env_if_found(new_envp, new_env_variable);
 	if (final == NULL)
 	{
-		free_envp(new_envp);
+		free_tab((void **) new_envp);
 		return (NULL);
 	}
 	return (final);

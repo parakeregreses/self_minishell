@@ -6,26 +6,11 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:43:00 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/23 16:53:39 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/24 20:57:30 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	free_envp(char **envp)
-{
-	int	i;
-
-	if (!envp)
-		return ;
-	i = 0;
-	while (envp[i])
-	{
-		free(envp[i]);
-		i++;
-	}
-	free(envp);
-}
 
 void	swap_str(char **a, char **b)
 {
@@ -68,34 +53,32 @@ int	no_envar(char **temp_envp)
 	return (0);
 }
 
+int	not_a_valid_identifier(char *envvar)
+{
+	char	*line;
+
+	line = ft_strjoin(envvar, ": not a valid identifier\n");
+	write(2, "export: ", 8);
+	write(2, line, ft_strlen(line));
+	free(line);
+	return (1);
+}
+
 int	env_var_checker(char **envp, char *envvar)
 {
 	int		i;
 	char	**temp_envp;
-	char	*line;
 
 	temp_envp = envp;
 	if (!envvar)
 		return (no_envar(temp_envp));
 	if (ft_isdigit(envvar[0]) || (!ft_isalpha(envvar[0]) && envvar[0] != '_'))
-	{
-		line = ft_strjoin(envvar, ": not a valid identifier\n");
-		write(2, "export: ", 8);
-		write(2, line, ft_strlen(line));
-		free(line);
-		return (1);
-	}
+		return (not_a_valid_identifier(envvar));
 	i = 0;
 	while (envvar[i] && envvar[i] != '=')
 	{
 		if (!ft_isalnum(envvar[i]) && envvar[i] != '_')
-		{
-			line = ft_strjoin(envvar, ": not a valid identifier\n");
-			write(2, "export: ", 8);
-			write(2, line, ft_strlen(line));
-			free(line);
-			return (1);
-		}
+			return (not_a_valid_identifier(envvar));
 		i++;
 	}
 	return (0);

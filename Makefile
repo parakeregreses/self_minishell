@@ -20,7 +20,7 @@ SRCS = 												\
 			tokenisation/str_without_quotes.c		\
 			tokenisation/tab_without_quotes.c		\
 			tokenisation/expand_dollar.c			\
-			extraction/find_infile.c				\
+			extraction/find_infile.c			\
 			extraction/here_doc.c					\
 			extraction/is_infile.c					\
 			extraction/extract_infos.c				\
@@ -51,6 +51,13 @@ SRCS = 												\
 			delete/delete_tempfiles.c				\
 			delete/full_delete_minishell.c			\
 			delete/free_tab_3d.c					\
+			expand.c								\
+			close_dollar.c							\
+			delete_quote.c							\
+			delete_quote2.c							\
+			ft_increase.c							\
+			fill_line.c								\
+			size_line.c								\
 			main.c									\
 			signals.c								\
 			cat_current_dir.c						\

@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_dollar.c                                    :+:      :+:    :+:   */
+/*   ft_inscrease.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/15 20:49:39 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 21:07:43 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/24 22:43:41 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/24 22:43:48 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**expand_dollar(char **tab, int *status, char **envp)
+void	ft_increase(int *i, int *len)
 {
-	int	i;
-
-	i = 0;
-	while (tab[i] != NULL)
-	{
-		tab[i] = expand(tab[i], *status, envp);
-		i++;
-	}
-	return (tab);
+	*i = *i + 1;
+	*len = *len + 1;
 }

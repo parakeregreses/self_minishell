@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 16:57:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/24 23:34:11 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ char	*ft_tempfilename(void)
 	return (tempfilename);
 }
 
+char	*sigint(char *tempfilename, char *line, char *lim_return, int fd)
+{
+	unlink(tempfilename);
+	free(line);
+	free(lim_return);
+	close(fd);
+	printf("sigint\n");
+	return (ft_strdup("sigint"));
+}
+
+char	*sigquit(char *tempfilename, char *line, char *lim_return, int fd)
+{
+	unlink(tempfilename);
+	free(line);
+	free(lim_return);
+	close(fd);
+	return (NULL);
+}
+
 char	*here_doc(char *lim)
 {
 	char	*line;
@@ -39,8 +58,13 @@ char	*here_doc(char *lim)
 		return (NULL);
 	lim_return = ft_strjoin(lim, "\n");
 	line = get_next_line(0);
+	g_finished = 0;
 	while (ft_strcmp(line, lim_return) != 0)
 	{
+		if (g_finished == SIGQUIT)
+			return (sigquit(tempfilename, line, lim_return, fd));
+		if (g_finished == SIGINT)
+			return (sigint(tempfilename, line, lim_return, fd));
 		write(fd, line, ft_strlen(line));
 		free(line);
 		line = get_next_line(0);

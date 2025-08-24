@@ -31,7 +31,7 @@
 # define TRUE 1
 # define FALSE 0
 
-extern bool	g_finished;
+extern int	g_finished;
 
 /* ======================== MINISHELL ========================== */
 

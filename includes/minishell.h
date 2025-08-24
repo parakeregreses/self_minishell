@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/24 20:45:09 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/24 23:03:04 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,11 @@ char		***full_tokenisation(char **b, int n);
 
 t_exec		*extract_infos(char ***processes, int n, int *status, char ***envp);
 t_exec		extract_info(char **tokens, int *status, char ***envp);
-t_exec		find_in_out_file(char **tokens, int *ex_code, char ***envp);
+t_exec		find_in_out_file(char **tokens, int *ex_code,
+				char ***envp, t_exec info);
 char		*str_without_quotes(char *str);
-t_outfile	find_outfile(char *token, int *status, char ***envp, t_outfile outfile);
+t_outfile	find_outfile(char *token, int *status, char ***envp,
+				t_outfile outfile);
 char		**find_cmdarg(char **tokens, int *status, char ***envp);
 
 /*EXECUTION*/
@@ -127,7 +129,8 @@ void		execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std);
 int			find_outfile_pipe(t_utils u, int pipe[2]);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
 void		cmd_exit(t_utils u, int pipe1[2], int pipe2[2], t_2d std);
-void		free_close_exit_final(t_utils u, int pipe1[2], int pipe2[2], t_2d std);
+void		free_close_exit_final(t_utils u, int pipe1[2],
+				int pipe2[2], t_2d std);
 void		exec_builtin(t_utils u, int pipe1[2], int pipe2[2], t_2d std);
 void		close_pipes(int pipe1[2], int pipe2[2]);
 void		retrieve_std(int saved_stdin, int saved_stdout);
@@ -149,7 +152,18 @@ int			command(char *str, char ***envp, int *status);
 int			is_builtin(char *cmd);
 char		**expand_dollar(char **tab, int *status, char **envp);
 char		*ft_findpathforeachcommand(char **paths, char *cmd, int *status);
-char		*expand_and_unquote(char *str, int status, char **envp);
+
+/*EXPAND*/
+char		*expand(char *str, int status, char **envp);
+t_arg		*fill_tab_expand(t_arg *tab, char *str, int n);
+t_arg		*expand_tab(t_arg *tab, int status, char **envp);
+int			close_dollar(char *str, int i);
+char		*delete_quote(t_arg *tab);
+int			ft_len_delete_quote(t_arg *tab);
+void		ft_increase(int *i, int *len);
+t_arg		fill_line2(t_arg tab, char *str, int j);
+t_arg		fill_line1(t_arg tab, char *str, int j);
+int			size_line(char *str);
 
 void		get_signal(void);
 

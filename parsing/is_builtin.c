@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:38:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 17:28:25 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:20:26 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_builtin(char *cmd)
 {
+	if (cmd == NULL)
+		return (0);
 	if (strcmp(cmd, "echo") == 0)
 		return (1);
 	if (strcmp(cmd, "cd") == 0)

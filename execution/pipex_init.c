@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tab_arg.c                                    :+:      :+:    :+:   */
+/*   pipex_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 12:25:06 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/07 11:35:09 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/24 20:20:57 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/24 20:22:42 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_tab_arg(t_arg *text)
+t_pipes	initpipes(void)
 {
-	int	i;
+	t_pipes	p;
 
-	if (text == NULL)
-	{
-		ft_printf("(null)\n");
-		return ;
-	}
-	i = 0;
-	while ((text[i]).str != NULL)
-	{
-		ft_printf("%d | %s\n", (text[i]).quote, (text[i]).str);
-		i++;
-	}
-	ft_printf("(null)\n");
+	p.pipe2[0] = -1;
+	p.pipe2[1] = -1;
+	return (p);
+}
+
+t_2d	initstd(void)
+{
+	t_2d	std;
+
+	std.in = dup(0);
+	std.out = dup(1);
+	return (std);
+}
+
+t_utils	initutils(t_exec *infos, int n, char ***envp, int *status)
+{
+	t_utils	u;
+
+	u.infos = infos;
+	u.n = n;
+	u.envp = envp;
+	u.status = status;
+	u.i = 0;
+	return (u);
 }

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 16:38:54 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/24 20:20:43 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,40 @@ void	ft_perror_and_exit(char *error, t_exec *infos)
 	exit(EXIT_FAILURE);
 }
 
+void	pipex_execution(t_pipes p, t_2d std, t_utils u);
+
 void	pipex(t_exec *infos, int n, char ***envp, int *status)
 {
-	int		pipe1[2];
-	int		pipe2[2];
-	int		i;
-	int		saved_stdout;
-	int		saved_stdin;
+	t_pipes	p;
+	t_2d	std;
+	t_utils	u;
 
-	pipe2[0] = -1;
-	pipe2[1] = -1;
-	saved_stdout = dup(1);
-	saved_stdin = dup(0);
-	i = 0;
+	p = initpipes();
+	std = initstd();
+	u = initutils(infos, n, envp, status);
+	pipex_execution(p, std, u);
+}
+
+void	pipex_execution(t_pipes p, t_2d std, t_utils u)
+{
 	g_finished = 0;
-	while (i < n)
+	while (u.i < u.n)
 	{
-		if (i % 2 == 0)
+		if (u.i % 2 == 0)
 		{
-			if (pipe(pipe1) == -1)
-				ft_perror_and_exit("", infos);
-			(infos[i]).outfile.fdout = find_outfile_pipe((infos[i]).outfile, pipe1, i, n);
-			execution(infos[i], pipe2, pipe1, i, envp, saved_stdin, saved_stdout, status, infos, n);
+			if (pipe(p.pipe1) == -1)
+				ft_perror_and_exit("", u.infos);
+			(u.infos[u.i]).outfile.fdout = find_outfile_pipe(u, p.pipe1);
+			execution(u, p.pipe2, p.pipe1, std);
 		}
-		if (i % 2 != 0)
+		if (u.i % 2 != 0)
 		{
-			if (pipe(pipe2) == -1)
-				ft_perror_and_exit("", infos);
-			(infos[i]).outfile.fdout = find_outfile_pipe((infos[i]).outfile, pipe2, i, n);
-			execution(infos[i], pipe1, pipe2, i, envp, saved_stdin, saved_stdout, status, infos, n);
+			if (pipe(p.pipe2) == -1)
+				ft_perror_and_exit("", u.infos);
+			(u.infos[u.i]).outfile.fdout = find_outfile_pipe(u, p.pipe2);
+			execution(u, p.pipe1, p.pipe2, std);
 		}
-		i++;
+		u.i = u.i + 1;
 	}
-	pipex2(n, infos, pipe1, pipe2, saved_stdout, saved_stdin, status);
+	pipex2(u, p, std);
 }

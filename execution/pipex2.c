@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   pipex2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 17:15:03 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/24 20:13:41 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_close_pipes(int pipe1[2], int pipe2[2])
+void	retrieve_std(int saved_stdin, int saved_stdout)
+{
+	dup2(saved_stdout, 1);
+	dup2(saved_stdin, 0);
+	close(saved_stdin);
+	close(saved_stdout);
+}
+
+void	close_pipes(int pipe1[2], int pipe2[2])
 {
 	if (pipe1[0] != -1)
 		close(pipe1[0]);
@@ -24,34 +32,27 @@ void	ft_close_pipes(int pipe1[2], int pipe2[2])
 		close(pipe2[1]);
 }
 
-void	pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status)
+void	pipex2(t_utils u, t_pipes p, t_2d std)
 {
 	int	i;
 	int	wait_status;
 
-	(void) infos;
 	i = 0;
 	wait_status = 0;
-	while (i < n)
+	while (i < u.n)
 	{
 		wait(&wait_status);
 		if (WIFEXITED(wait_status))
-			*status = WEXITSTATUS(wait_status);
+			*(u.status) = WEXITSTATUS(wait_status);
 		if (g_finished == 1)
 		{
-			dup2(saved_stdout, 1);
-			dup2(saved_stdin, 0);
-			close(saved_stdin);
-			close(saved_stdout);
-			ft_close_pipes(pipe1, pipe2);
+			retrieve_std(std.in, std.out);
+			close_pipes(p.pipe1, p.pipe2);
 			return ;
 		}
 		i++;
 	}
-	ft_close_pipes(pipe1, pipe2);
-	dup2(saved_stdout, 1);
-	dup2(saved_stdin, 0);
-	if (close(saved_stdin) == -1 || close(saved_stdout) == -1)
-		dprintf(2, "stdinout2\n");
+	retrieve_std(std.in, std.out);
+	close_pipes(p.pipe1, p.pipe2);
 	return ;
 }

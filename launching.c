@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launching.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 17:11:22 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/24 18:22:47 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void	free_and_print_exit(char ***envp, char *line, int *status)
 	free_tab((void **) *envp);
 	free(envp);
 	free(status);
-	printf("exit\n");
+	ft_printf("exit\n");
 }
 
-void	launching2(char *line, char ***envp, int *status)
+void	launch_command(char *line, char ***envp, int *status)
 {
 	if (!empty_argument(line))
-		judith(line, envp, status);
+		command(line, envp, status);
 	if (line[0] != '\0' && !empty_argument(line))
 		add_history(line);
 	free (line);
@@ -71,7 +71,7 @@ int	launching(char ***envp, int *status)
 		}
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		launching2(line, envp, status);
+		launch_command(line, envp, status);
 	}
 	return (0);
 }

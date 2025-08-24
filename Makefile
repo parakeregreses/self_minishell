@@ -1,7 +1,6 @@
 SRCS = 												\
-			judith.c								\
+			command.c								\
 			blocisation/blocisation.c				\
-			blocisation/ft_split_arg.c				\
 			blocisation/first_verifications.c		\
 			blocisation/alloc_tab.c					\
 			blocisation/fill_tab_blocs.c			\
@@ -11,11 +10,11 @@ SRCS = 												\
 			blocisation/remove_whitespaces.c		\
 			blocisation/revamp_str.c				\
 			blocisation/second_verifications.c		\
-			blocisation/check_closed_quotes.c		\
+			utils/check_closed_quotes.c		\
 			blocisation/triple_char.c				\
 			blocisation/third_verifications.c		\
-			tokenisation/delete_useless_spaces.c	\
-			tokenisation/delete_useless_spaces2.c	\
+			utils/delete_useless_spaces.c	\
+			utils/delete_useless_spaces2.c	\
 			tokenisation/token_bloc.c				\
 			tokenisation/full_tokenisation.c		\
 			tokenisation/str_without_quotes.c		\
@@ -28,11 +27,14 @@ SRCS = 												\
 			extraction/extract_info.c				\
 			extraction/find_outfile.c				\
 			extraction/find_cmdarg.c				\
+			execution/pipex_init.c					\
 			execution/pipex.c						\
 			execution/execution.c					\
 			execution/find_fd.c						\
 			execution/pipex2.c						\
+			execution/exec_builtin.c				\
 			parsing/ft_iscmd.c						\
+			parsing/cmd_is_directory.c				\
 			parsing/file_type.c						\
 			parsing/parse_commands.c				\
 			parsing/is_builtin.c					\
@@ -45,16 +47,15 @@ SRCS = 												\
 			built_in/pwd.c							\
 			built_in/unset.c						\
 			built_in/exit.c							\
+			built_in/exit_util.c					\
 			delete/delete_tempfiles.c				\
 			delete/full_delete_minishell.c			\
 			delete/free_tab_3d.c					\
-			print_tab_arg.c							\
 			main.c									\
 			signals.c								\
 			cat_current_dir.c						\
-			exec_builtin.c							\
-			env_variables.c							\
-			frees.c									\
+			env/env_variables.c						\
+			env/ft_free_envp.c						\
 			launching.c								\
 			handle_dollars.c						\
 			handle_dollars2.c						\

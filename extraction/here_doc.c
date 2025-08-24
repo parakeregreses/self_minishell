@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 17:30:07 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/24 16:57:04 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*here_doc(char *lim)
 	char	*lim_return;
 	int		fd;
 
-	ft_printf("lim = %s\n", lim);
 	tempfilename = ft_tempfilename();
 	fd = open(tempfilename, O_RDWR | O_CREAT, 00777);
 	if (fd == -1)

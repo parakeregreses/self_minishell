@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/23 17:12:18 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/24 20:45:09 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,21 @@ typedef struct s_exec
 	char		***envp;
 }				t_exec;
 
+typedef struct s_utils
+{
+	t_exec	*infos;
+	int		n;
+	int		*status;
+	char	***envp;
+	int		i;
+}			t_utils;
+
+typedef struct s_pipes
+{
+	int	pipe1[2];
+	int	pipe2[2];
+}		t_pipes;
+
 int			tab_size(char **tab);
 char		**delete_line_in_tab(char **tab, int i);
 t_arg		*extract_quote(char *str, t_segment s);
@@ -68,19 +83,15 @@ t_segment	find_segment(char *str, char c);
 char		**append_tabs_and_free(char **tab1, char **tab2);
 char		**blocisation(char *str, int *status);
 char		which_separator(char *s, char c1, char c2);
-t_arg		*cut_tab_tail_arg(t_arg	*tab, int n);
-t_arg		*cut_tab_head_arg(t_arg *tab, int n);
 t_arg		*free_tab_arg(t_arg *tab);
 int			tab_size_arg(t_arg *tab);
 t_arg		*delete_line_in_tab_arg(t_arg *old_tab, int i);
 t_arg		*append_tabs_and_free_arg(t_arg *tab1, t_arg *tab2);
 void		print_tab_arg(t_arg *text);
-t_arg		*ft_split_arg(char const *s, char c);
 int			first_verifications(char *str);
 t_arg		*alloc_tab(int len, t_segment s);
 t_arg		*fill_tab_blocs(t_arg *tab, char *str, t_segment s, int len);
 t_arg		*select_quoted_str(char *str);
-t_arg		*separate_pipe(t_arg *arg);
 t_arg		*join_quote_to_last_line(t_arg *tab, char *quote);
 t_arg		*join_quote_to_first_line(t_arg *tab, char *quote);
 int			is_infile(char *file1);
@@ -107,15 +118,23 @@ char		**find_cmdarg(char **tokens, int *status, char ***envp);
 
 /*EXECUTION*/
 
+t_utils		initutils(t_exec *infos, int n, char ***envp, int *status);
+t_2d		initstd(void);
+t_pipes		initpipes(void);
 void		pipex(t_exec *infos, int n, char ***envp, int *status);
-void		pipex2(int n, t_exec *infos, int pipe1[2], int pipe2[2], int saved_stdout, int saved_stdin, int *status);
-void		execution(t_exec info, int piperead[2], int pipewrite[2], int i, char ***envp, int saved_stdin, int saved_stdout, int *status, t_exec *infos, int n);
-int			find_outfile_pipe(t_outfile outfile, int pipe[2], int i, int n);
+void		pipex2(t_utils u, t_pipes p, t_2d std);
+void		execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std);
+int			find_outfile_pipe(t_utils u, int pipe[2]);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
-void		cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int n);
+void		cmd_exit(t_utils u, int pipe1[2], int pipe2[2], t_2d std);
+void		free_close_exit_final(t_utils u, int pipe1[2], int pipe2[2], t_2d std);
+void		exec_builtin(t_utils u, int pipe1[2], int pipe2[2], t_2d std);
+void		close_pipes(int pipe1[2], int pipe2[2]);
+void		retrieve_std(int saved_stdin, int saved_stdout);
 
 /*PARSING*/
 char		*ft_iscmd(char *cmd, int *status, char **envp);
+int			directory(char *cmd, int *status);
 int			parse_commands(t_exec *infos, int n, char ***envp, int *status);
 
 /*DELETE*/
@@ -126,9 +145,8 @@ void		free_tab_3d(char ***tab3);
 char		**tab_without_quotes(char **tab);
 int			third_verifications(char *str);
 int			file_type(char *cmdi, char *simple_cmd);
-int			judith(char *str, char ***envp, int *status);
+int			command(char *str, char ***envp, int *status);
 int			is_builtin(char *cmd);
-void		exec_builtin(t_exec info, char ***envp, int *status, int ok, t_exec *infos, int n);
 char		**expand_dollar(char **tab, int *status, char **envp);
 char		*ft_findpathforeachcommand(char **paths, char *cmd, int *status);
 char		*expand_and_unquote(char *str, int status, char **envp);

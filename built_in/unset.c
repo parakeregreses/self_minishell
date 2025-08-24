@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:04 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/23 17:16:55 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/24 20:37:09 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ char	**remove_var_from_envp(char **envp, char **temp, char *var, int varlen)
 	return (temp);
 }
 
+char	**cmd_unset2(char ***envp, int *status, char **temp_envp)
+{
+	if (!temp_envp)
+	{
+		*status = 1;
+		return (*envp);
+	}
+	free_envp(*envp);
+	*envp = temp_envp;
+	*status = 0;
+	return (temp_envp);
+}
+
 char	**cmd_unset(char ***envp, char *var_rm, int *status)
 {
 	int		varlen;
@@ -65,13 +78,5 @@ char	**cmd_unset(char ***envp, char *var_rm, int *status)
 		return (*envp);
 	}
 	temp_envp = remove_var_from_envp(*envp, temp_envp, var_rm, varlen);
-	if (!temp_envp)
-	{
-		*status = 1;
-		return (*envp);
-	}
-	free_envp(*envp);
-	*envp = temp_envp;
-	*status = 0;
-	return (temp_envp);
+	return (cmd_unset2(envp, status, temp_envp));
 }

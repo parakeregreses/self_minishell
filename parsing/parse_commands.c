@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 17:10:53 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/24 18:30:58 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,13 @@ int	parse_commands(t_exec *infos, int n, char ***envp, int *status)
 	result = TRUE;
 	while (i < n)
 	{
-		(infos[i]).cmdpath = ft_iscmd((infos[i]).cmdarg[0], status, *envp);
+		(infos[i]).cmdpath = NULL;
+		if ((infos[i]).infile.here_doc != -1)
+			(infos[i]).cmdpath = ft_iscmd((infos[i]).cmdarg[0], status, *envp);
 		if ((infos[i]).cmdpath == NULL)
 			result = FALSE;
-		else if (!is_builtin((infos[i]).cmdpath) && is_executable((infos[i]).cmdpath) == FALSE)
+		else if (!is_builtin((infos[i]).cmdpath)
+			&& is_executable((infos[i]).cmdpath) == FALSE)
 		{
 			*status = 127;
 			result = FALSE;

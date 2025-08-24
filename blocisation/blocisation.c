@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blocisation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/23 17:31:37 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/24 18:27:37 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*arg_to_str(t_arg *arg)
 	return (str);
 }
 
-char	**separate_pipe2(t_arg *arg)
+char	**separate_pipe(t_arg *arg)
 {
 	char	*str;
 	char	**tab;
@@ -96,7 +96,7 @@ char	**blocisation2(char *str, int *status)
 		free_tab_arg(arg);
 		return (NULL);
 	}
-	tab = separate_pipe2(arg);
+	tab = separate_pipe(arg);
 	tab = trim_tab_free(tab, "|");
 	free(str);
 	free_tab_arg(arg);

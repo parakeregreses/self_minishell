@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_outfile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 22:14:44 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 17:13:03 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/24 16:28:41 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	is_outfile(char *file)
 
 t_outfile	find_outfile(char *token, int *status, char ***envp, t_outfile outfile)
 {
+	int	fd;
+
 	if (token[1] && token[1] == '>')
 	{
 		free(outfile.filename);
@@ -37,7 +39,9 @@ t_outfile	find_outfile(char *token, int *status, char ***envp, t_outfile outfile
 			outfile.append = -1;
 			return (outfile);
 		}
-		close(open(outfile.filename, O_WRONLY | O_APPEND | O_CREAT, 0666));
+		fd = open(outfile.filename, O_WRONLY | O_APPEND | O_CREAT, 0666);
+		if (fd != -1)
+			close(fd);
 		outfile.append = 1;
 	}
 	else
@@ -49,7 +53,9 @@ t_outfile	find_outfile(char *token, int *status, char ***envp, t_outfile outfile
 			outfile.append = -1;
 			return (outfile);
 		}
-		close(open(outfile.filename, O_WRONLY | O_TRUNC | O_CREAT, 0666));
+		fd = open(outfile.filename, O_WRONLY | O_TRUNC | O_CREAT, 0666);
+		if (fd != -1)
+			close(fd);
 	}
 	return (outfile);
 }

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/23 17:32:10 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/24 18:05:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	close_dollar(char *str, int i)
 	}
 	else
 	{
-		while (str[i] && !ft_ischarinset(str[i], "\'\" "))
+		while (str[i] && !ft_ischarinset(str[i], "\'\" $"))
 			i++;
 	}
 	return (i);

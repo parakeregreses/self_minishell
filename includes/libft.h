@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:08:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/20 16:51:53 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/24 20:05:10 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 typedef struct s_2d
 {
-	int	x;
-	int	y;
+	int	in;
+	int	out;
 }		t_2d;
 
 typedef struct s_list

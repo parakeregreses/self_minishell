@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/23 17:32:24 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/24 20:44:32 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,44 +68,43 @@ long	ft_atol(const char *nptr)
 	return (result * sign);
 }
 
-void	cmd_exit(char **args, char ***envp, int *status, int ok, t_exec *infos, int n)
+void	numeric_argument_required(char **args, t_utils u)
 {
-	int		count;
-	long	exit_val;
 	char	*line;
 
+	line = ft_strjoin(args[1], ": numeric argument required\n");
+	write(2, "minishell: exit: ", 17);
+	write(2, line, ft_strlen(line));
+	free(line);
+	free_tab((void **)(*u.envp));
+	*(u.status) = 2;
+	exit(*(u.status));
+}
+
+void	cmd_exit(t_utils u, int pipe1[2], int pipe2[2], t_2d std)
+{
+	char	**args;
+	int		count;
+	long	exit_val;
+
+	args = u.infos[u.i].cmdarg;
 	count = count_args(args);
-	(void)ok;
-	(void)*infos;
-	(void)n;
-	printf("exit\n");
+	ft_printf("exit\n");
 	if (count == 1)
 	{
-		free_tab((void **)*envp);
-		*status = 0;
-		if (ok)
-			exit(*status);
+		*(u.status) = 0;
+		free_close_exit_final(u, pipe1, pipe2, std);
 	}
 	if (!is_numeric(args[1]))
-	{
-		line = ft_strjoin(args[1], ": numeric argument required\n");
-		write(2, "minishell: exit: ", 17);
-		write(2, line, ft_strlen(line));
-		free(line);
-		free_tab((void **)*envp);
-		*status = 2;
-		if (ok)
-			exit(*status);
-	}
+		numeric_argument_required(args, u);
 	if (count > 2)
 	{
 		write(2, "minishell: exit: too many arguments\n", 36);
-		*status = 1;
+		*(u.status) = 1;
 		return ;
 	}
 	exit_val = ft_atol(args[1]);
-	*status = exit_val % 256;
-	free_tab((void **)*envp);
-	if (ok)
-		exit(*status);
+	*(u.status) = exit_val % 256;
+	free_tab((void **)(*u.envp));
+	exit(*(u.status));
 }

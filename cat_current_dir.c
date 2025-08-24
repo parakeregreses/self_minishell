@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cat_current_dir.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:14:43 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/23 17:28:35 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/24 18:15:42 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 static char	*return_perror(void)
 {

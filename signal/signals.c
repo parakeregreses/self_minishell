@@ -22,7 +22,7 @@ int	g_finished = 0;
 static void	signal_handler(int signal)
 {
 	g_finished = signal;
-	
+
 	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
@@ -32,7 +32,7 @@ static void	signal_handler(int signal)
 static void	signal_handler_heredoc(int signal)
 {
 	g_finished = signal;
-	
+
 	write(1, "\n", 1);
 }
 

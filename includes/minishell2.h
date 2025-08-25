@@ -60,6 +60,7 @@ void	dollar_helper(char *res, char *str, char *var);
 int		get_final_length(char *str, char **envp, int i, int len);
 int		var_name_len(char *str);
 char	*check_env_value(char *str, char **envp);
+char	*ft_getenv(const char *name, char **envp);
 
 /* ============================ CD ============================ */
 

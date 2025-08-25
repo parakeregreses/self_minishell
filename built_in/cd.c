@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/23 17:20:51 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/25 16:50:58 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static int	copy_old_pwd(char *old_pwd)
 	return (0);
 }
 
-static char	*find_target(char **arg)
+static char	*find_target(char **arg, char **envp)
 {
 	char	*home;
 	char	*old_pwd;
 
-	home = getenv("HOME");
-	old_pwd = getenv("OLDPWD");
+	home = ft_getenv("HOME", envp);
+	old_pwd = ft_getenv("OLDPWD", envp);
 	if (!arg[1] || ft_strcmp((char *)arg[1], "~") == 0)
 	{
 		if (!home)
@@ -95,7 +95,7 @@ int	cmd_cd(char **arg, char ***envp, int *status)
 		ft_putstr_fd("cd: too many arguments\n", 2);
 		return (*status = 1);
 	}
-	dir = find_target(arg);
+	dir = find_target(arg, *envp);
 	if (!dir)
 		return (*status = 1);
 	if (copy_old_pwd(old_pwd))

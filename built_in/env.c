@@ -12,6 +12,16 @@
 
 #include "minishell.h"
 
+int	copy_old_pwd(char *old_pwd)
+{
+	if (!getcwd(old_pwd, PATH_MAX))
+	{
+		perror("cd: getcwd");
+		return (1);
+	}
+	return (0);
+}
+
 char	*ft_getenv(const char *name, char **envp)
 {
 	int		i;

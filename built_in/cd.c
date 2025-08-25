@@ -6,21 +6,11 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/25 16:50:58 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/25 17:37:10 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	copy_old_pwd(char *old_pwd)
-{
-	if (!getcwd(old_pwd, PATH_MAX))
-	{
-		perror("cd: getcwd");
-		return (1);
-	}
-	return (0);
-}
 
 static char	*find_target(char **arg, char **envp)
 {
@@ -57,12 +47,32 @@ static int	change_directory(const char *dir)
 	return (0);
 }
 
+char	**add_in_updated(char ***envp, char **tmp
+	, char *old_pwd_var, char *new_pwd_var)
+{
+	tmp = ft_add_in_env(*envp, old_pwd_var);
+	if (tmp)
+	{
+		free_tab((void **)*envp);
+		*envp = tmp;
+	}
+	tmp = ft_add_in_env(*envp, new_pwd_var);
+	if (tmp)
+	{
+		free_tab((void **)*envp);
+		*envp = tmp;
+	}
+	return (*envp);
+}
+
 static int	update_env(char ***envp, char *old_pwd)
 {
 	char	new_pwd[PATH_MAX];
 	char	*old_pwd_var;
 	char	*new_pwd_var;
+	char	**tmp;
 
+	tmp = NULL;
 	if (!getcwd(new_pwd, PATH_MAX))
 	{
 		ft_putstr_fd("cd: error retrieving current directory: getcwd: ", 2);
@@ -72,10 +82,7 @@ static int	update_env(char ***envp, char *old_pwd)
 	old_pwd_var = ft_strjoin("OLDPWD=", old_pwd);
 	new_pwd_var = ft_strjoin("PWD=", new_pwd);
 	if (old_pwd_var && new_pwd_var)
-	{
-		*envp = ft_add_in_env(*envp, old_pwd_var);
-		*envp = ft_add_in_env(*envp, new_pwd_var);
-	}
+		*envp = add_in_updated(envp, tmp, old_pwd_var, new_pwd_var);
 	free(old_pwd_var);
 	free(new_pwd_var);
 	return (0);

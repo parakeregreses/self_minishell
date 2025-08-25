@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:04 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 21:10:41 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:53:40 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ t_exec	find_in_out_file(char **t, int *s, char ***envp, t_exec info)
 		{
 			if (t[i][1] && t[i][1] == '<')
 				info.infile = inf_lim(expand(t[i] + 2, *s, *envp), info.infile);
+			if (ft_strcmp(info.infile.filename, "sigquit") == 0 || ft_strcmp(info.infile.filename, "sigint") == 0)
+				return (info);
 			else
 			{
 				info.infile = in_file(expand(t[i] + 1, *s, *envp), info.infile);

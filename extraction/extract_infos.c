@@ -22,8 +22,9 @@ t_exec	*extract_infos(char ***processes, int n, int *status, char ***envp)
 	while (processes[i] != NULL)
 	{
 		infos[i] = extract_info(processes[i], status, envp);
-		if (ft_strcmp((infos[i]).infile.tempfilename, "sigint") == 0)
+		if (ft_strcmp((infos[i]).infile.tempfilename, "sigint") == 0 || ft_strcmp((infos[i]).infile.tempfilename, "sigquit") == 0)
 		{
+			printf("extract_infos\n");
 			full_delete_minishell(infos, i);
 			return (NULL);
 		}

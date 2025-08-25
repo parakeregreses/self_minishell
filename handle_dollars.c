@@ -6,11 +6,47 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:38:49 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/25 13:39:37 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/25 13:57:56 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	count_new_length(char *str, char *var_str)
+{
+	int		i;
+	int		len;
+	int		var_len;
+
+	i = 0;
+	len = 0;
+	var_len = ft_strlen(var_str);
+	while (str[i])
+	{
+		if (str[i] == '\'')
+		{
+			i = close_quote(str, i, str[i]);
+			len += i;
+			i++;
+		}
+		else if (str[i] == '\\' && str[i + 1] == '$' && str[i + 2] == '?')
+		{
+			len += 2;
+			i += 3;
+		}
+		else if (str[i] == '$' && str[i + 1] == '?')
+		{
+			len += var_len;
+			i += 2;
+		}
+		else
+		{
+			len++;
+			i++;
+		}
+	}
+	return (len);
+}
 
 void	dollar_helper(char *result, char *str, char *var_str)
 {

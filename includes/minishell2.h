@@ -60,6 +60,7 @@ char	*dollar_signs(char *str, int var, char **envp);
 int		get_final_length(char *str, char **envp);
 int		var_name_len(char *str);
 char	*check_env_value(char *str, char **envp);
+int		get_final_length(char *str, char **envp);
 
 /* ============================ CD ============================ */
 

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/24 18:36:57 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 18:39:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*is_absolute_path(char *cmd, int *status)
 {
 	char	*message;
 
-	if (access(cmd, R_OK) != 0)
+	if (access(cmd, X_OK) != 0)
 	{
 		*status = 126;
 		message = ft_strjoin("minishell: ", cmd);

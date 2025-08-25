@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:04 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 17:31:31 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 18:40:48 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_exec	find_in_out_file2(char **t, t_utils u, int i, t_exec info);
 t_infile	lim(char *lim, t_infile infile)
 {
 	infile.here_doc = 1;
-	// free(infile.tempfilename);
 	if (infile.tempfilename != NULL)
 	{
 		unlink(infile.tempfilename);

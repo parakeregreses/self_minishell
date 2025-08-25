@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_in_out_file.c                                 :+:      :+:    :+:   */
+/*   find_in_out_file2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:04 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 15:50:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:01:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_infile	find_infile_lim2(char *lim, t_infile infile)
 	return (infile);
 }
 
-t_infile	file(char *filename, t_infile infile)
+t_infile	file(char *filename, t_infile infile, int *status)
 {
 	infile.here_doc = 0;
 	free(infile.filename);
@@ -51,6 +51,7 @@ t_infile	file(char *filename, t_infile infile)
 	infile.filename = filename;
 	if (is_infile(infile.filename) == FALSE)
 	{
+		*status = 1;
 		free(infile.filename);
 		infile.filename = NULL;
 		return (infile);
@@ -89,7 +90,8 @@ t_exec	find_in_out_file2(char **t, t_utils u, int i, t_exec f)
 		}
 		if (t[i][0] && t[i][0] == '<' && t[i][1] && t[i][1] != '<')
 		{
-			f.infile = file(expand(t[i] + 1, *(u.status), (*u.envp)), f.infile);
+			f.infile = file(expand(t[i] + 1, *(u.status), (*u.envp)),
+					f.infile, u.status);
 			if (f.infile.filename == NULL)
 				return (infile2(&(t[i + 1]), f, u.status, u.envp));
 		}

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 23:13:52 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:57:53 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	free_close_exit(t_exec info, int pipe1[2], int pipe2[2], int status)
 	free(info.infile.filename);
 	free(info.outfile.filename);
 	free_tab((void *)info.cmdarg);
+	if (info.outfile.fdout == -1)
+		exit(EXIT_FAILURE);
 	exit(status);
 }
 

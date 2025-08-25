@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:53:37 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 22:53:45 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:38:27 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*close_quote_str(char *str1, int *i, int *j, char *str2)
 	return (str1);
 }
 
-t_arg	fill_line2(t_arg tab, char *str, int j)
+t_arg	fill_line2_dollar(t_arg tab, char *str, int j)
 {
 	int	k;
 	int	q;

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:41:42 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 23:02:31 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:39:02 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_arg	fill_line(t_arg tab, char *str, int *i)
 	if (str[j] && str[j] == '$' && str[j + 1])
 		return (fill_line1(tab, str, j));
 	tab.quote = 0;
-	return (fill_line2(tab, str, j));
+	return (fill_line2_dollar(tab, str, j));
 }
 
 t_arg	*fill_tab_expand(t_arg *tab, char *str, int n)

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/24 23:03:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:38:50 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int			close_dollar(char *str, int i);
 char		*delete_quote(t_arg *tab);
 int			ft_len_delete_quote(t_arg *tab);
 void		ft_increase(int *i, int *len);
-t_arg		fill_line2(t_arg tab, char *str, int j);
+t_arg		fill_line2_dollar(t_arg tab, char *str, int j);
 t_arg		fill_line1(t_arg tab, char *str, int j);
 int			size_line(char *str);
 

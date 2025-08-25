@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/24 23:32:59 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:37:36 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	command(char *str, char ***envp, int *status)
 	free_tab((void **) blocs);
 	infos = extract_infos(processes, n, status, envp);
 	if (infos == NULL)
+	{
+		g_finished = 0;
 		return (0);
+	}
 	free_tab_3d(processes);
 	parse_commands(infos, n, envp, status);
 	pipex(infos, n, envp, status);

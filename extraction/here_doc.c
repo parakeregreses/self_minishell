@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 23:34:11 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:51:24 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*sigquit(char *tempfilename, char *line, char *lim_return, int fd)
 	free(line);
 	free(lim_return);
 	close(fd);
-	return (NULL);
+	return (ft_strdup("sigquit"));
 }
 
 char	*here_doc(char *lim)

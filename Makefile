@@ -1,5 +1,8 @@
 SRCS = 												\
-			command.c								\
+			minishell_base/command.c				\
+			minishell_base/cat_current_dir.c		\
+			minishell_base/main.c					\
+			minishell_base/launching.c				\
 			blocisation/blocisation.c				\
 			blocisation/first_verifications.c		\
 			blocisation/alloc_tab.c					\
@@ -10,17 +13,16 @@ SRCS = 												\
 			blocisation/remove_whitespaces.c		\
 			blocisation/revamp_str.c				\
 			blocisation/second_verifications.c		\
-			utils/check_closed_quotes.c		\
 			blocisation/triple_char.c				\
 			blocisation/third_verifications.c		\
-			utils/delete_useless_spaces.c	\
-			utils/delete_useless_spaces2.c	\
+			blocisation/delete_empty_lines.c		\
 			tokenisation/token_bloc.c				\
 			tokenisation/full_tokenisation.c		\
 			tokenisation/str_without_quotes.c		\
 			tokenisation/tab_without_quotes.c		\
 			tokenisation/expand_dollar.c			\
-			extraction/find_infile.c			\
+			extraction/find_in_out_file1.c			\
+			extraction/find_in_out_file2.c			\
 			extraction/here_doc.c					\
 			extraction/is_infile.c					\
 			extraction/extract_infos.c				\
@@ -48,27 +50,26 @@ SRCS = 												\
 			built_in/unset.c						\
 			built_in/exit.c							\
 			built_in/exit_util.c					\
+			env/env_variables.c						\
+			env/ft_free_envp.c						\
 			delete/delete_tempfiles.c				\
 			delete/full_delete_minishell.c			\
 			delete/free_tab_3d.c					\
-			expand.c								\
-			close_dollar.c							\
-			delete_quote.c							\
-			delete_quote2.c							\
-			ft_increase.c							\
-			fill_line.c								\
-			size_line.c								\
-			main.c									\
-			signals.c								\
-			cat_current_dir.c						\
-			env/env_variables.c						\
-			env/ft_free_envp.c						\
-			launching.c								\
+			expand/expand.c							\
+			expand/close_dollar.c					\
+			expand/delete_quote.c					\
+			expand/delete_quote2.c					\
+			expand/fill_line.c						\
+			expand/size_line.c						\
+			expand/dollar.c							\
+			utils/delete_useless_spaces.c			\
+			utils/delete_useless_spaces2.c			\
+			utils/check_closed_quotes.c				\
+			utils/ft_increase.c						\
+			signal/signals.c						\
 			handle_dollars.c						\
 			handle_dollars2.c						\
 			handle_dollars_helper.c					\
-			dollar.c								\
-			blocisation/delete_empty_lines.c		\
 
 OBJS = $(SRCS:.c=.o)
 

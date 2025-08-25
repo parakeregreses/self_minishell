@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_infile.c                                      :+:      :+:    :+:   */
+/*   find_in_out_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:04 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 13:53:40 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:50:32 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_infile	inf_lim(char *lim, t_infile infile)
+t_exec	find_in_out_file2(char **t, t_utils u, int i, t_exec info);
+
+t_infile	lim(char *lim, t_infile infile)
 {
 	infile.here_doc = 1;
 	free(infile.filename);
@@ -37,7 +39,7 @@ t_infile	find_infile_lim2(char *lim, t_infile infile)
 	return (infile);
 }
 
-t_infile	in_file(char *filename, t_infile infile)
+t_infile	file(char *filename, t_infile infile)
 {
 	infile.here_doc = 0;
 	free(infile.filename);
@@ -75,33 +77,29 @@ t_exec	infile2(char **tokens, t_exec info, int *ex_code, char ***envp)
 	return (info);
 }
 
-t_exec	find_in_out_file(char **t, int *s, char ***envp, t_exec info)
+t_exec	find_in_out_file2(char **t, t_utils u, int i, t_exec f)
 {
-	int	i;
-
-	i = 0;
 	while (t[i] != NULL)
 	{
-		if (t[i][0] && t[i][0] == '<')
+		if (t[i][0] && t[i][0] == '<' && t[i][1] && t[i][1] == '<')
 		{
-			if (t[i][1] && t[i][1] == '<')
-				info.infile = inf_lim(expand(t[i] + 2, *s, *envp), info.infile);
-			if (ft_strcmp(info.infile.filename, "sigquit") == 0 || ft_strcmp(info.infile.filename, "sigint") == 0)
-				return (info);
-			else
-			{
-				info.infile = in_file(expand(t[i] + 1, *s, *envp), info.infile);
-				if (info.infile.filename == NULL)
-					return (infile2(&(t[i + 1]), info, s, envp));
-			}
+			f.infile = lim(expand(t[i] + 2, *(u.status), (*u.envp)), f.infile);
+			if (ft_strcmp(f.infile.tempfilename, "sigquit") == 0)
+				return (f);
+		}
+		if (t[i][0] && t[i][0] == '<' && t[i][1] && t[i][1] != '<')
+		{
+			f.infile = file(expand(t[i] + 1, *(u.status), (*u.envp)), f.infile);
+			if (f.infile.filename == NULL)
+				return (infile2(&(t[i + 1]), f, u.status, u.envp));
 		}
 		if (t[i][0] && t[i][0] == '>')
 		{
-			info.outfile = find_outfile(t[i], s, envp, info.outfile);
-			if (info.outfile.append == -1)
-				return (infile2(&(t[i + 1]), info, s, envp));
+			f.outfile = find_outfile(t[i], u.status, u.envp, f.outfile);
+			if (f.outfile.append == -1)
+				return (infile2(&(t[i + 1]), f, u.status, u.envp));
 		}
 		i++;
 	}
-	return (info);
+	return (f);
 }

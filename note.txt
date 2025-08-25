@@ -1,9 +1,0 @@
-problemes lecture depuis entree standart sans limitateur
-
-checker les mallocs
-
-gestion des .o
-
-infile issues
-
-dans execution, avant de push, enlever les commentaires en cas de problemes

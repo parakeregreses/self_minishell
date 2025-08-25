@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete_tempfiles.c                                 :+:      :+:    :+:   */
+/*   find_in_out_file1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 11:47:48 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 14:52:05 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/08/25 15:50:44 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/25 15:52:13 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	delete_tempfiles(t_exec *infos, int n)
-{
-	int	i;
+t_exec	find_in_out_file2(char **t, t_utils u, int i, t_exec info);
 
+t_exec	find_in_out_file(char **t, int *status, char ***envp, t_exec info)
+{
+	t_utils	u;
+	int		i;
+
+	u.envp = envp;
+	u.status = status;
 	i = 0;
-	while (i < n)
-	{
-		if ((infos[i]).infile.here_doc == 1)
-		{
-			unlink((infos[i]).infile.tempfilename);
-			free((infos[i]).infile.tempfilename);
-		}
-		i++;
-	}
+	return (find_in_out_file2(t, u, i, info));
 }

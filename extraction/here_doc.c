@@ -6,11 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 13:51:24 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:40:50 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*here_doc2(char *lim, char *tempfilename, char *lim_return, int fd);
 
 char	*ft_tempfilename(void)
 {
@@ -29,25 +31,15 @@ char	*ft_tempfilename(void)
 char	*sigint(char *tempfilename, char *line, char *lim_return, int fd)
 {
 	unlink(tempfilename);
+	free(tempfilename);
 	free(line);
 	free(lim_return);
 	close(fd);
-	printf("sigint\n");
 	return (ft_strdup("sigint"));
-}
-
-char	*sigquit(char *tempfilename, char *line, char *lim_return, int fd)
-{
-	unlink(tempfilename);
-	free(line);
-	free(lim_return);
-	close(fd);
-	return (ft_strdup("sigquit"));
 }
 
 char	*here_doc(char *lim)
 {
-	char	*line;
 	char	*tempfilename;
 	char	*lim_return;
 	int		fd;
@@ -57,18 +49,29 @@ char	*here_doc(char *lim)
 	if (fd == -1)
 		return (NULL);
 	lim_return = ft_strjoin(lim, "\n");
-	line = get_next_line(0);
 	g_finished = 0;
-	while (ft_strcmp(line, lim_return) != 0)
+	return (here_doc2(lim, tempfilename, lim_return, fd));
+}
+
+char	*here_doc2(char *lim, char *tempfilename, char *lim_return, int fd)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	line = get_next_line(0);
+	while (g_finished == 0 && ft_strcmp(line, lim_return) != 0 && line != NULL)
 	{
-		if (g_finished == SIGQUIT)
-			return (sigquit(tempfilename, line, lim_return, fd));
-		if (g_finished == SIGINT)
-			return (sigint(tempfilename, line, lim_return, fd));
 		write(fd, line, ft_strlen(line));
 		free(line);
 		line = get_next_line(0);
+		i++;
 	}
+	if (g_finished == SIGINT)
+		return (sigint(tempfilename, line, lim_return, fd));
+	if (line == NULL)
+		ft_printf("minishell :warning: here-document at line %d \
+delimited by end-of-file (wanted `%s')\n", i, lim);
 	free(lim_return);
 	free(line);
 	close(fd);

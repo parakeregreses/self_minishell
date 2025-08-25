@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/08/25 18:10:55 by liulm            ###   ########.fr       */
+=======
+/*   Updated: 2025/08/25 18:41:20 by jlaine-b         ###   ########.fr       */
+>>>>>>> 1b4142ef2e0f6a20025f39e102bd9218e50c3c3a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +26,10 @@ int	g_finished = 0;
 static void	signal_handler(int signal)
 {
 	g_finished = signal;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1b4142ef2e0f6a20025f39e102bd9218e50c3c3a
 	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
@@ -32,7 +39,10 @@ static void	signal_handler(int signal)
 static void	signal_handler_heredoc(int signal)
 {
 	g_finished = signal;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1b4142ef2e0f6a20025f39e102bd9218e50c3c3a
 	write(1, "\n", 1);
 }
 

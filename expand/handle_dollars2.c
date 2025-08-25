@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollars2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:42:05 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/25 15:10:43 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/25 16:13:17 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,6 @@ int	var_name_len(char *str)
 	return (i);
 }
 
-int	copy_var_value(char *dst, char *var_name, char **envp)
-{
-	char	*value;
-	int		len;
-
-	value = check_env_value(var_name, envp);
-	if (!value)
-		return (0);
-	len = ft_strlen(value);
-	ft_strlcpy(dst, value, len + 1);
-	return (len);
-}
-
 //int	fill_str(char *dst, char *src, char **envp, int i)
 //{
 //	int		j;
@@ -82,6 +69,18 @@ int	copy_var_value(char *dst, char *var_name, char **envp)
 //	dst[j] = '\0';
 //	return (0);
 //}
+char	*fill_str2(char *dst, char *src, int *i, int *j)
+{
+	if (src[*i] == '$' && ft_isdigit(src[*i + 1]))
+		*i = *i + 2;
+	else
+	{
+		dst[*j] = src[*i];
+		*j = *j + 1;
+		*i = *i + 1;
+	}
+	return (dst);
+}
 
 int	fill_str(char *dst, char *src, char **envp, int i)
 {
@@ -104,10 +103,7 @@ int	fill_str(char *dst, char *src, char **envp, int i)
 			free(var);
 			i += len;
 		}
-		else if (src[i] == '$' && ft_isdigit(src[i + 1]))
-			i += 2;
-		else
-			dst[j++] = src[i++];
+		dst = fill_str2(dst, src, &i, &j);
 	}
 	dst[j] = '\0';
 	return (0);
@@ -120,7 +116,7 @@ char	*replace_dollar_var(char *str, char **envp)
 	int		i;
 
 	i = 0;
-	final_len = get_final_length(str, envp);
+	final_len = get_final_length(str, envp, 0, 0);
 	if (final_len == -1)
 		return (NULL);
 	result = malloc(final_len + 1);

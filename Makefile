@@ -62,14 +62,14 @@ SRCS = 												\
 			expand/fill_line.c						\
 			expand/size_line.c						\
 			expand/dollar.c							\
+			expand/handle_dollars.c					\
+			expand/handle_dollars2.c				\
+			expand/handle_dollars_helper.c			\
 			utils/delete_useless_spaces.c			\
 			utils/delete_useless_spaces2.c			\
 			utils/check_closed_quotes.c				\
 			utils/ft_increase.c						\
 			signal/signals.c						\
-			handle_dollars.c						\
-			handle_dollars2.c						\
-			handle_dollars_helper.c					\
 
 OBJS = $(SRCS:.c=.o)
 

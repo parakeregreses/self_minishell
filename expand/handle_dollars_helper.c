@@ -3,25 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollars_helper.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:38:28 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/25 14:47:30 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/25 16:13:32 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	get_final_length(char *str, char **envp)
+int	get_final_length(char *str, char **envp, int i, int len)
 {
-	int		len;
-	int		i;
 	int		vlen;
 	char	*var;
 	char	*val;
 
-	i = 0;
-	len = 0;
 	while (str[i])
 	{
 		if (str[i] == '$' && str[i + 1]
@@ -39,11 +35,21 @@ int	get_final_length(char *str, char **envp)
 			i += vlen;
 		}
 		else
-		{
-			len++;
-			i++;
-		}
+			ft_increase(&len, &i);
 	}
+	return (len);
+}
+
+int	copy_var_value(char *dst, char *var_name, char **envp)
+{
+	char	*value;
+	int		len;
+
+	value = check_env_value(var_name, envp);
+	if (!value)
+		return (0);
+	len = ft_strlen(value);
+	ft_strlcpy(dst, value, len + 1);
 	return (len);
 }
 

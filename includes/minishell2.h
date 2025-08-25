@@ -53,15 +53,13 @@ void	cmd_env(char **envp, int *status);
 void	swap_str(char **a, char **b);
 void	swap_variables(char **result, int count);
 int		env_var_checker(char **envp, char *env_variable);
-void	free_envp(char **envp);
 char	*replace_dollar_mark(char *str, int var);
 char	*replace_dollar_var(char *str, char **envp);
 char	*dollar_signs(char *str, int var, char **envp);
 void	dollar_helper(char *res, char *str, char *var);
-int		get_final_length(char *str, char **envp);
+int		get_final_length(char *str, char **envp, int i, int len);
 int		var_name_len(char *str);
 char	*check_env_value(char *str, char **envp);
-int		get_final_length(char *str, char **envp);
 
 /* ============================ CD ============================ */
 

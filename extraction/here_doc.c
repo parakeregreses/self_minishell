@@ -6,10 +6,11 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 15:40:50 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:58:06 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _GNU_SOURCE
 #include "minishell.h"
 
 char	*here_doc2(char *lim, char *tempfilename, char *lim_return, int fd);
@@ -44,6 +45,7 @@ char	*here_doc(char *lim)
 	char	*lim_return;
 	int		fd;
 
+	get_signal(0, 1);
 	tempfilename = ft_tempfilename();
 	fd = open(tempfilename, O_RDWR | O_CREAT, 00777);
 	if (fd == -1)
@@ -67,6 +69,7 @@ char	*here_doc2(char *lim, char *tempfilename, char *lim_return, int fd)
 		line = get_next_line(0);
 		i++;
 	}
+	get_signal(SA_RESTART, 0);
 	if (g_finished == SIGINT)
 		return (sigint(tempfilename, line, lim_return, fd));
 	if (line == NULL)

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/25 16:10:53 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:58:12 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,6 @@ t_arg		fill_line1(t_arg tab, char *str, int j);
 int			size_line(char *str);
 int			copy_var_value(char *dst, char *var_name, char **envp);
 
-void		get_signal(void);
+void		get_signal(int SA, int here_doc);
 
 #endif

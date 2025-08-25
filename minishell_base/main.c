@@ -10,6 +10,7 @@
 /*																			*/
 /* ************************************************************************** */
 
+#define _GNU_SOURCE
 #include "minishell.h"
 
 int	main(int argc, char **argv, char **envp)
@@ -20,7 +21,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	if (argc == 1)
 	{
-		get_signal();
+		get_signal(SA_RESTART, 0);
 		our_envp = malloc(sizeof(char ***) * 1);
 		*our_envp = ft_copy_env(envp);
 		status = malloc(sizeof(int));

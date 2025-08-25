@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:42:05 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/23 17:11:38 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/25 15:10:43 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,36 @@ int	copy_var_value(char *dst, char *var_name, char **envp)
 	return (len);
 }
 
+//int	fill_str(char *dst, char *src, char **envp, int i)
+//{
+//	int		j;
+//	int		len;
+//	char	*var;
+
+//	j = 0;
+//	while (src[i])
+//	{
+//		if (src[i] == '$' && src[i + 1]
+//			&& (ft_isalpha(src[i + 1]) || src[i + 1] == '_'))
+//		{
+//			i++;
+//			len = var_name_len(&src[i]);
+//			var = ft_substr(src, i, len);
+//			if (!var)
+//				return (-1);
+//			j += copy_var_value(&dst[j], var, envp);
+//			free(var);
+//			i += len;
+//		}
+//		else if (src[i] == '$' && ft_isdigit(src[i + 1]))
+//			i += 2;
+//		else
+//			dst[j++] = src[i++];
+//	}
+//	dst[j] = '\0';
+//	return (0);
+//}
+
 int	fill_str(char *dst, char *src, char **envp, int i)
 {
 	int		j;
@@ -60,25 +90,13 @@ int	fill_str(char *dst, char *src, char **envp, int i)
 	char	*var;
 
 	j = 0;
+	len = 0;
 	while (src[i])
 	{
-		if (src[i] == '\'')
+		if (src[i] == '$' && src[i + 1] && (ft_isalpha(src[i + 1])
+				|| src[i + 1] == '_'))
 		{
-			dst[j++] = src[i++];
-			while (src[i] && src[i] != '\'')
-				dst[j++] = src[i++];
-			dst[j++] = src[i++];
-		}
-		else if (src[i] == '\\' && src[i + 1] == '$')
-		{
-			dst[j++] = '$';
-			i += 2;
-		}
-		else if (src[i] == '$' && src[i + 1]
-			&& (ft_isalpha(src[i + 1]) || src[i + 1] == '_'))
-		{
-			i++;
-			len = var_name_len(&src[i]);
+			len = var_name_len(&src[++i]);
 			var = ft_substr(src, i, len);
 			if (!var)
 				return (-1);

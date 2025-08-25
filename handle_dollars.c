@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:38:49 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/25 13:57:56 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/25 14:41:58 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,7 @@ static int	count_new_length(char *str, char *var_str)
 	var_len = ft_strlen(var_str);
 	while (str[i])
 	{
-		if (str[i] == '\'')
-		{
-			i = close_quote(str, i, str[i]);
-			len += i;
-			i++;
-		}
-		else if (str[i] == '\\' && str[i + 1] == '$' && str[i + 2] == '?')
-		{
-			len += 2;
-			i += 3;
-		}
-		else if (str[i] == '$' && str[i + 1] == '?')
+		if (str[i] == '$' && str[i + 1] == '?')
 		{
 			len += var_len;
 			i += 2;
@@ -46,44 +35,6 @@ static int	count_new_length(char *str, char *var_str)
 		}
 	}
 	return (len);
-}
-
-void	dollar_helper(char *result, char *str, char *var_str)
-{
-	int		i;
-	int		j;
-	int		k;
-
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'')
-		{
-			result[j++] = str[i++];
-			while (str[i] && str[i] != '\'')
-				result[j++] = str[i++];
-			result[j++] = str[i++];
-		}
-		else if (str[i] == '\\' && str[i + 1] == '$' && str[i + 2] == '?')
-		{
-			result[j++] = '$';
-			result[j++] = '?';
-			i += 3;
-		}
-		else if (str[i] == '$' && str[i + 1] == '?')
-		{
-			k = 0;
-			while (var_str[k])
-				result[j++] = var_str[k++];
-			i += 2;
-		}
-		else
-		{
-			result[j++] = str[i++];
-		}
-	}
-	result[j] = '\0';
 }
 
 char	*replace_dollar_mark(char *str, int var)

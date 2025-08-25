@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/08/25 13:58:41 by liulm            ###   ########.fr       */
-=======
-/*   Updated: 2025/08/25 13:59:18 by jlaine-b         ###   ########.fr       */
->>>>>>> fd9568080a83f4f9d18734080b199263b44740a1
+/*   Updated: 2025/08/25 14:18:33 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +34,7 @@ void	get_signal(void)
 
 	handler.sa_handler = signal_handler;
 	sigemptyset(&handler.sa_mask);
-	handler.sa_flags = SA_RESTART;
+	handler.sa_flags = 0;
 	sigaction(SIGINT, &handler, NULL);
 	signal(SIGQUIT, SIG_IGN);
 }

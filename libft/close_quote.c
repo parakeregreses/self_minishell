@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   close_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 13:41:41 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/19 18:59:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:23:45 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// if str[i] == c, find the next occurence of c in str and returns its position
 int	close_quote(char *str, int i, char c)
 {
 	i++;

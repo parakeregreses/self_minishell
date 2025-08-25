@@ -57,6 +57,7 @@ void	free_envp(char **envp);
 char	*replace_dollar_mark(char *str, int var);
 char	*replace_dollar_var(char *str, char **envp);
 char	*dollar_signs(char *str, int var, char **envp);
+void	dollar_helper(char *res, char *str, char *var);
 int		get_final_length(char *str, char **envp);
 int		var_name_len(char *str);
 char	*check_env_value(char *str, char **envp);

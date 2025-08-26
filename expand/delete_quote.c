@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:40:43 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 22:49:56 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:40:56 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ int	fill_str_without_quotes(char **str, int i, char *str2, char *c)
 	j = 0;
 	while (str2[j])
 	{
-		if (*c != 0)
+		if (*c != '0')
 		{
 			while (str2[j] && str2[j] != *c)
 				str[0][i++] = str2[j++];
+			if (!str2[j])
+				return (fill_str_without_quotes_return(str, i));
 			j++;
-			*c = 0;
+			*c = '0';
 		}
-		while (str2[j] && *c == 0)
+		while (str2[j] && *c == '0')
 		{
 			while (str2[j] && !ft_ischarinset(str2[j], "'\""))
 				str[0][i++] = str2[j++];
@@ -52,12 +54,11 @@ static char	*fill_str(t_arg *tab, char *str)
 	int		i;
 	int		j;
 	int		k;
-	char	*c;
+	char	c;
 
 	i = 0;
 	j = 0;
-	c = malloc(sizeof(char));
-	*c = 0;
+	c = '0';
 	while ((tab[i]).str != NULL)
 	{
 		if ((tab[i]).quote == 1)
@@ -67,11 +68,10 @@ static char	*fill_str(t_arg *tab, char *str)
 				str[j++] = (tab[i]).str[k++];
 		}
 		else
-			j = fill_str_without_quotes(&str, j, (tab[i]).str, c);
+			j = fill_str_without_quotes(&str, j, (tab[i]).str, &c);
 		str[j] = 0;
 		i++;
 	}
-	free(c);
 	return (str);
 }
 

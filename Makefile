@@ -70,6 +70,7 @@ SRCS = 												\
 			utils/check_closed_quotes.c				\
 			utils/ft_increase.c						\
 			signal/signals.c						\
+			print_tab_arg.c\
 
 OBJS = $(SRCS:.c=.o)
 

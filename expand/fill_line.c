@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:53:37 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 13:38:27 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:19:32 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_arg	fill_line2_dollar(t_arg tab, char *str, int j)
 	q = 0;
 	while (str[j])
 	{
-		if (str[j] == '\'')
+		if (str[j] == '\'' && q == 0)
 			tab.str = close_quote_str(tab.str, &k, &j, str);
 		if (str[j] && str[j] == '"')
 			q = ft_bool(q);

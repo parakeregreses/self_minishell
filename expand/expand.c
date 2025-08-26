@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:23:36 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 22:38:38 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:41:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	quote_check(char *str, int i, int *q)
 {
-	if (str[i] && str[i] == '\'')
+	if (str[i] && str[i] == '\'' && q == 0)
 		i = close_quote(str, i, str[i]);
 	if (str[i] && str[i] == '"')
 		*q = ft_bool(*q);

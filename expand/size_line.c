@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 23:02:38 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 23:02:53 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:08:36 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	size_line2(char *str, int q, int i)
 {
 	while (str[i])
 	{
-		if (str[i] && str[i] == '\'')
+		if (str[i] && str[i] == '\'' && q == 0)
 			i = close_quote(str, i, str[i]);
 		if (str[i] == 0)
 			return (i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 19:46:53 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:59:16 by jlaineb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,20 @@ int	g_finished = 0;
 
 static void	signal_handler(int signal)
 {
+	pid_t	pid;
+
 	if (signal == SIGINT)
 	{
+		pid = waitpid(-1, NULL, 0);
 		g_finished = signal;
+	if (pid == -1)
+		{
 		write(2, "SIGINT", 6);
-		// write(1, "\n", 1);
-		// rl_on_new_line();
-		// rl_replace_line("", 0);
-		// rl_redisplay();
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+		}
 	}
 }
 

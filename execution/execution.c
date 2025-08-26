@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 19:42:12 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:46:49 by jlaineb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		close(std.in);
 		close(std.out);
 		if (info.cmdpath == NULL || fdin == -1 || info.outfile.fdout == -1)
@@ -71,10 +72,9 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 		if (dup2(fdin, 0) == -1 || dup2(info.outfile.fdout, 1) == -1)
 			free_close_exit(info, piperead, pipewrite, EXIT_FAILURE);
 		close(pipewrite[READ]);
-		if (g_finished != 0)
-			exit(*(u.status));
 		execve(info.cmdpath, info.cmdarg, *(u.envp));
 		free_close_exit(info, piperead, pipewrite, EXIT_FAILURE);
 	}
 	close_after_exec(fdin, info.outfile.fdout, pipewrite[WRITE]);
+	// return (pid);
 }

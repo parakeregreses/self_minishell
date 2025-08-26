@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 19:53:59 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:49:37 by jlaineb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ void	pipex2(t_utils u, t_pipes p, t_2d std)
 {
 	int	i;
 	int	wait_status;
-	pid_t	pid;
 
-	pid = getpid();	
 	i = 0;
 	wait_status = 0;
+	g_finished = 0;
 	while (i < u.n)
 	{
 		wait(&wait_status);
@@ -51,7 +50,8 @@ void	pipex2(t_utils u, t_pipes p, t_2d std)
 			*(u.status) = 130;
 			retrieve_std(std.in, std.out);
 			close_pipes(p.pipe1, p.pipe2);
-			write(1, "\n", 1);
+			// write(1, "\n", 1);
+			tcsetpgrp(STDIN_FILENO, getpgrp());
 			return ;
 		}
 		i++;

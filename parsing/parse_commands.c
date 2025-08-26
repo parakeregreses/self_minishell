@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/24 18:30:58 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:13:41 by jlaineb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int	is_executable(char *cmd)
 {
 	struct stat	buf;
-	int			status;
+	// int			status;
 	char		*line;
 
-	status = stat(cmd, &buf);
+	stat(cmd, &buf);
 	if (S_ISREG(buf.st_mode) && buf.st_mode & S_IXUSR)
 		return (TRUE);
 	line = ft_strjoin(cmd, (": command not found\n"));

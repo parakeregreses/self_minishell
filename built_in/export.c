@@ -51,11 +51,12 @@ char	**ft_replace_export_if_found(char **export_list, char *env_variable)
 			j++;
 		if (ft_strncmp(export_list[i], env_variable, len) == 0 && j == len)
 		{
-			if (ft_strchr(env_variable, '='))
-			{
+			printf("found : %s\n", export_list[i]);
+			//if (ft_strchr(env_variable, '='))
+			//{
 				free(export_list[i]);
 				export_list[i] = ft_strdup(env_variable);
-			}
+			//}
 			return (export_list);
 		}
 		i++;
@@ -93,26 +94,50 @@ char	**ft_add_in_export(char **envp, char *new_env_variable)
 	if (!new_env_variable || !new_env_variable[0])
 		return (envp);
 	new_export = ft_replace_export_if_found(envp, new_env_variable);
+	free_tab((void *) envp);
 	return (new_export);
 }
 
-char	**cmd_export(char ***envp, char *new_env_variable, int *status, int ok)
+char	**cmd_export2(char ***envp, char **new_env_variable, int *status)
+{
+	int		i;
+	//char	**temp;
+	char	**new_envp;
+
+	i = 1;
+	new_envp = ft_copy_env(*envp);
+	while (new_env_variable[i])
+	{
+		if (env_var_checker(new_env_variable[i]) == 1)
+			*status = 1;
+		else
+		{
+			new_envp = ft_add_in_export(new_envp, new_env_variable[i]);
+			//if (temp != new_envp)
+			//	new_envp = temp;
+		}
+		i++;
+	}
+	return (new_envp);
+}
+
+char	**cmd_export(char ***envp, char **new_env_variable, int *status, int ok)
 {
 	char	**new_env;
 
-	if (env_var_checker(*envp, new_env_variable) == 1)
+	if (!new_env_variable[1])
 	{
-		*status = 1;
+		no_envar(*envp);
 		return (NULL);
 	}
 	if (!ok)
 		return (*envp);
-	new_env = ft_add_in_export(*envp, new_env_variable);
-	if (new_env != *envp)
-	{
-		free_tab((void **)*envp);
+	new_env = cmd_export2(envp, new_env_variable, status);
+	//if (new_env != *envp)
+	//{
+		//free_tab((void **)*envp);
 		*envp = new_env;
-	}
+	//}
 	*status = 0;
-	return (*envp);
+	return (new_env);
 }

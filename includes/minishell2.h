@@ -41,7 +41,7 @@ char	*cat_current_dir(void);
 /* =================== ENVIRONMENT VARIABLES =================== */
 
 char	**cmd_unset(char ***envp, char *var_rm, int *status);
-char	**cmd_export(char ***envp, char *new_env_variable, int *status, int ok);
+char	**cmd_export(char ***envp, char **new_env_variable, int *status, int ok);
 char	**ft_copy_env(char **envp);
 char	**ft_free_envp(int i, char **envp);
 char	**export_alphabetical_order(char **envp);
@@ -52,7 +52,7 @@ void	ft_print_export(char *env);
 void	cmd_env(char **envp, int *status);
 void	swap_str(char **a, char **b);
 void	swap_variables(char **result, int count);
-int		env_var_checker(char **envp, char *env_variable);
+int		env_var_checker(char *env_variable);
 char	*replace_dollar_mark(char *str, int var);
 char	*replace_dollar_var(char *str, char **envp);
 char	*dollar_signs(char *str, int var, char **envp);
@@ -61,6 +61,7 @@ int		get_final_length(char *str, char **envp, int i, int len);
 int		var_name_len(char *str);
 char	*check_env_value(char *str, char **envp);
 char	*ft_getenv(const char *name, char **envp);
+int		no_envar(char **temp_envp);
 
 /* ============================ CD ============================ */
 

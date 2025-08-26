@@ -38,7 +38,6 @@ char	**ft_replace_export_if_found(char **export_list, char *env_variable)
 {
 	int		i;
 	size_t	len;
-	size_t	j;
 
 	len = 0;
 	while (env_variable[len] && env_variable[len] != '=')
@@ -46,17 +45,10 @@ char	**ft_replace_export_if_found(char **export_list, char *env_variable)
 	i = 0;
 	while (export_list && export_list[i])
 	{
-		j = 0;
-		while (export_list[i][j] && export_list[i][j] != '=')
-			j++;
-		if (ft_strncmp(export_list[i], env_variable, len) == 0 && j == len)
+		if (ft_strncmp(export_list[i], env_variable, len) == 0)
 		{
-			printf("found : %s\n", export_list[i]);
-			//if (ft_strchr(env_variable, '='))
-			//{
-				free(export_list[i]);
-				export_list[i] = ft_strdup(env_variable);
-			//}
+			free(export_list[i]);
+			export_list[i] = ft_strdup(env_variable);
 			return (export_list);
 		}
 		i++;
@@ -94,7 +86,7 @@ char	**ft_add_in_export(char **envp, char *new_env_variable)
 	if (!new_env_variable || !new_env_variable[0])
 		return (envp);
 	new_export = ft_replace_export_if_found(envp, new_env_variable);
-	free_tab((void *) envp);
+	// free_tab((void *) envp);
 	return (new_export);
 }
 
@@ -135,7 +127,7 @@ char	**cmd_export(char ***envp, char **new_env_variable, int *status, int ok)
 	new_env = cmd_export2(envp, new_env_variable, status);
 	//if (new_env != *envp)
 	//{
-		//free_tab((void **)*envp);
+		free_tab((void **)*envp);
 		*envp = new_env;
 	//}
 	*status = 0;

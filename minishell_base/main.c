@@ -22,7 +22,7 @@ char	*shlvlline(char **envp)
 	while (envp[i] != NULL)
 	{
 		if (ft_strncmp(envp[i], "SHLVL=", 6) == 0)
-			return (envp[i]);
+			return (ft_strdup(envp[i]));
 		i++;
 	}
 	return (NULL);
@@ -31,14 +31,26 @@ char	**update_SHLVL(char ***envp, int *status)
 {
 	char	*str;
 	int		shell_level;
+	char	**args;
 
+	args = malloc(sizeof(char *) * 3);
+	args[0] = ft_strdup("export");
+	args[2] = NULL;
 	str = shlvlline(*envp);
 	if (str == NULL)
-		return (cmd_export(envp, "SHLVgit L=1", status, 1));
+	{
+		args[1] = ft_strdup("SHLVL=1");
+		*envp = cmd_export(envp, args, status, 1);
+		free_tab((void **) args);
+		return (*envp);
+	}
 	shell_level = atoi(str + 6);
 	free(str);
-	str = ft_strjoinfree(ft_strdup("SHLVL="), ft_itoa(shell_level + 1));
-	return (cmd_export(envp, str, status, 1));
+	args[1] = ft_strjoinfree(ft_strdup("SHLVL="), ft_itoa(shell_level + 1));
+	printf("%s\n", args[1]);
+	*envp = cmd_export(envp, args, status, 1);
+	free_tab((void **) args);
+	return (*envp);
 }
 
 int	main(int argc, char **argv, char **envp)

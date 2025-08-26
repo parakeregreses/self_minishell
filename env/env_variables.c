@@ -58,6 +58,7 @@ char	**ft_create_env(char **envp, char *new_env_variable)
 	if (new_envp[i] == NULL)
 		return (ft_free_envp(i, new_envp));
 	new_envp[++i] = NULL;
+	free_tab((void **)envp);
 	return (new_envp);
 }
 

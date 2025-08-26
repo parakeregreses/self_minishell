@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:42:05 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/25 16:13:17 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 19:35:24 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ int	fill_str(char *dst, char *src, char **envp, int i)
 			free(var);
 			i += len;
 		}
-		dst = fill_str2(dst, src, &i, &j);
+		if (src[i])
+			dst = fill_str2(dst, src, &i, &j);
 	}
 	dst[j] = '\0';
 	return (0);

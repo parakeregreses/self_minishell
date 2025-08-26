@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:04 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/24 20:57:50 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 11:59:13 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**remove_var_from_envp(char **envp, char **temp, char *var, int varlen)
 	j = 0;
 	while (envp[i])
 	{
-		if (!(ft_strncmp(var, envp[i], varlen) == 0 && envp[i][varlen] == '='))
+		if (!(ft_strncmp(var, envp[i], varlen) == 0))
 		{
 			temp[j] = ft_strdup(envp[i]);
 			if (!temp[j])

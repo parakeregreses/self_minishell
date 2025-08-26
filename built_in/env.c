@@ -59,6 +59,8 @@ void	ft_print_export(char *env)
 	int	i;
 
 	i = 0;
+	if (env[0] == '_' && (env[1] == '=' || env[1] == '\0'))
+		return ;
 	while (env[i] && env[i] != '=')
 		i++;
 	if (env[i] == '=')

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:40:43 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 15:40:56 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:56:23 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ int	fill_str_without_quotes(char **str, int i, char *str2, char *c)
 		{
 			while (str2[j] && str2[j] != *c)
 				str[0][i++] = str2[j++];
-			if (!str2[j])
+			if (!str2[j++])
 				return (fill_str_without_quotes_return(str, i));
-			j++;
 			*c = '0';
 		}
 		while (str2[j] && *c == '0')
@@ -42,9 +41,8 @@ int	fill_str_without_quotes(char **str, int i, char *str2, char *c)
 				return (fill_str_without_quotes_return(str, i));
 			*c = str2[j];
 		}
-		if (!str2[j])
+		if (!str2[j++])
 			return (fill_str_without_quotes_return(str, i));
-		j++;
 	}
 	return (fill_str_without_quotes_return(str, i));
 }

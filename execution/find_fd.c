@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 13:00:17 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 14:22:55 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:55:25 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	find_outfile_pipe(t_utils u, int pipe[2])
 {
-	t_outfile	outfile;
+	t_outfile	out;
 
-	outfile = (u.infos[u.i]).outfile;
-	if (outfile.filename != NULL)
+	out = (u.infos[u.i]).outfile;
+	if (out.filename != NULL)
 	{
-		if (outfile.append == 1)
-			return (open(outfile.filename, O_WRONLY | O_APPEND | O_CREAT, 0666));
-		return (open(outfile.filename, O_WRONLY | O_TRUNC | O_CREAT, 0666));
+		if (out.append == 1)
+			return (open(out.filename, O_WRONLY | O_APPEND | O_CREAT, 0666));
+		return (open(out.filename, O_WRONLY | O_TRUNC | O_CREAT, 0666));
 	}
-	if (u.i != (u.n - 1) && (outfile.filename == NULL))
+	if (u.i != (u.n - 1) && (out.filename == NULL))
 		return (pipe[WRITE]);
 	return (1);
 }

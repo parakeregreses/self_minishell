@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/25 18:26:47 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/26 14:11:14 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char		*delete_useless_spaces(char	*str, char *set);
 char		*delete_useless_spaces_fill(char *str, char *new_str, char *set);
 char		**token_bloc(char *str, char *set);
 char		*remove_whitespaces(char *str);
-char		*revamp_str(char *str);
+char		*revamp_str(char *str, int *status);
 int			second_verifications(t_arg *tab);
 int			triple_char(t_arg *tab, int n, char c);
 int			check_closed_quotes(char *arg);

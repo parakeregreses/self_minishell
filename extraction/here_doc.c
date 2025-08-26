@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 17:58:06 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 13:43:02 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*ft_tempfilename(void)
 
 char	*sigint(char *tempfilename, char *line, char *lim_return, int fd)
 {
+	get_signal(SA_RESTART, 0);
 	unlink(tempfilename);
 	free(tempfilename);
 	free(line);
@@ -45,7 +46,6 @@ char	*here_doc(char *lim)
 	char	*lim_return;
 	int		fd;
 
-	get_signal(0, 1);
 	tempfilename = ft_tempfilename();
 	fd = open(tempfilename, O_RDWR | O_CREAT, 00777);
 	if (fd == -1)
@@ -62,6 +62,7 @@ char	*here_doc2(char *lim, char *tempfilename, char *lim_return, int fd)
 
 	i = 0;
 	line = get_next_line(0);
+	get_signal(0, 1);
 	while (g_finished == 0 && ft_strcmp(line, lim_return) != 0 && line != NULL)
 	{
 		write(fd, line, ft_strlen(line));
@@ -69,9 +70,9 @@ char	*here_doc2(char *lim, char *tempfilename, char *lim_return, int fd)
 		line = get_next_line(0);
 		i++;
 	}
-	get_signal(SA_RESTART, 0);
 	if (g_finished == SIGINT)
 		return (sigint(tempfilename, line, lim_return, fd));
+	get_signal(SA_RESTART, 0);
 	if (line == NULL)
 		ft_printf("minishell :warning: here-document at line %d \
 delimited by end-of-file (wanted `%s')\n", i, lim);

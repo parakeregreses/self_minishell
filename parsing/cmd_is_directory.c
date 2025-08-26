@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:35:20 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 18:32:16 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/25 18:54:06 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	directory(char *cmd, int *status)
 {
 	if (access(cmd, F_OK) != 0)
 	{
-		printf("F pas OK \n");
 		no_such_file_or_directory(cmd, status);
 		return (FALSE);
 	}

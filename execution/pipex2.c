@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 17:39:41 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 13:45:47 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ void	pipex2(t_utils u, t_pipes p, t_2d std)
 			*(u.status) = WEXITSTATUS(wait_status);
 		if (g_finished != 0)
 		{
+			*(u.status) = 130;
 			retrieve_std(std.in, std.out);
 			close_pipes(p.pipe1, p.pipe2);
+			write(1, "\n", 1);
 			return ;
 		}
 		i++;

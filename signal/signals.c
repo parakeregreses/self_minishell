@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 12:39:18 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/26 19:46:53 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ static void	signal_handler(int signal)
 	if (signal == SIGINT)
 	{
 		g_finished = signal;
-		write(1, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
+		write(2, "SIGINT", 6);
+		// write(1, "\n", 1);
+		// rl_on_new_line();
+		// rl_replace_line("", 0);
+		// rl_redisplay();
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 18:42:16 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 19:42:12 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 		if (dup2(fdin, 0) == -1 || dup2(info.outfile.fdout, 1) == -1)
 			free_close_exit(info, piperead, pipewrite, EXIT_FAILURE);
 		close(pipewrite[READ]);
+		if (g_finished != 0)
+			exit(*(u.status));
 		execve(info.cmdpath, info.cmdarg, *(u.envp));
 		free_close_exit(info, piperead, pipewrite, EXIT_FAILURE);
 	}

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 13:45:47 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/26 19:53:59 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	pipex2(t_utils u, t_pipes p, t_2d std)
 {
 	int	i;
 	int	wait_status;
+	pid_t	pid;
 
+	pid = getpid();	
 	i = 0;
 	wait_status = 0;
 	while (i < u.n)

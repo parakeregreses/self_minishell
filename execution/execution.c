@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/27 15:53:03 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:54:14 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ void	close_after_exec(int fdin, int fdout, int pipe)
 		close(fdout);
 }
 
+void	signal_setup(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+}
+
 void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 {
 	pid_t	pid;
@@ -62,7 +68,7 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 	pid = fork();
 	if (pid == 0)
 	{
-		signal(SIGINT, SIG_DFL);
+		signal_setup();
 		close(std.in);
 		close(std.out);
 		if (info.cmdpath == NULL || fdin == -1 || info.outfile.fdout == -1)

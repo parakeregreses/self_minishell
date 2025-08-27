@@ -6,38 +6,11 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:04 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/27 16:47:59 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/27 18:53:27 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//char	**remove_vars_from_envp(char **envp, char **temp, char *var)
-//{
-//	int	i;
-//	int	j;
-
-//	i = 0;
-//	j = 0;
-//	while (envp[i])
-//	{
-//		if (!(ft_strncmp(var, envp[i], ft_strlen(envp[i])) == 0))
-//		{
-//			temp[j] = ft_strdup(envp[i]);
-//			if (!temp[j])
-//			{
-//				while (j > 0)
-//					free(temp[--j]);
-//				free(temp);
-//				return (NULL);
-//			}
-//			j++;
-//		}
-//		i++;
-//	}
-//	temp[j] = NULL;
-//	return (temp);
-//}
 
 int	is_var_to_remove(char *envp_var, char **vars)
 {
@@ -48,8 +21,8 @@ int	is_var_to_remove(char *envp_var, char **vars)
 	while (vars[i])
 	{
 		len = ft_strlen(vars[i]);
-		if (ft_strncmp(vars[i], envp_var, len) == 0 &&
-				(envp_var[len] == '=' || envp_var[len] == '\0'))
+		if (ft_strncmp(vars[i], envp_var, len) == 0
+			&& (envp_var[len] == '=' || envp_var[len] == '\0'))
 			return (1);
 		i++;
 	}

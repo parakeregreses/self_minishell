@@ -6,13 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/25 18:39:57 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:39:42 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_findpathline(char **envp)
+static char	*ft_findpathline(char **envp)
 {
 	int	i;
 
@@ -23,8 +23,7 @@ char	*ft_findpathline(char **envp)
 			return (envp[i]);
 		i++;
 	}
-	return ("PATH=/home/jlaine-b/bin:/usr/local/sbin:\
-	/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
+	return (NULL);
 }
 
 char	**ft_splitpaths(char **envp)
@@ -58,6 +57,7 @@ char	*ft_iscmd(char *cmd, int *status, char **envp)
 {
 	char	**paths;
 
+	printf("cmd = %s\n", cmd);
 	if (cmd == NULL)
 		return (NULL);
 	if (is_builtin(cmd) == TRUE)
@@ -70,12 +70,5 @@ char	*ft_iscmd(char *cmd, int *status, char **envp)
 	if (access(cmd, F_OK) == 0)
 		return (is_absolute_path(cmd, status));
 	paths = ft_splitpaths(envp);
-	if (paths == NULL)
-	{
-		ft_printf("no environnement variable PATH\n");
-		*status = 125;
-		return (NULL);
-	}
-	else
-		return (ft_findpathforeachcommand(paths, cmd, status));
+	return (ft_findpathforeachcommand(paths, cmd, status));
 }

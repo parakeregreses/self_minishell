@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/27 15:52:36 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:50:03 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	is_executable(char *cmd)
 	struct stat	buf;
 	char		*line;
 
+	printf("excution test, %s\n", cmd);
 	stat(cmd, &buf);
 	if (S_ISREG(buf.st_mode) && buf.st_mode & S_IXUSR)
 		return (TRUE);

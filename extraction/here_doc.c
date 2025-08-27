@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 13:43:02 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:56:45 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*ft_tempfilename(void)
 
 char	*sigint(char *tempfilename, char *line, char *lim_return, int fd)
 {
+	g_finished = 0;
 	get_signal(SA_RESTART, 0);
 	unlink(tempfilename);
 	free(tempfilename);
@@ -61,8 +62,8 @@ char	*here_doc2(char *lim, char *tempfilename, char *lim_return, int fd)
 	char	*line;
 
 	i = 0;
-	line = get_next_line(0);
 	get_signal(0, 1);
+	line = get_next_line(0);
 	while (g_finished == 0 && ft_strcmp(line, lim_return) != 0 && line != NULL)
 	{
 		write(fd, line, ft_strlen(line));

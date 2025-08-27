@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:43:00 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/26 17:25:35 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/27 15:53:15 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,7 @@ int	not_a_valid_identifier(char *envvar)
 int	env_var_checker(char *envvar)
 {
 	int		i;
-	//char	**temp_envp;
 
-	//temp_envp = envp;
-	//if (!envvar)
-	//	return (no_envar(temp_envp));
 	if (ft_isdigit(envvar[0]) || (!ft_isalpha(envvar[0]) && envvar[0] != '_'))
 		return (not_a_valid_identifier(envvar));
 	i = 0;

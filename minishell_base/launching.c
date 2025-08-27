@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launching.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 20:32:04 by jlaineb          ###   ########.fr       */
+/*   Updated: 2025/08/27 15:57:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*find_line(void)
 	char	*line;
 
 	prompt = cat_current_dir();
-	printf("%d\n", getpid());
 	line = readline(prompt);
 	free(prompt);
 	return (line);

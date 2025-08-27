@@ -13,7 +13,6 @@
 #define _GNU_SOURCE
 #include "minishell.h"
 
-
 char	*shlvlline(char **envp)
 {
 	int	i;
@@ -27,7 +26,8 @@ char	*shlvlline(char **envp)
 	}
 	return (NULL);
 }
-char	**update_SHLVL(char ***envp, int *status)
+
+char	**update_shlvl(char ***envp, int *status)
 {
 	char	*str;
 	int		shell_level;
@@ -47,7 +47,6 @@ char	**update_SHLVL(char ***envp, int *status)
 	shell_level = atoi(str + 6);
 	free(str);
 	args[1] = ft_strjoinfree(ft_strdup("SHLVL="), ft_itoa(shell_level + 1));
-	printf("%s\n", args[1]);
 	*envp = cmd_export(envp, args, status, 1);
 	free_tab((void **) args);
 	return (*envp);
@@ -66,7 +65,7 @@ int	main(int argc, char **argv, char **envp)
 		*our_envp = ft_copy_env(envp);
 		status = malloc(sizeof(int));
 		*status = 0;
-		*our_envp = update_SHLVL(our_envp, status);
+		*our_envp = update_shlvl(our_envp, status);
 		launching(our_envp, status);
 	}
 	else

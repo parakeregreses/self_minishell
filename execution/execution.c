@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 20:46:49 by jlaineb          ###   ########.fr       */
+/*   Updated: 2025/08/27 15:53:03 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,4 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 		free_close_exit(info, piperead, pipewrite, EXIT_FAILURE);
 	}
 	close_after_exec(fdin, info.outfile.fdout, pipewrite[WRITE]);
-	// return (pid);
 }

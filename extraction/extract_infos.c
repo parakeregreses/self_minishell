@@ -24,6 +24,7 @@ t_exec	*extract_infos(char ***processes, int n, int *status, char ***envp)
 		infos[i] = extract_info(processes[i], status, envp);
 		if (ft_strcmp((infos[i]).infile.tempfilename, "sigint") == 0)
 		{
+			*status = 130;
 			free_tab((void **)(infos[i]).cmdarg);
 			free((infos[i]).infile.filename);
 			free((infos[i]).outfile.filename);

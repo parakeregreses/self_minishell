@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/27 16:55:45 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/27 16:59:08 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*ft_tempfilename(void)
 
 char	*sigint(char *tempfilename, char *line, char *lim_return, int fd)
 {
+	g_finished = 0;
 	get_signal(SA_RESTART, 0);
 	unlink(tempfilename);
 	free(tempfilename);

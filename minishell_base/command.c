@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/25 15:32:28 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:26:43 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	command(char *str, char ***envp, int *status)
 	if (infos == NULL)
 	{
 		g_finished = 0;
-		return (0);
+		return (-1);
 	}
 	parse_commands(infos, n, envp, status);
 	pipex(infos, n, envp, status);

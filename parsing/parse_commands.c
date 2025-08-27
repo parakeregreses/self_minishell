@@ -6,22 +6,25 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/27 18:50:03 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/27 23:02:43 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <features.h>
 
 int	is_executable(char *cmd)
 {
 	struct stat	buf;
 	char		*line;
 
-	printf("excution test, %s\n", cmd);
 	stat(cmd, &buf);
-	if (S_ISREG(buf.st_mode) && buf.st_mode & S_IXUSR)
+	if (S_ISREG(buf.st_mode) && (buf.st_mode & S_IXUSR))
 		return (TRUE);
-	line = ft_strjoin(cmd, (": command not found\n"));
+	line = ft_strjoin(cmd, ("is executable ??: command not found\n"));
 	write(2, "minishell: ", ft_strlen("minishell: "));
 	write(2, line, ft_strlen(line));
 	free(line);

@@ -78,12 +78,12 @@ char	**update_shlvl(char ***envp, int *status)
 		return (shlvl_1(args, envp, status));
 	shell_level = atoi(str + 6);
 	if ((shell_level) < 0)
-		shell_level = 0;
+		shell_level = -1;
 	if ((shell_level) > 999)
 	{
 		ft_printf("minishell: warning: shell level\
 (%d) too high, resetting to 1\n", shell_level);
-		shell_level = 1;
+		shell_level = 0;
 	}
 	free(str);
 	args[1] = ft_strjoinfree(ft_strdup("SHLVL="), ft_itoa(shell_level + 1));

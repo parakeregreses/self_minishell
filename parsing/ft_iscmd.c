@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/27 18:39:42 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/27 22:38:56 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	*ft_iscmd(char *cmd, int *status, char **envp)
 {
 	char	**paths;
 
-	printf("cmd = %s\n", cmd);
 	if (cmd == NULL)
 		return (NULL);
 	if (is_builtin(cmd) == TRUE)

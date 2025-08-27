@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/27 18:54:14 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/27 23:08:35 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,24 @@ void	free_close_exit(t_exec info, int pipe1[2], int pipe2[2], int status)
 	if (info.outfile.fdout != 1)
 		close(info.outfile.fdout);
 	close_pipes(pipe1, pipe2);
+	free(info.infile.filename);
+	free(info.outfile.filename);
+	free_tab((void *)info.cmdarg);
+	if (info.outfile.fdout == -1)
+		exit(EXIT_FAILURE);
+	exit(status);
+}
+
+void	free_close_exit_execfail(t_exec info, int pipe1[2], int pipe2[2], int status)
+{
+	char	*line;
+
+	if (info.outfile.fdout != 1)
+		close(info.outfile.fdout);
+	close_pipes(pipe1, pipe2);
+	line = ft_strjoin(info.cmdarg[0], "EXECVE: command not found\n");
+	write(2, line, ft_strlen(line));
+	free(line);
 	free(info.infile.filename);
 	free(info.outfile.filename);
 	free_tab((void *)info.cmdarg);
@@ -79,7 +97,7 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 			free_close_exit(info, piperead, pipewrite, EXIT_FAILURE);
 		close(pipewrite[READ]);
 		execve(info.cmdpath, info.cmdarg, *(u.envp));
-		free_close_exit(info, piperead, pipewrite, EXIT_FAILURE);
+		free_close_exit_execfail(info, piperead, pipewrite, EXIT_FAILURE);
 	}
 	close_after_exec(fdin, info.outfile.fdout, pipewrite[WRITE]);
 }

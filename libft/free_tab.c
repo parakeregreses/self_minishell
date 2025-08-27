@@ -17,6 +17,8 @@ void	free_tab(void **tab)
 	int	i;
 
 	i = 0;
+	if (tab == NULL)
+		return ;
 	while (tab[i] != NULL)
 		free(tab[i++]);
 	free(tab);

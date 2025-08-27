@@ -54,6 +54,29 @@ void	cmd_env(char **envp, int *status)
 	*status = 0;
 }
 
+char	**export_alphabetical_order(char **envp)
+{
+	int		count;
+	int		i;
+	char	**result;
+
+	count = 0;
+	while (envp && envp[count])
+		count++;
+	result = (char **)malloc(sizeof(char *) * (count + 1));
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (i < count)
+	{
+		result[i] = ft_strdup(envp[i]);
+		i++;
+	}
+	result[i] = NULL;
+	swap_variables(result, count);
+	return (result);
+}
+
 void	ft_print_export(char *env)
 {
 	int	i;

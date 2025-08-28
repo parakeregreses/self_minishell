@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/25 17:37:10 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/28 20:23:01 by lionelulm        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,7 @@ int	cmd_cd(char **arg, char ***envp, int *status)
 	while (arg[i])
 		i++;
 	if (i > 2)
-	{
-		ft_putstr_fd("cd: too many arguments\n", 2);
-		return (*status = 1);
-	}
+		return (*status = 0);
 	dir = find_target(arg, *envp);
 	if (!dir)
 		return (*status = 1);

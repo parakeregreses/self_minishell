@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/27 18:18:39 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:40:45 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,33 @@
 #include <sys/wait.h>
 
 int	g_finished = 0;
+
+void	disable_sigquit(int i)
+{
+	struct sigaction		sa;
+	static struct termios	orig_termios;
+	struct termios			new_termios;
+
+	if (i == 1)
+	{
+		memset(&sa, 0, sizeof(sa));
+		sa.sa_handler = SIG_IGN;
+		sigaction(SIGQUIT, &sa, NULL);
+
+		tcgetattr(STDIN_FILENO, &orig_termios);
+		new_termios = orig_termios;
+		new_termios.c_lflag &= ~ECHOCTL;
+		tcsetattr(STDIN_FILENO, TCSANOW, &new_termios);
+	}
+	if (i == 2)
+	{
+		memset(&sa, 0, sizeof(sa));
+		sa.sa_handler = SIG_DFL;
+		sigaction(SIGQUIT, &sa, NULL);
+
+		tcsetattr(STDIN_FILENO, TCSANOW, &orig_termios);
+	}
+}
 
 static void	signal_handler(int signal)
 {

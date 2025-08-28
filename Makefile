@@ -85,7 +85,7 @@ MAKELIB = make $(LIBDIR)
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -I$(INCLUDE)  -fsanitize=leak,address,undefined,integer,bounds,pointer-compare,pointer-subtract,float-divide-by-zero
+FLAGS = -Wall -Wextra -Werror -I$(INCLUDE)
 
 LFLAGS = -lreadline
 

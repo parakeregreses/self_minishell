@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:30:40 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/26 15:58:30 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:17:01 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*revamp_str(char *str, int *status)
 {
 	char	c;
 
-	str = ft_strtrim(str, " ");
+	str = ft_strtrim(str, WHITESPACES);
 	c = double_chevron_error(str);
 	if (c != 0)
 	{

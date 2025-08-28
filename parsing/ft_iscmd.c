@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_iscmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/27 22:38:56 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:09:12 by lionelulm        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ char	*ft_iscmd(char *cmd, int *status, char **envp)
 	if (access(cmd, F_OK) == 0)
 		return (is_absolute_path(cmd, status));
 	paths = ft_splitpaths(envp);
-	return (ft_findpathforeachcommand(paths, cmd, status));
+	return (ft_findpathforeachcommand(paths, envp, cmd, status));
 }

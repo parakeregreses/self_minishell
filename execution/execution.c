@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 16:01:31 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 18:28:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	close_after_exec(int fdin, int fdout, int pipe)
 
 static void	signal_handler(int sig)
 {
+	dprintf(2, "HANDLER\n");
 	g_finished = sig;
 	signal(sig, SIG_DFL);
 }

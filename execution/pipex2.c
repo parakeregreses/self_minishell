@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 13:58:10 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 18:35:12 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	pipex2(t_utils u, t_pipes p, t_2d std)
 			*(u.status) = WEXITSTATUS(wait_status);
 		if (g_finished == SIGINT)
 			return (sigint_pipex(p, std));
-		if (g_finished == SIGQUIT)
+		if (WIFSIGNALED(wait_status)
+			&& WTERMSIG(wait_status) == SIGQUIT && u.n == 1)
 			return (sigquit_pipex(p, std, u.n));
 		i++;
 	}

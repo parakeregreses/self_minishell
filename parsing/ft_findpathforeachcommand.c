@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_findpathforeachcommand.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:55:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/28 20:33:04 by lionelulm        ###   ########.fr       */
+/*   Updated: 2025/08/29 11:59:23 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ char	*ft_findpathforeachcommand(char **paths, char **envp, char *cmd, int *statu
 			free(cmdi);
 		}
 	}
-	*status = 126;
+	*status = 127;
 	return (cmd_not_found(paths, envp, cmd));
 }

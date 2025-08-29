@@ -48,8 +48,8 @@ char	**update_path(char ***envp, int *status)
 	args = malloc(sizeof(char *) * 3);
 	args[0] = ft_strdup("export");
 	args[2] = NULL;
-	args[1] = ft_strdup("PATH=/home/jlaine-b/bin:/usr/local/sbin:\
-	/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
+	args[1] = ft_strdup("PATH=/home/jlaine-b/bin:/usr/local/sbin:"
+	"/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
 	if (ft_findpathline(*envp) == NULL)
 		*envp = cmd_export(envp, args, status, 1);
 	free_tab((void **)args);

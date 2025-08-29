@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/28 16:52:55 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 13:04:26 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	pipex2(t_utils u, t_pipes p, t_2d std)
 			*(u.status) = 129;
 			retrieve_std(std.in, std.out);
 			close_pipes(p.pipe1, p.pipe2);
-			write(1, "SIGINT\n", 8);
 			return ;
 		}
 		if (g_finished == SIGQUIT)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/28 20:14:27 by lionelulm        ###   ########.fr       */
+/*   Updated: 2025/08/29 12:03:33 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	numeric_argument_required(char **args, t_utils u)
 	write(2, line, ft_strlen(line));
 	free(line);
 	free_tab((void **)(*u.envp));
-	*(u.status) = 255;
+	*(u.status) = 2;
 	exit(*(u.status));
 }
 

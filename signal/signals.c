@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 11:04:29 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 13:03:53 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,42 +46,42 @@ void	disable_sigquit(int i)
 	}
 }
 
-// static void	signal_handler(int signal)
-// {
-// 	pid_t	pid;
+ static void	signal_handler(int signal)
+ {
+ 	pid_t	pid;
 
-// 	if (signal == SIGINT)
-// 	{
-// 		pid = waitpid(-1, NULL, 0);
-// 		g_finished = signal;
-// 		write(1, "\n", 1);
-// 		rl_replace_line("", 0);
-// 		rl_on_new_line();
-// 		rl_redisplay();
-// 	}
-// }
+ 	if (signal == SIGINT)
+ 	{
+ 		pid = waitpid(-1, NULL, 0);
+ 		g_finished = signal;
+ 		write(1, "\n", 1);
+ 		rl_replace_line("", 0);
+ 		rl_on_new_line();
+ 		rl_redisplay();
+ 	}
+ }
 
-static void	signal_handler(int signal)
-{
-	if (signal == SIGINT)
-	{
-		printf("\n");
-		rl_on_new_line();
-#ifdef __APPLE__
-		rl_set_prompt("");
-		rl_redisplay();
-		rl_set_prompt("minishell$ ");
-#else
-		rl_replace_line("", 0);
-		rl_redisplay();
-#endif
-	}
-	else if (signal == SIGQUIT)
-	{
-		rl_on_new_line();
-		rl_redisplay();
-	}
-}
+//static void	signal_handler(int signal)
+//{
+//	if (signal == SIGINT)
+//	{
+//		printf("\n");
+//		rl_on_new_line();
+//#ifdef __APPLE__
+//		rl_set_prompt("");
+//		rl_redisplay();
+//		rl_set_prompt("minishell$ ");
+//#else
+//		rl_replace_line("", 0);
+//		rl_redisplay();
+//#endif
+//	}
+//	else if (signal == SIGQUIT)
+//	{
+//		rl_on_new_line();
+//		rl_redisplay();
+//	}
+//}
 
 static void	signal_handler_heredoc(int signal)
 {

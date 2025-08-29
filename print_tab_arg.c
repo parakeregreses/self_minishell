@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_cmdarg.c                                      :+:      :+:    :+:   */
+/*   print_tab_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 16:16:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 19:29:11 by jlaine-b         ###   ########.fr       */
+/*   Created: 2025/06/16 12:25:06 by jlaine-b          #+#    #+#             */
+/*   Updated: 2025/08/07 11:35:09 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**find_cmdarg(char **tokens, int *status, char ***envp)
+void	print_tab_arg(t_arg *text)
 {
-	int		i;
-	char	**cmd;
+	int	i;
 
-	i = 0;
-	cmd = malloc(sizeof(char *) * 1);
-	cmd[0] = NULL;
-	while (tokens[i] != NULL)
+	if (text == NULL)
 	{
-		if (tokens[i][0] && (tokens[i][0] == '>' || tokens[i][0] == '<'))
-			i++;
-		else
-		{
-			cmd = add_line_in_tab(cmd,
-					expand(tokens[i], *status, *envp));
-			i++;
-		}
+		ft_printf("(null)\n");
+		return ;
 	}
-	cmd = add_line_in_tab(cmd, NULL);
-	return (cmd);
+	i = 0;
+	while ((text[i]).str != NULL)
+	{
+		ft_printf("%d | %s\n", (text[i]).quote, (text[i]).str);
+		i++;
+	}
+	ft_printf("(null)\n");
 }

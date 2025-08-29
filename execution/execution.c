@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 18:28:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 19:09:47 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,10 @@ void	close_after_exec(int fdin, int fdout, int pipe)
 		close(fdout);
 }
 
-static void	signal_handler(int sig)
-{
-	dprintf(2, "HANDLER\n");
-	g_finished = sig;
-	signal(sig, SIG_DFL);
-}
-
 void	signal_setup(void)
 {
-	struct sigaction	handler;
-
-	sigemptyset(&handler.sa_mask);
-	handler.sa_handler = signal_handler;
-	sigaction(SIGINT, &handler, NULL);
-	sigaction(SIGQUIT, &handler, NULL);
-	// signal(SIGINT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 }
 
 void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:38:49 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/25 14:41:58 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/29 19:28:33 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*dollar_signs(char *str, int var, char **envp)
 	if (str[0] == '$' && str[1] == 0)
 	{
 		free(str);
-		return (ft_strdup(""));
+		return (ft_strdup("$"));
 	}
 	tmp = replace_dollar_mark(str, var);
 	if (!tmp)

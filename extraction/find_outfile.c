@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 22:14:44 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/25 17:00:21 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 11:14:33 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ t_outfile	find_outfile(char *str, int *status, char ***envp, t_outfile out)
 		out.filename = expand(str + 1, *status, *envp);
 		if (is_outfile(out.filename) == FALSE)
 		{
+			out.append = -1;
+			return (out);
+		}
+		if (out.filename[0] == 0)
+		{
+			write(2, "minishell: : No such file or directory\n", 39);
 			out.append = -1;
 			return (out);
 		}

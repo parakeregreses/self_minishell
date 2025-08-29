@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 10:56:51 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 11:04:29 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,7 @@ static void	signal_handler_heredoc(int signal)
 	if (signal == SIGINT)
 	{
 		g_finished = signal;
-		write(1, "\n", 1);
-	}
-}
-
-static void	signal_handler_sigquit(int signal)
-{
-	if (signal == SIGINT)
-	{
-		g_finished = signal;
-		write(1, "\n", 1);
+		write(1, "^C\n", 3);
 	}
 }
 
@@ -121,7 +112,6 @@ void	get_signal(int SA, int here_doc)
 		old_handler.sa_handler = signal_handler;
 		sigaction(SIGINT, &handler, &old_handler);
 	}
-	handler.sa_handler = signal_handler_quit;
 	sigaction(SIGQUIT, &handler, &old_handler);
 	signal(SIGQUIT, SIG_IGN);
 }

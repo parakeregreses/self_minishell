@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:16:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/27 22:39:47 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 11:58:59 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ char	**find_cmdarg(char **tokens, int *status, char ***envp)
 			i++;
 		else
 		{
-			if (cmd[0] == NULL)
-				cmd = add_line_in_tab(cmd, ft_strdup(tokens[i]));
-			else
+			// if (cmd[0] == NULL)
+			// 	cmd = add_line_in_tab(cmd, ft_strdup(tokens[i]));
+			// else
 				cmd = add_line_in_tab(cmd,
 						expand(tokens[i], *status, *envp));
 			i++;

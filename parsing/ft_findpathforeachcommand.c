@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_findpathforeachcommand.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:55:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/28 20:33:04 by lionelulm        ###   ########.fr       */
+/*   Updated: 2025/08/29 12:40:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,27 @@ char	*ft_definecmdi(char **paths, int *i, char *cmd)
 {
 	char	*cmdi;
 	char	*pathwithslash;
-	char	*simple_cmd;
 
-	simple_cmd = ft_firstword(cmd, ' ');
 	pathwithslash = ft_strjoin(paths[*i], "/");
 	*i = *i + 1;
-	cmdi = ft_strjoin(pathwithslash, simple_cmd);
+	cmdi = ft_strjoin(pathwithslash, cmd);
 	free(pathwithslash);
-	free(simple_cmd);
 	return (cmdi);
 }
 
-char	*cmd_not_found(char **paths, char **envp, char *cmd)
+char	*cmd_not_found(char **paths, char *cmd)
 {
 	char	*line;
 
 	free_tab((void **)paths);
-	line = ft_strjoinfree(expand(cmd, 0, envp), ft_strdup(": command not found\n"));
+	line = ft_strjoin(cmd, ": command not found\n");
 	write(1, "minishell: ", ft_strlen("minishell: "));
 	write(2, line, ft_strlen(line));
 	free(line);
 	return (NULL);
 }
 
-char	*ft_findpathforeachcommand(char **paths, char **envp, char *cmd, int *status)
+char	*ft_findpathforeachcommand(char **paths, char *cmd, int *status)
 {
 	int		i;
 	char	*cmdi;
@@ -62,6 +59,6 @@ char	*ft_findpathforeachcommand(char **paths, char **envp, char *cmd, int *statu
 			free(cmdi);
 		}
 	}
-	*status = 126;
-	return (cmd_not_found(paths, envp, cmd));
+	*status = 127;
+	return (cmd_not_found(paths, cmd));
 }

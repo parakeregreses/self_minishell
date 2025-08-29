@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_findpathforeachcommand.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 21:55:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 13:09:41 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/29 13:15:05 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_definecmdi(char **paths, int *i, char *cmd)
 	*i = *i + 1;
 	cmdi = ft_strjoin(pathwithslash, cmd);
 	free(pathwithslash);
-	return (cmd);
+	return (cmdi);
 }
 
 char	*cmd_not_found(char **paths, char *cmd)
@@ -60,5 +60,5 @@ char	*ft_findpathforeachcommand(char **paths, char *cmd, int *status)
 		}
 	}
 	*status = 127;
-	return (cmd_not_found(paths, envp, cmd));
+	return (cmd_not_found(paths, cmd));
 }

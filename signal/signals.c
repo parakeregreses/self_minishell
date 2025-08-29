@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 13:03:53 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/29 13:51:03 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,24 @@ void	disable_sigquit(int i)
 		memset(&sa, 0, sizeof(sa));
 		sa.sa_handler = SIG_DFL;
 		sigaction(SIGQUIT, &sa, NULL);
-
 		tcsetattr(STDIN_FILENO, TCSANOW, &orig_termios);
 	}
 }
 
- static void	signal_handler(int signal)
- {
- 	pid_t	pid;
+static void	signal_handler(int signal)
+{
+	pid_t	pid;
 
- 	if (signal == SIGINT)
- 	{
- 		pid = waitpid(-1, NULL, 0);
- 		g_finished = signal;
- 		write(1, "\n", 1);
- 		rl_replace_line("", 0);
- 		rl_on_new_line();
- 		rl_redisplay();
- 	}
- }
+	g_finished = signal;
+	if (signal == SIGINT)
+	{
+		pid = waitpid(-1, NULL, 0);
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+}
 
 //static void	signal_handler(int signal)
 //{
@@ -105,6 +104,7 @@ void	get_signal(int SA, int here_doc)
 		old_handler.sa_handler = signal_handler_heredoc;
 		handler.sa_handler = signal_handler;
 		sigaction(SIGINT, &handler, &old_handler);
+		sigaction(SIGQUIT, &handler, &old_handler);
 	}
 	if (here_doc == 1)
 	{
@@ -112,6 +112,4 @@ void	get_signal(int SA, int here_doc)
 		old_handler.sa_handler = signal_handler;
 		sigaction(SIGINT, &handler, &old_handler);
 	}
-	sigaction(SIGQUIT, &handler, &old_handler);
-	signal(SIGQUIT, SIG_IGN);
 }

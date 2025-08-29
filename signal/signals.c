@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/28 16:46:21 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:55:49 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,15 @@ static void	signal_handler_heredoc(int signal)
 	}
 }
 
+static void	signal_handler_sigquit(int signal)
+{
+	if (signal == SIGINT)
+	{
+		g_finished = signal;
+		write(1, "\n", 1);
+	}
+}
+
 void	get_signal(int SA, int here_doc)
 {
 	struct sigaction	handler;
@@ -90,5 +99,7 @@ void	get_signal(int SA, int here_doc)
 		old_handler.sa_handler = signal_handler;
 		sigaction(SIGINT, &handler, &old_handler);
 	}
+	handler.sa_handler = signal_handler_quit;
+	sigaction(SIGQUIT, &handler, &old_handler);
 	signal(SIGQUIT, SIG_IGN);
 }

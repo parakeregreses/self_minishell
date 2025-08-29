@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/28 16:45:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:52:55 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	pipex2(t_utils u, t_pipes p, t_2d std)
 			*(u.status) = 129;
 			retrieve_std(std.in, std.out);
 			close_pipes(p.pipe1, p.pipe2);
-			write(1, "\n", 1);
+			write(1, "SIGINT\n", 8);
 			return ;
 		}
 		if (g_finished == SIGQUIT)
@@ -59,7 +59,7 @@ void	pipex2(t_utils u, t_pipes p, t_2d std)
 			*(u.status) = 131;
 			retrieve_std(std.in, std.out);
 			close_pipes(p.pipe1, p.pipe2);
-			write(1, "Quit\n", 5);
+			write(2, "Quit\n", 5);
 			return ;
 		}
 		i++;

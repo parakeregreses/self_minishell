@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/28 18:10:28 by lionelulm        ###   ########.fr       */
+/*   Updated: 2025/08/29 12:42:46 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void		retrieve_std(int saved_stdin, int saved_stdout);
 char		*ft_iscmd(char *cmd, int *status, char **envp);
 int			directory(char *cmd, int *status);
 int			parse_commands(t_exec *infos, int n, char ***envp, int *status);
+char		*cmd_not_found(char **paths, char *cmd);
 
 /*DELETE*/
 void		delete_tempfiles(t_exec *infos, int n);
@@ -152,7 +153,7 @@ int			file_type(char *cmdi, char *simple_cmd);
 int			command(char *str, char ***envp, int *status);
 int			is_builtin(char *cmd);
 char		**expand_dollar(char **tab, int *status, char **envp);
-char		*ft_findpathforeachcommand(char **paths, char **envp, char *cmd, int *status);
+char		*ft_findpathforeachcommand(char **paths, char *cmd, int *status);
 
 /*EXPAND*/
 char		*expand(char *str, int status, char **envp);

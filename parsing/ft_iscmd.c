@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/29 12:01:10 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/29 13:08:08 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	*is_absolute_path(char *cmd, int *status)
 {
 	char	*message;
 
+	printf("absolute path\n");
 	if (access(cmd, X_OK) != 0)
 	{
 		*status = 126;
@@ -59,6 +60,11 @@ char	*ft_iscmd(char *cmd, int *status, char **envp)
 
 	if (cmd == NULL)
 		return (NULL);
+	if (cmd[0] == 0)
+	{
+		*status = 127;
+		return (cmd_not_found(NULL, cmd));
+	}
 	if (is_builtin(cmd) == TRUE)
 		return (ft_strdup(cmd));
 	if (ft_charinstr(cmd, '/') == TRUE)
@@ -69,5 +75,5 @@ char	*ft_iscmd(char *cmd, int *status, char **envp)
 	if (access(cmd, F_OK) == 0)
 		return (is_absolute_path(cmd, status));
 	paths = ft_splitpaths(envp);
-	return (ft_findpathforeachcommand(paths, envp, cmd, status));
+	return (ft_findpathforeachcommand(paths, cmd, status));
 }

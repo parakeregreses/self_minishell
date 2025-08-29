@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/28 16:37:28 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/29 13:29:52 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char	*here_doc2(char *lim, char *tempfilename, char *lim_return, int fd)
 	line = get_next_line(0);
 	while (g_finished == 0 && ft_strcmp(line, lim_return) != 0 && line != NULL)
 	{
-		disable_sigquit(1);
 		write(fd, line, ft_strlen(line));
 		free(line);
 		line = get_next_line(0);

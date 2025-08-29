@@ -6,11 +6,16 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 13:01:45 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 13:50:31 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _GNU_SOURCE
 #include "minishell.h"
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <signal.h>
+#include <sys/wait.h>
 
 void	free_close_exit(t_exec info, int pipe1[2], int pipe2[2], int status)
 {

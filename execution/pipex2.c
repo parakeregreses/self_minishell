@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 13:07:49 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/29 13:51:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,23 @@ void	pipex2(t_utils u, t_pipes p, t_2d std)
 			*(u.status) = WEXITSTATUS(wait_status);
 		if (g_finished == SIGINT)
 		{
-			*(u.status) = 129;
+			write(2, "\n", 2);
 			retrieve_std(std.in, std.out);
 			close_pipes(p.pipe1, p.pipe2);
 			return ;
 		}
 		if (g_finished == SIGQUIT)
 		{
-			*(u.status) = 131;
+			if (u.n == 1)
+				write(2, "Quit\n", 5);
 			retrieve_std(std.in, std.out);
 			close_pipes(p.pipe1, p.pipe2);
-			write(2, "Quit\n", 5);
 			return ;
 		}
 		i++;
 	}
 	retrieve_std(std.in, std.out);
 	close_pipes(p.pipe1, p.pipe2);
+	printf("g_finished = %d\n", g_finished);
 	return ;
 }

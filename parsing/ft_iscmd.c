@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/29 13:08:08 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/29 13:15:26 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ char	*is_absolute_path(char *cmd, int *status)
 {
 	char	*message;
 
-	printf("absolute path\n");
 	if (access(cmd, X_OK) != 0)
 	{
 		*status = 126;

@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:04 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/27 18:53:27 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/29 13:29:14 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int	is_var_to_remove(char *envp_var, char **vars)
 	i = 0;
 	while (vars[i])
 	{
+		if (ft_strchr(vars[i], '='))
+		{
+			i++;
+			continue ;
+		}
 		len = ft_strlen(vars[i]);
 		if (ft_strncmp(vars[i], envp_var, len) == 0
 			&& (envp_var[len] == '=' || envp_var[len] == '\0'))

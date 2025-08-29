@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/24 20:44:32 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/28 20:14:27 by lionelulm        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_numeric(const char *str)
 		return (0);
 	while (str[i])
 	{
-		if (!isdigit(str[i]))
+		if (!ft_isdigit(str[i]))
 			return (0);
 		i++;
 	}
@@ -77,7 +77,7 @@ void	numeric_argument_required(char **args, t_utils u)
 	write(2, line, ft_strlen(line));
 	free(line);
 	free_tab((void **)(*u.envp));
-	*(u.status) = 2;
+	*(u.status) = 255;
 	exit(*(u.status));
 }
 

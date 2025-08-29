@@ -98,6 +98,5 @@ char	**cmd_export(char ***envp, char **new_env_variable, int *status, int ok)
 	new_env = cmd_export2(envp, new_env_variable, status);
 	free_tab((void **)*envp);
 	*envp = new_env;
-	*status = 0;
 	return (new_env);
 }

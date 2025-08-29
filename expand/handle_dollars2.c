@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollars2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:42:05 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/26 19:35:24 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:54:40 by lionelulm        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*check_env_value(char *str, char **envp)
 	int	len;
 
 	i = 0;
+	if (!str || !envp)
+		return (NULL);
 	len = ft_strlen(str);
 	while (envp[i])
 	{

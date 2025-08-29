@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 12:58:45 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 13:51:57 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 13:58:10 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ void	close_pipes(int pipe1[2], int pipe2[2])
 		close(pipe2[1]);
 }
 
+void	sigint_pipex( t_pipes p, t_2d std)
+{
+	write(2, "\n", 2);
+	retrieve_std(std.in, std.out);
+	close_pipes(p.pipe1, p.pipe2);
+	return ;
+}
+
+void	sigquit_pipex(t_pipes p, t_2d std, int n)
+{
+	if (n == 1)
+		write(2, "Quit\n", 5);
+	retrieve_std(std.in, std.out);
+	close_pipes(p.pipe1, p.pipe2);
+	return ;
+}
+
 void	pipex2(t_utils u, t_pipes p, t_2d std)
 {
 	int	i;
@@ -47,24 +64,12 @@ void	pipex2(t_utils u, t_pipes p, t_2d std)
 		if (WIFEXITED(wait_status))
 			*(u.status) = WEXITSTATUS(wait_status);
 		if (g_finished == SIGINT)
-		{
-			write(2, "\n", 2);
-			retrieve_std(std.in, std.out);
-			close_pipes(p.pipe1, p.pipe2);
-			return ;
-		}
+			return (sigint_pipex(p, std));
 		if (g_finished == SIGQUIT)
-		{
-			if (u.n == 1)
-				write(2, "Quit\n", 5);
-			retrieve_std(std.in, std.out);
-			close_pipes(p.pipe1, p.pipe2);
-			return ;
-		}
+			return (sigquit_pipex(p, std, u.n));
 		i++;
 	}
 	retrieve_std(std.in, std.out);
 	close_pipes(p.pipe1, p.pipe2);
-	printf("g_finished = %d\n", g_finished);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 13:50:31 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 16:01:31 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	free_close_exit(t_exec info, int pipe1[2], int pipe2[2], int status)
 {
 	if (info.outfile.fdout != 1)
 		close(info.outfile.fdout);
+	if (info.infile.fdin != 0)
+		close(info.infile.fdin);
 	close_pipes(pipe1, pipe2);
 	free(info.infile.filename);
 	free(info.outfile.filename);
@@ -30,13 +32,15 @@ void	free_close_exit(t_exec info, int pipe1[2], int pipe2[2], int status)
 	exit(status);
 }
 
-void	free_close_exit_execfail(t_exec info, int pipe1[2], int pipe2[2], int status)
+void	free_close_exit_fail(t_exec info, int p1[2], int p2[2], int status)
 {
 	char	*line;
 
 	if (info.outfile.fdout != 1)
 		close(info.outfile.fdout);
-	close_pipes(pipe1, pipe2);
+	if (info.infile.fdin != 0)
+		close(info.infile.fdin);
+	close_pipes(p1, p2);
 	line = ft_strjoin(info.cmdarg[0], "EXECVE: command not found\n");
 	write(2, line, ft_strlen(line));
 	free(line);
@@ -48,22 +52,6 @@ void	free_close_exit_execfail(t_exec info, int pipe1[2], int pipe2[2], int statu
 	exit(status);
 }
 
-void	builtin(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
-{
-	int		fdin;
-	t_exec	info;
-
-	info = u.infos[u.i];
-	fdin = find_fdin(info.infile, piperead, u.i);
-	dup2(fdin, 0);
-	dup2(info.outfile.fdout, 1);
-	if (!(fdin == -1 || info.outfile.fdout == -1))
-		exec_builtin(u, piperead, pipewrite, std);
-	retrieve_std(std.in, std.out);
-	std.in = dup(0);
-	std.out = dup(1);
-}
-
 void	close_after_exec(int fdin, int fdout, int pipe)
 {
 	if (fdin != 0 && fdin != -1)
@@ -72,38 +60,47 @@ void	close_after_exec(int fdin, int fdout, int pipe)
 		close(fdout);
 }
 
+static void	signal_handler(int sig)
+{
+	g_finished = sig;
+	signal(sig, SIG_DFL);
+}
+
 void	signal_setup(void)
 {
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+	struct sigaction	handler;
+
+	sigemptyset(&handler.sa_mask);
+	handler.sa_handler = signal_handler;
+	sigaction(SIGINT, &handler, NULL);
+	sigaction(SIGQUIT, &handler, NULL);
+	// signal(SIGINT, SIG_DFL);
 }
 
 void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 {
 	pid_t	pid;
-	int		fdin;
-	t_exec	info;
+	t_exec	d;
 
-	info = u.infos[u.i];
-	if (is_builtin(info.cmdpath))
+	d = u.infos[u.i];
+	if (is_builtin(d.cmdpath))
 		builtin(u, piperead, pipewrite, std);
-	fdin = find_fdin(info.infile, piperead, u.i);
+	d.infile.fdin = find_fdin(d.infile, piperead, u.i);
 	pid = fork();
 	if (pid == 0)
 	{
 		g_finished = 0;
 		signal_setup();
-		close(std.in);
-		close(std.out);
-		if (info.cmdpath == NULL || fdin == -1 || info.outfile.fdout == -1)
-			free_close_exit(info, piperead, pipewrite, *(u.status));
-		if (is_builtin(info.cmdpath))
-			free_close_exit(info, piperead, pipewrite, *(u.status));
-		if (dup2(fdin, 0) == -1 || dup2(info.outfile.fdout, 1) == -1)
-			free_close_exit(info, piperead, pipewrite, EXIT_FAILURE);
+		double_close(std.in, std.out);
+		if (d.cmdpath == NULL || d.infile.fdin == -1 || d.outfile.fdout == -1)
+			free_close_exit(d, piperead, pipewrite, *(u.status));
+		if (is_builtin(d.cmdpath))
+			free_close_exit(d, piperead, pipewrite, *(u.status));
+		if (dup2(d.infile.fdin, 0) == -1 || dup2(d.outfile.fdout, 1) == -1)
+			free_close_exit(d, piperead, pipewrite, EXIT_FAILURE);
 		close(pipewrite[READ]);
-		execve(info.cmdpath, info.cmdarg, *(u.envp));
-		free_close_exit_execfail(info, piperead, pipewrite, EXIT_FAILURE);
+		execve(d.cmdpath, d.cmdarg, *(u.envp));
+		free_close_exit_fail(d, piperead, pipewrite, EXIT_FAILURE);
 	}
-	close_after_exec(fdin, info.outfile.fdout, pipewrite[WRITE]);
+	close_after_exec(d.infile.fdin, d.outfile.fdout, pipewrite[WRITE]);
 }

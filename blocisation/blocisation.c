@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blocisation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/29 12:03:21 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/29 14:35:01 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 char	**blocisation2(char *str, int *status);
 
-char	**blocisation(char *str, int *status)
+char	**blocisation(char *str, int *status, char ***envp)
 {
+	char	*str2;
+
 	if (check_closed_quotes(str) == FALSE)
 	{
 		ft_printf("minishell: syntax problem: unclosed quotes\n");
@@ -23,6 +25,10 @@ char	**blocisation(char *str, int *status)
 		return (NULL);
 	}
 	str = revamp_str(str, status);
+	str2 = expand(str, *status, *envp);
+	if (str2[0] == 0)
+		return (NULL);
+	free(str2);
 	if (str == NULL)
 		return (NULL);
 	if (first_verifications(str) == FALSE)

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 13:51:03 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 15:58:31 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void	disable_sigquit(int i)
 
 	if (i == 1)
 	{
-		memset(&sa, 0, sizeof(sa));
+		ft_memset(&sa, 0, sizeof(sa));
 		sa.sa_handler = SIG_IGN;
 		sigaction(SIGQUIT, &sa, NULL);
-
 		tcgetattr(STDIN_FILENO, &orig_termios);
 		new_termios = orig_termios;
 		new_termios.c_lflag &= ~ECHOCTL;
@@ -38,19 +37,19 @@ void	disable_sigquit(int i)
 	}
 	if (i == 2)
 	{
-		memset(&sa, 0, sizeof(sa));
+		ft_memset(&sa, 0, sizeof(sa));
 		sa.sa_handler = SIG_DFL;
 		sigaction(SIGQUIT, &sa, NULL);
 		tcsetattr(STDIN_FILENO, TCSANOW, &orig_termios);
 	}
 }
 
-static void	signal_handler(int signal)
+static void	signal_handler(int sig)
 {
 	pid_t	pid;
 
-	g_finished = signal;
-	if (signal == SIGINT)
+	g_finished = sig;
+	if (sig == SIGINT)
 	{
 		pid = waitpid(-1, NULL, 0);
 		write(1, "\n", 1);
@@ -59,28 +58,6 @@ static void	signal_handler(int signal)
 		rl_redisplay();
 	}
 }
-
-//static void	signal_handler(int signal)
-//{
-//	if (signal == SIGINT)
-//	{
-//		printf("\n");
-//		rl_on_new_line();
-//#ifdef __APPLE__
-//		rl_set_prompt("");
-//		rl_redisplay();
-//		rl_set_prompt("minishell$ ");
-//#else
-//		rl_replace_line("", 0);
-//		rl_redisplay();
-//#endif
-//	}
-//	else if (signal == SIGQUIT)
-//	{
-//		rl_on_new_line();
-//		rl_redisplay();
-//	}
-//}
 
 static void	signal_handler_heredoc(int signal)
 {
@@ -104,7 +81,6 @@ void	get_signal(int SA, int here_doc)
 		old_handler.sa_handler = signal_handler_heredoc;
 		handler.sa_handler = signal_handler;
 		sigaction(SIGINT, &handler, &old_handler);
-		sigaction(SIGQUIT, &handler, &old_handler);
 	}
 	if (here_doc == 1)
 	{
@@ -112,4 +88,5 @@ void	get_signal(int SA, int here_doc)
 		old_handler.sa_handler = signal_handler;
 		sigaction(SIGINT, &handler, &old_handler);
 	}
+	signal(SIGQUIT, SIG_IGN);
 }

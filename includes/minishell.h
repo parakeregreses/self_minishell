@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/29 12:42:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:54:19 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_infile
 	char	*filename;
 	char	*tempfilename;
 	int		here_doc;
+	int		fdin;
 }				t_infile;
 
 typedef struct s_outfile
@@ -77,12 +78,14 @@ typedef struct s_pipes
 	int	pipe2[2];
 }		t_pipes;
 
+char		**update_path(char ***envp, int *status);
+char		**update_shlvl(char ***envp, int *status);
 int			tab_size(char **tab);
 char		**delete_line_in_tab(char **tab, int i);
 t_arg		*extract_quote(char *str, t_segment s);
 t_segment	find_segment(char *str, char c);
 char		**append_tabs_and_free(char **tab1, char **tab2);
-char		**blocisation(char *str, int *status);
+char		**blocisation(char *str, int *status, char ***envp);
 char		which_separator(char *s, char c1, char c2);
 t_arg		*free_tab_arg(t_arg *tab);
 int			tab_size_arg(t_arg *tab);
@@ -135,6 +138,8 @@ void		free_close_exit_final(t_utils u, int pipe1[2],
 void		exec_builtin(t_utils u, int pipe1[2], int pipe2[2], t_2d std);
 void		close_pipes(int pipe1[2], int pipe2[2]);
 void		retrieve_std(int saved_stdin, int saved_stdout);
+void		builtin(t_utils u, int piperead[2], int pipewrite[2], t_2d std);
+void		double_close(int fd1, int fd2);
 
 /*PARSING*/
 char		*ft_iscmd(char *cmd, int *status, char **envp);

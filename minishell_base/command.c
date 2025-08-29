@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/29 11:15:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:19:18 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	command(char *str, char ***envp, int *status)
 	char	**blocs;
 	char	***processes;
 
-	blocs = blocisation(str, status);
+	blocs = blocisation(str, status, envp);
 	if (blocs == NULL)
 		return (0);
 	n = tab_size(blocs);

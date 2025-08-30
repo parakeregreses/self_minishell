@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/30 16:40:25 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/30 17:35:32 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,6 @@ void	disable_sigquit(int i)
 	}
 }
 
-void	disable_sigint(void)
-{
-	struct sigaction		sa;
-
-	ft_memset(&sa, 0, sizeof(sa));
-	sa.sa_handler = SIG_IGN;
-	sigaction(SIGINT, &sa, NULL);
-}
-
 static void	signal_handler(int sig)
 {
 	pid_t	pid;
@@ -67,6 +58,25 @@ static void	signal_handler(int sig)
 		rl_redisplay();
 	}
 }
+
+void	disable_sigint(void)
+{
+	struct sigaction		sa;
+
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = SIG_IGN;
+	sigaction(SIGINT, &sa, NULL);
+}
+
+void	enable_sigint(void)
+{
+	struct sigaction	sa;
+
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = signal_handler;
+	sigaction(SIGINT, &sa, NULL);
+}
+
 
 static void	signal_handler_heredoc(int signal)
 {

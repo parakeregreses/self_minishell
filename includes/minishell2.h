@@ -39,6 +39,7 @@ int		launching(char ***envp, int *status);
 char	*cat_current_dir(void);
 void	disable_sigquit(int i);
 void	disable_sigint(void);
+void	enable_sigint(void);
 
 /* =================== ENVIRONMENT VARIABLES =================== */
 

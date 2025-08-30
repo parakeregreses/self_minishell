@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/30 16:39:18 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/30 16:52:08 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 	if (is_builtin(d.cmdpath))
 		builtin(u, piperead, pipewrite, std);
 	d.infile.fdin = find_fdin(d.infile, piperead, u.i);
-	disable_sigint();
 	pid = fork();
 	if (pid == 0)
 	{

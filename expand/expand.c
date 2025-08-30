@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:23:36 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 19:38:52 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 18:42:38 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	n_lines2(char *str, int q, int n, int i)
 		{
 			if (!str[i + 1])
 				return (n);
-			if (!(q == 1 || (str[i + 1] && ft_ischarinset(str[i + 1], "\" $"))))
+			if (!(q == 1 && (str[i + 1] && ft_ischarinset(str[i + 1], "\" $"))))
 			{
 				n++;
 				i = close_dollar(str, i + 1);

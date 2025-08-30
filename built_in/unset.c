@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:08:04 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/08/29 13:29:14 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/30 18:50:03 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,24 +97,3 @@ char	**cmd_unset(char ***envp, char **var_rm, int *status)
 	temp_envp = cmd_unset2(envp, status, temp_envp);
 	return (temp_envp);
 }
-
-//int	main(void)
-//{
-//	char ***envp;
-//	char **test;
-//	int	*i;
-//	char **vars;
-
-//	envp = malloc(sizeof(char **));
-//	i = malloc(sizeof(int));
-//	test = ft_split("export TEST TEST1 TEST2", ' ');
-//	vars = ft_split("bla ", ' ');
-//	*envp = ft_split("bla bla1 bla2", ' ');
-//	//cmd_export(envp, test, i, 1);
-//	//print_tab_char(*envp);
-//	//printf("\n");
-//	//free_tab((void **)envp);
-//	cmd_unset(envp, vars, i);
-//	print_tab_char(*envp);
-//	free_tab((void **)*envp);
-//}

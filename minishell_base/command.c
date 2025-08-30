@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:26 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/29 14:19:18 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 18:52:29 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _GNU_SOURCE
 #include "minishell.h"
 
-// parse the command and execute it
 int	command(char *str, char ***envp, int *status)
 {
 	t_exec	*infos;
@@ -36,5 +36,6 @@ int	command(char *str, char ***envp, int *status)
 	parse_commands(infos, n, envp, status);
 	pipex(infos, n, envp, status);
 	full_delete_minishell(infos, n);
+	get_signal(SA_RESTART, 0);
 	return (0);
 }

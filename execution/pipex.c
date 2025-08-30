@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:04:59 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/27 18:42:20 by liulm            ###   ########.fr       */
+/*   Updated: 2025/08/30 18:20:06 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	pipex_execution(t_pipes p, t_2d std, t_utils u)
 		}
 		u.i = u.i + 1;
 	}
+	*(u.status) = -1;
 	pipex2(u, p, std);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:20:18 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 13:29:52 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 18:47:12 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "minishell.h"
 
 char	*here_doc2(char *lim, char *tempfilename, char *lim_return, int fd);
+
+void	signal_handler_heredoc(int signal)
+{
+	if (signal == SIGINT)
+	{
+		g_finished = signal;
+		write(1, "^C\n", 3);
+	}
+}
 
 char	*ft_tempfilename(void)
 {

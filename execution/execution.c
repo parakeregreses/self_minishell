@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 19:09:47 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:29:44 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 	pid = fork();
 	if (pid == 0)
 	{
-		g_finished = 0;
 		signal_setup();
 		double_close(std.in, std.out);
 		if (d.cmdpath == NULL || d.infile.fdin == -1 || d.outfile.fdout == -1)

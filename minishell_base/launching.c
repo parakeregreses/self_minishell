@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/27 16:57:38 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 15:47:49 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@ int	empty_argument(const char *str)
 	return (1);
 }
 
-char	*find_line(void)
+char	*find_line(int *status)
 {
 	char	*prompt;
 	char	*line;
 
+	g_finished = 0;
 	prompt = cat_current_dir();
 	line = readline(prompt);
+	if (g_finished == SIGINT)
+		*status = 130;
 	free(prompt);
 	return (line);
 }
@@ -63,7 +66,7 @@ int	launching(char ***envp, int *status)
 	while (1)
 	{
 		i = 0;
-		line = find_line();
+		line = find_line(status);
 		if (!line)
 		{
 			free_and_print_exit(envp, NULL, status);

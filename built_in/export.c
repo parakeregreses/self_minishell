@@ -88,7 +88,6 @@ char	**cmd_export(char ***envp, char **new_env_variable, int *status, int ok)
 {
 	char	**new_env;
 
-	// printf("export\n");
 	if (!new_env_variable[1])
 	{
 		no_envar(*envp);

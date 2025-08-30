@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:07:46 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 15:00:05 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 15:34:02 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**update_path(char ***envp, int *status)
 	args[1] = ft_strdup("PATH=/home/jlaine-b/bin:/usr/local/sbin:"\
 "/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
 	if (ft_findpathline(*envp) == NULL)
-		*envp = cmd_export(envp, args, status);
+		*envp = cmd_export(envp, args, status, 1);
 	free_tab((void **)args);
 	return (*envp);
 }
@@ -60,7 +60,7 @@ char	**update_path(char ***envp, int *status)
 char	**shlvl_1(char **args, char ***envp, int *status)
 {
 	args[1] = ft_strdup("SHLVL=1");
-	*envp = cmd_export(envp, args, status);
+	*envp = cmd_export(envp, args, status, 1);
 	free_tab((void **) args);
 	return (*envp);
 }
@@ -88,7 +88,7 @@ char	**update_shlvl(char ***envp, int *status)
 	}
 	free(str);
 	args[1] = ft_strjoinfree(ft_strdup("SHLVL="), ft_itoa(shell_level + 1));
-	*envp = cmd_export(envp, args, status);
+	*envp = cmd_export(envp, args, status, 1);
 	free_tab((void **) args);
 	return (*envp);
 }

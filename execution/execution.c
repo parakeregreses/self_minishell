@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/30 20:38:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:40:26 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,4 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 		free_close_exit_fail(d, piperead, pipewrite, EXIT_FAILURE);
 	}
 	close_after_exec(d.infile.fdin, d.outfile.fdout, pipewrite[WRITE]);
-	enable_sigint();
 }

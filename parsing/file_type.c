@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 17:41:49 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/22 21:46:44 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:42:37 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@ int	file_type(char *cmdi, char *cmd)
 		return (FALSE);
 	}
 	free(simple_cmd);
-	if (S_ISREG(buf.st_mode))
-		return (TRUE);
-	return (FALSE);
+	return (TRUE);
 }

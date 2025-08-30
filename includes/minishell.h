@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/29 14:54:19 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 21:29:54 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,11 @@ void		execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std);
 int			find_outfile_pipe(t_utils u, int pipe[2]);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
 void		cmd_exit(t_utils u, int pipe1[2], int pipe2[2], t_2d std);
-void		free_close_exit_final(t_utils u, int pipe1[2],
-				int pipe2[2], t_2d std);
+void		cmd_exit2(int count, int *status, char **args, t_utils u);
+void		numeric_argument_required(char **args);
+long		ft_atol(const char *nptr);
+int			count_args(char **args);
+int			is_numeric(const char *str);
 void		exec_builtin(t_utils u, int pipe1[2], int pipe2[2], t_2d std);
 void		close_pipes(int pipe1[2], int pipe2[2]);
 void		retrieve_std(int saved_stdin, int saved_stdout);

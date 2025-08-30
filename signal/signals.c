@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/30 20:39:27 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:58:55 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	signal_handler(int sig)
 	if (sig == SIGINT)
 	{
 		pid = waitpid(-1, NULL, 0);
-		write(1, "hello\n", 6);
+		write(1, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
@@ -77,24 +77,23 @@ void	enable_sigint(void)
 	sigaction(SIGINT, &sa, NULL);
 }
 
+// void	signal_handler_heredoc(int signal)
+// {
+// 	struct sigaction		sa;
 
-static void	signal_handler_heredoc(int signal)
-{
-	struct sigaction		sa;
+// 	ft_memset(&sa, 0, sizeof(sa));
+// 	sa.sa_handler = signal_handler;
+// 	sigaction(SIGINT, &sa, NULL);
+// }
 
-	ft_memset(&sa, 0, sizeof(sa));
-	sa.sa_handler = signal_handler;
-	sigaction(SIGINT, &sa, NULL);
-}
+// void	disable_sigint(void)
+// {
+// 	struct sigaction		sa;
 
-void	disable_sigint(void)
-{
-	struct sigaction		sa;
-
-	ft_memset(&sa, 0, sizeof(sa));
-	sa.sa_handler = SIG_IGN;
-	sigaction(SIGINT, &sa, NULL);
-}
+// 	ft_memset(&sa, 0, sizeof(sa));
+// 	sa.sa_handler = SIG_IGN;
+// 	sigaction(SIGINT, &sa, NULL);
+// }
 
 void	get_signal(int SA, int here_doc)
 {

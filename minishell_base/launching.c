@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/30 15:47:49 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 21:15:56 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	free_and_print_exit(char ***envp, char *line, int *status)
 
 void	launch_command(char *line, char ***envp, int *status)
 {
-	if (!empty_argument(line))
-		command(line, envp, status);
 	if (line[0] != '\0' && !empty_argument(line))
 		add_history(line);
+	if (!empty_argument(line))
+		command(line, envp, status);
 	free (line);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 15:58:31 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:40:25 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@ void	disable_sigquit(int i)
 		sigaction(SIGQUIT, &sa, NULL);
 		tcsetattr(STDIN_FILENO, TCSANOW, &orig_termios);
 	}
+}
+
+void	disable_sigint(void)
+{
+	struct sigaction		sa;
+
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = SIG_IGN;
+	sigaction(SIGINT, &sa, NULL);
 }
 
 static void	signal_handler(int sig)

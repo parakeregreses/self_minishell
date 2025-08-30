@@ -38,7 +38,7 @@ extern int	g_finished;
 int		launching(char ***envp, int *status);
 char	*cat_current_dir(void);
 void	disable_sigquit(int i);
-//void	restore_sigquit(void);
+void	disable_sigint(void);
 
 /* =================== ENVIRONMENT VARIABLES =================== */
 

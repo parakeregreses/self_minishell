@@ -79,7 +79,7 @@ int		cmd_echo(char **args, int *status);
 /* =========================== PWD ============================ */
 
 int		copy_old_pwd(char *old_pwd);
-void	cmd_pwd(char **envp, int *status);
+void	cmd_pwd(int *status);
 
 /* ============================================================ */
 

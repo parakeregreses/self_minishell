@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 15:01:19 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 18:58:09 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:29:57 by lionelulm        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	exec_builtin(t_utils u, int pipe1[2], int pipe2[2], t_2d std)
 	if (ft_strcmp(cmd, "export") == 0)
 		cmd_export(u.envp, args, u.status, u.n);
 	if (ft_strcmp(cmd, "pwd") == 0)
-		cmd_pwd(*(u.envp), u.status);
+		cmd_pwd(u.status);
 	if (ft_strcmp(cmd, "unset") == 0 && u.n == 1)
 		cmd_unset(u.envp, args, u.status);
 	if (ft_strcmp(cmd, "exit") == 0 && u.n == 1)

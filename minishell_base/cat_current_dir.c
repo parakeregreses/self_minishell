@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cat_current_dir.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:14:43 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/24 18:15:42 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:16:24 by lionelulm        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char	*return_perror(void)
-{
-	perror("cd: getcwd");
-	return (NULL);
-}
 
 char	*cat_current_dir(void)
 {
@@ -28,8 +22,7 @@ char	*cat_current_dir(void)
 
 	temp[0] = 0;
 	prompt[0] = 0;
-	if (!getcwd(old_pwd, PATH_MAX))
-		return_perror();
+	getcwd(old_pwd, PATH_MAX);
 	home = getenv("HOME");
 	home_len = ft_strlen(home);
 	if (home && ft_strncmp(old_pwd, home, home_len) == 0)

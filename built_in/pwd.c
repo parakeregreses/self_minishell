@@ -3,38 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 20:25:19 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/23 17:31:04 by liulm            ###   ########.fr       */
+/*   Updated: 2025/09/03 17:42:23 by lionelulm        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	pwd_putstr(char *str)
+void	cmd_pwd(int *status)
 {
-	int	i;
+	char	new_pwd[PATH_MAX];
 
-	i = 4;
-	while (str[i])
+	if (!getcwd(new_pwd, PATH_MAX))
 	{
-		write(1, &str[i], 1);
-		i++;
+		ft_putstr_fd("pwd: error retrieving current directory: getcwd: ", 2);
+		perror("");
+		return ;
 	}
-	write(1, "\n", 1);
-}
-
-void	cmd_pwd(char **envp, int *status)
-{
-	int	i;
-
-	i = 0;
-	while (envp[i])
-	{
-		if (ft_strncmp("PWD", envp[i], 3) == 0)
-			pwd_putstr(envp[i]);
-		i++;
-	}
+	else
+		printf("%s\n", new_pwd);
 	*status = 0;
 }

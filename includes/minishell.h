@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/30 21:29:54 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/04 12:47:04 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ void		free_tab_3d(char ***tab3);
 char		**tab_without_quotes(char **tab);
 int			third_verifications(char *str);
 int			file_type(char *cmdi, char *simple_cmd);
+int			file_type_nomsg(char *cmd);
 int			command(char *str, char ***envp, int *status);
 int			is_builtin(char *cmd);
 char		**expand_dollar(char **tab, int *status, char **envp);

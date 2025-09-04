@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/08/30 20:48:52 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/04 12:33:34 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ char	**blocisation(char *str, int *status, char ***envp)
 		return (NULL);
 	str2 = expand(str, *status, *envp);
 	if (str2[0] == 0)
+	{
+		free(str);
 		return (NULL);
+	}
 	free(str2);
 	if (first_verifications(str) == FALSE)
 	{

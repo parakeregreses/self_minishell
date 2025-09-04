@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:22:12 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/09/03 18:19:31 by lionelulm        ###   ########.fr       */
+/*   Updated: 2025/09/04 17:57:41 by jlaineb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,10 @@ void	disable_sigquit(int i)
 
 static void	signal_handler(int sig)
 {
-	pid_t	pid;
-
 	g_finished = sig;
 	if (sig == SIGINT)
 	{
-		pid = waitpid(-1, NULL, 0);
+		waitpid(-1, NULL, 0);
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();

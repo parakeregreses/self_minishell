@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/28 20:32:58 by lionelulm        ###   ########.fr       */
+/*   Updated: 2025/09/04 18:04:03 by jlaineb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	is_executable(char *cmd)
 	stat(cmd, &buf);
 	if (S_ISREG(buf.st_mode) && (buf.st_mode & S_IXUSR))
 		return (TRUE);
-	line = ft_strjoin(cmd, ("is executable ??: command not found\n"));
+	line = ft_strjoin(cmd, ("is executable %d: command not found\n"));
 	write(2, "minishell: ", ft_strlen("minishell: "));
 	write(2, line, ft_strlen(line));
 	free(line);
@@ -45,14 +45,13 @@ int	parse_commands(t_exec *infos, int n, char ***envp, int *status)
 			(infos[i]).cmdpath = ft_iscmd((infos[i]).cmdarg[0], status, *envp);
 		if ((infos[i]).cmdpath == NULL)
 			result = FALSE;
-		else if (!is_builtin((infos[i]).cmdpath)
-			&& is_executable((infos[i]).cmdpath) == FALSE)
-		{
-			*status = 127;
-			result = FALSE;
-			free((infos[i]).cmdpath);
-			(infos[i]).cmdpath = NULL;
-		}
+		// else if (!is_builtin((infos[i]).cmdpath))
+		// {
+		// 	*status = 127;
+		// 	result = FALSE;
+		// 	free((infos[i]).cmdpath);
+		// 	(infos[i]).cmdpath = NULL;
+		// }
 		i++;
 	}
 	return (result);

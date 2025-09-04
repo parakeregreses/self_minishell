@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/30 20:40:26 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:05:12 by jlaineb          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	free_close_exit_fail(t_exec info, int p1[2], int p2[2], int status)
 	if (info.infile.fdin != 0)
 		close(info.infile.fdin);
 	close_pipes(p1, p2);
-	line = ft_strjoin(info.cmdarg[0], "EXECVE: command not found\n");
+	line = ft_strjoin(info.cmdarg[0], ": command not found\n");
 	write(2, line, ft_strlen(line));
 	free(line);
 	free(info.infile.filename);

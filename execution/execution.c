@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/09/05 10:18:18 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:44:15 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	signal_setup(void)
 	signal(SIGQUIT, SIG_DFL);
 }
 
-void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
+int	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 {
 	pid_t	pid;
 	t_exec	d;
@@ -92,4 +92,5 @@ void	execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std)
 		free_close_exit_fail(d, piperead, pipewrite, EXIT_FAILURE);
 	}
 	close_after_exec(d.infile.fdin, d.outfile.fdout, pipewrite[WRITE]);
+	return (pid);
 }

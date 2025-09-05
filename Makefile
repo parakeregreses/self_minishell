@@ -35,6 +35,7 @@ SRCS = 												\
 			execution/execution.c					\
 			execution/find_fd.c						\
 			execution/pipex2.c						\
+			execution/pipex3.c						\
 			execution/exec_builtin.c				\
 			parsing/ft_iscmd.c						\
 			parsing/cmd_is_directory.c				\

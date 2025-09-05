@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/09/05 18:31:57 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:53:48 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,9 @@ t_utils		initutils(t_exec *infos, int n, char ***envp, int *status);
 t_2d		initstd(void);
 t_pipes		initpipes(void);
 void		pipex(t_exec *infos, int n, char ***envp, int *status);
-void		pipex2(t_utils u, t_pipes p, t_2d std);
-void		execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std);
+void		pipex2(t_utils u, t_pipes p, t_2d std, pid_t pid);
+void		pipex3(t_pipes p, t_2d std);
+int			execution(t_utils u, int piperead[2], int pipewrite[2], t_2d std);
 int			find_outfile_pipe(t_utils u, int pipe[2]);
 int			find_fdin(t_infile infile, int pipe1[2], int i);
 void		cmd_exit(t_utils u, int pipe1[2], int pipe2[2], t_2d std);

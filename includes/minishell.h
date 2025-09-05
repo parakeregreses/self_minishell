@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/09/05 19:49:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:29:00 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ char		**update_shlvl(char ***envp, int *status);
 /* ============================ CD ============================ */
 
 int			cmd_cd(char **arg, char ***envp, int *status);
+int			directory_deleted(char ***envp, char *old_pwd, int *status);
 
 /* =========================== ECHO =========================== */
 

@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/09/05 20:23:46 by liulm            ###   ########.fr       */
+/*   Updated: 2025/09/05 20:28:10 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,35 +85,6 @@ static int	update_env(char ***envp, char *old_pwd)
 		*envp = add_in_updated(envp, tmp, old_pwd_var, new_pwd_var);
 	free(old_pwd_var);
 	free(new_pwd_var);
-	return (0);
-}
-
-int	directory_deleted(char ***envp, char *old_pwd, int *status)
-{
-	char	tmp[PATH_MAX];
-
-	if (!getcwd(tmp, PATH_MAX))
-	{
-		old_pwd = ft_getenv("OLDPWD", *envp);
-		if (!old_pwd || chdir(old_pwd) != 0)
-		{
-			perror("cd");
-			old_pwd = ft_getenv("HOME", *envp);
-			if (!old_pwd || chdir(old_pwd) != 0)
-			{
-				perror("cd");
-				*status = 1;
-				return (0);
-			}
-			return (1);
-		}
-		if (copy_old_pwd(old_pwd))
-			return (0);
-		if (update_env(envp, old_pwd))
-			return (0);
-		*status = 0;
-		return (1);
-	}
 	return (0);
 }
 

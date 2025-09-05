@@ -31,8 +31,6 @@
 # define TRUE 1
 # define FALSE 0
 
-extern int	g_finished;
-
 /* ======================== MINISHELL ========================== */
 
 int		launching(char ***envp, int *status);

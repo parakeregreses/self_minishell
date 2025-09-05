@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/09/05 20:29:00 by liulm            ###   ########.fr       */
+/*   Updated: 2025/09/05 20:32:24 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ char		**update_shlvl(char ***envp, int *status);
 
 int			cmd_cd(char **arg, char ***envp, int *status);
 int			directory_deleted(char ***envp, char *old_pwd, int *status);
+int			update_env(char ***envp, char *old_pwd);
 
 /* =========================== ECHO =========================== */
 

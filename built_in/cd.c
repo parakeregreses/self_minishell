@@ -6,7 +6,7 @@
 /*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/09/05 20:28:10 by liulm            ###   ########.fr       */
+/*   Updated: 2025/09/05 20:32:17 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	**add_in_updated(char ***envp, char **tmp
 	return (*envp);
 }
 
-static int	update_env(char ***envp, char *old_pwd)
+int	update_env(char ***envp, char *old_pwd)
 {
 	char	new_pwd[PATH_MAX];
 	char	*old_pwd_var;

@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:39:09 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/30 21:15:56 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:19:49 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	free_and_print_exit(char ***envp, char *line, int *status)
 	free_tab((void **) *envp);
 	free(envp);
 	free(status);
-	ft_printf("exit\n");
+	write(2, "exit\n", 5);
 }
 
 void	launch_command(char *line, char ***envp, int *status)

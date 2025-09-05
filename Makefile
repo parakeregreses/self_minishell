@@ -3,6 +3,7 @@ SRCS = 												\
 			minishell_base/cat_current_dir.c		\
 			minishell_base/main.c					\
 			minishell_base/main_utils.c				\
+			minishell_base/main_utils2.c			\
 			minishell_base/launching.c				\
 			blocisation/blocisation.c				\
 			blocisation/first_verifications.c		\

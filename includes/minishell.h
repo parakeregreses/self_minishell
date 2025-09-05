@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/09/05 19:49:46 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:29:01 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ char		*ft_getenv(const char *name, char **envp);
 int			no_envar(char **temp_envp);
 char		**update_path(char ***envp, int *status);
 char		**update_shlvl(char ***envp, int *status);
+char		**update_path(char ***envp, int *status);
 
 /* ============================ CD ============================ */
 

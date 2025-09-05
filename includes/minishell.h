@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/09/05 20:32:24 by liulm            ###   ########.fr       */
+=======
+/*   Updated: 2025/09/05 20:30:39 by jlaine-b         ###   ########.fr       */
+>>>>>>> 402f303e972e14f269e30d3e76f9833d9f1cd26a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +137,7 @@ char		*ft_getenv(const char *name, char **envp);
 int			no_envar(char **temp_envp);
 char		**update_path(char ***envp, int *status);
 char		**update_shlvl(char ***envp, int *status);
+char		**update_path(char ***envp, int *status);
 
 /* ============================ CD ============================ */
 

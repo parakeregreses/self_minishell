@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:07:46 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/30 15:34:02 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:28:03 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,43 +26,24 @@ char	*shlvlline(char **envp)
 	return (NULL);
 }
 
-static char	*ft_findpathline(char **envp)
-{
-	int	i;
-
-	i = 0;
-	while (envp[i] != NULL)
-	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-			return (envp[i]);
-		i++;
-	}
-	return (NULL);
-}
-
-char	**update_path(char ***envp, int *status)
-{
-	char	**args;
-
-	if (ft_findpathline(*envp) != NULL)
-		return (*envp);
-	args = malloc(sizeof(char *) * 3);
-	args[0] = ft_strdup("export");
-	args[2] = NULL;
-	args[1] = ft_strdup("PATH=/home/jlaine-b/bin:/usr/local/sbin:"\
-"/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
-	if (ft_findpathline(*envp) == NULL)
-		*envp = cmd_export(envp, args, status, 1);
-	free_tab((void **)args);
-	return (*envp);
-}
-
 char	**shlvl_1(char **args, char ***envp, int *status)
 {
 	args[1] = ft_strdup("SHLVL=1");
 	*envp = cmd_export(envp, args, status, 1);
 	free_tab((void **) args);
 	return (*envp);
+}
+
+void	write_shlvl_error(int shell_level)
+{
+	char	*str;
+	char	*line;
+
+	write(2, "minishell: warning: shell level (", 32);
+	str = ft_itoa(shell_level);
+	line = ft_strjoinfree(str, ft_strdup(") too high, resetting to 1\n"));
+	write(2, line, ft_strlen(line));
+	free(line);
 }
 
 char	**update_shlvl(char ***envp, int *status)
@@ -82,8 +63,7 @@ char	**update_shlvl(char ***envp, int *status)
 		shell_level = -1;
 	if ((shell_level) > 999)
 	{
-		ft_printf("minishell: warning: shell level\
-(%d) too high, resetting to 1\n", shell_level);
+		write_shlvl_error(shell_level);
 		shell_level = 0;
 	}
 	free(str);

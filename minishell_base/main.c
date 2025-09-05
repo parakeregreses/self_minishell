@@ -32,7 +32,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 	{
-		ft_printf("Usage: ./minishell");
+		write(2, "Usage: ./minishell\n", 20);
 		return (1);
 	}
 	return (0);

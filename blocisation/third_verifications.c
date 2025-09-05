@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 17:07:21 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/09/05 20:13:12 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:27:40 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	third_verifications(char *str)
 	if (does_char_end_line(str, '<') == TRUE
 		|| does_char_end_line(str, '>') == TRUE)
 	{
-		write(2, "minishell: syntax error near unexpected token `newline'\n", 56);
+		write(2,
+			"minishell: syntax error near unexpected token `newline'\n", 56);
 		return (FALSE);
 	}
 	return (TRUE);

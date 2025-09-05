@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/09/03 18:15:45 by lionelulm        ###   ########.fr       */
+/*   Updated: 2025/09/05 20:23:46 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,35 @@ static int	update_env(char ***envp, char *old_pwd)
 	return (0);
 }
 
+int	directory_deleted(char ***envp, char *old_pwd, int *status)
+{
+	char	tmp[PATH_MAX];
+
+	if (!getcwd(tmp, PATH_MAX))
+	{
+		old_pwd = ft_getenv("OLDPWD", *envp);
+		if (!old_pwd || chdir(old_pwd) != 0)
+		{
+			perror("cd");
+			old_pwd = ft_getenv("HOME", *envp);
+			if (!old_pwd || chdir(old_pwd) != 0)
+			{
+				perror("cd");
+				*status = 1;
+				return (0);
+			}
+			return (1);
+		}
+		if (copy_old_pwd(old_pwd))
+			return (0);
+		if (update_env(envp, old_pwd))
+			return (0);
+		*status = 0;
+		return (1);
+	}
+	return (0);
+}
+
 int	cmd_cd(char **arg, char ***envp, int *status)
 {
 	char	old_pwd[PATH_MAX];
@@ -95,6 +124,8 @@ int	cmd_cd(char **arg, char ***envp, int *status)
 	int		i;
 
 	i = 0;
+	if (directory_deleted(envp, old_pwd, status))
+		return (*status);
 	while (arg[i])
 		i++;
 	if (i > 2)

@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   exit_util.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 20:44:50 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/30 21:26:14 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:28:19 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	directory_deleted(char ***envp, char *old_pwd, int *status)
+{
+	char	tmp[PATH_MAX];
+
+	if (!getcwd(tmp, PATH_MAX))
+	{
+		old_pwd = ft_getenv("OLDPWD", *envp);
+		if (!old_pwd || chdir(old_pwd) != 0)
+		{
+			perror("cd");
+			old_pwd = ft_getenv("HOME", *envp);
+			if (!old_pwd || chdir(old_pwd) != 0)
+			{
+				perror("cd");
+				*status = 1;
+				return (0);
+			}
+			return (1);
+		}
+		if (copy_old_pwd(old_pwd))
+			return (0);
+		if (update_env(envp, old_pwd))
+			return (0);
+		*status = 0;
+		return (1);
+	}
+	return (0);
+}
 
 int	is_numeric(const char *str)
 {

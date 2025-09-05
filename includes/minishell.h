@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/09/05 20:29:01 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:30:39 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ char		**update_path(char ***envp, int *status);
 /* ============================ CD ============================ */
 
 int			cmd_cd(char **arg, char ***envp, int *status);
+int			directory_deleted(char ***envp, char *old_pwd, int *status);
 
 /* =========================== ECHO =========================== */
 

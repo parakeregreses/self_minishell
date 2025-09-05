@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lionelulm <lionelulm@student.42.fr>        +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:42:31 by lionelulm         #+#    #+#             */
-/*   Updated: 2025/09/03 18:15:45 by lionelulm        ###   ########.fr       */
+/*   Updated: 2025/09/05 20:28:10 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int	cmd_cd(char **arg, char ***envp, int *status)
 	int		i;
 
 	i = 0;
+	if (directory_deleted(envp, old_pwd, status))
+		return (*status);
 	while (arg[i])
 		i++;
 	if (i > 2)

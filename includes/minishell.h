@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: liulm <liulm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/09/05 20:32:24 by liulm            ###   ########.fr       */
-=======
-/*   Updated: 2025/09/05 20:30:39 by jlaine-b         ###   ########.fr       */
->>>>>>> 402f303e972e14f269e30d3e76f9833d9f1cd26a
+/*   Updated: 2025/09/05 20:41:30 by liulm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +149,7 @@ int			cmd_echo(char **args, int *status);
 /* =========================== PWD ============================ */
 
 int			copy_old_pwd(char *old_pwd);
-void		cmd_pwd(int *status);
+void		cmd_pwd(char ***envp, int *status);
 
 /* ======================== TAB UTILS ========================= */
 

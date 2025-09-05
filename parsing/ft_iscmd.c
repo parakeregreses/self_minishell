@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_iscmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/09/04 18:15:12 by jlaineb          ###   ########.fr       */
+/*   Updated: 2025/09/05 12:40:06 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,27 @@ char	*ft_iscmd(char *cmd, int *status, char **envp)
 	if (cmd[0] == 0)
 	{
 		*status = 127;
-		return (cmd_not_found(NULL, cmd));
+		return (cmd_not_found(cmd));
 	}
 	if (is_builtin(cmd) == TRUE)
 		return (ft_strdup(cmd));
 	if (ft_charinstr(cmd, '/') == TRUE)
 	{
-		if (directory(cmd, status) == FALSE)
+		if (is_file_XOK(cmd, status) == TRUE)
+		{
+			if (not_directory(cmd, NULL) == TRUE)
+				return (ft_strdup(cmd));
+			*status = 126;
 			return (NULL);
+		}
+		return (NULL);
 	}
 	paths = ft_splitpaths(envp);
 	cmdpath = ft_findpathforeachcommand(paths, cmd, status);
 	if (cmdpath != NULL)
 		return (cmdpath);
-	if (access(cmd, F_OK) == 0 && file_type_nomsg(cmd) == TRUE)
-		return (is_absolute_path(cmd, status));
-	return (NULL);
+	// if (access(cmd, F_OK) == 0 && file_type_nomsg(cmd) == TRUE)
+	// 	return (is_absolute_path(cmd, status));
+	*status = 127;
+	return (cmd_not_found(cmd));
 }

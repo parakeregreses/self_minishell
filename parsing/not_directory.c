@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_type.c                                        :+:      :+:    :+:   */
+/*   not_directory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	file_type(char *cmdi, char *cmd)
+int	not_directory(char *cmdi, char *cmd)
 {
 	struct stat	buf;
 	int			status;
@@ -32,7 +32,7 @@ int	file_type(char *cmdi, char *cmd)
 	return (TRUE);
 }
 
-int	file_type_nomsg(char *cmd)
+int	not_directory_nomsg(char *cmd)
 {
 	struct stat	buf;
 	int			status;

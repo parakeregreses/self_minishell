@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 13:00:17 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 14:13:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 10:18:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	double_close(int fd1, int fd2)
 {
-	close(fd1);
+	if (fd1 != -1)
+		close(fd1);
+	if (fd2 != -1)
 	close(fd2);
 }
 

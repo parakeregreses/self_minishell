@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/09/04 12:47:04 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 12:38:20 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,12 @@ t_arg		*free_tab_arg(t_arg *tab);
 int			tab_size_arg(t_arg *tab);
 t_arg		*delete_line_in_tab_arg(t_arg *old_tab, int i);
 t_arg		*append_tabs_and_free_arg(t_arg *tab1, t_arg *tab2);
-void		print_tab_arg(t_arg *text);
 int			first_verifications(char *str);
 t_arg		*alloc_tab(int len, t_segment s);
 t_arg		*fill_tab_blocs(t_arg *tab, char *str, t_segment s, int len);
 t_arg		*select_quoted_str(char *str);
-t_arg		*join_quote_to_last_line(t_arg *tab, char *quote);
-t_arg		*join_quote_to_first_line(t_arg *tab, char *quote);
-int			is_infile(char *file1);
+int			is_file_ROK(char *file1);
+int			is_file_XOK(char *file1, int *status);
 char		**delete_empty_lines(char **tab);
 char		*here_doc(char *lim);
 char		*delete_useless_spaces(char	*str, char *set);
@@ -148,7 +146,7 @@ void		double_close(int fd1, int fd2);
 char		*ft_iscmd(char *cmd, int *status, char **envp);
 int			directory(char *cmd, int *status);
 int			parse_commands(t_exec *infos, int n, char ***envp, int *status);
-char		*cmd_not_found(char **paths, char *cmd);
+char		*cmd_not_found(char *cmd);
 
 /*DELETE*/
 void		delete_tempfiles(t_exec *infos, int n);
@@ -157,8 +155,8 @@ void		free_tab_3d(char ***tab3);
 
 char		**tab_without_quotes(char **tab);
 int			third_verifications(char *str);
-int			file_type(char *cmdi, char *simple_cmd);
-int			file_type_nomsg(char *cmd);
+int			not_directory(char *cmdi, char *simple_cmd);
+int			not_directory_nomsg(char *cmd);
 int			command(char *str, char ***envp, int *status);
 int			is_builtin(char *cmd);
 char		**expand_dollar(char **tab, int *status, char **envp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:42:30 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/09/04 18:05:12 by jlaineb          ###   ########.fr       */
+/*   Updated: 2025/09/05 10:18:18 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 void	free_close_exit(t_exec info, int pipe1[2], int pipe2[2], int status)
 {
-	if (info.outfile.fdout != 1)
+	if (info.outfile.fdout != 1 && info.outfile.fdout != -1)
 		close(info.outfile.fdout);
-	if (info.infile.fdin != 0)
+	if (info.infile.fdin != 0 && info.infile.fdin != -1)
 		close(info.infile.fdin);
 	close_pipes(pipe1, pipe2);
 	free(info.infile.filename);
@@ -36,9 +36,9 @@ void	free_close_exit_fail(t_exec info, int p1[2], int p2[2], int status)
 {
 	char	*line;
 
-	if (info.outfile.fdout != 1)
+	if (info.outfile.fdout != 1 && info.outfile.fdout != -1)
 		close(info.outfile.fdout);
-	if (info.infile.fdin != 0)
+	if (info.infile.fdin != 0 && info.infile.fdin != -1)
 		close(info.infile.fdin);
 	close_pipes(p1, p2);
 	line = ft_strjoin(info.cmdarg[0], ": command not found\n");

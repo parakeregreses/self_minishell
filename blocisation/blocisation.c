@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:16:59 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/09/04 12:33:34 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:09:42 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ char	**blocisation(char *str, int *status, char ***envp)
 
 	if (check_closed_quotes(str) == FALSE)
 	{
-		ft_printf("minishell: syntax problem: unclosed quotes\n");
-		*status = 127;
+		write(2, "minishell: syntax problem: unclosed quotes\n", 44);
+		*status = 2;
 		return (NULL);
 	}
 	str = revamp_str(str, status);

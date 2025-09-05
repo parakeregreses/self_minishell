@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 17:52:56 by liulm             #+#    #+#             */
-/*   Updated: 2025/08/30 21:33:47 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:17:25 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	cmd_exit(t_utils u, int pipe1[2], int pipe2[2], t_2d std)
 
 	args = u.infos[u.i].cmdarg;
 	count = count_args(args);
-	ft_printf("exit\n");
+	write(2, "exit\n", 5);
 	if (count > 2)
 	{
 		write(2, "minishell: exit: too many arguments\n", 36);

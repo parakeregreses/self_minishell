@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 18:05:14 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/15 21:44:15 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:12:36 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,22 @@ int	second_verifications(t_arg *tab)
 	n = tab_size_arg(tab);
 	if (pipe_near_chevron(tab, n) == TRUE)
 	{
-		ft_printf("minishell: syntax error near unexpected token `|'\n");
+		write(2, "minishell: syntax error near unexpected token `|'\n", 50);
 		return (FALSE);
 	}
 	if (triple_char(tab, n, '<') == TRUE)
 	{
-		ft_printf("minishell: syntax error near unexpected token `<<'\n");
+		write(2, "minishell: syntax error near unexpected token `<<'\n", 51);
 		return (FALSE);
 	}
 	if (triple_char(tab, n, '>') == TRUE)
 	{
-		ft_printf("minishell: syntax error near unexpected token `>>'\n");
+		write(2, "minishell: syntax error near unexpected token `>>'\n", 51);
+		return (FALSE);
+	}
+	if (double_char(tab, n, '|') == TRUE)
+	{
+		write(2, "minishell: syntax error near unexpected token `|'\n", 50);
 		return (FALSE);
 	}
 	return (TRUE);

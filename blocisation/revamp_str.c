@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:30:40 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/08/29 14:24:03 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 20:11:25 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*revamp_str(char *str, int *status)
 	if (c != 0)
 	{
 		free(str);
-		ft_printf("minishell: syntax error near unexpected token `%c'\n", c);
+		write(2, "minishell: syntax error near unexpected token `%c'\n", 51);
 		*status = 2;
 		return (NULL);
 	}

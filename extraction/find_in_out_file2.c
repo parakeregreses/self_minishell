@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:04 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/09/05 12:26:42 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:31:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_infile	file(char *filename, t_infile infile, int *status)
 		infile.tempfilename = NULL;
 	}
 	infile.filename = filename;
-	if (is_file_ROK(infile.filename) == FALSE)
+	if (is_file_rok(infile.filename) == FALSE)
 	{
 		*status = 1;
 		free(infile.filename);

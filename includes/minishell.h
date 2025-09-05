@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:14:11 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/09/05 12:38:20 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:31:57 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int			first_verifications(char *str);
 t_arg		*alloc_tab(int len, t_segment s);
 t_arg		*fill_tab_blocs(t_arg *tab, char *str, t_segment s, int len);
 t_arg		*select_quoted_str(char *str);
-int			is_file_ROK(char *file1);
-int			is_file_XOK(char *file1, int *status);
+int			is_file_rok(char *file1);
+int			is_file_xok(char *file1, int *status);
 char		**delete_empty_lines(char **tab);
 char		*here_doc(char *lim);
 char		*delete_useless_spaces(char	*str, char *set);

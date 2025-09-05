@@ -25,7 +25,7 @@ SRCS = 												\
 			extraction/find_in_out_file1.c			\
 			extraction/find_in_out_file2.c			\
 			extraction/here_doc.c					\
-			extraction/is_file_ROK.c				\
+			extraction/is_file_rok.c				\
 			extraction/extract_infos.c				\
 			extraction/extract_info.c				\
 			extraction/find_outfile.c				\
@@ -41,7 +41,7 @@ SRCS = 												\
 			parsing/not_directory.c					\
 			parsing/parse_commands.c				\
 			parsing/is_builtin.c					\
-			parsing/is_file_XOK.c					\
+			parsing/is_file_xok.c					\
 			parsing/ft_findpathforeachcommand.c		\
 			built_in/cd.c							\
 			built_in/echo.c							\

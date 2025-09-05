@@ -6,7 +6,7 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:35:20 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/09/05 12:22:00 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:33:59 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ char	*no_such_file_or_directory(char *cmd, int *status)
 
 int	directory(char *cmd, int *status)
 {
-	// if (access(cmd, F_OK) != 0)
-	// {
-	// 	no_such_file_or_directory(cmd, status);
-	// 	return (FALSE);
-	// }
 	if (not_directory(cmd, cmd) != 1)
 	{
 		*status = 126;

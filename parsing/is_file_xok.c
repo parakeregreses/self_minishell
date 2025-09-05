@@ -6,13 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:27:15 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/09/05 12:37:58 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:31:48 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_file_XOK(char *file1, int *status)
+int	is_file_xok(char *file1, int *status)
 {
 	char	*message;
 

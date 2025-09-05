@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlaineb <jlaineb@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:34:03 by jlaine-b          #+#    #+#             */
-/*   Updated: 2025/09/04 18:04:03 by jlaineb          ###   ########.fr       */
+/*   Updated: 2025/09/05 18:31:22 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-// #include <features.h>
 
 int	is_executable(char *cmd)
 {
@@ -45,13 +44,6 @@ int	parse_commands(t_exec *infos, int n, char ***envp, int *status)
 			(infos[i]).cmdpath = ft_iscmd((infos[i]).cmdarg[0], status, *envp);
 		if ((infos[i]).cmdpath == NULL)
 			result = FALSE;
-		// else if (!is_builtin((infos[i]).cmdpath))
-		// {
-		// 	*status = 127;
-		// 	result = FALSE;
-		// 	free((infos[i]).cmdpath);
-		// 	(infos[i]).cmdpath = NULL;
-		// }
 		i++;
 	}
 	return (result);

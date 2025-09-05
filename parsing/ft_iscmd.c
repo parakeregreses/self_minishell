@@ -6,11 +6,13 @@
 /*   By: jlaine-b <jlaine-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:48:02 by jlaineb           #+#    #+#             */
-/*   Updated: 2025/09/05 12:40:06 by jlaine-b         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:33:48 by jlaine-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*ft_iscmd2(char *cmd, int *status, char **envp);
 
 static char	*ft_findpathline(char **envp)
 {
@@ -55,9 +57,6 @@ char	*is_absolute_path(char *cmd, int *status)
 
 char	*ft_iscmd(char *cmd, int *status, char **envp)
 {
-	char	**paths;
-	char	*cmdpath;
-
 	if (cmd == NULL)
 		return (NULL);
 	if (cmd[0] == 0)
@@ -67,9 +66,17 @@ char	*ft_iscmd(char *cmd, int *status, char **envp)
 	}
 	if (is_builtin(cmd) == TRUE)
 		return (ft_strdup(cmd));
+	return (ft_iscmd2(cmd, status, envp));
+}
+
+char	*ft_iscmd2(char *cmd, int *status, char **envp)
+{
+	char	**paths;
+	char	*cmdpath;
+
 	if (ft_charinstr(cmd, '/') == TRUE)
 	{
-		if (is_file_XOK(cmd, status) == TRUE)
+		if (is_file_xok(cmd, status) == TRUE)
 		{
 			if (not_directory(cmd, NULL) == TRUE)
 				return (ft_strdup(cmd));
@@ -82,8 +89,6 @@ char	*ft_iscmd(char *cmd, int *status, char **envp)
 	cmdpath = ft_findpathforeachcommand(paths, cmd, status);
 	if (cmdpath != NULL)
 		return (cmdpath);
-	// if (access(cmd, F_OK) == 0 && file_type_nomsg(cmd) == TRUE)
-	// 	return (is_absolute_path(cmd, status));
 	*status = 127;
 	return (cmd_not_found(cmd));
 }
